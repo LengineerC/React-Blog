@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "CustomFont1";
+    src: url(./fonts/font.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.App{
+    font-family: "CustomFont1";
+
+}
+
+body{
+    background-image: url(./assets/image/bg0.jpg);
+    background-position: center 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
