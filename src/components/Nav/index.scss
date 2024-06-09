@@ -1,0 +1,23 @@
+@import "../../styles/base.scss";
+
+.nav{
+    height: $navHeight;
+    width: 100%;
+    transition: transform 0.5s ease;
+    background-color: rgb(192, 192, 192);
+    color:black;
+    transform: translateY(0);
+    position: fixed;
+}
+
+.hidden-nav{
+    transform: translateY(-$navHeight);
+}
+
+.nav-content-container{
+    height: $navHeight;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

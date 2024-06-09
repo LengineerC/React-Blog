@@ -3,7 +3,6 @@
 .title-box{
     display: flex;
     flex-direction: column;
-    color:$textColor;
     height: 100vh;
     width: 100vw;
     align-items: center;
@@ -11,6 +10,21 @@
     justify-content: center;
 }
 .title{
-    font-size: 50px;
+    font-size: 60px;
     text-shadow: 4px 4px 10px rgb(217, 217, 217);
+    color:$textColor;
+    animation: title 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes title{
+    0%{
+        color:rgb(210, 210, 210);        
+    }
+    50%{
+        color:#fff;
+    }
+    100%{
+        color:rgb(210, 210, 210);
+    }
 }
