@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'antd'
+import { Col, Row } from 'antd';
 import store from '../../redux/store';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
+
 import "./index.scss";
 
 type Props = {}
@@ -32,7 +36,7 @@ export default function Nav({}: Props) {
       const {navSwitchReducer}=store.getState();
       // console.log(store.getState());
       
-      if(navSwitchReducer!=visible){
+      if(navSwitchReducer!==visible){
         setVisible(navSwitchReducer);
       }
     });
@@ -41,7 +45,13 @@ export default function Nav({}: Props) {
   return (
     <nav className={`nav ${!visible?'hidden-nav':''}`}>
       <Row>
-        <Col span="10" className='nav-content-container'>Home</Col>
+        <Col span="10" className='nav-content-container'>
+          <NavLink to="/">
+            <div className='click-container'>
+              <FontAwesomeIcon icon={faHouse} />
+            </div>
+          </NavLink>
+        </Col>
       </Row>
     </nav>
   )

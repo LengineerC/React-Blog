@@ -4,7 +4,7 @@
     height: $navHeight;
     width: 100%;
     transition: transform 0.5s ease;
-    background-color: rgb(192, 192, 192);
+    background-color: rgba(211, 236, 255, 0.65);
     color:black;
     transform: translateY(0);
     position: fixed;
@@ -15,9 +15,33 @@
 }
 
 .nav-content-container{
-    height: $navHeight;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    height: $navHeight;
+}
+
+.click-container{
+    display: flex;
+    color:white;
+    font-size:30px;
+    transition: 0.5s;
+    height: $navHeight;
+    justify-content: center;
+    align-items: center;
+    width: 1.5*$navHeight;
+    border-radius: 5px;
+    &:hover{
+        background-color: rgba(211, 236, 255, 0.75);
+    }
+}
+
+
+//移动端隐藏Nav
+@media screen and (max-width:$mobileMaxWidth) {
+    .nav{
+        transform: translateY(-$navHeight);
+        transition: transform 0s ease;
+    }
 }

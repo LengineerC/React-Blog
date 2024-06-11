@@ -17,6 +17,14 @@
     animation-iteration-count: infinite;
 }
 
+//移动端标题
+@media screen and (max-width:$mobileMaxWidth) {
+    .title{
+        font-size: 35px;
+        transform: translateY(-5vh);
+    }
+}
+
 @keyframes title{
     0%{
         color:rgb(210, 210, 210);        

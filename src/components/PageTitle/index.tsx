@@ -5,7 +5,7 @@ import './index.scss'
 
 type Props = {}
 
-export default function index({}: Props) {
+export default function PageTitle({}: Props) {
   return (
     <div className={"title-box"}>
         <div className={"title"}>
