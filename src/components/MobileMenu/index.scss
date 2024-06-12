@@ -1,5 +1,14 @@
 @import "../../styles/base.scss";
 
+.header-text-center{
+    font-family: "CustomFont1";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    width: auto;
+}
+
 .menu-header{
     background: linear-gradient(#21bdff,#2f67ff);
     height: 170px;
@@ -29,25 +38,17 @@
     }
 
     .menu-header-title{
+        @extend .header-text-center;
+
         margin-top:10px;
-        font-family: "CustomFont1";
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: auto;
-        color:white;
-        font-size: 40px;
+        font-size: 30px;
         font-weight: bold;
     }
 
     .menu-header-subtitle{
-        display: flex;
-        font-family: "CustomFont1";
-        justify-content: center;
-        text-align: center;
+        @extend .header-text-center;
+
         margin-top: 15px;
-        width: auto;
-        color:white;
         font-size: 20px;
         animation: 3s text-scale;
         animation-iteration-count: infinite;

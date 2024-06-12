@@ -85,13 +85,15 @@ export default function Nav({}: Props) {
         </Col>
 
         {/*用于间隔*/}
-        <Col 
+        {/* <Col 
         span="1"
         style={show_border}
         >
-        </Col>
+        </Col> */}
 
-        <Col 
+        <Col className='nav-content-container' flex={1} span={8}>
+        
+        <div 
         className='nav-content-container' 
         style={show_border}
         // push={1}
@@ -104,9 +106,9 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
-        </Col>
+        </div>
 
-        <Col 
+        <div 
         className='nav-content-container' 
         style={show_border}
         // push={1}
@@ -119,9 +121,9 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
-        </Col>
+        </div>
 
-        <Col 
+        <div 
         className='nav-content-container' 
         style={show_border}
         // push={1}
@@ -134,9 +136,9 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
-        </Col>
+        </div>
 
-        <Col 
+        <div
         className='nav-content-container' 
         style={show_border}
         // push={1}
@@ -149,9 +151,9 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
-        </Col>
+        </div>
 
-        <Col 
+        <div 
         className='nav-content-container' 
         style={show_border}
         // push={1}
@@ -164,12 +166,13 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
+        </div>
         </Col>
 
         <Col 
-        span="1"
+        span="8"
         className='nav-content-container'
-        push={3}
+        // push={1}
         style={show_border}
         >
           <div className='nav-tool-click-container' onClick={changeDarkMode}>

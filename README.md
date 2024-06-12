@@ -20,7 +20,11 @@
 ## TODO:
 - [ ] 移动端适配
 - [ ] 夜间模式
-- [ ] Nav
+- [x] Nav
 - [ ] About
+- [ ] Articles
+- [ ] Archives
+- [ ] Media
+- [ ] Friends
 - [ ] ...
 - [ ] 后台管理系统
