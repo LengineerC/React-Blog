@@ -7,11 +7,11 @@
 
 ## 🛠️ 功能版本
 
+- ~~*`node.js`: 18.16.1*~~
 - `react`: 18.3.1
 - `antd`: 5.18.0
 - `axios`: 1.7.2
 - `react-router-dom`: 6.23.1
-- `react-scripts`: 5.0.1
 - `redux`: 5.0.1
 - `sass`: 1.77.4
 - ...

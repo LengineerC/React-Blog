@@ -14,7 +14,7 @@ export default function Main({}: Props) {
           <Routes>
             <Route path="/" element={<Home />} />
 
-            //找不到页面自动返回Home，如果加404改路由
+            //找不到页面自动返回Home，加404改路由
             <Route path='*' element={<Navigate to="/" />} />
           </Routes>
 

@@ -4,4 +4,11 @@ $textColor:#fff;
 $navHeight:60px;
 
 //移动端设备最大宽度
-$mobileMaxWidth:768px;
+$mobileMaxWidth:992px;
+
+@font-face {
+    font-family: "CustomFont1";
+    src: url(../fonts/font.ttf);
+    font-weight: normal;
+    font-style: normal;
+}

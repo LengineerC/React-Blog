@@ -1,0 +1,78 @@
+@import "../../styles/base.scss";
+
+.menu-header{
+    background: linear-gradient(#21bdff,#2f67ff);
+    height: 170px;
+
+    display: flex;
+    flex-direction: column;
+
+    .menu-header-btn-line{
+        width: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .menu-header-btn-block{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            transition: 0.3s;
+            border-radius: 5px;
+
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.75);
+            }
+        }
+    }
+
+    .menu-header-title{
+        margin-top:10px;
+        font-family: "CustomFont1";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        color:white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .menu-header-subtitle{
+        display: flex;
+        font-family: "CustomFont1";
+        justify-content: center;
+        text-align: center;
+        margin-top: 15px;
+        width: auto;
+        color:white;
+        font-size: 20px;
+        animation: 3s text-scale;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes text-scale{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.menu-body{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+
+    .menu-body-content-container{
+        color:rgb(0, 20, 71);
+        font-size: 20px;
+    }
+}

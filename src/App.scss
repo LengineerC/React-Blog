@@ -1,14 +1,7 @@
 @import "./styles/base.scss";
 
-@font-face {
-    font-family: "CustomFont1";
-    src: url(./fonts/font.ttf);
-    font-weight: normal;
-    font-style: normal;
-}
-
 .App{
-    font-family: "CustomFont1";
+    
     display: flex;
     flex-direction: column;
 

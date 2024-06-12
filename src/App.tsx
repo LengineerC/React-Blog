@@ -1,20 +1,24 @@
-import React, {useEffect, useState} from 'react'
+import React, {lazy, useEffect, useState} from 'react'
 import './App.scss';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import store from './redux/store';
 import { MenuOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
 
-//nav hidden test
-// import { showNav, hideNav } from './redux/actions';
 import { MOBILE_MAX_WIDTH } from './utils/constants';
 import { darkmodeOFF, darkmodeON } from './redux/actions';
+
+//nav hidden test
+import { showNav, hideNav } from './redux/actions';
+import { Button } from 'antd';
+
+const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
 type Props = {}
 
 export default function App({}: Props) {
   const [showToolbar, setShowToolbar]=useState<boolean>(false);
-
+  const [showMenu,setShowMenu]=useState<boolean>(false);
   const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkModeReducer);
 
   const handleResize=()=>{
@@ -49,30 +53,38 @@ export default function App({}: Props) {
       setIsDarkMode(darkModeReducer);
     })
     
-    console.log(isDarkMode);
+    console.log(`Dark mode:${isDarkMode}`);
     
   },[isDarkMode])
 
   // Nav test
-  // const show=()=>{
-  //   console.log(window.innerWidth);
+  const show=()=>{
+    console.log(window.innerWidth);
     
-  //   store.dispatch(showNav());
-  // }
-  // const hidden=()=>{
-  //   store.dispatch(hideNav());
-  // }
+    store.dispatch(showNav());
+  }
+  const hidden=()=>{
+    store.dispatch(hideNav());
+  }
+
+  // 处理移动端菜单按钮
+  const handleMenuOpen=()=>{
+    setShowMenu(true);
+  }
+  const handleMenuClose=()=>{
+    setShowMenu(false);
+  }
 
   return (
     <div className="App">
-      <Nav />
+      <MobileMenu open={showMenu} handleMenuClose={handleMenuClose}/>
 
       {
         showToolbar?(
           <div className='mobile-toolbar'>
 
             <div className='icon-container'>
-              <div className='icon-block'>
+              <div className='icon-block' onClick={handleMenuOpen}>
                 <MenuOutlined />
               </div>
             </div>
@@ -84,14 +96,14 @@ export default function App({}: Props) {
             </div>
 
           </div>
-        ):<></>
+        ):<Nav />
       }
 
-      {/* Nav test */}
-      {/* <Button onClick={show}>show</Button>
-      <Button onClick={hidden}>hidden</Button> */}
-
       <Main />
+
+      {/* Nav test */}
+      <Button onClick={show}>show</Button>
+      <Button onClick={hidden}>hidden</Button>
 
     </div>
   )
