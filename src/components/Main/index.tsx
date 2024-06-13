@@ -1,16 +1,20 @@
 import React from 'react'
-import { lazy, Suspense } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Suspense } from 'react'
+import { useRoutes } from 'react-router-dom'
+import routes from '../../routes'
 
-const Home=lazy(()=>import("../../pages/Home/index"))
+// const Home=lazy(()=>import("../../pages/Home/index"))
 
 type Props = {}
 
 export default function Main({}: Props) {
+
+  const elements=useRoutes(routes)
+
   return (
     <main>
       <div>
-        <Suspense fallback={<></>}>
+        {/* <Suspense fallback={<></>}>
           <Routes>
             <Route path="/" element={<Home />} />
 
@@ -18,6 +22,10 @@ export default function Main({}: Props) {
             <Route path='*' element={<Navigate to="/" />} />
           </Routes>
 
+        </Suspense> */}
+
+        <Suspense fallback={<></>}>
+          {elements}
         </Suspense>
       </div>
     </main>

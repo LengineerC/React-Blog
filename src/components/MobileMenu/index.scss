@@ -1,5 +1,6 @@
 @import "../../styles/base.scss";
 
+@media screen and (max-width:$mobileMaxWidth){
 .header-text-center{
     font-family: "CustomFont1";
     display: flex;
@@ -73,7 +74,21 @@
     flex-direction: column;
 
     .menu-body-content-container{
+        // border:1px solid black;
+        display: flex;
+        flex-direction: row;
         color:rgb(0, 20, 71);
         font-size: 20px;
+        height: 60px;
+        transition: 0.3s;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px 0 20px;
+
+        &:hover{
+            background-color: rgb(215, 215, 215);
+        }
     }
+}
+
 }

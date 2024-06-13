@@ -1,10 +1,10 @@
 import React from 'react'
-import PageTitle from '../../components/PageTitle'
+import SiteTitle from '../../components/SiteTitle'
 
 type Props = {}
 
 export default function Home({}: Props) {
   return (
-    <PageTitle />
+    <SiteTitle />
   )
 }

@@ -1,9 +1,8 @@
 import { ConfigProvider, Drawer } from 'antd'
 import React, { useEffect, useState } from 'react'
-import Icon from '@ant-design/icons/lib/components/Icon'
 import { MenuFoldOutlined } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faBook, faFileZipper,faLink, faAddressCard, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom'
 
 import './index.scss'
@@ -54,7 +53,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
 
           <div className='menu-header-btn-line'>
           <NavLink to="/">
-            <div className='menu-header-btn-block' >
+            <div className='menu-header-btn-block' onClick={onClose}>
               <FontAwesomeIcon style={custom_menu_fold_outlined} icon={faHouse} />
             </div>
           </NavLink>
@@ -75,9 +74,47 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
         </div>
         
         <div className='menu-body'>
+          <div onClick={onClose}>
 
-          <div className='menu-body-content-container'>
-            body
+            <NavLink to="articles">
+              <div className='menu-body-content-container'>
+              <FontAwesomeIcon icon={faBook}/>
+                <span>文章</span>
+                <span>&nbsp;</span>
+              </div>
+            </NavLink>
+            
+            <NavLink to="archives">
+              <div className='menu-body-content-container'>
+              <FontAwesomeIcon icon={faFileZipper}/>
+                <span>归档</span>
+                <span>&nbsp;</span>
+              </div>
+            </NavLink>
+            
+            <NavLink to="media">
+              <div className='menu-body-content-container'>
+              <FontAwesomeIcon icon={faMusic}/>
+                <span>媒体</span>
+                <span>&nbsp;</span>
+              </div>
+            </NavLink>
+
+            <NavLink to="friends">
+              <div className='menu-body-content-container'>
+              <FontAwesomeIcon icon={faLink}/>
+                <span>友链</span>
+                <span>&nbsp;</span>
+              </div>
+            </NavLink>
+
+            <NavLink to="about">
+              <div className='menu-body-content-container'>
+              <FontAwesomeIcon icon={faAddressCard}/>
+                <span>关于</span>
+                <span>&nbsp;</span>
+              </div>
+            </NavLink>
           </div>
 
         </div>

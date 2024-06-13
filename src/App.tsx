@@ -9,14 +9,12 @@ import { MOBILE_MAX_WIDTH } from './utils/constants';
 import { darkmodeOFF, darkmodeON } from './redux/actions';
 
 //nav hidden test
-import { showNav, hideNav } from './redux/actions';
-import { Button } from 'antd';
+// import { showNav, hideNav } from './redux/actions';
+// import { Button } from 'antd';
 
 const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
-type Props = {}
-
-export default function App({}: Props) {
+export default function App() {
   const [showToolbar, setShowToolbar]=useState<boolean>(false);
   const [showMenu,setShowMenu]=useState<boolean>(false);
   const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkModeReducer);
@@ -58,14 +56,14 @@ export default function App({}: Props) {
   },[isDarkMode])
 
   // Nav test
-  const show=()=>{
-    console.log(window.innerWidth);
+  // const show=()=>{
+  //   console.log(window.innerWidth);
     
-    store.dispatch(showNav());
-  }
-  const hidden=()=>{
-    store.dispatch(hideNav());
-  }
+  //   store.dispatch(showNav());
+  // }
+  // const hidden=()=>{
+  //   store.dispatch(hideNav());
+  // }
 
   // 处理移动端菜单按钮
   const handleMenuOpen=()=>{
@@ -102,8 +100,8 @@ export default function App({}: Props) {
       <Main />
 
       {/* Nav test */}
-      <Button onClick={show}>show</Button>
-      <Button onClick={hidden}>hidden</Button>
+      {/* <Button onClick={show}>show</Button>
+      <Button onClick={hidden}>hidden</Button> */}
 
     </div>
   )

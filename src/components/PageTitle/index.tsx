@@ -1,16 +1,14 @@
 import React from 'react'
-import { SITE_TITLE } from '../../utils/constants'
+import "./index.scss"
 
-import './index.scss'
+type Props = {
+  title: string
+}
 
-type Props = {}
-
-export default function PageTitle({}: Props) {
+export default function PageTitle({ title }: Props) {
   return (
-    <div className={"title-box"}>
-        <div className={"title"}>
-            {SITE_TITLE}
-        </div>
+    <div className='page-title'>
+      {title}
     </div>
   )
 }

@@ -1,0 +1,18 @@
+import { useState } from "react"
+import PageTitle from "../../components/PageTitle"
+import "./index.scss"
+import Card from "../../components/Card"
+
+export default function About() {
+  return (
+    <div className="page-main">
+      <div className="page-main-title">
+        <PageTitle title="About" />
+      </div>
+
+      <div className="page-main-content">
+        <Card />
+      </div>
+    </div>
+  )
+}
