@@ -2,12 +2,11 @@ import React from 'react'
 import { Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 import routes from '../../routes'
+import Loading from '../Loading'
 
 // const Home=lazy(()=>import("../../pages/Home/index"))
 
-type Props = {}
-
-export default function Main({}: Props) {
+export default function Main() {
 
   const elements=useRoutes(routes)
 
@@ -24,9 +23,10 @@ export default function Main({}: Props) {
 
         </Suspense> */}
 
-        <Suspense fallback={<></>}>
+        <Suspense fallback={<Loading/>}>
           {elements}
         </Suspense>
+        
       </div>
     </main>
   )

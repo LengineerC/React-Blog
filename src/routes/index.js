@@ -1,8 +1,9 @@
 import { lazy } from "react"
-import { Navigate } from "react-router-dom";
+// import Loading from "../components/Loading/index";
 
 const Home=lazy(()=>import("../pages/Home/index.tsx"));
 const About=lazy(()=>import("../pages/About/index.tsx"));
+const ErrorPage=lazy(()=>import("../pages/404/index.tsx"))
 
 const routes=[
     {
@@ -13,9 +14,13 @@ const routes=[
         path:"about",
         element:<About />
     },
+    // {
+    //     path:"loading",
+    //     element:<Loading/>
+    // },
     {
         path:"*",
-        element:<Navigate to="/"/>
+        element:<ErrorPage />
     },
 ];
 

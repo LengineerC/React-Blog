@@ -1,4 +1,3 @@
-import { useState } from "react"
 import PageTitle from "../../components/PageTitle"
 import "./index.scss"
 import Card from "../../components/Card"
@@ -11,7 +10,11 @@ export default function About() {
       </div>
 
       <div className="page-main-content">
-        <Card />
+        <Card>
+          <div>
+            About
+          </div>
+        </Card>
       </div>
     </div>
   )

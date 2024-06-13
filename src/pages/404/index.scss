@@ -1,0 +1,92 @@
+@import "../../styles/page_layout.scss";
+@import "../../styles/base.scss";
+
+.xmark-line{
+    @extend .hv-center;
+    width: 100%;
+    margin-bottom:5vh;
+}
+
+.xmark-block{
+    @extend .hv-center;
+    font-size: 40px;
+    animation: xmark-rotate 3s;
+    animation-iteration-count: infinite;
+}
+
+.error-info-block{
+    margin-top: 10px;
+    word-break: break-all;
+    @extend .hv-center;
+    color:white;
+    font-family: "CustomFont1";
+    font-size: 20px;
+    border-radius: 3px;
+    background-color: #ff373790;
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px 10px 5px 10px;
+}
+
+@keyframes xmark-rotate{
+    0%{
+        color: rgb(255, 0, 0);
+        rotate: 0deg;
+    }
+    25%{
+        color:rgb(0, 255, 8);
+        rotate: 180deg;
+    }
+    50%{
+        color: rgb(0, 123, 255);
+        rotate: 360deg;
+    }
+    75%{
+        color:rgb(0, 255, 8);
+        rotate: 180deg;
+    }
+    100%{
+        color: rgb(255, 0, 0);
+        rotate: 0deg;
+    }
+}
+
+.return-btn-block{
+    width: 100%;
+    height: auto;
+    margin-top: 5vw;
+    @extend .hv-center;
+}
+
+.return-click-block{
+    font-family: "CustomFont1";
+    @extend .hv-center;
+    width: 10vw;
+    height: 7vh;
+    border: 2px dashed rgb(240, 240, 240);
+    border-radius: 5px;
+    color:rgb(240, 240, 240);
+    text-shadow: 1px 1px 5px rgb(37, 37, 37);
+    box-shadow: 1px 1px 5px rgb(37, 37, 37);
+    transition: 0.3s;
+
+    &:hover{
+        color:#fff;
+        border: 2px solid rgb(240, 240, 240);
+        background-color: #e1e1e189;
+        transform: scale(1.1);
+    }
+}
+
+@media screen and (max-width:$mobileMaxWidth){
+    .return-btn-block{
+        margin-top: 75px;
+    }
+    .return-click-block{
+        width: 127px;
+        height: 63px;
+        box-shadow: 1px 1px 5px rgb(37, 37, 37);
+    }
+}
+

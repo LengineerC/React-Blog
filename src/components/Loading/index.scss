@@ -1,0 +1,52 @@
+@import "../../styles/page_layout.scss";
+@import "../../styles/base.scss";
+
+.loading-main{
+    @extend .hv-center;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    z-index: 999;
+    background: linear-gradient(rgb(43, 160, 255),rgb(0, 39, 234));
+
+    .loading-title{
+        font-size: 70px;
+        color: white;
+        font-family: "CustomFont1";
+        animation: title-text 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    .loading-icon{
+        font-size: 70px;
+        color: white;
+        animation: title-icon 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        margin-right: 50px;
+    }
+
+}
+
+@keyframes title-text{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes title-icon{
+    from{
+        rotate: 0deg;
+    }
+    to{
+        rotate: 360deg;
+    }
+}
