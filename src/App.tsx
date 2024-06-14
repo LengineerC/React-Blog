@@ -11,6 +11,7 @@ import { darkmodeOFF, darkmodeON } from './redux/actions';
 //nav hidden test
 import { showNav, hideNav } from './redux/actions';
 import { Button } from 'antd';
+import Footer from './components/Footer';
 
 const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
@@ -98,10 +99,11 @@ export default function App() {
       }
 
       <Main />
+      <Footer />
 
       {/* Nav test */}
-      <Button onClick={show}>show</Button>
-      <Button onClick={hidden}>hidden</Button>
+      {/* <Button onClick={show}>show</Button>
+      <Button onClick={hidden}>hidden</Button> */}
 
 
       {/* <Button onClick={show}>show</Button>

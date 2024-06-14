@@ -84,10 +84,17 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 20px 0 20px;
+        width: auto;
 
         &:hover{
             background-color: rgb(215, 215, 215);
         }
+
+        .menu-body-content-container-extend{
+            height: 100%;
+            width: 30px;
+        }
+
     }
 }
 

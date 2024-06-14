@@ -80,7 +80,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
               <div className='menu-body-content-container'>
               <FontAwesomeIcon icon={faBook}/>
                 <span>文章</span>
-                <span>&nbsp;</span>
+                <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
             </NavLink>
             
@@ -88,7 +88,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
               <div className='menu-body-content-container'>
               <FontAwesomeIcon icon={faFileZipper}/>
                 <span>归档</span>
-                <span>&nbsp;</span>
+                <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
             </NavLink>
             
@@ -96,7 +96,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
               <div className='menu-body-content-container'>
               <FontAwesomeIcon icon={faMusic}/>
                 <span>媒体</span>
-                <span>&nbsp;</span>
+                <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
             </NavLink>
 
@@ -104,7 +104,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
               <div className='menu-body-content-container'>
               <FontAwesomeIcon icon={faLink}/>
                 <span>友链</span>
-                <span>&nbsp;</span>
+                <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
             </NavLink>
 
@@ -112,7 +112,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
               <div className='menu-body-content-container'>
               <FontAwesomeIcon icon={faAddressCard}/>
                 <span>关于</span>
-                <span>&nbsp;</span>
+                <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
             </NavLink>
           </div>
