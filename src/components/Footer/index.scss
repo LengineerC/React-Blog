@@ -1,13 +1,98 @@
 @import "../../styles/page_layout.scss";
 @import "../../styles/base.scss";
 
-.foot-main{
+@mixin content-text-style($value){
+    text-shadow: 0.5px 0.5px 5px rgb(61, 61, 61);
+
+    @if $value==value{
+        font-weight: bold;
+        color: white;
+    }@else if $value==des{
+        color:rgb(225, 225, 225);
+    }
+}
+
+.footer-main{
     font-family: "CustomFont1";
     display: flex;
     justify-content: center;
-    background-color: rgba(211, 236, 255, 0.65);
-    height: 100px;
+    background-color: rgba(178, 196, 210, 0.7);
+    height: auto;
     margin-bottom:20px;
     margin-top: auto;
     padding-top: 20px;
+    padding-bottom: 20px;
+
+    .footer-left-col{
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+        width: 40%;
+        padding-right: 5vw;
+    }
+
+    .footer-right-col{
+        display: flex;
+        // justify-content: space-evenly;
+        // align-items: center;
+        width: 20%;
+        padding-top: 15px;
+
+        .footer-right-col-icon-container{
+            @extend .hv-center;
+            color:white;
+            font-size: 20px;
+            // margin-top: 15px;
+            transition: 0.3s;
+            width: 40px;
+            height: 40px;
+
+            &:hover{
+                transform: scale(1.1);
+                // background-color: #e5e5e5;
+            }
+
+            a{
+                &:link{
+                    color:#ffffff;
+                }
+                &:visited{
+                    color:white;
+                }
+            }
+        }
+    }
+
+    .footer-left-row{
+        @extend .hv-center;
+    }
+    
+    .footer-text-des{
+        @include content-text-style(des);
+    }
+    .footer-text-value{
+        @include content-text-style(value);
+    }
+}
+
+// .poover-container{
+//     @extend .hv-center;
+//     flex-direction: column;
+//     height: auto;
+// }
+
+@media screen and (max-width:$mobileMaxWidth) {
+    .footer-main{
+        flex-direction: column;
+
+        .footer-left-col{
+            width: 100%;
+        }
+
+        .footer-right-col{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    }
 }

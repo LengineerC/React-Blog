@@ -21,15 +21,17 @@ export default function App() {
   const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkModeReducer);
 
   const handleResize=()=>{
+    // console.log(window.innerWidth);
     setShowToolbar(window.innerWidth<=MOBILE_MAX_WIDTH?true:false);
   }
   // useEffect(()=>{
   //   console.log(showMenuBtn);
   // },[showMenuBtn])
 
-  //通过监听页面大小来判断是否需要显示Nav的按钮
+  //通过监听页面大小来判断是否需要显示移动端ToolBar的按钮
   useEffect(()=>{
     window.addEventListener("resize",handleResize);
+    // handleResize();
     
     return()=>{
       window.removeEventListener("resize",handleResize);
