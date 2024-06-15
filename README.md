@@ -2,8 +2,7 @@
 
 ## 🖋️ 项目简介
 
-一个基于react的个人blog搭建...
-
+一个基于react的响应式个人blog搭建...
 
 ## 🛠️ 功能版本
 
@@ -14,8 +13,15 @@
 - `react-router-dom`: 6.23.1
 - `redux`: 5.0.1
 - `sass`: 1.77.4
+- `highlight.js`: 11.9.0
+- `jinrishici`: 1.0.6
+- `marked`: 13.0.0
+- `gray-matter`: 4.0.3
 - ...
 
+## 🔑 使用
+1. `npm run gen-post-list`
+2. `npm start`或`npm run build`
 ---
 ## TODO:
 - [ ] 移动端适配
@@ -23,6 +29,8 @@
 - [x] Nav
 - [x] MobileMenu
 - [x] Footer
+- [x] 代码高亮
+- [x] md文件获取
 - [ ] About
 - [ ] Articles
 - [ ] Archives

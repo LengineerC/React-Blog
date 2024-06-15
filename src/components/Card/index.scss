@@ -4,16 +4,29 @@
 .card-main{
     @extend .hv-center;
     flex-direction: column;
-    background-color: rgba(235, 235, 235, 0.75);
+    background-color: rgba(235, 235, 235, 0.85);
     width: 90%;
     height: auto;
     border-radius: 10px;
+    box-sizing: border-box;
+    word-break: break-all;
+    padding:24px 50px 24px 50px;
     
     //如果post后续添加标签选择器
-    .card-main-text-container{
-        word-break: break-all;
-        padding:24px 50px 24px 50px;
+    // .card-main-text-container{
+    //     word-break: break-all;
+    //     padding:24px 50px 24px 50px;
+    //     width: 100%;
 
+    // }
+}
+
+.card-main-scale{
+    @extend .card-main;
+    transition: 0.3s;
+
+    &:hover{
+        transform: scale(1.03);
     }
 }
 

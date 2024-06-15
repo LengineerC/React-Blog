@@ -1,4 +1,3 @@
-import React from 'react'
 import "./index.scss"
 
 type Props = {
@@ -7,8 +6,10 @@ type Props = {
 
 export default function PageTitle({ title }: Props) {
   return (
-    <div className='page-title'>
-      {title}
-    </div>
+    <>
+      <div className='page-title'>
+        {title}
+      </div>
+    </>
   )
 }

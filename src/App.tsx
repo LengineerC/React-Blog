@@ -3,15 +3,19 @@ import './App.scss';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import store from './redux/store';
+import { savePostList } from './redux/actions';
 import { MenuOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
 
 import { MOBILE_MAX_WIDTH } from './utils/constants';
 import { darkmodeOFF, darkmodeON } from './redux/actions';
 
 //nav hidden test
-import { showNav, hideNav } from './redux/actions';
-import { Button } from 'antd';
+// import { showNav, hideNav } from './redux/actions';
+// import { Button } from 'antd';
+
 import Footer from './components/Footer';
+import Top from './components/Top';
+import axios from 'axios';
 
 const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
@@ -28,10 +32,21 @@ export default function App() {
   //   console.log(showMenuBtn);
   // },[showMenuBtn])
 
-  //通过监听页面大小来判断是否需要显示移动端ToolBar的按钮
   useEffect(()=>{
+    //通过监听页面大小来判断是否需要显示移动端ToolBar的按钮
     window.addEventListener("resize",handleResize);
     // handleResize();
+
+    //获取文章列表
+    axios.get('/posts.json')
+    .then(response=>{
+      const {data}=response;
+      // console.log(data);
+      store.dispatch(savePostList(data));
+    }).catch(err=>{
+      console.log("文章列表获取失败",err);
+      
+    })
     
     return()=>{
       window.removeEventListener("resize",handleResize);
@@ -59,14 +74,14 @@ export default function App() {
   },[isDarkMode])
 
   // Nav test
-  const show=()=>{
-    // console.log(window.innerWidth);
+  // const show=()=>{
+  //   // console.log(window.innerWidth);
     
-    store.dispatch(showNav());
-  }
-  const hidden=()=>{
-    store.dispatch(hideNav());
-  }
+  //   store.dispatch(showNav());
+  // }
+  // const hidden=()=>{
+  //   store.dispatch(hideNav());
+  // }
 
   // 处理移动端菜单按钮
   const handleMenuOpen=()=>{
@@ -101,13 +116,12 @@ export default function App() {
       }
 
       <Main />
-      <Footer />
+      <Top />
 
       {/* Nav test */}
       {/* <Button onClick={show}>show</Button>
       <Button onClick={hidden}>hidden</Button> */}
 
-
       {/* <Button onClick={show}>show</Button>
       <Button onClick={hidden}>hidden</Button>
       <Button onClick={show}>show</Button>
@@ -122,6 +136,9 @@ export default function App() {
       <Button onClick={hidden}>hidden</Button>
       <Button onClick={show}>show</Button>
       <Button onClick={hidden}>hidden</Button> */}
+      
+      <Footer />
+
     </div>
   )
 }

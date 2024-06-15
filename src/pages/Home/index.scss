@@ -1,0 +1,20 @@
+@import "../../styles/page_layout.scss";
+
+.home-body{
+    @extend .hv-center;
+    // justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-left: 13vw;
+    padding-right: 13vw;
+    padding-top: 5vh;
+    margin-bottom: 15vh;
+
+    .home-body-left-col{
+        width: 70%;
+    }
+    .home-body-right-col{
+        width: 30%;
+        align-items: flex-start;
+        // margin-right: 5vw;
+    }
+}

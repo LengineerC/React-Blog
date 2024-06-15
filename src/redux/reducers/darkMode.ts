@@ -1,8 +1,9 @@
 import { SET_DARKMODE_OFF, SET_DARKMODE_ON } from "../constants";
+import { DataType } from "../dataType";
 
-interface Action{
+type Action={
     type:string,
-    data?:boolean,
+    data?:DataType
 }
 
 const initState:boolean=false;

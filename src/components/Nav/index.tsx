@@ -2,22 +2,123 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'antd';
 import store from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faBook, faFileZipper,faLink, faAddressCard, faMusic, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { faHouse,
+         faBook,
+         faFileZipper,
+         faLink,
+         faAddressCard,
+         faMusic, 
+         faAngleDown, 
+         faAngleUp, 
+         IconDefinition, 
+         faXmark } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { darkmodeOFF, darkmodeON } from '../../redux/actions';
 import { MoonFilled, SunFilled } from '@ant-design/icons';
 
 import "./index.scss";
 
-type Props = {}
-
 //Nav内容块列宽度显示
 const show_border={
   // border:"2px solid black",
   border:"none",
+};
+
+type MenuConfig={
+  name:string,
+  path:string,
+  key:string,
+  options:{
+    subMenuEnable:boolean,
+    subItems:JSX.Element[],
+  }
 }
 
-export default function Nav({}: Props) {
+const navCenterColConfig:MenuConfig[]=[
+  {
+    name:"文章",
+    path:"articles",
+    key:"articles",
+    options:{
+      subMenuEnable:true,
+      subItems:[
+        <p>item1</p>,
+        <p>item2</p>,
+      ],
+    }
+  },
+  {
+    name:"归档",
+    path:"archives",
+    key:"archives",
+    options:{
+      subMenuEnable:false,
+      subItems:[
+      ],
+    }
+  },
+  {
+    name:"媒体",
+    path:"media",
+    key:"media",
+    options:{
+      subMenuEnable:true,
+      subItems:[
+        <p>media1</p>
+      ],
+    }
+  },
+  {
+    name:"友链",
+    path:"friends",
+    key:"friends",
+    options:{
+      subMenuEnable:false,
+      subItems:[
+      ],
+    }
+  },
+  {
+    name:"关于",
+    path:"about",
+    key:"about",
+    options:{
+      subMenuEnable:false,
+      subItems:[
+      ],
+    }
+  },
+]
+
+//#region subMenuConfig
+// const subMenuConfig={
+//   articles:{
+//     enable:true,
+//     subItems:[
+//       <p>item1</p>,
+//       <p>item2</p>,
+//     ],
+//   },
+//   archives:{
+//     enable:false,
+//     subItems:[],
+//   },
+//   media:{
+//     enable:false,
+//     subItems:[],
+//   },
+//   friends:{
+//     enable:false,
+//     subItems:[],
+//   },
+//   about:{
+//     enable:false,
+//     subItems:[],
+//   },
+// };
+//#endregion
+
+export default function Nav() {
   const [visible,setVisible]=useState<boolean>(store.getState().navSwitchReducer);
   // const [lastScrollTop,setLastScrollTop]=useState<number>(0);
   const [isDarkMode,setIsDarkMode]=useState<boolean>(false);
@@ -51,11 +152,81 @@ export default function Nav({}: Props) {
     }
     lastScrollTop = document.documentElement.scrollTop
     // 判断是否滚动到底部
-    if (scrollTop + clientHeight === scrollHeight) {
-      console.log("滚动到底部");
+    // if (scrollTop + clientHeight === scrollHeight) {
+    //   console.log("滚动到底部");
+    // }
+  }
+
+  const iconChooser=(name:string):IconDefinition=>{
+    switch(name){
+      case "articles":
+        return faBook;
+      case "archives":
+        return faFileZipper;
+      case "media":
+        return faMusic;
+      case "friends":
+        return faLink;
+      case "about":
+        return faAddressCard;
+      default:
+        return faXmark;
     }
   }
 
+  const createCenterColItems=()=>{
+    return navCenterColConfig.map(item=>{
+      return(
+        <div
+        className='nav-content-container' 
+        style={show_border}
+        onMouseEnter={()=>handleMouseEnter(item.path)}
+        onMouseLeave={handleMouseLeave}
+        key={item.key}
+        // push={1}
+        >
+          <NavLink to={item.path}>
+            <div className='click-container'>
+              <FontAwesomeIcon icon={iconChooser(item.key)} />
+              <div className='nav-click-text-container'>
+                {item.name}
+                {item.options.subMenuEnable &&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu===item.key?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
+              </div>
+            </div>
+          </NavLink>
+
+          {item.options.subMenuEnable&&
+            <>
+              {
+                showSubMenu===item.key && (
+                  <div className='sub-menu'>
+                    {
+                      item.options.subItems.map((subItem,index)=>{
+                        return(
+                          <div className='sub-menu-item' key={index}>
+                            {subItem}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            </>
+          }
+        </div>
+      )
+    })
+
+  }
 
   const checkScrollTop=()=>{
     if(window.scrollY<10){
@@ -134,7 +305,11 @@ export default function Nav({}: Props) {
         </Col> */}
 
         <Col className='nav-center-col' flex={1} span={8}>
-        
+        {createCenterColItems()}
+
+        {
+        //#region 非动态渲染
+        /*
         <div 
         className='nav-content-container' 
         onMouseEnter={()=>handleMouseEnter("articles")}
@@ -148,33 +323,45 @@ export default function Nav({}: Props) {
               <FontAwesomeIcon icon={faBook} />
               <div className='nav-click-text-container'>
                 文章
-                <span className='nav-click-text-icon'>
-                  {
-                    showSubMenu?
-                    <FontAwesomeIcon icon={faAngleUp} />
-                    :<FontAwesomeIcon icon={faAngleDown} />
-                  }
-                </span>
+                {subMenuConfig.articles.enable&&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
               </div>
             </div>
           </NavLink>
-          {
-            showSubMenu==="articles" && (
-              <div className='sub-menu'>
-                <div className='sub-menu-item'>
-                  item1
-                </div>
-                <div className='sub-menu-item'>
-                  item2
-                </div>
-              </div>
-            )
+
+          {subMenuConfig.articles.enable&&
+            <>
+              {
+                showSubMenu==="articles" && (
+                  <div className='sub-menu'>
+                    {
+                      subMenuConfig.articles.subItems.map((item,index)=>{
+                        return(
+                          <div className='sub-menu-item' key={index}>
+                            {item}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            </>
           }
         </div>
 
         <div 
         className='nav-content-container' 
         style={show_border}
+        onMouseEnter={()=>handleMouseEnter("archives")}
+        onMouseLeave={handleMouseLeave}
         // push={1}
         >
           <NavLink to="archives">
@@ -182,14 +369,45 @@ export default function Nav({}: Props) {
               <FontAwesomeIcon icon={faFileZipper} />
               <div className='nav-click-text-container'>
                 归档
+                {subMenuConfig.archives.enable&&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
               </div>
             </div>
           </NavLink>
+          
+          {subMenuConfig.archives.enable&&
+            <>
+              {
+                showSubMenu==="articles" && (
+                  <div className='sub-menu'>
+                    {
+                      subMenuConfig.archives.subItems.map((item,index)=>{
+                        return(
+                          <div className='sub-menu-item' key={index}>
+                            {item}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            </>
+          }
         </div>
 
         <div 
         className='nav-content-container' 
         style={show_border}
+        onMouseEnter={()=>handleMouseEnter("media")}
+        onMouseLeave={handleMouseLeave}
         // push={1}
         >
           <NavLink to="media">
@@ -197,15 +415,45 @@ export default function Nav({}: Props) {
               <FontAwesomeIcon icon={faMusic} />
               <div className='nav-click-text-container'>
                 媒体
+                {subMenuConfig.media.enable&&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
               </div>
             </div>
           </NavLink>
+
+          {subMenuConfig.media.enable&&
+            <>
+              {
+                showSubMenu==="articles" && (
+                  <div className='sub-menu'>
+                    {
+                      subMenuConfig.media.subItems.map((item,index)=>{
+                        return(
+                          <div className='sub-menu-item' key={index}>
+                            {item}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            </>
+          }
         </div>
 
         <div
         className='nav-content-container' 
         style={show_border}
-        
+        onMouseEnter={()=>handleMouseEnter("friends")}
+        onMouseLeave={handleMouseLeave}
         // push={1}
         >
           <NavLink to="friends">
@@ -213,14 +461,45 @@ export default function Nav({}: Props) {
               <FontAwesomeIcon icon={faLink} />
               <div className='nav-click-text-container'>
                 友链
+                {subMenuConfig.friends.enable&&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
               </div>
             </div>
           </NavLink>
+
+          {subMenuConfig.friends.enable&&
+            <>
+              {
+                showSubMenu==="articles" && (
+                  <div className='sub-menu'>
+                    {
+                      subMenuConfig.friends.subItems.map((item,index)=>{
+                        return(
+                          <div className='sub-menu-item' key={index}>
+                            {item}
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                )
+              }
+            </>
+          }
         </div>
 
         <div 
         className='nav-content-container' 
         style={show_border}
+        onMouseEnter={()=>handleMouseEnter("about")}
+        onMouseLeave={handleMouseLeave}
         // push={1}
         >
           <NavLink to="about">
@@ -231,7 +510,10 @@ export default function Nav({}: Props) {
               </div>
             </div>
           </NavLink>
-        </div>
+        </div> 
+        */
+        //#endregion
+        }
         </Col>
 
         <Col 

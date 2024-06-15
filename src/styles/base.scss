@@ -13,3 +13,17 @@ $mobileMaxWidth:992px;
     font-weight: normal;
     font-style: normal;
 }
+
+//浅色主题背景色
+$themeBackgroundColor: rgba(103,171,255,0.7);
+
+// 文章字体颜色
+$postColor:rgb(0, 20, 71);
+
+//Nav栏背景色
+// $navBackgroundColor:rgba(211, 236, 255, 0.65);
+$navBackgroundColor:mix($themeBackgroundColor,rgba(0,0,0,0.1),75%);
+
+//Footer背景色
+// $footerBackgroundColor:rgba(178, 196, 210, 0.7);
+$footerBackgroundColor:mix($themeBackgroundColor,rgba(0,0,0,0.1));

@@ -1,8 +1,9 @@
 import { SET_NAV_HIDDEN, SET_NAV_SHOW } from "../constants";
+import { DataType } from "../dataType";
 
-interface Action{
+type Action={
     type:string,
-    data?:boolean,
+    data?:DataType,
 }
 
 const initState:boolean=true;

@@ -16,7 +16,7 @@
     font-family: "CustomFont1";
     display: flex;
     justify-content: center;
-    background-color: rgba(178, 196, 210, 0.7);
+    background-color: $footerBackgroundColor;
     height: auto;
     margin-bottom:20px;
     margin-top: auto;
@@ -87,6 +87,7 @@
 
         .footer-left-col{
             width: 100%;
+            padding-right: 0;
         }
 
         .footer-right-col{

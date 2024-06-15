@@ -7,7 +7,7 @@
     max-width: 100vw;
 
     transition: transform 0.3s ease;
-    background-color: rgba(211, 236, 255, 0.65);
+    background-color: $navBackgroundColor;
     color:black;
     transform: translateY(0);
     position: fixed;
@@ -84,7 +84,7 @@
     width: 1.3*$navHeight;
     border-radius: 3px;
     &:hover{
-        background-color: rgba(86, 178, 249, 0.7);
+        background-color: rgba(0, 128, 225, 0.7);
         // transform: scale(1.1);
     }
     // text-shadow: 1px 1px 5px black;

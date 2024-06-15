@@ -1,0 +1,42 @@
+.markdown-body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  border-radius: 5px;
+
+    // pre code {
+    //     display: block;
+    //     color: #ddd;
+    //     padding: 1em;
+    //     background: rgb(45,45,45);
+    //     border-radius: 5px;
+    // }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1em;
+    }
+    
+    table th,
+    table td {
+        padding: 0.5em;
+        border: 1px solid #bcbcbc;
+    }
+    
+    table th {
+        background: #f6f8fa;
+        font-weight: bold;
+    }
+    
+    pre code.hljs {
+        display: block;
+        overflow-x: auto;
+        padding: 1em;
+        background: rgb(45, 45, 45);
+        border-radius: 5px;
+        // color: #ddd;
+    }
+  
+}
+

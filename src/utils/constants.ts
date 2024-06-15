@@ -9,3 +9,12 @@ export const AUTHOR:string="LengineerC";
 
 //网站开始日期
 export const WEBSITE_START_DATE:string="2024-6-8";
+
+//启用副标题
+export const SUB_TITLE_ENABLE:boolean=true;
+
+//副标题默认内容
+export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
+
+//Hitokoto获取，关闭使用默认副标题内容
+export const HITOKOTO_GET_ENABLE:boolean=false; 
