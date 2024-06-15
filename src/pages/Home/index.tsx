@@ -15,22 +15,23 @@ export default function Home() {
   useEffect(()=>{
     // axios.get("/posts.json")
     // .then(response=>{
-    //   console.log(response);
+    //   // console.log(response);
     //   setPostList(response.data);
     // }).catch(err=>{
     //   console.log("文章列表获取失败",err);
     // })
-    // console.log(store.getState());
-    
-    // const unsubscribe=store.subscribe(()=>{
-    const {postListReducer}=store.getState();
-    setPostList(postListReducer);
-    // });
 
-    // return ()=>{
-    //   unsubscribe();
-    // }
-  },[postList])
+    // console.log(store.getState());
+    const unsubscribe=store.subscribe(()=>{
+      const {postListReducer}=store.getState();
+      setPostList(postListReducer);
+    });
+    
+
+    return ()=>{
+      unsubscribe();
+    }
+  },[])
 
   // useEffect(()=>{
   //   console.log(postList);

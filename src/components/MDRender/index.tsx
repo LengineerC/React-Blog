@@ -5,6 +5,7 @@ import hljs from 'highlight.js'
 
 import "highlight.js/scss/atom-one-dark.scss"
 import "./index.scss"
+// import './hljs.scss'
 
 type Props = {
   markdown: string,

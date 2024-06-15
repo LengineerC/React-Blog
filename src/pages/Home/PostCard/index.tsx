@@ -47,7 +47,7 @@ export default function PostCard({config}: Props) {
           <hr/>
 
           <div className='post-card-content'>
-            <MDRender markdown={markdown} showLimitContent={false}/>
+            <MDRender markdown={markdown} showLimitContent={true}/>
           </div>
 
           <div className='post-card-footer'>
