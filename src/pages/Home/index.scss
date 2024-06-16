@@ -24,7 +24,8 @@
         @extend .hv-center;
         width: 30%;
         align-items: flex-start;
-        height: 100%;
+        flex:1;
+        // height: 100%;
         // margin-right: 5vw;
     }
 }

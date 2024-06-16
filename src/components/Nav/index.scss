@@ -5,6 +5,7 @@
     height: $navHeight;
     width: 100%;
     max-width: 100vw;
+    z-index: 1020;
 
     transition: transform 0.3s ease;
     background-color: $navBackgroundColor;

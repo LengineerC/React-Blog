@@ -42,9 +42,12 @@ export default function MDRender({ markdown,limit=100,showLimitContent }: Props)
     if (showLimitContent) {
       // 移除 HTML 标签
       let plainText = cleanedMarkdown.replace(/<[^>]*>/g, '');
+      // console.log(plainText);
 
       if (plainText.length > limit) {
         plainText = plainText.substring(0, limit) + '...';
+        // console.log(plainText);
+        
       }
       setContent(plainText);
     } else {
@@ -52,7 +55,7 @@ export default function MDRender({ markdown,limit=100,showLimitContent }: Props)
       // let html = marked.parse(cleanedMarkdown).toString().replace(/<pre>/g,"<pre id='hljs'>");
       
       let html = marked.parse(cleanedMarkdown);
-      console.log(html);
+      // console.log(html);
       
       setContent(html);
     }

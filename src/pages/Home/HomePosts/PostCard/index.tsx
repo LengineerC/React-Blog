@@ -10,9 +10,12 @@ import './index.scss'
 
 type Props = {
   config:PostConfig,
+  limit:number,
+  showLimitContent:boolean,
+  showFooter?:boolean,
 }
 
-export default function PostCard({config}: Props) {
+export default function PostCard({config,limit,showLimitContent,showFooter=true}: Props) {
   const [postConfig,setPostConfig]=useState<PostConfig>(config);
   const [postTitle,setPostTitle]=useState<string>("");
   const [markdown,SetMarkdown]=useState<string>("");
@@ -51,18 +54,22 @@ export default function PostCard({config}: Props) {
               <hr/>
 
               <div className='post-card-content'>
-                <MDRender markdown={markdown} showLimitContent={true}/>
+                <MDRender limit={limit} markdown={markdown} showLimitContent={showLimitContent}/>
               </div>
 
-              <div className='post-card-footer'>
-                <div>
-                  tag1
-                </div>
-                
-                <div>
-                  tag2
-                </div>
-              </div>
+              {      
+                showFooter &&(
+                  <div className='post-card-footer'>
+                    <div>
+                      tag1
+                    </div>
+                    
+                    <div>
+                      tag2
+                    </div>
+                  </div>
+                )
+              }
 
             </div>
           }

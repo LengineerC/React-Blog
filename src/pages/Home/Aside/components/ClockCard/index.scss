@@ -1,0 +1,20 @@
+@import "../../../../../styles/base.scss";
+@import "../../../../../styles/page_layout.scss";
+
+.clock-card-main{
+    font-family: "CustomFont1";
+    flex-direction: column;
+    @extend .hv-center;
+    width: auto;
+    height: auto;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    color:$postColor;
+    font-size: 20px;
+    font-weight: bold;
+    // font-family: Arial, Helvetica, sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    // background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}

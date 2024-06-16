@@ -58,14 +58,14 @@ body{
      
     &::-webkit-scrollbar-track {
         // background-color: #bababa;
-        background: linear-gradient(#c2c2c2,#9a9a9a);
+        background: linear-gradient(#b7f9ff,#a3c8db);
         border-radius: 100px;
     }
      
     &::-webkit-scrollbar-thumb {
         // background-color: rgb(77, 144, 227);
         background: linear-gradient(rgb(103,171,255),rgb(62, 125, 202));
-        box-shadow: inset 1px 1px 3px 0 rgba(255,255,255,0.5);
+        // box-shadow: inset 1px 1px 3px 0 rgba(255,255,255,0.5);
         border-radius: 50px;
     }
 }

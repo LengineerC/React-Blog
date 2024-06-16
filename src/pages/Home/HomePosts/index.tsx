@@ -19,13 +19,20 @@ export default function HomePosts({}: Props) {
     //先从App中获取所有的页面列表，然后在此存入state
     const unsubscribe=store.subscribe(()=>{
       const {postListReducer}=store.getState();
+      // console.log(postListReducer);
+      
       setPostList(postListReducer);
     });
 
     return ()=>{
       unsubscribe();
+      // console.log(store.getState().selectedPostReducer);
     }
   },[]);
+  // useEffect(()=>{
+  //   console.log(postList);
+    
+  // },[postList])
 
   useEffect(()=>{
     if(postList.length!==0){
@@ -36,7 +43,7 @@ export default function HomePosts({}: Props) {
       setCurrentPage(slicedPage);
     }
 
-  },[pagination])
+  },[pagination,postList])
 
   const setSelectedPost=(selectedPost:PostConfig)=>{
     // console.log(selectedPost);
@@ -44,7 +51,8 @@ export default function HomePosts({}: Props) {
   }
 
   const createPostCards=()=>{
-    // console.log(postList);
+    // console.log("postlist",postList);
+    // console.log("currentPage",currentPage);
     
     return currentPage.map((item)=>{
       return(
@@ -56,6 +64,8 @@ export default function HomePosts({}: Props) {
           <PostCard 
           config={item} 
           key={item.id}
+          limit={250} 
+          showLimitContent={true}
           />
         </div>
       )

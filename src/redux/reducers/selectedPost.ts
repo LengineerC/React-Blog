@@ -1,10 +1,11 @@
-import { DataType } from "../dataType";
+// import { DataType } from "../dataType";
 import { PostConfig } from "../../utils/types";
 import { SAVE_SELECTED_POST, CLEAR_SELECTED_POST } from "../constants";
 
 type Action={
     type:string,
-    data?:DataType
+    // data?:DataType
+    data?:PostConfig
 }
 
 const initState:PostConfig | null=null;
