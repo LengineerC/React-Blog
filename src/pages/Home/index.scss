@@ -1,20 +1,47 @@
 @import "../../styles/page_layout.scss";
+@import "../../styles/base.scss";
 
 .home-body{
-    @extend .hv-center;
+    // @extend .hv-center;
+    display: flex;
+    justify-content: center;
     // justify-content: space-evenly;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     padding-left: 13vw;
     padding-right: 13vw;
     padding-top: 5vh;
     margin-bottom: 15vh;
 
     .home-body-left-col{
+        @extend .hv-center;
+        flex-direction: column;
         width: 70%;
+        // text-align: center;
+        // background-color: red;
     }
+
     .home-body-right-col{
+        @extend .hv-center;
         width: 30%;
         align-items: flex-start;
+        height: 100%;
         // margin-right: 5vw;
+    }
+}
+
+@media screen and (max-width:$mobileMaxWidth){
+    .home-body{
+        flex-direction: column;
+        margin-bottom: 5vh;
+
+        padding: 5vh 0 10vh 0;
+
+        .home-body-left-col{
+            width: 100%;
+        }
+
+        .home-body-right-col{
+            display: none;
+        }
     }
 }

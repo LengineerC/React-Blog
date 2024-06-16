@@ -48,8 +48,10 @@ export default function MDRender({ markdown,limit=100,showLimitContent }: Props)
       }
       setContent(plainText);
     } else {
-      // 使用 marked 解析 markdown
-      let html = marked.parse(cleanedMarkdown).toString().replace(/<pre>/g,"<pre id='hljs'>");
+      // pre标签添加hljs标签，匹配自定义hljs样式
+      // let html = marked.parse(cleanedMarkdown).toString().replace(/<pre>/g,"<pre id='hljs'>");
+      
+      let html = marked.parse(cleanedMarkdown);
       console.log(html);
       
       setContent(html);

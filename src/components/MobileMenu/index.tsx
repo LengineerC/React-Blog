@@ -78,7 +78,10 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
 
             <NavLink to="articles">
               <div className='menu-body-content-container'>
-              <FontAwesomeIcon icon={faBook}/>
+              <span className='icon-block'>
+                <FontAwesomeIcon icon={faBook}/>
+
+              </span>
                 <span>文章</span>
                 <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
@@ -86,7 +89,10 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             
             <NavLink to="archives">
               <div className='menu-body-content-container'>
-              <FontAwesomeIcon icon={faFileZipper}/>
+              <span className='icon-block'>
+                <FontAwesomeIcon icon={faFileZipper}/>
+
+              </span>
                 <span>归档</span>
                 <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
@@ -94,7 +100,10 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             
             <NavLink to="media">
               <div className='menu-body-content-container'>
-              <FontAwesomeIcon icon={faMusic}/>
+              <span className='icon-block'>
+                <FontAwesomeIcon icon={faMusic}/>
+
+              </span>
                 <span>媒体</span>
                 <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
@@ -102,7 +111,10 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
 
             <NavLink to="friends">
               <div className='menu-body-content-container'>
-              <FontAwesomeIcon icon={faLink}/>
+              <span className='icon-block'>
+                <FontAwesomeIcon icon={faLink}/>
+
+              </span>
                 <span>友链</span>
                 <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>
@@ -110,7 +122,10 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
 
             <NavLink to="about">
               <div className='menu-body-content-container'>
-              <FontAwesomeIcon icon={faAddressCard}/>
+              <span className='icon-block'>
+                <FontAwesomeIcon icon={faAddressCard}/>
+
+              </span>
                 <span>关于</span>
                 <span className="menu-body-content-container-extend">&nbsp;</span>
               </div>

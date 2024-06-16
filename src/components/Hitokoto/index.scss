@@ -2,12 +2,14 @@
 
 .hitokoto{
     color: white;
-    text-shadow: 2px 2px 10px rgb(32, 32, 32);
+    text-shadow: 2px 2px 5px rgb(32, 32, 32);
+    font-family: "CustomFont1";
     font-size: 20px;
     // animation: content-slide-in 2s steps(20) forwards;
     overflow: hidden;
     // white-space: nowrap;
     position: relative;
+    text-align: center;
 
     &::after{
         content: '';
@@ -20,7 +22,7 @@
 
 @media screen and (max-width:$mobileMaxWidth) {
     .hitokoto{
-        word-break: break-all;
+        word-break: normal;
         padding-left: 15px;
         padding-right: 15px;
     }

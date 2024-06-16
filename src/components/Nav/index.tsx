@@ -141,9 +141,9 @@ export default function Nav() {
   //原处理方法state异步更新导致bug
   let lastScrollTop=0;
   const handleScroll = () => {
-    let clientHeight = document.documentElement.clientHeight //可视区域高度
-    let scrollTop = document.documentElement.scrollTop; //滚动条滚动高度
-    let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
+    // let clientHeight = document.documentElement.clientHeight;
+    let scrollTop = document.documentElement.scrollTop;
+    // let scrollHeight = document.documentElement.scrollHeight;
     // console.log("scrollTop", scrollTop, 'lastScrollY', lastScrollTop, 'clientHeight', clientHeight, 'scrollHeight', scrollHeight);
     if (scrollTop <= lastScrollTop) {
       setVisible(true)

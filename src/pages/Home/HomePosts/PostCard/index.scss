@@ -1,10 +1,12 @@
-@import "../../../styles/base.scss";
-@import "../../../styles/page_layout.scss";
+@import "../../../../styles/base.scss";
+@import "../../../../styles/page_layout.scss";
 
 .post-card-main{
     // background-color: black;
     display: flex;
     flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
     font-family: "CustomFont1";
     width: 100%;
 

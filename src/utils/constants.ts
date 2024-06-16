@@ -18,3 +18,7 @@ export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
 
 //Hitokoto获取，关闭使用默认副标题内容
 export const HITOKOTO_GET_ENABLE:boolean=false; 
+
+//个人信息
+export const EMAIL:string="lengineerc@outlook.com";
+export const QQ:string="398908838";

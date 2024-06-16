@@ -6,4 +6,7 @@ export type PostConfig={
     time:string,
     lock:boolean,
     path:string,
-}
+    top?:boolean,
+    categories?:[],
+    tags?:[],
+};

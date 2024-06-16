@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { AUTHOR, WEBSITE_START_DATE } from '../../utils/constants';
+import { AUTHOR, WEBSITE_START_DATE, EMAIL } from '../../utils/constants';
 import { Popover, ConfigProvider } from 'antd';
 
 import "./index.scss"
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
         </Popover>
 
-        <Popover title="邮箱: lengineerc@outlook.com">
+        <Popover title={`邮箱: ${EMAIL}`}>
           <div className='footer-right-col-icon-container'>
             <FontAwesomeIcon icon={faEnvelope} />
           </div>

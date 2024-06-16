@@ -12,7 +12,34 @@ export default function About() {
       <div className="page-main-content">
         <Card>
           <div>
-            About
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
+            About<br/>
           </div>
         </Card>
       </div>

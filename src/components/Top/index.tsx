@@ -17,6 +17,7 @@ export default function Top() {
 
     <FloatButton.BackTop 
       icon={<FontAwesomeIcon icon={faArrowUp}/>}
+      shape='square'
       />
       </ConfigProvider>
   )

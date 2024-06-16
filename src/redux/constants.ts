@@ -9,3 +9,7 @@ export const SET_DARKMODE_ON="setDarkmodeOn";
 // 文章列表
 export const SAVE_POST_LIST="savePostList";
 export const CLEAR_POST_LIST="clearPostList"
+
+//选中文章
+export const SAVE_SELECTED_POST="saveSelectedPost";
+export const CLEAR_SELECTED_POST="clearSelectedPost";

@@ -37,7 +37,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gen-post-list": "node generatePostList.js"
+    "gen-post-list": "node generatePostList.js",
+    "create-post" : "node createPost.js"
   },
   "eslintConfig": {
     "extends": [

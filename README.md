@@ -6,7 +6,7 @@
 
 ## 🛠️ 功能版本
 
-- *`node.js`*: 18+
+- *`node.js`: 18+*
 - `react`: 18.3.1
 - `antd`: 5.18.0
 - `axios`: 1.7.2
@@ -20,8 +20,10 @@
 - ...
 
 ## 🔑 使用
-1. `npm run gen-post-list`
-2. `npm start`或`npm run build`
+### 新建文章
+- `npm run create-post "文件名"`
+### 部署/运行前
+- `npm run gen-post-list`
 ---
 ## TODO:
 - [ ] 移动端适配

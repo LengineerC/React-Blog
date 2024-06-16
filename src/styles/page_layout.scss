@@ -11,6 +11,7 @@
     max-width: 100vw;
     height: auto;
     flex-direction: column;
+    margin-bottom: 15vh;
 
     .page-main-title{
         @extend .hv-center;
@@ -26,3 +27,4 @@
         flex-direction: column;
     }
 }
+
