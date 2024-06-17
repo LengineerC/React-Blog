@@ -15,14 +15,15 @@
     .home-body-left-col{
         @extend .hv-center;
         flex-direction: column;
-        width: 70%;
+        width: 75%;
+        padding-right: 7%;
         // text-align: center;
         // background-color: red;
     }
 
     .home-body-right-col{
         @extend .hv-center;
-        width: 30%;
+        width: 25%;
         align-items: flex-start;
         flex:1;
         // height: 100%;
@@ -39,6 +40,8 @@
 
         .home-body-left-col{
             width: 100%;
+            // justify-content: center;
+            padding: 0;
         }
 
         .home-body-right-col{

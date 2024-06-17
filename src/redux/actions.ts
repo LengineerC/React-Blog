@@ -26,4 +26,4 @@ export const saveSelectedPost=(selectedPost:PostConfig)=>({
     data:selectedPost
 })
 
-export const clearSelectedPost=()=>({type:actions.CLEAR_POST_LIST})
+export const clearSelectedPost=()=>({type:actions.CLEAR_POST_LIST})//可能会有bug

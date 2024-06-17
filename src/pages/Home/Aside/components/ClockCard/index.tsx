@@ -4,11 +4,11 @@ import Card from "../../../../../components/Card";
 import './index.scss';
 
 export default function ClockCard() {
-  const [date,setDate]=useState<Date>(new Date);
+  const [date,setDate]=useState<Date>(new Date());
 
   useEffect(()=>{
     const timer=setInterval(()=>{
-      setDate(new Date);
+      setDate(new Date());
     },1000);
 
     return ()=>{
@@ -28,9 +28,15 @@ export default function ClockCard() {
 
     return (
       <>
-        <span style={{color:"rgb(174, 0, 0)"}}>{`${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`}</span>
-        <span style={{color:"rgb(103, 171, 255)"}}>{dayOfWeek}</span>
-        <span style={{color:"rgb(0, 20, 71)"}}>{`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}</span>
+        <span style={{color:"rgb(174, 0, 0)",textShadow:"0 0 3px white"}}>
+          {`${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`}
+        </span>
+        <span style={{color:"rgb(103, 171, 255)",textShadow:"0 0 3px white"}}>
+          {dayOfWeek}
+        </span>
+        <span style={{color:"rgb(0, 20, 71)",textShadow:"0 0 3px white"}}>
+          {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
+        </span>
       </>
     );  };
 
@@ -38,6 +44,7 @@ export default function ClockCard() {
     <Card
     className="aside-card"
     scale={true}
+    background="linear-gradient(90deg,rgba(27, 109, 209,0.7),rgba(177, 255, 82, 0.7))"
     >
       <div className="clock-card-main">
         {getFormattedDate(date)}

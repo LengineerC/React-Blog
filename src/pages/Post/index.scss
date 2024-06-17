@@ -1,0 +1,88 @@
+@import "../../styles/base.scss";
+@import "../../styles/page_layout.scss";
+
+.post-page-main{
+    @extend .page-main;
+
+    .hr-twill {
+        width: 100%;
+		border: 0;
+		padding: 3px;
+		background: repeating-linear-gradient(135deg, #a2a9b6 0px, #a2a9b6 1px, transparent 1px, transparent 6px);
+	}
+
+    .post-page-title{
+        @extend .page-main-title;
+    }
+    
+    .post-page-body{
+        @extend .page-main-content;
+        
+        .post-page-card-header{
+            color: $postColor;
+            font-family: "CustomFont1";
+            height: auto;
+            width: 100%;
+
+            .post-page-card-header-symbol{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+
+                .post-page-card-header-symbol-tags{
+                    display: flex;
+                    width: 35%;
+                    flex-wrap: wrap;
+
+                    .post-page-card-header-symbol-tag-block{
+                        margin-right: 3px;
+                        margin-bottom: 3px;
+                    }
+                }
+
+                .post-page-card-header-symbol-categories{
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 35%;
+                    flex-wrap: wrap;
+
+                    .post-page-card-header-symbol-category-block{
+                        margin-left: 3px;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+         
+            .post-page-card-header-info{
+                display: flex;
+                justify-content: space-between;
+
+            }
+        }
+
+        .post-page-card-container{
+            color:$postColor;
+            width: 100%;
+        }
+
+        .post-page-card-footer{
+            margin-top: 20px;
+            color: $postColor;
+            font-family: "CustomFont1";
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0 10px;
+        }
+    }
+}
+
+@media screen and (max-width:$mobileMaxWidth){
+    .post-page-card-header{
+        padding: 0 5px;
+
+        .post-page-card-header-info{
+            flex-direction: column;
+        }
+    }
+}

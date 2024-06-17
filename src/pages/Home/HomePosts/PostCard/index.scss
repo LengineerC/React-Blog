@@ -10,11 +10,18 @@
     font-family: "CustomFont1";
     width: 100%;
 
-    hr{
+    .hr-dashed{
         width: 100%;
         color: rgb(250, 250, 250);
         border: 1px dashed rgb(250, 250, 250);
     }
+    
+	.hr-double {
+		border: 0;
+        margin: 20px 0 0 0;
+		border-top: 3px double #fff;
+	}
+
 }
 
 .post-card-title{
@@ -22,6 +29,7 @@
     font-size: 20px;
     color: $postColor;
     font-weight: bold;
+    text-align: center;
 }
 
 .post-card-content{
@@ -32,5 +40,28 @@
     color: $postColor;
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
+    
+    .post-card-tags-block{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 35%;
+        // flex-direction: column;
+        .post-card-tag-container{
+            margin-right: 3px;
+            margin-bottom: 3px;
+        }
+    }
+
+    .post-card-categories-block{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        max-width: 35%;
+        // flex-direction: column;
+        .post-card-category-container{
+            margin-right: 3px;
+            margin-bottom: 3px;
+        }
+    }
 }

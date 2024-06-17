@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box
+}
+
 //hv居中
 .hv-center{
     display: flex;
@@ -12,6 +16,7 @@
     height: auto;
     flex-direction: column;
     margin-bottom: 15vh;
+    padding: 0 13vw;
 
     .page-main-title{
         @extend .hv-center;
@@ -28,3 +33,9 @@
     }
 }
 
+
+@media screen and (max-width:992px) {
+    .page-main{
+        padding: 0;
+    }
+}

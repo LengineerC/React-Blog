@@ -37,8 +37,8 @@ type MenuConfig={
 const navCenterColConfig:MenuConfig[]=[
   {
     name:"文章",
-    path:"articles",
-    key:"articles",
+    path:"posts",
+    key:"posts",
     options:{
       subMenuEnable:true,
       subItems:[
@@ -159,7 +159,7 @@ export default function Nav() {
 
   const iconChooser=(name:string):IconDefinition=>{
     switch(name){
-      case "articles":
+      case "posts":
         return faBook;
       case "archives":
         return faFileZipper;

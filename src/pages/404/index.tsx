@@ -7,22 +7,12 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 import './index.scss'
 import Card from '../../components/Card'
+import { useEffect } from 'react'
 
 export default function ErrorPage() {
-  // const [isMobile,setIsMobile]=useState<boolean>(true);
 
-  // const handleResize=()=>{
-  //   setIsMobile((window.innerWidth<=MOBILE_MAX_WIDTH)?true:false);
-  // }
-
-  // useEffect(()=>{
-  //   window.addEventListener("resize",handleResize);
-    
-  //   return()=>{
-  //     window.removeEventListener("resize",handleResize);
-  //   }
-  // },[])
   const location=useLocation();
+  const fromPath=location.state?.from || location.pathname;
 
   const createXmark=(n:number)=>{
     return Array.from({length:n},(_,index)=>(
@@ -49,7 +39,7 @@ export default function ErrorPage() {
         <div className='error-info-block'>
           <div style={{marginRight:"5px"}}><FontAwesomeIcon icon={faCircleExclamation}/>&nbsp;ErrorInfo:</div>
           <div style={{fontStyle:"italic"}}>
-            path "{location.pathname}" not found!
+            path "{fromPath}" not found!
           </div>
         </div>
 

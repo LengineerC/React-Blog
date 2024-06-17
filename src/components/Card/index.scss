@@ -5,13 +5,16 @@
     @extend .hv-center;
     flex-direction: column;
     background-color: rgba(235, 235, 235, 0.85);
-    width: 90%;
+    width: 100%;
     height: auto;
     border-radius: 10px;
     box-sizing: border-box;
     word-break: break-all;
     padding:24px 50px 24px 50px;
     
+    background-position: center 0;
+    background-size: cover;
+    background-repeat: no-repeat;
     //如果post后续添加标签选择器
     // .card-main-text-container{
     //     word-break: break-all;
@@ -26,7 +29,7 @@
     transition: 0.3s;
 
     &:hover{
-        transform: scale(1.03);
+        transform: scale(1.02);
     }
 }
 
@@ -40,5 +43,6 @@
 @media screen and (max-width:$mobileMaxWidth){
     .card-main{
         width: 95%;
+        padding: 15px 5px;
     }
 }

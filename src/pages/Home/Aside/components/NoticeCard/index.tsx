@@ -4,7 +4,11 @@ import './index.scss'
 
 export default function NoticeCard() {
   return (
-    <Card className='aside-card' scale={true}>
+    <Card 
+    className='aside-card' 
+    scale={true}
+    bgImage={require('../../../../../assets/image/notice-card-bg.png')}
+    >
       <div className='notice-card-main'>
         <div className='notice-card-header'>
           📢 公告栏
