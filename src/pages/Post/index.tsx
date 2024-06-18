@@ -4,20 +4,23 @@ import axios from 'axios';
 import Card from '../../components/Card';
 import MDRender from '../../components/MDRender';
 import store from '../../redux/store';
-import { Skeleton } from 'antd';
+import { ConfigProvider, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
-import { UserOutlined, ClockCircleOutlined, FileWordOutlined,CopyrightOutlined, LinkOutlined } from '@ant-design/icons';
-
-import './index.scss'
+import { UserOutlined, ClockCircleOutlined, FileWordOutlined,CopyrightOutlined, LinkOutlined, CopyFilled } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
+import { AUTHOR } from '../../utils/constants';
+
+import './index.scss'
 
 export default function Post() {
   const {id}=useParams();
   const [markdown,SetMarkdown]=useState<string>("");
   const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostReducer as PostConfig);
   const [mdLen,setMdLen]=useState<number>(0);
+
+  const [messageApi, contextHolder] = message.useMessage();
 
   const navigate=useNavigate();
 
@@ -78,8 +81,32 @@ export default function Post() {
     }
   }
 
+  const copyLink=async ()=>{
+    const link=window.location.href;
+    try{
+      await navigator.clipboard.writeText(link);
+      messageApi.open({
+        type:"success",
+        content:"已复制到剪贴板",
+      })
+    }catch(e){
+      message.error("复制链接出错")
+      console.log("复制链接出错",e);
+    }
+  }
+
   return (
     <div className='post-page-main'>
+      <ConfigProvider
+      theme={{
+        components:{
+          Message:{
+            contentBg:"#ffffffda"
+          }
+        }
+      }}
+      >
+      {contextHolder}
       {
         postConfig ?
         <>
@@ -131,12 +158,14 @@ export default function Post() {
                 <div style={{marginBottom:"5px"}}>
                   <span style={{fontWeight:"bold"}}>
                     <LinkOutlined/>&nbsp;文章链接：
+                    <CopyFilled className='copy-button' onClick={copyLink}/>
                   </span>
                   <a href={window.location.href}>{window.location.href}</a>
                 </div>
                 <div style={{marginBottom:"5px"}}>
                   <span style={{fontWeight:"bold"}}>
-                    <CopyrightOutlined />&nbsp;版权声明：
+                    <CopyrightOutlined />&nbsp;
+                    版权声明：本博客所有文章除特別声明外，均采用 <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href='/'>{AUTHOR}</a> !
                   </span>
                 </div>
               </div>
@@ -150,7 +179,7 @@ export default function Post() {
           </div>
         )
       }
-
+      </ConfigProvider>
     </div>
   )
 }

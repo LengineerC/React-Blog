@@ -18,6 +18,7 @@
     "@types/react-dom": "^18.3.0",
     "antd": "^5.18.0",
     "axios": "^1.7.2",
+    "echarts": "^5.5.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
     "jinrishici": "^1.0.6",
@@ -38,7 +39,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gen-post-list": "node generatePostList.js",
-    "create-post" : "node createPost.js"
+    "create-post": "node createPost.js"
   },
   "eslintConfig": {
     "extends": [

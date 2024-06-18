@@ -5,6 +5,7 @@
   border-radius: 5px;
   width: 100%;
   font-family: "CustomFont1";
+  line-height: normal;
 
     // pre code {
     //     display: block;
@@ -13,6 +14,59 @@
     //     background: rgb(45,45,45);
     //     border-radius: 5px;
     // }
+
+    h1,h2,h3,h4,h5{
+        margin-top: 5px;
+        margin-bottom:10px;
+        transition: 0.3s;
+
+        &:hover{
+            transform: scale(1.02);
+        }
+    }
+
+    h1{
+        font-size: 34px;
+        &:before{
+            content: "🖌️";
+        }
+    }
+
+    h2{
+        font-size: 28px;
+        &:before{
+            content: "✒️";
+        }
+    }
+
+    h3{
+        font-size: 23px;
+        &:before{
+            content: "🖋️";
+        }
+    }
+
+    h4{
+        font-size: 19px;
+        &:before{
+            content: "✏️";
+        }
+    }
+
+    h5{
+        font-size: 16px;
+        &:before{
+            content: "📌";
+        }
+    }
+
+    p{
+        margin:7px 0;
+    }
+
+    a{
+        color:#1e90ff;
+    }
     
     table {
         width: 100%;
@@ -20,6 +74,13 @@
         margin-bottom: 1em;
     }
     
+    code{
+        background-color: #bcbcbc79;
+        padding: 0 5px;
+        border-radius: 5px;
+        color: rgb(0, 185, 46);
+    }
+
     table th,
     table td {
         padding: 0.5em;
@@ -30,14 +91,50 @@
         background: #f6f8fa;
         font-weight: bold;
     }
-    
+
+    ul, ol{
+        padding-left: 20px;
+    }
+
+    blockquote{
+        background-color: rgba(7, 129, 235, 0.1);
+        border-left: 5px solid #1e90ff;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px 10px 5px 15px;
+    }
+
     pre code.hljs {
         display: block;
         overflow-x: auto;
         padding: 1em;
         background: rgb(45, 45, 45);
         border-radius: 5px;
-        // color: #ddd;
+        color: #ddd;
+        max-height: 90vh;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+            width: 0px;
+        }
+         
+        &::-webkit-scrollbar-track {
+            // background-color: #bababa;
+            background: #ffffff3f;
+            border-radius: 100px;
+        }
+         
+        &::-webkit-scrollbar-thumb {
+            // background-color: rgb(77, 144, 227);
+            background: #ffffff46;
+            // box-shadow: inset 1px 1px 3px 0 rgba(255,255,255,0.5);
+            border-radius: 50px;
+            transition: 0.5s;
+
+            &:hover{
+                background-color: #ffffff6b;
+            }
+        }
     }
   
 }

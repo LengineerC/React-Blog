@@ -31,7 +31,7 @@ export default function ClockCard() {
         <span style={{color:"rgb(174, 0, 0)",textShadow:"0 0 3px white"}}>
           {`${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`}
         </span>
-        <span style={{color:"rgb(103, 171, 255)",textShadow:"0 0 3px white"}}>
+        <span style={{color:"rgb(90, 150, 200)",textShadow:"0 0 3px white"}}>
           {dayOfWeek}
         </span>
         <span style={{color:"rgb(0, 20, 71)",textShadow:"0 0 3px white"}}>
@@ -44,7 +44,7 @@ export default function ClockCard() {
     <Card
     className="aside-card"
     scale={true}
-    background="linear-gradient(90deg,rgba(27, 109, 209,0.7),rgba(177, 255, 82, 0.7))"
+    background="linear-gradient(90deg,rgba(27, 109, 209,0.5),rgba(177, 255, 82, 0.5))"
     >
       <div className="clock-card-main">
         {getFormattedDate(date)}
