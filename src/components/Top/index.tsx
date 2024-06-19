@@ -11,14 +11,15 @@ export default function Top() {
     theme={{
       token:{
         colorBgElevated:"#ffffff7b",
+        colorFillContent:"#ffffffbb",
       }
     }}
     >
 
     <FloatButton.BackTop 
-      icon={<FontAwesomeIcon icon={faArrowUp}/>}
-      shape='square'
-      />
-      </ConfigProvider>
+    icon={<FontAwesomeIcon icon={faArrowUp}/>}
+    shape='square'
+    />
+    </ConfigProvider>
   )
 }

@@ -10,6 +10,10 @@ export const SET_DARKMODE_ON="setDarkmodeOn";
 export const SAVE_POST_LIST="savePostList";
 export const CLEAR_POST_LIST="clearPostList"
 
-//选中文章
-export const SAVE_SELECTED_POST="saveSelectedPost";
-export const CLEAR_SELECTED_POST="clearSelectedPost";
+//选中文章配置
+export const SAVE_SELECTED_POST_CONFIG="saveSelectedPostConfig";
+export const CLEAR_SELECTED_POST_CONFIG="clearSelectedPostConfig";
+
+// 选中文章内容
+export const SAVE_SELECTED_POST_HTML="saveSelectedPostHtml";
+export const CLEAR_SELECTED_POST_HTML="clearSelectedPostHtml";

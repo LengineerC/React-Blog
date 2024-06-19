@@ -7,7 +7,7 @@ import { PostConfig } from '../../../../../utils/types'
 // import PostCard from '../../../HomePosts/PostCard'
 
 import './index.scss'
-import { saveSelectedPost } from '../../../../../redux/actions'
+import { saveSelectedPostConfig } from '../../../../../redux/actions'
 
 const navLinkStyle={
   textDecoration:"none",
@@ -48,7 +48,7 @@ export default function TopPostCard() {
           key={item.id} 
           to={`/post/detail/${item.id}`} 
           style={navLinkStyle} 
-          onClick={()=>store.dispatch(saveSelectedPost(item))}
+          onClick={()=>store.dispatch(saveSelectedPostConfig(item))}
           >
             <div className='top-post-card-link-block'>
                 🔥<span style={{color:"orange",marginRight:"10px"}}>HOT!</span>{`${item.title}`}

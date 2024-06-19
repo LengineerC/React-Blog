@@ -1,0 +1,57 @@
+@import "../../../styles/base.scss";
+
+.toc-header{
+    color: $postColor;
+    font-family: "CustomFont1";
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+
+    hr{
+        margin: 10px 0;
+        width: 100%;
+		border: 0;
+		padding: 3px;
+		background: repeating-linear-gradient(135deg, #a2a9b6 0px, #a2a9b6 1px, transparent 1px, transparent 6px);
+    }
+}
+
+.toc-content{
+    word-break: break-all;
+    overflow-y: auto;
+    max-height: 80vh;
+    width: 100%;
+    line-height: 15px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+     
+    &::-webkit-scrollbar-track {
+        background: #ffffff46;
+        border-radius: 100px;
+    }
+     
+    &::-webkit-scrollbar-thumb {
+        border-radius: 50px;
+        transition: 0.5s;
+        background: #adadad6b;
+        
+        &:hover{
+            background: #3e3e3e3f;
+        }
+    }
+
+    p{
+        color: $postColor;
+        font-family: "CustomFont1";
+        margin: 5px 0 10px 0;
+        width: 100%;
+        transition: 0.3s;
+
+        &.active ,&:hover{
+            color: rgb(23, 143, 223);
+        }
+    }
+
+}

@@ -4,7 +4,7 @@ import { SET_DARKMODE_OFF, SET_DARKMODE_ON } from "../constants";
 type Action={
     type:string,
     // data?:DataType
-    data?:boolean
+    data:boolean
 }
 
 const initState:boolean=false;

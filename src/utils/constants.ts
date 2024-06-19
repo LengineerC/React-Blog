@@ -22,3 +22,7 @@ export const HITOKOTO_GET_ENABLE:boolean=false;
 //个人信息
 export const EMAIL:string="lengineerc@outlook.com";
 export const QQ:string="398908838";
+
+//目录检测标题级数,(不超过5级)
+export const MAX_TOC_HEADING:number=2;
+export const TOC_HEADING_CONFIG:string="h2,h3,h4,h5";

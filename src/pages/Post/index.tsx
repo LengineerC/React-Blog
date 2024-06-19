@@ -4,21 +4,31 @@ import axios from 'axios';
 import Card from '../../components/Card';
 import MDRender from '../../components/MDRender';
 import store from '../../redux/store';
-import { ConfigProvider, Skeleton, message } from 'antd';
+import { ConfigProvider, FloatButton, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
-import { UserOutlined, ClockCircleOutlined, FileWordOutlined,CopyrightOutlined, LinkOutlined, CopyFilled } from '@ant-design/icons';
+import { 
+  UserOutlined, 
+  ClockCircleOutlined, 
+  FileWordOutlined,
+  CopyrightOutlined, 
+  LinkOutlined, 
+  CopyFilled,
+  UnorderedListOutlined, } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
 import { AUTHOR } from '../../utils/constants';
 
 import './index.scss'
+import TOC from './TOC';
+import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/actions';
 
 export default function Post() {
   const {id}=useParams();
   const [markdown,SetMarkdown]=useState<string>("");
-  const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostReducer as PostConfig);
+  const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfigReducer as PostConfig);
   const [mdLen,setMdLen]=useState<number>(0);
+  const [showTOC,setShowTOC]=useState<boolean>(true);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -52,6 +62,12 @@ export default function Post() {
       
       navigate(`/articles/${id}`);
     });
+
+
+    return ()=>{
+      store.dispatch(clearSelectedPostConfig());
+      store.dispatch(clearSelectedPostHtml());
+    }
 
   },[])
 
@@ -95,10 +111,18 @@ export default function Post() {
     }
   }
 
+  const handleShowTOC=()=>{
+    setShowTOC(!showTOC)
+  }
+
   return (
     <div className='post-page-main'>
       <ConfigProvider
       theme={{
+        token:{
+          colorBgElevated:"#ffffff65",
+          colorFillContent:"#ffffffbb",
+        },
         components:{
           Message:{
             contentBg:"#ffffffda"
@@ -115,6 +139,7 @@ export default function Post() {
           </div>
 
           <div className='post-page-body'>
+            <div className='post-page-body-content-container' style={showTOC?{width:"70%"}:{}}>
             <Card>
               <div className='post-page-card-header'>
                 <div className='post-page-card-header-symbol'>
@@ -170,6 +195,14 @@ export default function Post() {
                 </div>
               </div>
             </Card>
+            </div>
+            
+            <div 
+            className='toc-container' 
+            style={showTOC?{}:{display:"none"}}
+            >
+              <TOC />
+            </div>
           </div>
         </>:(
           <div className='post-page-body'>
@@ -179,6 +212,11 @@ export default function Post() {
           </div>
         )
       }
+        <FloatButton 
+        className='toc-btn' 
+        icon={<UnorderedListOutlined/>}
+        onClick={handleShowTOC}
+        />
       </ConfigProvider>
     </div>
   )

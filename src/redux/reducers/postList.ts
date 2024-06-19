@@ -6,7 +6,7 @@ import { DataType } from "../dataType";
 type Action={
     type:string,
     // data?:DataType
-    data?:PostConfig[],
+    data:PostConfig[],
 }
 
 const initState:PostConfig[]=[];

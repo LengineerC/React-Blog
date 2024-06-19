@@ -2,11 +2,13 @@ import { combineReducers } from "redux";
 import navSwitchReducer from "./showNav";
 import darkModeReducer from "./darkMode";
 import postListReducer from "./postList";
-import selectedPostReducer from "./selectedPost";
+import selectedPostConfigReducer from "./selectedPostConfig";
+import selectedPostHtmlReducer from "./selectedPostHtml";
 
 export const allReducers=combineReducers({
     navSwitchReducer,
     darkModeReducer,
     postListReducer,
-    selectedPostReducer
+    selectedPostConfigReducer,
+    selectedPostHtmlReducer,
 });

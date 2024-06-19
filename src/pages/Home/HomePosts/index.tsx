@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PostConfig } from '../../../utils/types';
 import store from '../../../redux/store';
-import { saveSelectedPost } from '../../../redux/actions';
+import { saveSelectedPostConfig } from '../../../redux/actions';
 import PostCard from './PostCard';
 import { Pagination, ConfigProvider } from 'antd';
 
@@ -47,7 +47,7 @@ export default function HomePosts({}: Props) {
 
   const setSelectedPost=(selectedPost:PostConfig)=>{
     // console.log(selectedPost);
-    store.dispatch(saveSelectedPost(selectedPost));
+    store.dispatch(saveSelectedPostConfig(selectedPost));
   }
 
   const createPostCards=()=>{
