@@ -29,8 +29,11 @@ export default function Post() {
   const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfigReducer as PostConfig);
   const [mdLen,setMdLen]=useState<number>(0);
   const [showTOC,setShowTOC]=useState<boolean>(true);
+  //显示移动端TOC Drawer
+  const [showTOCDrawer,setShowTOCDrawer]=useState<boolean>(false);
 
   const [messageApi, contextHolder] = message.useMessage();
+  const [url,setUrl]=useState<string>(window.location.href);
 
   const navigate=useNavigate();
 
@@ -63,6 +66,13 @@ export default function Post() {
       navigate(`/articles/${id}`);
     });
 
+    //处理因锚点导致的复制链接出错的问题
+    const url=window.location.href;
+    const hashIndex=url.indexOf('#');
+    if(hashIndex!==-1){
+      const newUrl=url.substring(0,hashIndex);
+      setUrl(newUrl);
+    }
 
     return ()=>{
       store.dispatch(clearSelectedPostConfig());
@@ -98,7 +108,7 @@ export default function Post() {
   }
 
   const copyLink=async ()=>{
-    const link=window.location.href;
+    const link=url;
     try{
       await navigator.clipboard.writeText(link);
       messageApi.open({
@@ -106,13 +116,18 @@ export default function Post() {
         content:"已复制到剪贴板",
       })
     }catch(e){
-      message.error("复制链接出错")
+      message.error("复制链接出错");
       console.log("复制链接出错",e);
     }
   }
 
   const handleShowTOC=()=>{
-    setShowTOC(!showTOC)
+    setShowTOC(!showTOC);
+    setShowTOCDrawer(!showTOCDrawer);
+  }
+
+  const callbackCloseDrawer=()=>{
+    setShowTOCDrawer(false);
   }
 
   return (
@@ -120,7 +135,7 @@ export default function Post() {
       <ConfigProvider
       theme={{
         token:{
-          colorBgElevated:"#ffffff65",
+          colorBgElevated:"#ffffff80",
           colorFillContent:"#ffffffbb",
         },
         components:{
@@ -139,7 +154,7 @@ export default function Post() {
           </div>
 
           <div className='post-page-body'>
-            <div className='post-page-body-content-container'>
+            <div className={showTOC?"post-page-body-content-container-showtoc":'post-page-body-content-container'}>
             <Card>
               <div className='post-page-card-header'>
                 <div className='post-page-card-header-symbol'>
@@ -173,7 +188,7 @@ export default function Post() {
               
               <hr className='hr-twill'/>
               
-              <div className='post-page-card-container'>
+              <div className={'post-page-card-container'}>
                 <MDRender markdown={markdown} showLimitContent={false} />
               </div>
 
@@ -185,7 +200,7 @@ export default function Post() {
                     <LinkOutlined/>&nbsp;文章链接：
                     <CopyFilled className='copy-button' onClick={copyLink}/>
                   </span>
-                  <a href={window.location.href}>{window.location.href}</a>
+                  <a href={url}>{url}</a>
                 </div>
                 <div style={{marginBottom:"5px"}}>
                   <span style={{fontWeight:"bold"}}>
@@ -201,7 +216,11 @@ export default function Post() {
             className='toc-container' 
             style={showTOC?{}:{display:"none"}}
             >
-              <TOC markdown={markdown}/>
+              <TOC 
+              showDrawer={showTOCDrawer} 
+              markdown={markdown}
+              callbackOnClose={callbackCloseDrawer}
+              />
             </div>
           </div>
         </>:(

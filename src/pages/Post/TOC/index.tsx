@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList } from '@fortawesome/free-solid-svg-icons'
 // import { TOC_HEADING_CONFIG, MAX_TOC_HEADING } from '../../../utils/constants'
 import MarkdownNavbar from 'markdown-navbar'
+import { ConfigProvider, Drawer } from 'antd'
+import { useEffect, useState } from 'react'
+import { MOBILE_MAX_WIDTH } from '../../../utils/constants'
 
 import "./index.scss"
 
@@ -136,27 +139,91 @@ import "./index.scss"
 
 type Props={
   markdown:string;
+  showDrawer:boolean,
+  callbackOnClose:Function,
 }
 
-export default function TOC({markdown}:Props) {
+export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
+  const [open,setOpen]=useState<boolean>(showDrawer);
+  const [drawerVisible,setDrawerVisible]=useState<boolean>(window.innerWidth<=MOBILE_MAX_WIDTH);
+
+  useEffect(()=>{
+    setOpen(showDrawer);
+  },[showDrawer])
+  
+  const onClose=()=>{
+    setOpen(false);
+    callbackOnClose();
+  }
+
+  useEffect(()=>{
+    const handleResize=()=>{
+      setDrawerVisible(window.innerWidth<=MOBILE_MAX_WIDTH);
+    }
+
+    window.addEventListener("resize",handleResize);
+
+    return ()=>{
+      window.removeEventListener("resize",handleResize);
+    }
+  },[])
 
   return (
-    <Card className="aside-card">
-      <div className='toc-header'>
-        <FontAwesomeIcon icon={faList} />&nbsp;目录
-        <hr/>
-      </div>
-      <div className='toc-content'>
-        {/* <ul> */}
-          <MarkdownNavbar 
-          // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
-          source={markdown} 
-          headingTopOffset={60}
-          ordered={true}
-          />
-        {/* </ul> */}
-      </div>
+    <>
+      {
+        !drawerVisible ?
+        <Card className="aside-card">
+          <div className='toc-header'>
+            <FontAwesomeIcon icon={faList} />&nbsp;目录
+            <hr/>
+          </div>
+          <div className='toc-content'>
+              <MarkdownNavbar 
+              // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
+              source={markdown} 
+              headingTopOffset={60}
+              ordered={true}
+              />
+          </div>
 
-    </Card>
+        </Card>
+            :
+          <div className='toc-drawer-block'>
+          <ConfigProvider
+          theme={{
+            token:{
+              padding:0,
+              paddingLG:0,
+              paddingXS:0,
+              colorBgElevated:"#ffffffcc"
+            }
+          }}
+          >
+            <Drawer
+            className='toc-drawer'
+            placement="right"
+            open={open}
+            onClose={onClose}
+            width={250}
+            closeIcon={null}
+            >
+              <div className='toc-header'>
+                <FontAwesomeIcon icon={faList} />&nbsp;目录
+                <hr/>
+              </div>
+              <div className='toc-content'>
+                  <MarkdownNavbar 
+                  // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
+                  source={markdown} 
+                  headingTopOffset={60}
+                  ordered={true}
+                  />
+              </div>
+
+            </Drawer>
+          </ConfigProvider>
+        </div>
+      }
+    </>
   )
 }

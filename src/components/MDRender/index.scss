@@ -28,7 +28,7 @@
         transition: 0.3s;
         width: 100%;
 
-        border-bottom: 1px solid #e0e5ebe9;
+        border-bottom: 1px solid #abb8c5;
 
         &:hover{
             transform: scale(1.02);
@@ -74,6 +74,13 @@
         margin:7px 0;
     }
 
+    p img{
+        height: auto;
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .2), 0 10px 30px -11px rgba(0, 0, 0, .6);
+    }
+
     a{
         color:#1e90ff;
     }
@@ -85,10 +92,10 @@
     }
     
     code{
-        background-color: #bcbcbc79;
+        background-color: #afb8c15e;
         padding: 0 5px;
         border-radius: 5px;
-        color: rgb(0, 185, 46);
+        color: rgb(9, 103, 32);
     }
 
     table th,
@@ -100,6 +107,14 @@
     table th {
         background: #f6f8fa;
         font-weight: bold;
+    }
+
+    table tr:nth-child(odd){
+        background-color: transparent;
+    }
+    
+    table tr:nth-child(even){
+        background-color: #f1f1f1a5;
     }
 
     ul, ol{

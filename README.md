@@ -17,6 +17,7 @@
 - `jinrishici`: 1.0.6
 - `marked`: 13.0.0
 - `gray-matter`: 4.0.3
+- `echarts`: 5.5.0
 - ...
 
 ## 🔑 使用
@@ -26,13 +27,16 @@
 - `npm run gen-post-list`
 ---
 ## TODO:
-- [ ] 移动端适配
+- [x] 移动端适配
 - [ ] 夜间模式
 - [x] Nav
 - [x] MobileMenu
 - [x] Footer
 - [x] 代码高亮
 - [x] md文件获取
+- [x] Post
+- [ ] Tags
+- [ ] Categories
 - [ ] About
 - [ ] Articles
 - [ ] Archives

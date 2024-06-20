@@ -1,12 +1,12 @@
-import React,{useEffect, useState} from 'react'
-import { Marked, Renderer } from 'marked'
+import {useEffect, useState} from 'react'
+import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
 
 import "highlight.js/scss/atom-one-dark.scss"
 import "./index.scss"
-import store from '../../redux/store'
-import { saveSelectedPostHtml } from '../../redux/actions'
+// import store from '../../redux/store'
+// import { saveSelectedPostHtml } from '../../redux/actions'
 // import './hljs.scss'
 
 type Props = {
@@ -26,25 +26,18 @@ const marked = new Marked(
 );
 
 
-//用于自定义目录跳转，使用markdown-navbar可删
+// 用于自定义目录跳转，使用markdown-navbar可删
 // let headerIndex = 0;
 // marked.use({
-//   extensions:[{
-//     name:"heading",
-//     renderer(token){
-//       return `<h${token.depth} id="heading-${headerIndex++}">${token.text}</h${token.depth}>`
-//     }
-//   }]
+//   extensions:[
+//     {
+//       name:"heading",
+//       renderer(token){
+//         return `<h${token.depth} id="heading-${headerIndex++}">${token.text}</h${token.depth}>`
+//       }
+//     },
+//   ]
 // })
-
-// const markedOptions = {
-//   renderer: new marked.Renderer(),
-//   gfm: true,
-//   breaks: true,
-//   // highlight: (code: any) => hljs.highlightAuto(code).value,
-// };
-
-// marked.setOptions(markedOptions);
 
 export default function MDRender({ markdown,limit=100,showLimitContent }: Props) {
   const [content, setContent] = useState<any>('');

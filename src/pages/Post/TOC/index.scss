@@ -6,6 +6,8 @@
     width: 100%;
     font-size: 20px;
     text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
 
     hr{
         margin: 10px 0;
@@ -23,6 +25,7 @@
     max-height: 80vh;
     width: 100%;
     line-height: 15px;
+    margin-bottom: 20px;
 
     &::-webkit-scrollbar {
         width: 6px;
@@ -99,7 +102,18 @@
     }
 }
 
+.toc-drawer{
+    background: #ffffff;
+}
 
-@media screen and (max-width:$mobileMaxWidth) {
-    
+@media screen and (max-width:$mobileMaxWidth){
+    .toc-header{
+        margin-top: 30px;
+    }
+    .toc-content{
+        width: 100%;
+        padding-right: 20px;
+        font-size: 17px;
+        line-height: 23px;
+    }
 }

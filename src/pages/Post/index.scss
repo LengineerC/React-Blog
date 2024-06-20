@@ -20,14 +20,14 @@
         flex-direction: row;
         align-items: flex-start;
 
-            .post-page-body-content-container{
-                display: flex;
-                justify-content: center;
-                
-                flex-direction: row;
-                align-items: flex-start;
-                width: 100%;
-            
+
+
+        .post-page-body-content-container, .post-page-body-content-container-showtoc{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: flex-start;
+            transition: 0.3s;
             
             .post-page-card-header{
                 color: $postColor;
@@ -89,12 +89,20 @@
                     color: #1e90ff;
                 }
             }
+            
         }
+    }
+
+    .post-page-body-content-container{
+        width: 100%;
+    }
+    .post-page-body-content-container-showtoc{
+        width: 70%;
     }
 
     .toc-container{
         height: 100%;
-        width: 35%;
+        width: 30%;
         padding-left: 20px;
         position: sticky;
         top: $navHeight + 20px;;
@@ -112,15 +120,26 @@
     &:hover{
         color: #1e6bb9;
     }
+    
 }
 
 @media screen and (max-width:$mobileMaxWidth){
-    .post-page-card-header{
-        padding: 0 5px;
-
-        .post-page-card-header-info{
-            flex-direction: column;
+    .post-page-main{
+        .post-page-body-content-container-showtoc{
+            width: 100% ;
+    
         }
+        .toc-container{
+            display: none;
+        }
+        .post-page-card-header{
+            padding: 0 5px;
+    
+            .post-page-card-header-info{
+                flex-direction: column;
+            }
+        }
+
     }
 
 }
