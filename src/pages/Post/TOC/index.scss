@@ -19,6 +19,7 @@
 .toc-content{
     word-break: break-all;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 80vh;
     width: 100%;
     line-height: 15px;
@@ -42,16 +43,63 @@
         }
     }
 
-    p{
+    // p{
+    //     color: $postColor;
+    //     font-family: "CustomFont1";
+    //     margin: 5px 0 10px 0;
+    //     width: 100%;
+    //     transition: 0.3s;
+
+    //     &.active{
+    //         font-weight: bold;
+    //         transition: 0.3s;
+    //     }
+
+    //     &.active ,&:hover{
+    //         transform: scale(1.01);
+    //         color: rgb(23, 143, 223);
+    //     }
+    // }
+
+    // ul li::marker{
+    //     list-style: disc;
+    //     font-size: xx-small;
+    // }
+
+
+    //markdown-navbar
+    .title-anchor{
         color: $postColor;
         font-family: "CustomFont1";
-        margin: 5px 0 10px 0;
         width: 100%;
+        margin-bottom: 5px;
         transition: 0.3s;
 
-        &.active ,&:hover{
+        &:hover{
+            transform: scale(1.01);
             color: rgb(23, 143, 223);
+            font-weight: bold;
+        }
+
+        small{
+            margin-right: 5px;
+        }
+        
+    }
+    @for $i from 2 through 5{
+        .title-level#{$i}{
+            padding-left: 7px*$i;
         }
     }
 
+    .active{
+        transform: scale(1.01);
+        color: rgb(23, 143, 223);
+        font-weight: bold;
+    }
+}
+
+
+@media screen and (max-width:$mobileMaxWidth) {
+    
 }

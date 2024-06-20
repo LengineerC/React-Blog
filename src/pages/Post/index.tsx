@@ -139,7 +139,7 @@ export default function Post() {
           </div>
 
           <div className='post-page-body'>
-            <div className='post-page-body-content-container' style={showTOC?{width:"70%"}:{}}>
+            <div className='post-page-body-content-container'>
             <Card>
               <div className='post-page-card-header'>
                 <div className='post-page-card-header-symbol'>
@@ -201,7 +201,7 @@ export default function Post() {
             className='toc-container' 
             style={showTOC?{}:{display:"none"}}
             >
-              <TOC />
+              <TOC markdown={markdown}/>
             </div>
           </div>
         </>:(

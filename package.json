@@ -22,6 +22,7 @@
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
     "jinrishici": "^1.0.6",
+    "markdown-navbar": "^1.4.3",
     "marked": "^13.0.0",
     "marked-highlight": "^2.1.2",
     "react": "^18.3.1",
@@ -58,5 +59,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/markdown-navbar": "^1.4.4"
   }
 }

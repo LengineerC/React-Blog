@@ -25,16 +25,17 @@ const marked = new Marked(
   }),
 );
 
-let headerIndex = 0;
 
-marked.use({
-  extensions:[{
-    name:"heading",
-    renderer(token){
-      return `<h${token.depth} id="heading-${headerIndex++}">${token.text}</h${token.depth}>`
-    }
-  }]
-})
+//用于自定义目录跳转，使用markdown-navbar可删
+// let headerIndex = 0;
+// marked.use({
+//   extensions:[{
+//     name:"heading",
+//     renderer(token){
+//       return `<h${token.depth} id="heading-${headerIndex++}">${token.text}</h${token.depth}>`
+//     }
+//   }]
+// })
 
 // const markedOptions = {
 //   renderer: new marked.Renderer(),
@@ -69,7 +70,9 @@ export default function MDRender({ markdown,limit=100,showLimitContent }: Props)
       
       let html = marked.parse(cleanedMarkdown) as string;
       // console.log(html);
-      store.dispatch(saveSelectedPostHtml(html));
+
+      //如果自实现目录取消注释
+      // store.dispatch(saveSelectedPostHtml(html));
       
       setContent(html);
     }
