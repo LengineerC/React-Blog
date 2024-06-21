@@ -24,7 +24,7 @@
 ### 新建文章
 - `npm run create-post "文件名"`
 ### 构建/运行前
-- `npm run gen-post-list`
+- `npm run gen-posts-config`
 ---
 ## TODO:
 - [x] 移动端适配

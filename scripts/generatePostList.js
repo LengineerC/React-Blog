@@ -29,4 +29,4 @@ posts.sort((a, b) => new Date(b.time) - new Date(a.time));
 
 fs.writeFileSync(outputFilePath, JSON.stringify(posts, null, 2));
 
-console.log('Generated posts.json with the following posts:', posts);
+console.log('Generated posts.json succsessfully!');

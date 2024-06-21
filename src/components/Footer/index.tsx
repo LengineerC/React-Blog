@@ -8,7 +8,7 @@ import { Popover, ConfigProvider } from 'antd';
 import "./index.scss"
 
 export default function Footer() {
-  const [date,setDate]=useState<Date>(new Date());
+  const [date]=useState<Date>(new Date());
 
   const calculateDays=()=>{
     let startDate=new Date(WEBSITE_START_DATE);

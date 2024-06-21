@@ -3,7 +3,7 @@ import './App.scss';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import store from './redux/store';
-import { savePostList } from './redux/actions';
+import { saveCategoriesList, savePostList, saveTagsList } from './redux/actions';
 import { MenuOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
 
 // import { MOBILE_MAX_WIDTH } from './utils/constants';
@@ -46,7 +46,26 @@ export default function App() {
       store.dispatch(savePostList(data));
     }).catch(err=>{
       console.log("文章列表获取失败",err);
-      
+    })
+
+    // 获取Tags数据
+    axios.get('/tags.json')
+    .then(response=>{
+      const {data}=response;
+      store.dispatch(saveTagsList(data));
+    })
+    .catch(err=>{
+      console.log("获取Tags列表失败",err);
+    })
+
+    // 获取Categories数据
+    axios.get('/categories.json')
+    .then(response=>{
+      const {data}=response;
+      store.dispatch(saveCategoriesList(data));
+    })
+    .catch(err=>{
+      console.log("获取Categories列表失败",err);
     })
     
     return()=>{

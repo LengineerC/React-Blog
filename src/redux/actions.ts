@@ -51,3 +51,24 @@ export const clearSelectedPostHtml=()=>({
 })
 
 
+//TagsReducer Actions
+export const saveTagsList=(tagsList:any)=>({
+    type:actions.SAVE_TAGS_LIST,
+    data:tagsList
+})
+
+export const cleatTagsList=()=>({
+    type:actions.CLEAR_TAGS_LIST,
+    data:[],
+})
+
+//Categories Actions
+export const saveCategoriesList=(categoriesList:any)=>({
+    type:actions.SAVE_CATEGORIES_LIST,
+    data:categoriesList
+})
+
+export const clearCategoriesList=()=>({
+    type:actions.CLEAR_CATEGORIES_LIST,
+    data:[],
+})

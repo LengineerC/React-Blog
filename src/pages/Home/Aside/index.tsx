@@ -1,4 +1,3 @@
-import Card from "../../../components/Card";
 import ClockCard from "./components/ClockCard";
 import NoticeCard from "./components/NoticeCard";
 import TopPostCard from "./components/TopPostCard";

@@ -1,6 +1,6 @@
 import { PostConfig } from "../../utils/types";
 import { CLEAR_POST_LIST, SAVE_POST_LIST } from "../constants";
-import { DataType } from "../dataType";
+// import { DataType } from "../dataType";
 // import { DataType } from "../dataType";
 
 type Action={

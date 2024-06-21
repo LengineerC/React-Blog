@@ -17,3 +17,11 @@ export const CLEAR_SELECTED_POST_CONFIG="clearSelectedPostConfig";
 // 选中文章内容
 export const SAVE_SELECTED_POST_HTML="saveSelectedPostHtml";
 export const CLEAR_SELECTED_POST_HTML="clearSelectedPostHtml";
+
+//TagsListReducer Action types
+export const SAVE_TAGS_LIST="saveTagsList";
+export const CLEAR_TAGS_LIST="clearTagsList";
+
+//CategoriesListReducer Action types
+export const SAVE_CATEGORIES_LIST="saveCategoriesList";
+export const CLEAR_CATEGORIES_LIST="clearCategoriesList";

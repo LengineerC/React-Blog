@@ -7,7 +7,6 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 import './index.scss'
 import Card from '../../components/Card'
-import { useEffect } from 'react'
 
 export default function ErrorPage() {
 

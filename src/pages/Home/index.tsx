@@ -1,5 +1,4 @@
 import SiteTitle from '../../components/SiteTitle'
-import Card from '../../components/Card'
 import HomePosts from './HomePosts'
 
 import "./index.scss"
