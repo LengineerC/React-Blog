@@ -26,3 +26,6 @@ export const QQ:string="398908838";
 //自定义目录生效：目录检测标题级数,(不超过5级)，使用markdown-navbar配置无效
 export const MAX_TOC_HEADING:number=2;
 export const TOC_HEADING_CONFIG:string="h2,h3,h4,h5";
+
+//Post页是否自动开启目录
+export const DEFAULT_SHOW_TOC:boolean=true;

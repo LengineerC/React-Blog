@@ -17,11 +17,11 @@ import {
   UnorderedListOutlined, } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
-import { AUTHOR } from '../../utils/constants';
-
-import './index.scss'
+import { AUTHOR, DEFAULT_SHOW_TOC } from '../../utils/constants';
 import TOC from './TOC';
 import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/actions';
+
+import './index.scss'
 
 export default function Post() {
   const {id}=useParams();
@@ -30,7 +30,7 @@ export default function Post() {
   const [mdLen,setMdLen]=useState<number>(0);
   const [showTOC,setShowTOC]=useState<boolean>(true);
   //显示移动端TOC Drawer
-  const [showTOCDrawer,setShowTOCDrawer]=useState<boolean>(false);
+  const [showTOCDrawer,setShowTOCDrawer]=useState<boolean>(DEFAULT_SHOW_TOC);
 
   const [messageApi, contextHolder] = message.useMessage();
   const [url,setUrl]=useState<string>(window.location.href);
@@ -197,14 +197,14 @@ export default function Post() {
               <div className='post-page-card-footer'>
                 <div style={{marginBottom:"5px"}}>
                   <span style={{fontWeight:"bold"}}>
-                    <LinkOutlined/>&nbsp;文章链接：
+                    <LinkOutlined/>文章链接：
                     <CopyFilled className='copy-button' onClick={copyLink}/>
                   </span>
                   <a href={url}>{url}</a>
                 </div>
                 <div style={{marginBottom:"5px"}}>
                   <span style={{fontWeight:"bold"}}>
-                    <CopyrightOutlined />&nbsp;
+                    <CopyrightOutlined />
                     版权声明：本博客所有文章除特別声明外，均采用 <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href='/'>{AUTHOR}</a> !
                   </span>
                 </div>

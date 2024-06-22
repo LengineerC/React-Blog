@@ -11,7 +11,9 @@ import { faHouse,
          faAngleDown, 
          faAngleUp, 
          IconDefinition, 
-         faXmark } from '@fortawesome/free-solid-svg-icons';
+         faXmark, 
+         faTag,
+         faBookmark} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { darkmodeOFF, darkmodeON } from '../../redux/actions';
 import { MoonFilled, SunFilled } from '@ant-design/icons';
@@ -42,8 +44,14 @@ const navCenterColConfig:MenuConfig[]=[
     options:{
       subMenuEnable:true,
       subItems:[
-        <p>item1</p>,
-        <p>item2</p>,
+        <NavLink to="/tags">
+          <FontAwesomeIcon style={{marginRight:"5px"}} icon={faTag}/>
+          标签
+        </NavLink>,
+        <NavLink to="/categories">
+          <FontAwesomeIcon style={{marginRight:"5px"}} icon={faBookmark}/>
+          分类
+        </NavLink>,
       ],
     }
   },
@@ -62,9 +70,9 @@ const navCenterColConfig:MenuConfig[]=[
     path:"media",
     key:"media",
     options:{
-      subMenuEnable:true,
+      subMenuEnable:false,
       subItems:[
-        <p>media1</p>
+        <p>music</p>
       ],
     }
   },

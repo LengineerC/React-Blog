@@ -34,7 +34,7 @@
 - [x] Footer
 - [x] 代码高亮
 - [x] md文件获取
-- [x] Post
+- [ ] Post
 - [ ] Tags
 - [ ] Categories
 - [ ] About

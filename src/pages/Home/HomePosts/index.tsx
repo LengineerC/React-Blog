@@ -16,6 +16,9 @@ export default function HomePosts({}: Props) {
   const [currentPage,setCurrentPage]=useState<PostConfig[]>([]);
 
   useEffect(()=>{
+    const {postListReducer}=store.getState();
+    setPostList(postListReducer);
+
     //先从App中获取所有的页面列表，然后在此存入state
     const unsubscribe=store.subscribe(()=>{
       const {postListReducer}=store.getState();

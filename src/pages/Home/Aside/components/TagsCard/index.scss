@@ -1,0 +1,10 @@
+.tags-card-main{
+    display: flex;
+    width: 100%;
+    padding: 10px 5px;
+    flex-wrap: wrap;
+    
+    .tag-container{
+        margin-right: 5px;
+    }
+}
