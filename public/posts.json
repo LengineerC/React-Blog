@@ -6,7 +6,8 @@
       "tag2"
     ],
     "categories": [
-      "c1"
+      "c1",
+      "c3"
     ],
     "top": false,
     "title": "auto1",
@@ -24,7 +25,8 @@
     ],
     "categories": [
       "c1",
-      "c2"
+      "c2",
+      "c3"
     ],
     "top": true,
     "title": "auto0",

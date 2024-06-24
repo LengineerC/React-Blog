@@ -6,6 +6,7 @@ lock: false
 top: false
 categories:
   - c1
+  - c3
 tags:
   - tag1
   - tag2

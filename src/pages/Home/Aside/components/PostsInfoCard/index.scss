@@ -28,6 +28,11 @@
         margin-bottom: 10px;
         font-family: "CustomFont1";
         color: $postColor;
+        transition: 0.3s;
+
+        &:hover{
+            transform: scale(1.1);
+        }
 
         a{
             text-decoration: none;

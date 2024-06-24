@@ -3,6 +3,7 @@ import { lazy } from "react"
 
 const Home=lazy(()=>import("../pages/Home/index.tsx"));
 const TagsPage=lazy(()=>import("../pages/TagsPage/index.tsx"));
+const CategoriesPage=lazy(()=>import("../pages/CategoriesPage/index.tsx"));
 const About=lazy(()=>import("../pages/About/index.tsx"));
 const ErrorPage=lazy(()=>import("../pages/404/index.tsx"));
 const Post=lazy(()=>import("../pages/Post/index.tsx"));
@@ -21,9 +22,13 @@ const routes=[
         element: <TagsPage />
     },
     {
-        path:"tags/:tag",
-        element: <TagsPage />
+        path:"categories/",
+        element:<CategoriesPage />
     },
+    // {
+    //     path:"tags/:tag",
+    //     element: <TagsPage />
+    // },
     {
         path:"about",
         element:<About />

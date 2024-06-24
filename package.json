@@ -19,6 +19,7 @@
     "antd": "^5.18.0",
     "axios": "^1.7.2",
     "echarts": "^5.5.0",
+    "echarts-wordcloud": "^2.1.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
     "jinrishici": "^1.0.6",

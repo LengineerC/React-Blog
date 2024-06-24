@@ -28,9 +28,9 @@ export default function Post() {
   const [markdown,SetMarkdown]=useState<string>("");
   const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfigReducer as PostConfig);
   const [mdLen,setMdLen]=useState<number>(0);
-  const [showTOC,setShowTOC]=useState<boolean>(true);
+  const [showTOC,setShowTOC]=useState<boolean>(DEFAULT_SHOW_TOC);
   //显示移动端TOC Drawer
-  const [showTOCDrawer,setShowTOCDrawer]=useState<boolean>(DEFAULT_SHOW_TOC);
+  const [showTOCDrawer,setShowTOCDrawer]=useState<boolean>(false);
 
   const [messageApi, contextHolder] = message.useMessage();
   const [url,setUrl]=useState<string>(window.location.href);
