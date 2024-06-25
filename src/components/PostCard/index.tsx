@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Card from '../../../../components/Card'
-import { PostConfig } from '../../../../utils/types'
-import MDRender from '../../../../components/MDRender'
+import Card from '../Card'
+import { PostConfig } from '../../utils/types'
+import MDRender from '../MDRender'
 import { Skeleton } from 'antd'
-import Tag from '../../../../components/Tag'
+import Tag from '../Tag'
 
 import './index.scss'
-import Category from '../../../../components/Category'
+import Category from '../Category'
 
 type Props = {
   config: PostConfig,

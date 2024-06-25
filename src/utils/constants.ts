@@ -29,3 +29,6 @@ export const TOC_HEADING_CONFIG:string="h2,h3,h4,h5";
 
 //Post页是否自动开启目录
 export const DEFAULT_SHOW_TOC:boolean=true;
+
+// 显示ClockCard
+export const SHOW_CLOCK_CARD:boolean=true;

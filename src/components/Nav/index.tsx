@@ -30,6 +30,7 @@ type MenuConfig={
   name:string,
   path:string,
   key:string,
+  clickable:boolean,
   options:{
     subMenuEnable:boolean,
     subItems:JSX.Element[],
@@ -41,6 +42,7 @@ const navCenterColConfig:MenuConfig[]=[
     name:"文章",
     path:"posts",
     key:"posts",
+    clickable:false,
     options:{
       subMenuEnable:true,
       subItems:[
@@ -59,6 +61,7 @@ const navCenterColConfig:MenuConfig[]=[
     name:"归档",
     path:"archives",
     key:"archives",
+    clickable:true,
     options:{
       subMenuEnable:false,
       subItems:[
@@ -69,6 +72,7 @@ const navCenterColConfig:MenuConfig[]=[
     name:"媒体",
     path:"media",
     key:"media",
+    clickable:true,
     options:{
       subMenuEnable:false,
       subItems:[
@@ -80,6 +84,7 @@ const navCenterColConfig:MenuConfig[]=[
     name:"友链",
     path:"friends",
     key:"friends",
+    clickable:true,
     options:{
       subMenuEnable:false,
       subItems:[
@@ -90,6 +95,7 @@ const navCenterColConfig:MenuConfig[]=[
     name:"关于",
     path:"about",
     key:"about",
+    clickable:true,
     options:{
       subMenuEnable:false,
       subItems:[
@@ -193,6 +199,7 @@ export default function Nav() {
         key={item.key}
         // push={1}
         >
+          {item.clickable? 
           <NavLink to={item.path}>
             <div className='click-container'>
               <FontAwesomeIcon icon={iconChooser(item.key)} />
@@ -209,7 +216,23 @@ export default function Nav() {
                 }
               </div>
             </div>
-          </NavLink>
+          </NavLink>:
+            <div className='click-container'>
+              <FontAwesomeIcon icon={iconChooser(item.key)} />
+              <div className='nav-click-text-container'>
+                {item.name}
+                {item.options.subMenuEnable &&
+                  <span className='nav-click-text-icon'>
+                    {
+                      showSubMenu===item.key?
+                      <FontAwesomeIcon icon={faAngleUp} />
+                      :<FontAwesomeIcon icon={faAngleDown} />
+                    }
+                  </span>
+                }
+              </div>
+            </div>
+          }
 
           {item.options.subMenuEnable&&
             <>

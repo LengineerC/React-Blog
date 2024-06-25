@@ -44,9 +44,9 @@ export default function PostsInfoCard() {
             <FontAwesomeIcon icon={faBook} /> 文章
           </div>
           <div className="post-info-card-col-content">
-            <NavLink to="/posts" >
+            {/* <NavLink to="/posts" > */}
               {postsCount}
-            </NavLink>
+            {/* </NavLink> */}
           </div>
         </div>
 

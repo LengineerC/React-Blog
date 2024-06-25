@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom'
 
 type Props = {
   tag: string,
+  reload?:boolean,
 }
 
-export default function Tag({ tag }: Props) {
+export default function Tag({ tag,reload=false }: Props) {
   const [bgColor,setBgColor]=useState<number>(0)
 
   useEffect(()=>{
@@ -22,9 +23,16 @@ export default function Tag({ tag }: Props) {
     return style+color;
   }
 
+  const reloadPage=()=>{
+    if(reload){
+      window.location.reload();
+    }
+
+  }
+
   return (
     <div className="tag-main">
-      <NavLink to={`/tags/${tag}`} style={{ textDecoration: "none" }}>
+      <NavLink onClick={reloadPage} to={`/tags/${tag}`} style={{ textDecoration: "none" }}>
         <div className={colorChooser(bgColor)}>
           {tag}
         </div>

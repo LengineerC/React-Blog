@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { PostConfig } from '../../../utils/types';
 import store from '../../../redux/store';
 import { saveSelectedPostConfig } from '../../../redux/actions';
-import PostCard from './PostCard';
+import PostCard from '../../../components/PostCard';
 import { Pagination, ConfigProvider } from 'antd';
 
 import './index.scss';
