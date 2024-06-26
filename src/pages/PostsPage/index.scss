@@ -1,0 +1,26 @@
+@import "../../styles/page_layout.scss";
+@import "../../styles/base.scss";
+
+.posts-page-btn-line{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+
+    .choose-btn{
+        display: flex;
+        text-align: center;
+        background-color: rgba(235, 235, 235, 0.85);
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 45%;
+        color: $postColor;
+        transition: 0.3s;
+
+        &:hover{
+            transform: scale(1.03);
+        }
+    }
+}

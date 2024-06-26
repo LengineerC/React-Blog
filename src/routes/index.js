@@ -9,6 +9,7 @@ const CategoriesDetail=lazy(()=>import("../pages/CategoriesDetail/index.tsx"));
 const About=lazy(()=>import("../pages/About/index.tsx"));
 const ErrorPage=lazy(()=>import("../pages/404/index.tsx"));
 const Post=lazy(()=>import("../pages/Post/index.tsx"));
+const PostsPage=lazy(()=>import("../pages/PostsPage/index.tsx"));
 
 const routes=[
     {
@@ -34,6 +35,10 @@ const routes=[
     {
         path:"categories/:category",
         element:<CategoriesDetail />
+    },
+    {
+        path:"posts",
+        element:<PostsPage />
     },
     // {
     //     path:"tags/:tag",

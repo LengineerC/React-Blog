@@ -10,3 +10,15 @@ export type PostConfig={
     categories?:[],
     tags?:[],
 };
+
+// Nav菜单配置
+export type MenuConfig={
+    name:string,
+    path:string,
+    key:string,
+    clickable:boolean,
+    options:{
+      subMenuEnable:boolean,
+      subItems:JSX.Element[],
+    }
+  }

@@ -33,14 +33,15 @@ export default function Footer() {
         </div>
 
         <div className='footer-left-row'>
-          <span className='footer-text-des'>row:&nbsp;</span>
-          <span className='footer-text-value'>2</span>
-        </div>
-        <div className='footer-left-row'>
           <span className='footer-text-des'>本站已运行:&nbsp;</span>
           <span className='footer-text-value'>
             {calculateDays()}&nbsp;天
           </span>
+        </div>
+        
+        <div className='footer-left-row'>
+          <span className='footer-text-des'>row:&nbsp;</span>
+          <span className='footer-text-value'>3</span>
         </div>
       </div>
 

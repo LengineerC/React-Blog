@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, Row } from 'antd';
 import store from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse,
-         faBook,
-         faFileZipper,
-         faLink,
-         faAddressCard,
-         faMusic, 
-         faAngleDown, 
-         faAngleUp, 
-         IconDefinition, 
-         faXmark, 
-         faTag,
-         faBookmark} from '@fortawesome/free-solid-svg-icons';
+import { 
+  faHouse,
+  faBook,
+  faFileZipper,
+  faLink,
+  faAddressCard,
+  faMusic, 
+  faAngleDown, 
+  faAngleUp, 
+  IconDefinition, 
+  faXmark, 
+  faTag,
+  faBookmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { darkmodeOFF, darkmodeON } from '../../redux/actions';
 import { MoonFilled, SunFilled } from '@ant-design/icons';
+import { MenuConfig } from '../../utils/types';
 
 import "./index.scss";
 
@@ -25,17 +28,6 @@ const show_border={
   // border:"2px solid black",
   border:"none",
 };
-
-type MenuConfig={
-  name:string,
-  path:string,
-  key:string,
-  clickable:boolean,
-  options:{
-    subMenuEnable:boolean,
-    subItems:JSX.Element[],
-  }
-}
 
 const navCenterColConfig:MenuConfig[]=[
   {

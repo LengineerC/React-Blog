@@ -1,5 +1,5 @@
 import { ConfigProvider, Drawer } from 'antd'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MenuFoldOutlined } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faBook, faFileZipper,faLink, faAddressCard, faMusic } from '@fortawesome/free-solid-svg-icons';
@@ -76,7 +76,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
         <div className='menu-body'>
           <div onClick={onClose}>
 
-            <NavLink to="articles">
+            <NavLink to="posts">
               <div className='menu-body-content-container'>
               <span className='icon-block'>
                 <FontAwesomeIcon icon={faBook}/>
