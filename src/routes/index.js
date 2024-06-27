@@ -10,6 +10,7 @@ const About=lazy(()=>import("../pages/About/index.tsx"));
 const ErrorPage=lazy(()=>import("../pages/404/index.tsx"));
 const Post=lazy(()=>import("../pages/Post/index.tsx"));
 const PostsPage=lazy(()=>import("../pages/PostsPage/index.tsx"));
+const Archives=lazy(()=>import("../pages/Archives/index.tsx"));
 
 const routes=[
     {
@@ -40,10 +41,10 @@ const routes=[
         path:"posts",
         element:<PostsPage />
     },
-    // {
-    //     path:"tags/:tag",
-    //     element: <TagsPage />
-    // },
+    {
+        path:"archives",
+        element:<Archives />
+    },
     {
         path:"about",
         element:<About />
