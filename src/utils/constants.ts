@@ -22,6 +22,7 @@ export const HITOKOTO_GET_ENABLE:boolean=false;
 //个人信息
 export const EMAIL:string="lengineerc@outlook.com";
 export const QQ:string="398908838";
+export const BILIBILI_LINK:string="https://space.bilibili.com/92665721";
 
 //自定义目录生效：目录检测标题级数,(不超过5级)，使用markdown-navbar配置无效
 export const MAX_TOC_HEADING:number=2;

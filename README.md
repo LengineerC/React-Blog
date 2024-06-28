@@ -37,9 +37,8 @@
 - [x] Post
 - [x] Tags
 - [x] Categories
+- [x] Archives
 - [ ] About
-- [ ] Articles
-- [ ] Archives
 - [ ] Media
 - [ ] Friends
 - [ ] ...

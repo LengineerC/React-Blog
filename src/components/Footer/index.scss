@@ -65,6 +65,12 @@
 
     .footer-left-row{
         @extend .hv-center;
+
+        .badge-block{
+            @extend .hv-center;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
     }
     
     .footer-text-des{

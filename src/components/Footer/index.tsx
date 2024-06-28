@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faBilibili } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { AUTHOR, WEBSITE_START_DATE, EMAIL } from '../../utils/constants';
+import { AUTHOR, WEBSITE_START_DATE, EMAIL, BILIBILI_LINK } from '../../utils/constants';
 import { Popover, ConfigProvider } from 'antd';
+// import { makeBadge, ValidationError } from 'badge-maker';
 
 import "./index.scss"
 
@@ -15,12 +16,6 @@ export default function Footer() {
     const oneDayMs=24*60*60*1000;
     return Math.round((date.getTime()-startDate.getTime())/oneDayMs);
   }
-
-  // const githubPopoverContent=(
-  //   <div className='poover-container'>
-  //     <p>123</p>
-  //   </div>
-  // ) 
 
   return (
     <footer className='footer-main'>
@@ -40,8 +35,21 @@ export default function Footer() {
         </div>
         
         <div className='footer-left-row'>
-          <span className='footer-text-des'>row:&nbsp;</span>
-          <span className='footer-text-value'>3</span>
+          {/* <span className='footer-text-des'>row:&nbsp;</span>
+          <span className='footer-text-value'>3</span> */}
+          
+          <span className='badge-block'>
+            <a href="https://react.docschina.org/" target="_blank"> 
+              <img src="https://img.shields.io/badge/Powered_by-React-green?color=%231E90FF&logo=react&style=plastic" />
+            </a>
+          </span>
+          
+          <span className='badge-block'>
+            <a href="https://github.com/LengineerC" target="_blank"> 
+              <img src="https://img.shields.io/badge/github-LengineerC-brightgreen?style=plastic&logo=github"/>
+            </a>
+          </span>
+
         </div>
       </div>
 
@@ -72,6 +80,14 @@ export default function Footer() {
         <Popover title={`邮箱: ${EMAIL}`}>
           <div className='footer-right-col-icon-container'>
             <FontAwesomeIcon icon={faEnvelope} />
+          </div>
+        </Popover>
+
+        <Popover title={`关注我的B站${BILIBILI_LINK}`}>
+          <div className='footer-right-col-icon-container'>
+            <a href={BILIBILI_LINK}>
+              <FontAwesomeIcon icon={faBilibili} />
+            </a>
           </div>
         </Popover>
       </div>
