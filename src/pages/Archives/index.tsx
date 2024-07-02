@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { ConfigProvider, Timeline } from "antd"
-import { ClockCircleOutlined } from "@ant-design/icons";
 import * as echarts from 'echarts/core';
 import {
   TitleComponent,

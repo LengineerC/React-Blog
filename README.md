@@ -40,6 +40,7 @@
 - [x] Archives
 - [ ] About
 - [ ] Media
+- [ ] 音乐播放器
 - [ ] Friends
 - [ ] ...
 - [ ] 后台管理系统

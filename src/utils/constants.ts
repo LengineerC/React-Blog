@@ -33,3 +33,6 @@ export const DEFAULT_SHOW_TOC:boolean=true;
 
 // 显示ClockCard
 export const SHOW_CLOCK_CARD:boolean=true;
+
+//音乐播放器歌单url
+export const MUSIC_URL:string="https://music.163.com/playlist?id=8741983740";
