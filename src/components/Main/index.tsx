@@ -1,14 +1,25 @@
-import React from 'react'
-import { Suspense } from 'react'
-import { useRoutes } from 'react-router-dom'
+import { Suspense, useEffect, useState } from 'react'
+import { useLocation, useRoutes } from 'react-router-dom'
 import routes from '../../routes'
 import Loading from '../Loading'
+
+// import Media from '../../pages/Media'
 
 // const Home=lazy(()=>import("../../pages/Home/index"))
 
 export default function Main() {
-
   const elements=useRoutes(routes)
+
+  //#region 处理Media
+  // const location=useLocation();
+  // const [showMedia,setShowMedia]=useState<boolean>(false);
+
+  // useEffect(()=>{
+  //   console.log(location.pathname);
+    
+  //   setShowMedia(location.pathname==='/media');
+  // },[location])
+  //#endregion
 
   return (
     <main>
@@ -25,6 +36,7 @@ export default function Main() {
 
         <Suspense fallback={<Loading/>}>
           {elements}
+          {/* {showMedia && <Media />} */}
         </Suspense>
         
       </div>

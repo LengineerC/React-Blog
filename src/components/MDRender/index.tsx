@@ -20,7 +20,9 @@ const marked = new Marked(
     langPrefix: 'hljs language-',
     highlight(code, lang, info) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-      return hljs.highlight(code, { language }).value;
+      const highlightedCode= hljs.highlight(code, { language }).value;
+      // return `<pre data-lang="${language}"><code class="hljs ${language}">${highlightedCode}</code></pre>`;
+      return highlightedCode;
     }
   }),
 );

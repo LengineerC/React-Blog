@@ -1,2 +1,42 @@
 @import "../../styles/page_layout.scss";
 @import "../../styles/base.scss";
+
+.media-card-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    height: auto;
+    
+    .media-card-main-player{
+        display: flex;
+        width: 100%;
+        height: auto;
+    }
+
+    .media-card-main-video{
+        @extend .hv-center;
+        width: 100%;
+        height: 60vh;
+
+        iframe{
+            border: 0;
+            width: 100%;
+            height: 50vh;
+        }
+    }
+    
+    @media screen and (max-width:$mobileMaxWidth) {
+        .media-card-main-video{
+            display: flex;
+            width: 100%;
+            height: auto;
+    
+            iframe{
+                border: 0;
+                width: 100%;
+                height: 25vh;
+            }
+        }
+    }
+}

@@ -49,7 +49,7 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
       setCategories([...postConfig.categories]);
     }
 
-  }, [postConfig])
+  }, [])
 
 
   const createTags = () => {

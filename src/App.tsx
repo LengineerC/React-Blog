@@ -1,5 +1,4 @@
 import {lazy, useEffect, useState} from 'react'
-import './App.scss';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import store from './redux/store';
@@ -16,6 +15,11 @@ import { darkmodeOFF, darkmodeON } from './redux/actions';
 import Footer from './components/Footer';
 import Top from './components/Top';
 import axios from 'axios';
+import APlayer from './components/APlayer';
+import { SHOW_APLAYER } from './utils/constants';
+// import { aplayerRef } from './refs';
+
+import './App.scss';
 
 const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
@@ -157,8 +161,11 @@ export default function App() {
       {/* Nav test */}
       {/* <Button onClick={show}>show</Button>
       <Button onClick={hidden}>hidden</Button> */}
+
       
       <Footer />
+
+      {SHOW_APLAYER && <APlayer />}
 
     </div>
   )

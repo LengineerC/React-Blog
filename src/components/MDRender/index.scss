@@ -91,13 +91,6 @@
         margin-bottom: 1em;
     }
     
-    code{
-        background-color: #afb8c15e;
-        padding: 0 5px;
-        border-radius: 5px;
-        color: rgb(9, 103, 32);
-    }
-
     table th,
     table td {
         padding: 0.5em;
@@ -108,7 +101,7 @@
         background: #f6f8fa;
         font-weight: bold;
     }
-
+    
     table tr:nth-child(odd){
         background-color: transparent;
     }
@@ -116,11 +109,11 @@
     table tr:nth-child(even){
         background-color: #f1f1f1a5;
     }
-
+    
     ul, ol{
         padding-left: 20px;
     }
-
+    
     blockquote{
         background-color: rgba(7, 129, 235, 0.1);
         border-left: 5px solid #1e90ff;
@@ -129,12 +122,39 @@
         padding: 10px 10px 5px 15px;
     }
 
+    code{
+        background-color: #afb8c15e;
+        padding: 0 5px;
+        // border-radius: 0px 0px 5px 5px;
+        border-radius: 5px;
+        color: rgb(9, 103, 32);
+        // display: block;
+    }
+
+    pre{
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+    
+    // pre::before{
+    //     content: attr(data-lang);
+    //     display: flex;
+    //     font-family:Arial, Helvetica, sans-serif;
+    //     font-weight: bold;
+    //     width: 100%;
+    //     border-bottom: 1px solid #eee;
+    //     padding-bottom: 10px;
+    //     justify-content: flex-end;
+    // }
+
     pre code.hljs {
+        // padding-top: 0 !important;
         display: block;
         overflow-x: auto;
         padding: 1em;
         background: rgb(45, 45, 45);
-        border-radius: 5px;
+        // border-radius: 5px;
         color: #ddd;
         max-height: 90vh;
 

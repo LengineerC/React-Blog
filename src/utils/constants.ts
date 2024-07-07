@@ -36,3 +36,12 @@ export const SHOW_CLOCK_CARD:boolean=true;
 
 //音乐播放器歌单url
 export const MUSIC_URL:string="https://music.163.com/playlist?id=8741983740";
+
+//是否加载音乐播放器
+export const SHOW_APLAYER:boolean=true;
+
+// 是否加载歌词(0不加载,1加载)
+export const IRC_TYPE:number=0;
+
+// B站视频地址
+export const BILIBILI_VIDEO_URL:string="//player.bilibili.com/player.html?isOutside=true&aid=43083956&bvid=BV1Pb411S7Tu&cid=75540675&p=1";
