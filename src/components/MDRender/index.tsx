@@ -22,6 +22,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
       const highlightedCode= hljs.highlight(code, { language }).value;
       // return `<pre data-lang="${language}"><code class="hljs ${language}">${highlightedCode}</code></pre>`;
+      // return `<code class="hljs ${language}>${highlightedCode}</code>`
       return highlightedCode;
     }
   }),

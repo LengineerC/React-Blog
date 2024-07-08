@@ -4,8 +4,9 @@ import darkModeReducer from "./darkMode";
 import postListReducer from "./postList";
 import selectedPostConfigReducer from "./selectedPostConfig";
 import selectedPostHtmlReducer from "./selectedPostHtml";
-import tagsListReducer  from "./TagsList";
-import categoriesListReducer from "./CategoriesList";
+import tagsListReducer  from "./tagsList";
+import categoriesListReducer from "./categoriesList";
+import aplayerReducer from "./aplayer";
 
 export const allReducers=combineReducers({
     navSwitchReducer,
@@ -15,4 +16,5 @@ export const allReducers=combineReducers({
     selectedPostHtmlReducer,
     tagsListReducer,
     categoriesListReducer,
+    aplayerReducer,
 });

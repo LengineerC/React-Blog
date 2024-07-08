@@ -1,40 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { MUSIC_URL, IRC_TYPE } from "../../utils/constants";
-import { useLocation } from 'react-router-dom';
+import store from '../../redux/store';
+import { saveAPlayer } from '../../redux/actions';
 
 export default function APlayer(){
-  // const [isCreated,setIsCreated]=useState(false);
-  // const location=useLocation();
+  const metingRef=useRef(null);
+  const effectRan=useRef(null);
 
-  // useEffect(()=>{
-  //   const aplayerContainer=document.getElementById("aplayer");
-  //   console.log(aplayerContainer);
+  useEffect(() => {
+    if(effectRan.current) return;
 
-  //   if(aplayerContainer){
-  //     let aplayerElement=<></>;
+    const checkAPlayerInstance = () => {
+      if (metingRef.current && metingRef.current.aplayer) {
+        const aplayerInstance = metingRef.current.aplayer;
+        // console.log('APlayer instance:', aplayerInstance);
 
-  //     if(!isCreated){
-  //       aplayerElement=document.createElement('meting-js');
-  //       aplayerElement.setAttribute("auto",MUSIC_URL);
+        if (aplayerInstance) {
+          console.log("Aplayer created successfully");
 
-  //       setIsCreated(true);
-  //     }
+          store.dispatch(saveAPlayer(aplayerInstance));
 
-  //     aplayerContainer.appendChild(aplayerElement);
-  //   }
+          if(!IRC_TYPE){
+            aplayerInstance.lrc.hide();
+          }
+        }
+      } else {
+        setTimeout(checkAPlayerInstance, 100);
+      }
+    };
 
-  // },[location])
+    checkAPlayerInstance();
+    effectRan.current=true;
 
-  useEffect(()=>{
-    //TODO: 自定义APlayer
+    return () => {
+      clearTimeout(checkAPlayerInstance);
+    };
+  }, []);
 
-    // const metingElement=document.querySelector('meting-js');
-    // console.log(metingElement);
-  })
-
-  // return null;
   return(
     <meting-js 
+      ref={metingRef}
       auto={MUSIC_URL}
       fixed={true}
       theme="#67abff"

@@ -71,7 +71,7 @@ export default function App() {
     .catch(err=>{
       console.log("获取Categories列表失败",err);
     })
-    
+
     return()=>{
       // window.removeEventListener("resize",handleResize);
     }
@@ -166,7 +166,6 @@ export default function App() {
       <Footer />
 
       {SHOW_APLAYER && <APlayer />}
-
     </div>
   )
 }

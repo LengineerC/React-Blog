@@ -7,11 +7,39 @@
     width: 100%;
     justify-content: center;
     height: auto;
+
+    .media-title{
+        width: 100%;
+        text-align: center;
+        font-family: "CustomFont1";
+        font-weight: bold;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
     
     .media-card-main-player{
         display: flex;
+        justify-content: center;
         width: 100%;
         height: auto;
+
+        .aplayer{
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+
+            .aplayer-lrc{
+                &::after, &::before{
+                    background:transparent;
+                }
+            }
+
+            ol{
+
+                &::-webkit-scrollbar-thumb{
+                    background: #67abff;
+                }
+            }
+        }
     }
 
     .media-card-main-video{
@@ -21,7 +49,7 @@
 
         iframe{
             border: 0;
-            width: 100%;
+            width: 75%;
             height: 50vh;
         }
     }

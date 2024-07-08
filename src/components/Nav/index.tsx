@@ -96,34 +96,6 @@ const navCenterColConfig:MenuConfig[]=[
   },
 ]
 
-//#region subMenuConfig
-// const subMenuConfig={
-//   articles:{
-//     enable:true,
-//     subItems:[
-//       <p>item1</p>,
-//       <p>item2</p>,
-//     ],
-//   },
-//   archives:{
-//     enable:false,
-//     subItems:[],
-//   },
-//   media:{
-//     enable:false,
-//     subItems:[],
-//   },
-//   friends:{
-//     enable:false,
-//     subItems:[],
-//   },
-//   about:{
-//     enable:false,
-//     subItems:[],
-//   },
-// };
-//#endregion
-
 export default function Nav() {
   const [visible,setVisible]=useState<boolean>(store.getState().navSwitchReducer);
   // const [lastScrollTop,setLastScrollTop]=useState<number>(0);

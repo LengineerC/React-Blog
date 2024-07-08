@@ -25,3 +25,7 @@ export const CLEAR_TAGS_LIST="clearTagsList";
 //CategoriesListReducer Action types
 export const SAVE_CATEGORIES_LIST="saveCategoriesList";
 export const CLEAR_CATEGORIES_LIST="clearCategoriesList";
+
+// aplayerReducer Action types
+export const SAVE_APLAYER="saveAPlayer";
+export const CLEAR_APLAYER="clearAPlayer";

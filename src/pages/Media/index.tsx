@@ -1,62 +1,43 @@
-// import { useEffect, useRef } from "react";
-// import Card from "../../components/Card"
-// import PageTitle from "../../components/PageTitle"
-// import { aplayerRef } from "../../refs";
-
-// import "./index.scss"
-
-// export default function Media() {
-//   // let aplayer:any='';
-
-//   useEffect(()=>{
-//     // aplayer=aplayerRef.current;
-//   },)
-
-//   return (
-//     <div className="page-main">
-      
-//       <div className="page-main-title">
-//         <PageTitle title="Media" />
-//       </div>
-
-//       <div className="page-main-content">
-//         <Card>
-//           <div className="media-card-main">
-//             <div className="media-card-main-player">
-//               {/* {aplayer} */}
-//             </div>
-//           </div>
-//         </Card>
-//       </div>
-
-//     </div>
-//   )
-// }
-
-
 import { useEffect, useRef } from 'react';
 import Card from '../../components/Card';
 import PageTitle from '../../components/PageTitle';
-import { BILIBILI_VIDEO_URL } from '../../utils/constants';
-// import { aplayerRef } from '../../refs'; 
+import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
+import { useLocation } from 'react-router-dom';
+// import store from '../../redux/store';
+
 import './index.scss';
-// import APlayer from '../../components/APlayer';
 
 export default function Media() {
-  const playerContainerRef = useRef<HTMLDivElement>(null);
+  const aplayerRef=useRef(null);
+  // const aplayerInstanceRef = useRef(null)
+  const effectRan=useRef<boolean>(false);
 
-  // useEffect(() => {
-  //   const playerContainer = playerContainerRef.current;
-  //   const aplayerElement = aplayerRef.current;
+  // const location=useLocation();
 
-  //   if (playerContainer && aplayerElement) {
-  //     playerContainer.appendChild(aplayerElement);
-  //   }
+  useEffect(() => {
+    if(effectRan.current) return;
 
-  //   return () => {
+    let aplayerInstance:any=null;
+    const checkAPlayerInstance = () => {
+      if (aplayerRef.current && (aplayerRef as any).current.aplayer) {
+        aplayerInstance = (aplayerRef as any).current.aplayer;
+        
+      } else {
+        setTimeout(checkAPlayerInstance, 100);
+      }
+    };
 
-  //   };
-  // }, []);
+    checkAPlayerInstance();
+    effectRan.current=true;
+
+    return () => {
+      // console.log(aplayerInstanceRef.current);
+      if(aplayerInstance){
+        (aplayerInstance as any).destroy();
+      }
+      effectRan.current=false;
+    };
+  }, []);
 
   return (
     <div className="page-main">
@@ -66,10 +47,18 @@ export default function Media() {
       <div className="page-main-content">
         <Card>
           <div className="media-card-main">
-            {/* <div id="aplayer" className="media-card-main-player" ref={playerContainerRef}>
-              <APlayer />
-            </div> */}
-
+            <div className='media-title'>
+              😋Enjoy!
+            </div>
+            <div className="media-card-main-player">
+              <meting-js 
+                ref={aplayerRef}
+                auto={MUSIC_URL}
+                theme="#67abff"
+                volume={0.5}
+                IrcType={IRC_TYPE}
+              />
+            </div>
             <div className='media-card-main-video'>
               <iframe 
                 src={BILIBILI_VIDEO_URL}

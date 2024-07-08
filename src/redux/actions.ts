@@ -72,3 +72,14 @@ export const clearCategoriesList=()=>({
     type:actions.CLEAR_CATEGORIES_LIST,
     data:[],
 })
+
+// APlayer Actions
+export const saveAPlayer=(aplayer:object)=>({
+    type:actions.SAVE_APLAYER,
+    data:aplayer
+})
+
+export const clearAPlayer=()=>({
+    type:actions.CLEAR_APLAYER,
+    data:{}
+})
