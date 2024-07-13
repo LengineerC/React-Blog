@@ -2,10 +2,10 @@ const fs=require('fs');
 const path=require('path');
 
 const currentDirectory=process.cwd();
-const publicPath=path.join(currentDirectory,"public");
-const filePath=path.join(publicPath,'posts.json');
-const outputTagsFilePath=path.join(publicPath,"tags.json");
-const outputCategoriesFilePath=path.join(publicPath,"categories.json");
+const jsonPath=path.join(currentDirectory,"public/json");
+const filePath=path.join(jsonPath,'posts.json');
+const outputTagsFilePath=path.join(jsonPath,"tags.json");
+const outputCategoriesFilePath=path.join(jsonPath,"categories.json");
 const postsJsonContents=fs.readFileSync(filePath,'utf8');
 
 const postObjs=JSON.parse(postsJsonContents).map(post=>post);

@@ -17,7 +17,7 @@ import {
   faBookmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import { darkmodeOFF, darkmodeON } from '../../redux/actions';
+import { setDarkModeOFF, setDarkModeON } from '../../redux/actions';
 import { MoonFilled, SunFilled } from '@ant-design/icons';
 import { MenuConfig } from '../../utils/types';
 
@@ -97,7 +97,7 @@ const navCenterColConfig:MenuConfig[]=[
 ]
 
 export default function Nav() {
-  const [visible,setVisible]=useState<boolean>(store.getState().navSwitchReducer);
+  const [visible,setVisible]=useState<boolean>(store.getState().navState);
   // const [lastScrollTop,setLastScrollTop]=useState<number>(0);
   const [isDarkMode,setIsDarkMode]=useState<boolean>(false);
   const [navTransparent,setNavTransparent]=useState<boolean>(true);
@@ -240,19 +240,20 @@ export default function Nav() {
   }
 
   const changeDarkMode=()=>{
-    const {darkModeReducer}=store.getState();
-    if(darkModeReducer){
-      store.dispatch(darkmodeOFF());
+    const {dispatch}=store;
+    const {darkMode}=store.getState();
+    if(darkMode){
+      dispatch(setDarkModeOFF());
     }else{
-      store.dispatch(darkmodeON());
+      dispatch(setDarkModeON());
     }
   }
 
   //订阅监听夜间模式切换和滚动事件修改样式
   useEffect(()=>{
     store.subscribe(()=>{
-      const {darkModeReducer}=store.getState();
-      setIsDarkMode(darkModeReducer);
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
     });
 
     window.addEventListener("scroll",handleScroll);
@@ -268,11 +269,11 @@ export default function Nav() {
   useEffect(()=>{
     // console.log(store.getState());
     store.subscribe(()=>{
-      const {navSwitchReducer}=store.getState();
+      const {navState}=store.getState();
       // console.log(store.getState());
       
-      if(navSwitchReducer!==visible){
-        setVisible(navSwitchReducer);
+      if(navState!==visible){
+        setVisible(navState);
       }
     });
   },[visible])

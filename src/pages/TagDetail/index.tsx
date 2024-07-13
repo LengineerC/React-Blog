@@ -13,12 +13,12 @@ export default function TagDetail() {
   const [tagsDetail,setTagsDetail]=useState<PostConfig[]>();
 
   useEffect(()=>{
-    const {tagsListReducer}=store.getState();
-    setTagsDetail(tagsListReducer[tag as string]);
+    const {tagsList}=store.getState();
+    setTagsDetail(tagsList[tag as string]);
 
     const unsubscribe=store.subscribe(()=>{
-      const {tagsListReducer}=store.getState();
-      setTagsDetail(tagsListReducer[tag as string]);
+      const {tagsList}=store.getState();
+      setTagsDetail(tagsList[tag as string]);
     })
 
     return ()=>{

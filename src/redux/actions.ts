@@ -8,31 +8,31 @@ export const showNav=()=>({type:actions.SET_NAV_SHOW})
 export const hideNav=()=>({type:actions.SET_NAV_HIDDEN})
 
 // 夜间模式开关
-export const darkmodeOFF=()=>({
+export const setDarkModeOFF=()=>({
     type:actions.SET_DARKMODE_OFF,
-    data:false,
+    payload:false,
 })
 
-export const darkmodeON=()=>({
+export const setDarkModeON=()=>({
     type:actions.SET_DARKMODE_ON,
-    data:true,
+    payload:true,
 })
 
 //文章列表
 export const savePostList=(postList:PostConfig[])=>({
     type:actions.SAVE_POST_LIST,
-    data:postList
+    payload:postList
 })
 
 export const clearPostList=()=>({
     type:actions.CLEAR_POST_LIST,
-    data:[]
+    payload:[]
 })
 
 //选中文章配置
 export const saveSelectedPostConfig=(selectedPost:PostConfig)=>({
     type:actions.SAVE_SELECTED_POST_CONFIG,
-    data:selectedPost
+    payload:selectedPost
 })
 
 export const clearSelectedPostConfig=()=>({
@@ -42,44 +42,44 @@ export const clearSelectedPostConfig=()=>({
 //选中文章内容
 export const saveSelectedPostHtml=(html:string)=>({
     type:actions.SAVE_SELECTED_POST_HTML,
-    data:html,
+    payload:html,
 })
 
 export const clearSelectedPostHtml=()=>({
     type:actions.CLEAR_SELECTED_POST_HTML,
-    data:'',
+    payload:'',
 })
 
 
 //TagsReducer Actions
 export const saveTagsList=(tagsList:any)=>({
     type:actions.SAVE_TAGS_LIST,
-    data:tagsList
+    payload:tagsList
 })
 
 export const cleatTagsList=()=>({
     type:actions.CLEAR_TAGS_LIST,
-    data:[],
+    payload:[],
 })
 
 //Categories Actions
 export const saveCategoriesList=(categoriesList:any)=>({
     type:actions.SAVE_CATEGORIES_LIST,
-    data:categoriesList
+    payload:categoriesList
 })
 
 export const clearCategoriesList=()=>({
     type:actions.CLEAR_CATEGORIES_LIST,
-    data:[],
+    payload:[],
 })
 
 // APlayer Actions
 export const saveAPlayer=(aplayer:object)=>({
     type:actions.SAVE_APLAYER,
-    data:aplayer
+    payload:aplayer
 })
 
 export const clearAPlayer=()=>({
     type:actions.CLEAR_APLAYER,
-    data:{}
+    payload:{}
 })

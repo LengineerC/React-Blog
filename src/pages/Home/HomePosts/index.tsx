@@ -10,26 +10,26 @@ import './index.scss';
 type Props = {}
 
 export default function HomePosts({}: Props) {
-  const [postList,setPostList]=useState<PostConfig[]>(store.getState().postListReducer);
+  const [postList,setPostList]=useState<PostConfig[]>(store.getState().postList);
   const [pagination,setPagination]=useState<number>(1);
   const [pageSize]=useState<number>(10);
   const [currentPage,setCurrentPage]=useState<PostConfig[]>([]);
 
   useEffect(()=>{
-    const {postListReducer}=store.getState();
-    setPostList(postListReducer);
+    const {postList}=store.getState();
+    setPostList(postList);
 
     //先从App中获取所有的页面列表，然后在此存入state
     const unsubscribe=store.subscribe(()=>{
-      const {postListReducer}=store.getState();
-      // console.log(postListReducer);
+      const {postList}=store.getState();
+      // console.log(postList);
       
-      setPostList(postListReducer);
+      setPostList(postList);
     });
 
     return ()=>{
       unsubscribe();
-      // console.log(store.getState().selectedPostReducer);
+      // console.log(store.getState().selectedPost);
     }
   },[]);
   // useEffect(()=>{
@@ -49,7 +49,6 @@ export default function HomePosts({}: Props) {
   },[pagination,postList])
 
   const setSelectedPost=(selectedPost:PostConfig)=>{
-    // console.log(selectedPost);
     store.dispatch(saveSelectedPostConfig(selectedPost));
   }
 

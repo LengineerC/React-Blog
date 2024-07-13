@@ -11,8 +11,8 @@
 - `antd`: 5.18.0
 - `axios`: 1.7.2
 - `react-router-dom`: 6.23.1
-- `redux`: 5.0.1
 - `sass`: 1.77.4
+- `redux`: "^5.0.1"
 - `highlight.js`: 11.9.0
 - `jinrishici`: 1.0.6
 - `marked`: 13.0.0

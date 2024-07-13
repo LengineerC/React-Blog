@@ -5,7 +5,7 @@ const matter = require('gray-matter');
 const currentDirectory = process.cwd();
 
 const postsDir = path.join(currentDirectory, 'public', 'posts');
-const outputFilePath = path.join(currentDirectory, 'public', 'posts.json');
+const outputFilePath = path.join(currentDirectory, 'public/json', 'posts.json');
 
 const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
 

@@ -9,8 +9,8 @@ export default function TagsCard() {
   const [tags,setTags]=useState<string[]>([]);
 
   const getTagsList=()=>{
-    const {tagsListReducer}=store.getState();
-    setTags(Object.keys(tagsListReducer));
+    const {tagsList}=store.getState();
+    setTags(Object.keys(tagsList));
   }
 
   useEffect(()=>{

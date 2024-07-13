@@ -1,17 +1,17 @@
 import { SET_NAV_HIDDEN, SET_NAV_SHOW } from "../constants";
-// import { DataType } from "../dataType";
+// import { payloadType } from "../payloadType";
 
 type Action={
     type:string,
-    // data?:DataType,
-    data:boolean
+    // payload?:payloadType,
+    payload:boolean
 }
 
 const initState:boolean=true;
 
 export default function navSwitchReducer(prevState=initState,action:Action){
     const {type}=action;
-    // console.log(data);
+    // console.log(payload);
     
     switch(type){
         case SET_NAV_SHOW:

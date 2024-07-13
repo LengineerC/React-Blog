@@ -1,21 +1,21 @@
 import { PostConfig } from "../../utils/types";
 import { CLEAR_POST_LIST, SAVE_POST_LIST } from "../constants";
-// import { DataType } from "../dataType";
-// import { DataType } from "../dataType";
+// import { payloadType } from "../payloadType";
+// import { payloadType } from "../payloadType";
 
 type Action={
     type:string,
-    // data?:DataType
-    data:PostConfig[],
+    // payload?:payloadType
+    payload:PostConfig[],
 }
 
 const initState:PostConfig[]=[];
 
 export default function postListReducer(prevState=initState,action:Action){
-    const {type,data}=action;
+    const {type,payload}=action;
     switch(type){
         case SAVE_POST_LIST:
-            return data ?? prevState;
+            return payload ?? prevState;
         case CLEAR_POST_LIST:
             return [];
         default:

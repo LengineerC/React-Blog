@@ -1,34 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import store from '../../redux/store'
 import { hideNav, showNav } from '../../redux/actions'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import * as echarts from 'echarts';
 
 import "./index.scss"
-
-// //TODO:用echarts加载动画替换
-// export default function Loading() {
-//   useEffect(()=>{
-//     store.dispatch(hideNav());
-
-//     return()=>{
-//       store.dispatch(showNav());
-//     }
-//   },[])
-
-//   return (
-//     <div className='loading-main'>
-//       <div className='loading-icon'>
-//         <FontAwesomeIcon icon={faSpinner}/>
-//       </div>
-//       <div className='loading-title'>
-//         Loading...
-//       </div>
-//     </div>
-//   )
-// }
-
-import * as echarts from 'echarts';
 
 type EChartsOption = echarts.EChartsOption;
 
@@ -36,7 +13,9 @@ export default function Loading() {
   const loadingRef=useRef(null); 
 
   useEffect(()=>{
-    store.dispatch(hideNav());
+    const {dispatch}=store;
+    // store.dispatch(hideNav());
+    dispatch(hideNav())
     let loading=echarts.init(loadingRef.current);
     const option:EChartsOption = {
       graphic: {

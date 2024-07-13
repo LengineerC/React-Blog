@@ -15,12 +15,12 @@ export default function TagsPage() {
   const navigate=useNavigate();
   
   useEffect(()=>{
-    const {tagsListReducer}=store.getState();
-    setTags(tagsListReducer);
+    const {tagsList}=store.getState();
+    setTags(tagsList);
 
     const unsubscribe=store.subscribe(()=>{
-      const {tagsListReducer={}}=store.getState();
-      setTags(tagsListReducer);
+      const {tagsList={}}=store.getState();
+      setTags(tagsList);
     })
 
     return ()=>{

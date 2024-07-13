@@ -1,22 +1,23 @@
-// import { DataType } from "../dataType";
+// import { PayloadType } from "../PayloadType";
 import { PostConfig } from "../../utils/types";
 import { SAVE_SELECTED_POST_CONFIG, CLEAR_SELECTED_POST_CONFIG } from "../constants";
 
 type Action={
     type:string,
-    // data?:DataType
-    data?:PostConfig
+    // payload?:PayloadType
+    payload?:PostConfig
 }
 
-const initState:PostConfig | null=null;
+const initState:PostConfig={} as PostConfig;
 
 export default function selectedPostConfigReducer(prevState=initState,action:Action){
-    const {type,data}=action;
+    const {type,payload}=action;
+    
     switch(type){
         case SAVE_SELECTED_POST_CONFIG:
-        return data;
+        return payload;
         case CLEAR_SELECTED_POST_CONFIG:
-        return null;
+        return {};
         default:
         return prevState;
     }

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { MUSIC_URL, IRC_TYPE } from "../../utils/constants";
-import store from '../../redux/store';
-import { saveAPlayer } from '../../redux/actions';
+// import store from '../../redux/store';
+// import { saveAPlayer } from '../../redux/actions';
 
 export default function APlayer(){
   const metingRef=useRef(null);
@@ -18,7 +18,7 @@ export default function APlayer(){
         if (aplayerInstance) {
           console.log("Aplayer created successfully");
 
-          store.dispatch(saveAPlayer(aplayerInstance));
+          // store.dispatch(saveAPlayer(aplayerInstance));
 
           if(!IRC_TYPE){
             aplayerInstance.lrc.hide();

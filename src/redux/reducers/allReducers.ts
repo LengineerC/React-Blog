@@ -9,12 +9,12 @@ import categoriesListReducer from "./categoriesList";
 import aplayerReducer from "./aplayer";
 
 export const allReducers=combineReducers({
-    navSwitchReducer,
-    darkModeReducer,
-    postListReducer,
-    selectedPostConfigReducer,
-    selectedPostHtmlReducer,
-    tagsListReducer,
-    categoriesListReducer,
-    aplayerReducer,
+    navState:navSwitchReducer,
+    darkMode:darkModeReducer,
+    postList:postListReducer,
+    selectedPostConfig:selectedPostConfigReducer,
+    selectedPostHtml:selectedPostHtmlReducer,
+    tagsList:tagsListReducer,
+    categoriesList:categoriesListReducer,
+    aplayer:aplayerReducer,
 });

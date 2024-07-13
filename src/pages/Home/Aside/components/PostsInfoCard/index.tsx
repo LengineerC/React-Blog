@@ -14,10 +14,10 @@ export default function PostsInfoCard() {
   const [categoriesCount,setCategoriesCount]=useState<number>(0);
 
   const getData=()=>{
-    const {postListReducer,tagsListReducer,categoriesListReducer}=store.getState();
-    setPostsCount(postListReducer.length);
-    setTagsCount(Object.keys(tagsListReducer).length);
-    setCategoriesCount(Object.keys(categoriesListReducer).length);
+    const {postList,tagsList,categoriesList}=store.getState();
+    setPostsCount(postList.length);
+    setTagsCount(Object.keys(tagsList).length);
+    setCategoriesCount(Object.keys(categoriesList).length);
   }
 
   useEffect(()=>{

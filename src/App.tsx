@@ -1,16 +1,12 @@
 import {lazy, useEffect, useState} from 'react'
 import Nav from './components/Nav';
 import Main from './components/Main';
-import store from './redux/store';
-import { saveCategoriesList, savePostList, saveTagsList } from './redux/actions';
+import store from "./redux/store";
+// import { saveCategoriesList, savePostList, saveTagsList } from './redux/actions';
 import { MenuOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
 
 // import { MOBILE_MAX_WIDTH } from './utils/constants';
-import { darkmodeOFF, darkmodeON } from './redux/actions';
-
-//nav hidden test
-// import { showNav, hideNav } from './redux/actions';
-// import { Button } from 'antd';
+import { setDarkModeOFF, setDarkModeON, savePostList, saveTagsList, saveCategoriesList } from './redux/actions';
 
 import Footer from './components/Footer';
 import Top from './components/Top';
@@ -26,7 +22,7 @@ const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 export default function App() {
   // const [showToolbar, setShowToolbar]=useState<boolean>(false);
   const [showMenu,setShowMenu]=useState<boolean>(false);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkModeReducer);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   // const handleResize=()=>{
   //   // console.log(window.innerWidth);
@@ -42,31 +38,32 @@ export default function App() {
     // window.addEventListener("resize",handleResize);
     // handleResize();
 
+    const {dispatch}=store;
     //获取文章列表
-    axios.get('/posts.json')
+    axios.get('/json/posts.json')
     .then(response=>{
       const {data}=response;
       // console.log(data);
-      store.dispatch(savePostList(data));
+      dispatch(savePostList(data));
     }).catch(err=>{
       console.log("文章列表获取失败",err);
     })
 
     // 获取Tags数据
-    axios.get('/tags.json')
+    axios.get('/json/tags.json')
     .then(response=>{
       const {data}=response;
-      store.dispatch(saveTagsList(data));
+      dispatch(saveTagsList(data));
     })
     .catch(err=>{
       console.log("获取Tags列表失败",err);
     })
 
     // 获取Categories数据
-    axios.get('/categories.json')
+    axios.get('/json/categories.json')
     .then(response=>{
       const {data}=response;
-      store.dispatch(saveCategoriesList(data));
+      dispatch(saveCategoriesList(data));
     })
     .catch(err=>{
       console.log("获取Categories列表失败",err);
@@ -78,19 +75,22 @@ export default function App() {
   },[])
 
   const changeDarkMode=()=>{
+    const {dispatch}=store;
     if(isDarkMode){
-      store.dispatch(darkmodeOFF());
+      // store.dispatch(darkmodeOFF());
+      dispatch(setDarkModeOFF());
     }else{
-      store.dispatch(darkmodeON());
+      // store.dispatch(darkmodeON());
+      dispatch(setDarkModeON());
     }
-    // console.log(store.getState().darkModeReducer)
+    // console.log(store.getState().darkMode)
   }
 
   useEffect(()=>{
     store.subscribe(()=>{
-      const {darkModeReducer}=store.getState();
+      const {darkMode}=store.getState();
 
-      setIsDarkMode(darkModeReducer);
+      setIsDarkMode(darkMode);
     })
     
     console.log(`Dark mode:${isDarkMode}`);

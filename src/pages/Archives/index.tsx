@@ -70,12 +70,12 @@ export default function Archives() {
 
   useEffect(()=>{
     
-    const {postListReducer}=store.getState();
-    setPostList(postListReducer);
+    const {postList}=store.getState();
+    setPostList(postList);
 
     const unsubscribe=store.subscribe(()=>{
-      const {postListReducer}=store.getState();
-      setPostList(postListReducer);
+      const {postList}=store.getState();
+      setPostList(postList);
     })
 
     const heatMap=echarts.init(heatMapRef.current);

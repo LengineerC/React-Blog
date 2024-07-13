@@ -20,13 +20,13 @@ export default function TopPostCard() {
   
   useEffect(() => {
     //处理axios+redux异步处理导致数据为空的问题的可能解决方案
-    const { postListReducer } = store.getState();
-    const filteredList = postListReducer.filter(item => item.top);
+    const { postList } = store.getState();
+    const filteredList = postList.filter(item => item.top);
     setTopPosts(filteredList);
 
     const unsubscribe = store.subscribe(() => {
-      const { postListReducer } = store.getState();
-      const filteredList = postListReducer.filter(item => item.top);
+      const { postList } = store.getState();
+      const filteredList = postList.filter(item => item.top);
       setTopPosts(filteredList);
     });
 

@@ -14,15 +14,15 @@ export default function CategoriesPage() {
   const chartRef=useRef(null);
   
   useEffect(()=>{
-    const {categoriesListReducer,postListReducer}=store.getState();
-    setCategories(categoriesListReducer);
-    setPostCount(postListReducer.length);
+    const {categoriesList,postList}=store.getState();
+    setCategories(categoriesList);
+    setPostCount(postList.length);
 
 
     const unsubscribe=store.subscribe(()=>{
-      const {categoriesListReducer={},postListReducer}=store.getState();
-      setCategories(categoriesListReducer);
-      setPostCount(postListReducer.length);
+      const {categoriesList={},postList}=store.getState();
+      setCategories(categoriesList);
+      setPostCount(postList.length);
     })
 
     return ()=>{

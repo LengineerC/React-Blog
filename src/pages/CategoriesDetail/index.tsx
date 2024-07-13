@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import store from "../../redux/store";
 import { PostConfig } from "../../utils/types";
 import { saveSelectedPostConfig } from "../../redux/actions";
+// import actions from "../../redux/actions";
 import PostCard from "../../components/PostCard";
 
 import "./index.scss"
@@ -13,12 +14,12 @@ export default function CategoriesDetail() {
   const [categoriesDetail,setCategoriesDetail]=useState<PostConfig[]>();
 
   useEffect(()=>{
-    const {categoriesListReducer}=store.getState();
-    setCategoriesDetail(categoriesListReducer[category as string]);
+    const {categoriesList}=store.getState();
+    setCategoriesDetail(categoriesList[category as string]);
 
     const unsubscribe=store.subscribe(()=>{
-      const {categoriesListReducer}=store.getState();
-      setCategoriesDetail(categoriesListReducer[category as string]);
+      const {categoriesList}=store.getState();
+      setCategoriesDetail(categoriesList[category as string]);
     })
 
     return ()=>{

@@ -26,7 +26,7 @@ import './index.scss'
 export default function Post() {
   const {id}=useParams();
   const [markdown,SetMarkdown]=useState<string>("");
-  const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfigReducer as PostConfig);
+  const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfig as PostConfig);
   const [mdLen,setMdLen]=useState<number>(0);
   const [showTOC,setShowTOC]=useState<boolean>(DEFAULT_SHOW_TOC);
   //显示移动端TOC Drawer
@@ -48,16 +48,16 @@ export default function Post() {
       SetMarkdown(response.data);
       setMdLen(response.data.length)
 
-      const {postListReducer}=store.getState();
+      const {postList}=store.getState();
       let initPostConfig={} as PostConfig;
-      for(let pc of postListReducer){
+      for(let pc of postList){
         if(pc.id===id){
           initPostConfig=pc;
           break;
         }
       }
 
-      setPostConfig(initPostConfig)
+      setPostConfig(initPostConfig);
     })
     .catch(err=>{
       console.log("Post: 文章获取失败",err);
