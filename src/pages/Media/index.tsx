@@ -31,7 +31,6 @@ export default function Media() {
     effectRan.current=true;
 
     return () => {
-      // console.log(aplayerInstanceRef.current);
       if(aplayerInstance){
         (aplayerInstance as any).destroy();
       }
@@ -48,7 +47,7 @@ export default function Media() {
         <Card>
           <div className="media-card-main">
             <div className='media-title'>
-              😋Enjoy!
+              🎶穢れなき音楽室
             </div>
             <div className="media-card-main-player">
               <meting-js 
@@ -58,6 +57,10 @@ export default function Media() {
                 volume={0.5}
                 IrcType={IRC_TYPE}
               />
+            </div>
+
+            <div className='media-title'>
+              📺远古视频
             </div>
             <div className='media-card-main-video'>
               <iframe 

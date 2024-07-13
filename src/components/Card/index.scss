@@ -15,6 +15,8 @@
     background-position: center 0;
     background-size: cover;
     background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     //如果post后续添加标签选择器
     // .card-main-text-container{
     //     word-break: break-all;

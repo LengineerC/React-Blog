@@ -36,6 +36,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
         padding:0,
         paddingLG:0,
         paddingXS:0,
+        colorBgElevated:"#ffffffdd"
       }
     }}
     >

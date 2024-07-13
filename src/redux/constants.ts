@@ -29,3 +29,7 @@ export const CLEAR_CATEGORIES_LIST="clearCategoriesList";
 // aplayerReducer Action types
 export const SAVE_APLAYER="saveAPlayer";
 export const CLEAR_APLAYER="clearAPlayer";
+
+// friendsUrlData Action types
+export const SAVE_FRIENDS_URL_DATA="saveFriendsUrlData";
+export const CLEAR_FRIENDS_URL_DATA="clearFriendsUrlData";

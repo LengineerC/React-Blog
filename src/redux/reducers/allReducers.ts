@@ -7,6 +7,7 @@ import selectedPostHtmlReducer from "./selectedPostHtml";
 import tagsListReducer  from "./tagsList";
 import categoriesListReducer from "./categoriesList";
 import aplayerReducer from "./aplayer";
+import friendsUrlDataReducer from "./freindsUrlData";
 
 export const allReducers=combineReducers({
     navState:navSwitchReducer,
@@ -17,4 +18,5 @@ export const allReducers=combineReducers({
     tagsList:tagsListReducer,
     categoriesList:categoriesListReducer,
     aplayer:aplayerReducer,
+    friendsUrlData:friendsUrlDataReducer,
 });

@@ -39,9 +39,9 @@
 - [x] Categories
 - [x] Archives
 - [ ] About
-- [ ] Media
-- [ ] 音乐播放器
-- [ ] Friends
+- [x] Media
+- [x] 音乐播放器
+- [x] Friends
 - [ ] 评论系统？
 - [ ] ...
 - [ ] 后台管理系统

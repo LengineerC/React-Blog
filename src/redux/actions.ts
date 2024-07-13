@@ -1,6 +1,6 @@
 import *  as actions from "./constants";
 
-import { PostConfig } from "../utils/types";
+import { PostConfig, FriendUrl } from "../utils/types";
 
 //Nav展开收起
 export const showNav=()=>({type:actions.SET_NAV_SHOW})
@@ -82,4 +82,14 @@ export const saveAPlayer=(aplayer:object)=>({
 export const clearAPlayer=()=>({
     type:actions.CLEAR_APLAYER,
     payload:{}
+})
+
+// friendsUrlData Actions
+export const saveFriendsUrlData=(data:FriendUrl[])=>({
+    type:actions.SAVE_FRIENDS_URL_DATA,
+    payload:data
+})
+
+export const clearFriendsUrlData=()=>({
+    type:actions.CLEAR_FRIENDS_URL_DATA,
 })

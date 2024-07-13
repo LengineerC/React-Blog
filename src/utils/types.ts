@@ -21,4 +21,12 @@ export type MenuConfig={
       subMenuEnable:boolean,
       subItems:JSX.Element[],
     }
-  }
+}
+
+// 友链json格式
+export type FriendUrl={
+  url:string,
+  image:string,
+  title:string,
+  description:string,
+}

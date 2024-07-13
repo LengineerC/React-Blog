@@ -18,14 +18,16 @@
     }
     
     .media-card-main-player{
-        display: flex;
+        // display: flex;
         justify-content: center;
         width: 100%;
         height: auto;
+        margin-bottom: 30px;
 
         .aplayer{
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.3);
+            max-width: 100%;
 
             .aplayer-lrc{
                 &::after, &::before{

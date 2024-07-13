@@ -11,9 +11,10 @@
 }
 
 .menu-header{
-    background: linear-gradient(#21bdff,#2f67ff);
+    background: linear-gradient(#21bdffcc,#2f67ffcc);
     height: 170px;
-
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
 
