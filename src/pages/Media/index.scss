@@ -20,7 +20,8 @@
     .media-card-main-player{
         // display: flex;
         justify-content: center;
-        width: 100%;
+        width: 80%;
+        margin: auto;
         height: auto;
         margin-bottom: 30px;
 
@@ -57,6 +58,11 @@
     }
     
     @media screen and (max-width:$mobileMaxWidth) {
+        .media-card-main-player{
+            width: 100%;
+            margin: 0;
+        }
+
         .media-card-main-video{
             display: flex;
             width: 100%;
