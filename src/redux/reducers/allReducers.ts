@@ -8,6 +8,7 @@ import tagsListReducer  from "./tagsList";
 import categoriesListReducer from "./categoriesList";
 import aplayerReducer from "./aplayer";
 import friendsUrlDataReducer from "./freindsUrlData";
+import githubRepoCommitsReducer from "./githubRepoCommits";
 
 export const allReducers=combineReducers({
     navState:navSwitchReducer,
@@ -19,4 +20,5 @@ export const allReducers=combineReducers({
     categoriesList:categoriesListReducer,
     aplayer:aplayerReducer,
     friendsUrlData:friendsUrlDataReducer,
+    githubRepoCommits:githubRepoCommitsReducer,
 });

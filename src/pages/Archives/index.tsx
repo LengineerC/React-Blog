@@ -12,9 +12,10 @@ import { CanvasRenderer } from 'echarts/renderers';
 import PageTitle from "../../components/PageTitle"
 import Card from "../../components/Card"
 import store from "../../redux/store";
+import { PostConfig } from "../../utils/types";
+import { GITHUB_REPO } from "../../utils/constants";
 
 import "./index.scss"
-import { PostConfig } from "../../utils/types";
 
 echarts.use([
   TitleComponent,
@@ -29,6 +30,9 @@ export default function Archives() {
   const heatMapRef=useRef(null);
   const [currentDate]=useState<Date>(new Date());
   const [postList,setPostList]=useState<PostConfig[]>([]);
+  const [githubRepoCommits,setGithubRepoCommits]=useState<[]>([]);
+
+  const dispatch=store.dispatch;
 
   const getFormatData=(year:string)=>{
     const date=+echarts.time.parse(year+'-01-01');
@@ -67,6 +71,34 @@ export default function Archives() {
     return data;
   }
 
+  const formatCommitData=(rawDataArr:any)=>{
+    const githubRepoCommits=rawDataArr.map((item:any,index:number)=>{
+      const {commit:{message},commit:{committer:{date}}}=item;
+      let color='grey';
+      if(index===0) color="green";
+      if(index===rawDataArr.length-1) color="blue";
+      return({
+        children:`${message}\t${date}`,
+        color:color,
+      })
+    })
+    setGithubRepoCommits(githubRepoCommits);
+  }
+
+  useEffect(()=>{
+    const {githubRepoCommits}=store.getState();
+    if(githubRepoCommits || githubRepoCommits.length===0){
+      dispatch({
+        type:"getGithubRepoCommits",
+        payload:GITHUB_REPO,
+        callback:(data:any)=>{
+          formatCommitData(data);
+        }
+      })
+    }else{
+      formatCommitData(githubRepoCommits);
+    }
+  },[])
 
   useEffect(()=>{
     
@@ -166,16 +198,17 @@ export default function Archives() {
             >
               <Timeline 
               mode="alternate"
-              items={[
-                {
-                  children:"构建中",
-                  color:"red"
-                },
-                {
-                  children:"立项 2024-06-08",
-                  color:"green"
-                },
-              ]}
+              // items={[
+              //   {
+              //     children:"构建中",
+              //     color:"red"
+              //   },
+              //   {
+              //     children:"立项 2024-06-08",
+              //     color:"green"
+              //   },
+              // ]}
+              items={githubRepoCommits}
               />
             </ConfigProvider>
           </div>

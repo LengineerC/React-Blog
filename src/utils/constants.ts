@@ -37,7 +37,7 @@ export const SHOW_CLOCK_CARD:boolean=true;
 //音乐播放器服务器: netease, tencent, kugou, xiami, baidu
 // export const MUSIC_SERVER:string="netease";
 
-//音乐播放器歌单url(根据服务器设置)
+//音乐播放器歌单url(根据服务器设置)，详情见https://github.com/metowolf/MetingJS
 export const MUSIC_URL:string="https://music.163.com/playlist?id=8741983740";
 
 //是否显示吸底音乐播放器
@@ -48,3 +48,9 @@ export const IRC_TYPE:boolean=false;
 
 // B站视频地址
 export const BILIBILI_VIDEO_URL:string="//player.bilibili.com/player.html?isOutside=true&aid=43083956&bvid=BV1Pb411S7Tu&cid=75540675&p=1";
+
+// 时间轴的github用户名和仓库名
+export const GITHUB_REPO={
+    owner:"LengineerC",
+    repo:"React-blog"
+}

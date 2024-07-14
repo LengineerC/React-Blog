@@ -33,3 +33,7 @@ export const CLEAR_APLAYER="clearAPlayer";
 // friendsUrlData Action types
 export const SAVE_FRIENDS_URL_DATA="saveFriendsUrlData";
 export const CLEAR_FRIENDS_URL_DATA="clearFriendsUrlData";
+
+// githubRepoCommits Action types
+export const SAVE_GITHUB_REPO_COMMITS:string="saveGithubRepoCommits";
+export const CLEAR_GITHUB_REPO_COMMITS:string="clearGithubRepoCommits";

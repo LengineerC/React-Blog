@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import Card from '../../components/Card';
 import PageTitle from '../../components/PageTitle';
 import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
-import { useLocation } from 'react-router-dom';
-// import store from '../../redux/store';
+// import { useLocation } from 'react-router-dom';
+import store from '../../redux/store';
 
 import './index.scss';
 
@@ -11,7 +11,6 @@ export default function Media() {
   const aplayerRef=useRef(null);
   // const aplayerInstanceRef = useRef(null)
   const effectRan=useRef<boolean>(false);
-
   // const location=useLocation();
 
   useEffect(() => {
