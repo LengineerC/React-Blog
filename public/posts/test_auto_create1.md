@@ -2,7 +2,8 @@
 title: 'auto1'
 author: 'LengineerC'
 time: '2024-06-16 12:22:40'
-lock: false
+lock: true
+password: '114514'
 top: false
 categories:
   - c1

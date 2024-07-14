@@ -45,6 +45,7 @@ const frontMatter = matter.stringify(postData.content, {
   author: postData.author,
   time: postData.time,
   lock: postData.lock,
+  password:'',
   top: postData.top,
 //   categories: postData.categories,
 //   tags: postData.tags,

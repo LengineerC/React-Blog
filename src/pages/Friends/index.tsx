@@ -44,31 +44,31 @@ export default function Friends() {
     if(friendsUrlData.length>0){
       return friendsUrlData.map((item,index)=>{
         return(
-            <div key={index} className='card-container'>
-              <a href={item.url}>
-                  <Card
-                  scale={true}
-                  className='aside-card'
-                  background={bgColors[1]}
-                  >
-                    <div className='friends-card'>
-                      <div className='friends-card-img'>
-                        <img src={item.image}/>
-                      </div>
+          <div key={index} className='card-container'>
+            <a href={item.url}>
+              <Card
+              scale={true}
+              className='aside-card'
+              background={bgColors[1]}
+              >
+                <div className='friends-card'>
+                  <div className='friends-card-img'>
+                    <img src={item.avatar}/>
+                  </div>
 
-                      <div className='friends-card-content'>
-                        <div className='friends-card-content-title'>
-                          {item.title}
-                        </div>
-
-                        <div className='friends-card-content-description'>
-                          {item.description}
-                        </div>
-                      </div>
+                  <div className='friends-card-content'>
+                    <div className='friends-card-content-title'>
+                      {item.title}
                     </div>
-                  </Card>
-                </a>
-            </div>
+
+                    <div className='friends-card-content-description'>
+                      {item.description}
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </a>
+          </div>
         )
       })
     }

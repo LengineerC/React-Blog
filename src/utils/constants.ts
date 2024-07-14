@@ -1,7 +1,7 @@
 //站点标题
 export const SITE_TITLE:string="LengineerC's blog";
 
-//判断移动设备的宽度边界
+//判断移动设备的宽度边界(px)，修改后base.scss里面对应的也要修改
 export const MOBILE_MAX_WIDTH:number=992;
 
 //网站作者
@@ -15,6 +15,9 @@ export const SUB_TITLE_ENABLE:boolean=true;
 
 //副标题默认内容
 export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
+
+//公告栏内容
+export const NOTICE_CARD_TEXT:string="网站正在建设中...";
 
 //Hitokoto获取，关闭使用默认副标题内容
 export const HITOKOTO_GET_ENABLE:boolean=false; 

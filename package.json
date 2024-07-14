@@ -40,8 +40,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node scripts/generatePostList.js && node scripts/generateClassList.js && react-scripts start",
+    "build": "node scripts/generatePostList.js && node scripts/generateClassList.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gen-posts-config": "node scripts/generatePostList.js && node scripts/generateClassList.js",

@@ -77,8 +77,12 @@ export default function Archives() {
       let color='grey';
       if(index===0) color="green";
       if(index===rawDataArr.length-1) color="blue";
+
+      let dateArr=date.split("T");
+      dateArr[1]=dateArr[1].substring(0,dateArr[1].length-1);
+      const dateStr=dateArr.join(' ');
       return({
-        children:`${message}\t${date}`,
+        children:`${dateStr}\t${message}`,
         color:color,
       })
     })
@@ -193,6 +197,10 @@ export default function Archives() {
                 Timeline:{
                   tailColor:"rgb(0, 20, 71)",
                 }
+              },
+              token:{
+                fontFamily:"CustomFont1",
+                fontSize:17,
               }
             }}
             >

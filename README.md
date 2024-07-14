@@ -13,8 +13,8 @@
 - `react-router-dom`: 6.23.1
 - `sass`: 1.77.4
 - `redux`: "^5.0.1"
+- `redux-saga`: "^1.0.3"
 - `highlight.js`: 11.9.0
-- `jinrishici`: 1.0.6
 - `marked`: 13.0.0
 - `gray-matter`: 4.0.3
 - `echarts`: 5.5.0
@@ -23,7 +23,7 @@
 ## 🔑 使用
 ### 新建文章
 - `npm run create-post "文件名"`
-### 构建/运行前
+### 生成文章配置文件
 - `npm run gen-posts-config`
 ---
 ## TODO:
@@ -35,13 +35,15 @@
 - [x] 代码高亮
 - [x] md文件获取
 - [x] Post
+- [x] Post lock
 - [x] Tags
 - [x] Categories
 - [x] Archives
-- [ ] About
+- [x] About
 - [x] Media
 - [x] 音乐播放器
 - [x] Friends
+- [ ] 连接后端
 - [ ] 评论系统？
 - [ ] ...
 - [ ] 后台管理系统

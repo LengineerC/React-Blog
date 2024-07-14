@@ -5,6 +5,7 @@ export type PostConfig={
     author:string,
     time:string,
     lock:boolean,
+    password:string,
     path:string,
     top?:boolean,
     categories?:[],
@@ -26,7 +27,7 @@ export type MenuConfig={
 // 友链json格式
 export type FriendUrl={
   url:string,
-  image:string,
+  avatar:string,
   title:string,
   description:string,
 }

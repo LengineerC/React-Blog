@@ -1,4 +1,5 @@
 import Card from '../../../../../components/Card'
+import { NOTICE_CARD_TEXT } from '../../../../../utils/constants'
 
 import './index.scss'
 
@@ -16,8 +17,7 @@ export default function NoticeCard() {
         <hr className='hr-twill'/>
         <div className='notice-card-body'>
           <div className='notice-card-content'>
-            一二一二一二一二一二一二一二一二一二一二
-            this is a notice. this is a notice. this is a notice. this is a notice. 
+            {NOTICE_CARD_TEXT}
           </div>
         </div>
       </div>
