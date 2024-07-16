@@ -16,12 +16,18 @@ const bgColors=[
   'linear-gradient(to right,#71fffaaa 0%,#38e4ffaa 50%,#71fffaaa 100%)',
   'linear-gradient(to right,#c57affaa 0%,#b436e1aa 50%,#c57affaa 100%)',
 ]
+const darkBgColor:string="linear-gradient(to right,#ffffff55 0%,#c0c0c055 50%,#ffffff55 100%)";
 
 export default function Friends() {
   const [friendsUrlData,setFriendsUrlData]=useState<FriendUrl[]>([]);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   useEffect(()=>{
     const {friendsUrlData}=store.getState();
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    });
 
     if(friendsUrlData.length===0){
       axios.get('/json/friends.json')
@@ -38,6 +44,10 @@ export default function Friends() {
       setFriendsUrlData(friendsUrlData);
     }
 
+    return ()=>{
+      unsubscribe();
+    }
+
   },[])
 
   const createFriendsUrlCards=()=>{
@@ -49,19 +59,19 @@ export default function Friends() {
               <Card
               scale={true}
               className='aside-card'
-              background={bgColors[1]}
+              background={isDarkMode?darkBgColor:bgColors[1]}
               >
                 <div className='friends-card'>
-                  <div className='friends-card-img'>
+                  <div className={isDarkMode?'friends-card-img-dark':'friends-card-img'}>
                     <img src={item.avatar}/>
                   </div>
 
                   <div className='friends-card-content'>
-                    <div className='friends-card-content-title'>
+                    <div className={isDarkMode?'friends-card-content-title-dark':'friends-card-content-title'}>
                       {item.title}
                     </div>
 
-                    <div className='friends-card-content-description'>
+                    <div className={isDarkMode?'friends-card-content-description-dark':'friends-card-content-description'}>
                       {item.description}
                     </div>
                   </div>

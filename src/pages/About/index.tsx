@@ -5,7 +5,7 @@ import avatar from "../../assets/image/avatar.webp";
 import { AUTHOR } from "../../utils/constants";
 import axios from "axios";
 import store from "../../redux/store";
-import MDRender from "../../components/MDRender";
+import MDRenderer from "../../components/MDRenderer";
 import * as echarts from 'echarts/core';
 import {
   TitleComponent,
@@ -30,6 +30,7 @@ echarts.use([
 export default function About() {
   const [markdown,setMarkdown]=useState<string>('');
   const pieChartRef=useRef<HTMLDivElement>(null);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   const getFormatCategoriesData=()=>{
     let data=[];
@@ -44,6 +45,11 @@ export default function About() {
   }
 
   useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
     axios.get('/aboutme.md')
     .then(res=>{
       const {data}=res;
@@ -87,6 +93,10 @@ export default function About() {
     }
     pieChart.setOption(option);
 
+    return ()=>{
+      unsubscribe();
+    }
+
   },[])
 
   return (
@@ -103,18 +113,19 @@ export default function About() {
             </div>
 
             <div className="about-content">
-              <div className="about-content-title">
+              <div className={isDarkMode?"about-content-title-dark":"about-content-title"}>
                 {AUTHOR}
               </div>
 
               <div className="about-content-text">
-                <MDRender 
+                <MDRenderer
+                darkMode={isDarkMode}
                 markdown={markdown}
                 showLimitContent={false}
                 />
               </div>
 
-              <div className="about-chart-title">
+              <div className={isDarkMode?"about-chart-title-dark":"about-chart-title"}>
                 文章数据列表
               </div>
 

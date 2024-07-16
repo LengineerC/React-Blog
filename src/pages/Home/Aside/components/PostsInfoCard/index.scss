@@ -23,6 +23,11 @@
         font-weight: bold;
     }
 
+    .post-info-card-col-header-dark{
+        @extend .post-info-card-col-header;
+        color: $postColor-dark;
+    }
+
     .post-info-card-col-content{
         margin-top: 10px;
         margin-bottom: 10px;
@@ -39,5 +44,15 @@
             color: rgb(70, 146, 238);
         }
 
+    }
+
+    .post-info-card-col-content-dark{
+        @extend .post-info-card-col-content;
+        color: $postColor-dark;
+
+        a{
+            text-decoration: none;
+            color: #29b839;
+        }
     }
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Card from '../../components/Card';
-import MDRender from '../../components/MDRender';
+import MDRenderer from '../../components/MDRenderer';
 import store from '../../redux/store';
 import { ConfigProvider, FloatButton, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
@@ -20,9 +20,9 @@ import Category from '../../components/Category';
 import { AUTHOR, DEFAULT_SHOW_TOC } from '../../utils/constants';
 import TOC from './TOC';
 import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/actions';
+import LockCard from './LockCard';
 
 import './index.scss'
-import LockCard from './LockCard';
 
 export default function Post() {
   const {id}=useParams();
@@ -37,12 +37,19 @@ export default function Post() {
   const [messageApi, contextHolder] = message.useMessage();
   const [url,setUrl]=useState<string>(window.location.href);
 
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+
   const navigate=useNavigate();
 
   useEffect(()=>{
     if(!id){
       navigate('/');
     }
+
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
 
     axios.get(`/posts/${id}.md`)
     .then(response=>{
@@ -78,6 +85,7 @@ export default function Post() {
     }
 
     return ()=>{
+      unsubscribe();
       store.dispatch(clearSelectedPostConfig());
       store.dispatch(clearSelectedPostHtml());
     }
@@ -133,6 +141,22 @@ export default function Post() {
     setShowTOCDrawer(false);
   }
 
+  const getTocBtnToken=()=>{
+    let colorBgElevated=isDarkMode?'#46466c7b':'#ffffff7b';
+    let colorFillContent=isDarkMode?'#686894bb':'#ffffffbb';
+    let colorText='#ffffff99';
+    let token:any={
+      colorBgElevated,
+      colorFillContent
+    };
+    if(isDarkMode){
+      if(!token.hasOwnProperty('colorText')){
+        token['colorText']=colorText;
+      }
+    }
+    return token;
+  }
+
   return (
     <div className='post-page-main'>
       <ConfigProvider
@@ -174,17 +198,17 @@ export default function Post() {
                       </div>
 
                       <div className='post-page-card-header-info'>
-                        <div>
+                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
                           <span style={{fontWeight:"bolder"}}><UserOutlined/>&nbsp;作者：</span>
                           {postConfig.author}
                         </div>
 
-                        <div>
+                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
                         <span style={{fontWeight:"bold"}}><ClockCircleOutlined/>&nbsp;发布时间：</span>
                           {postConfig.time}
                         </div>
 
-                        <div>
+                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
                         <span style={{fontWeight:"bold"}}><FileWordOutlined />&nbsp;文章字数：</span>
                           {mdLen}
                         </div>
@@ -195,16 +219,16 @@ export default function Post() {
                     <hr className='hr-twill'/>
                     
                     <div className={'post-page-card-container'}>
-                      <MDRender markdown={markdown} showLimitContent={false} />
+                      <MDRenderer darkMode={isDarkMode} markdown={markdown} showLimitContent={false} />
                     </div>
 
                     <hr className='hr-twill'/>
 
-                    <div className='post-page-card-footer'>
+                    <div className={isDarkMode?'post-page-card-footer-dark':'post-page-card-footer'}>
                       <div style={{marginBottom:"5px"}}>
                         <span style={{fontWeight:"bold"}}>
                           <LinkOutlined/>文章链接：
-                          <CopyFilled className='copy-button' onClick={copyLink}/>
+                          <CopyFilled className={isDarkMode?'copy-button-dark':'copy-button'} onClick={copyLink}/>
                         </span>
                         <a href={url}>{url}</a>
                       </div>
@@ -242,11 +266,20 @@ export default function Post() {
           </div>
         )
       }
-        <FloatButton 
-        className='toc-btn' 
-        icon={<UnorderedListOutlined/>}
-        onClick={handleShowTOC}
-        />
+      {
+        !locked &&
+        <ConfigProvider
+        theme={{
+          token:getTocBtnToken()
+        }}
+        >
+          <FloatButton 
+          className='toc-btn' 
+          icon={<UnorderedListOutlined/>}
+          onClick={handleShowTOC}
+          />
+        </ConfigProvider>
+      }
       </ConfigProvider>
     </div>
   )

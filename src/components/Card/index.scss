@@ -42,6 +42,11 @@
     word-break: normal;
 }
 
+.card-main-dark{
+    @extend .card-main;
+    background-color: rgba(65, 65, 65, 0.83);
+}
+
 @media screen and (max-width:$mobileMaxWidth){
     .card-main{
         width: 95%;

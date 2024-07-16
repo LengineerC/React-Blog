@@ -14,6 +14,8 @@ import axios from 'axios';
 import APlayer from './components/APlayer';
 import { SHOW_APLAYER } from './utils/constants';
 // import { aplayerRef } from './refs';
+import bgImgLight from "./assets/image/bg1.webp";
+import bgImgDark from "./assets/image/bg0.webp";
 
 import './App.scss';
 
@@ -124,11 +126,11 @@ export default function App() {
   }
 
   useEffect(()=>{
-    const bodyDom:HTMLElement|null=document.querySelector('body');
-    let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
-    if(bodyDom){
-      bodyDom.style.backgroundImage=`url(${imgUrl})`;
-    }
+    // const bodyDom:HTMLElement|null=document.querySelector('body');
+    // let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
+    // if(bodyDom){
+    //   bodyDom.style.backgroundImage=`url(${imgUrl})`;
+    // }
 
     const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
     const unsubscribe=store.subscribe(()=>{
@@ -154,7 +156,12 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div 
+    className="App"
+    style={{
+      backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`
+    }}
+    >
       <MobileMenu open={showMenu} handleMenuClose={handleMenuClose}/>
 
       {/* {

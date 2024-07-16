@@ -1,8 +1,9 @@
 import { Button, ConfigProvider, Input, message, Space } from "antd"
 import Card from "../../../components/Card"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 import "./index.scss"
+import store from "../../../redux/store"
 
 type Props = {
   onClose:Function
@@ -11,7 +12,20 @@ type Props = {
 
 export default function LockCard({onClose,password}: Props) {
   const [messageApi, contextHolder] = message.useMessage();
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+
   const inputRef=useRef<any>(null);
+
+  useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
+    return ()=>{
+      unsubscribe();
+    }
+  },[])
 
   const verifyPassword=()=>{
     const inputContent=inputRef.current?.input.value;
@@ -25,10 +39,22 @@ export default function LockCard({onClose,password}: Props) {
     }
   }
 
+  const getToken=()=>{
+    if(isDarkMode){
+      return ({
+        colorPrimary:'#393958',
+      })
+    }else{
+      return ({
+        colorPrimary:"#4086db"
+      })
+    }
+  }
+
   return (
     <Card>
       <div className="lock-card-main">
-        <div className="lock-card-title">
+        <div className={isDarkMode?"lock-card-title-dark":"lock-card-title"}>
           请输入密码
         </div>
 
@@ -45,9 +71,7 @@ export default function LockCard({onClose,password}: Props) {
                 contentBg:"#ffffffda"
               }
             },
-            token:{
-              colorPrimary:"#4086db"
-            }
+            token:getToken()
           }}
           >
             {contextHolder}

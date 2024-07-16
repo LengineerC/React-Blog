@@ -23,6 +23,7 @@
     font-weight: bold;
     font-size: 20px;
     color: rgb(174, 0, 0);
+    text-shadow: 0 0 5px #ffffffaa;
 }
 
 .notice-card-body{
@@ -32,6 +33,13 @@
 
     .notice-card-content{
         color: $postColor;
+        font-weight: bold;
         text-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    }
+
+    .notice-card-content-dark{
+        color: $postColor-dark;
+        font-weight: bold;
+        text-shadow: 0 0 1px rgba(198, 198, 198, 0.5);
     }
 }

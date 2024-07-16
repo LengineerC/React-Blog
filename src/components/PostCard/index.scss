@@ -12,15 +12,25 @@
 
     .hr-dashed{
         width: 100%;
-        color: rgb(250, 250, 250);
-        border: 1px dashed rgb(250, 250, 250);
+        color: #fff;
+        border: 1px dashed #fff;
+    }
+    .hr-dashed-dark{
+        width: 100%;
+        color: #a0a0a0bb;
+        border: 1px dashed #a0a0a0bb;
     }
     
-	.hr-double {
+	.hr-double{
 		border: 0;
         margin: 20px 0 0 0;
 		border-top: 3px double #fff;
 	}
+    .hr-double-dark{
+		border: 0;
+        margin: 20px 0 0 0;
+		border-top: 3px double #a0a0a0bb;
+    }
 
 }
 
@@ -64,4 +74,20 @@
             margin-bottom: 3px;
         }
     }
+}
+
+// 夜间模式
+.post-card-title-dark{
+    @extend .post-card-title;
+    color: $postColor-dark;
+} 
+
+.post-card-content-dark{
+    @extend .post-card-content;
+    color: $postColor-dark;
+}
+
+.post-card-footer-dark{
+    @extend .post-card-footer;
+    color: $postColor-dark;
 }

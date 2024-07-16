@@ -8,6 +8,7 @@ import MarkdownNavbar from 'markdown-navbar'
 import { ConfigProvider, Drawer } from 'antd'
 import { useEffect, useState } from 'react'
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants'
+import store from '../../../redux/store'
 
 import "./index.scss"
 
@@ -145,6 +146,7 @@ type Props={
 export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
   const [open,setOpen]=useState<boolean>(showDrawer);
   const [drawerVisible,setDrawerVisible]=useState<boolean>(window.innerWidth<=MOBILE_MAX_WIDTH);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   useEffect(()=>{
     setOpen(showDrawer);
@@ -156,6 +158,11 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
   }
 
   useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
     const handleResize=()=>{
       setDrawerVisible(window.innerWidth<=MOBILE_MAX_WIDTH);
     }
@@ -163,20 +170,29 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
     window.addEventListener("resize",handleResize);
 
     return ()=>{
+      unsubscribe();
       window.removeEventListener("resize",handleResize);
     }
   },[])
 
+  useEffect(()=>{
+
+  },[isDarkMode])
+
+  const getColorBgElevated=():string=>{
+    return isDarkMode?"#1c1c2c99":"#ffffffcc";
+  }
+
   return (
     <>
       {
-        !drawerVisible ?
+        !drawerVisible ?(
         <Card className="aside-card">
-          <div className='toc-header'>
+          <div className={isDarkMode?"toc-header-dark":'toc-header'}>
             <FontAwesomeIcon icon={faList} />&nbsp;目录
             <hr/>
           </div>
-          <div className='toc-content'>
+          <div className={isDarkMode?"toc-content-dark":'toc-content'}>
               <MarkdownNavbar 
               // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
               source={markdown} 
@@ -185,8 +201,7 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
               />
           </div>
 
-        </Card>
-            :
+        </Card>):(
           <div className='toc-drawer-block'>
           <ConfigProvider
           theme={{
@@ -194,19 +209,19 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
               padding:0,
               paddingLG:0,
               paddingXS:0,
-              colorBgElevated:"#ffffffcc"
+              colorBgElevated:getColorBgElevated()
             }
           }}
           >
             <Drawer
-            className='toc-drawer'
+            className={isDarkMode?"toc-drawer-dark":'toc-drawer'}
             placement="right"
             open={open}
             onClose={onClose}
             width={250}
             closeIcon={null}
             >
-              <div className='toc-header'>
+              <div className={isDarkMode?"toc-header-dark":'toc-header'}>
                 <FontAwesomeIcon icon={faList} />&nbsp;目录
                 <hr/>
               </div>
@@ -221,7 +236,7 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
 
             </Drawer>
           </ConfigProvider>
-        </div>
+        </div>)
       }
     </>
   )

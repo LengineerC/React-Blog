@@ -27,7 +27,8 @@
         min-height: 100px;
         // margin-right: 3vw;
 
-        .friends-card-img{
+        .friends-card-img,
+        .friends-card-img-dark{
             $length:70px;
             // display: flex;
             overflow: hidden;
@@ -45,6 +46,9 @@
                 object-fit: scale-down;
             }
         }
+        .friends-card-img-dark{
+            box-shadow: 0 0 5px rgba(255,255,255,0.3);
+        }
 
         .friends-card-content{
             font-family: "CustomFont1";
@@ -52,7 +56,8 @@
             flex-direction: column;
             width: 60%;
 
-            .friends-card-content-title{
+            .friends-card-content-title,
+            .friends-card-content-title-dark{
                 color: rgb(73, 146, 236);
                 height: 32px;
                 font-size: 23px;
@@ -63,8 +68,12 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+            .friends-card-content-title-dark{
+                color: #29b839;
+            }
 
-            .friends-card-content-description{
+            .friends-card-content-description,
+            .friends-card-content-description-dark{
                 border-top: 1px dashed rgb(159, 159, 159);
                 // padding-top: 5px;
                 height: 85px;
@@ -72,7 +81,12 @@
                 text-overflow: ellipsis;
                 word-break: normal;
                 font-size: 15px;
+                color: $postColor;
             }
+            .friends-card-content-description-dark{
+                color: $postColor-dark;
+            }
+            
         }
     }
 

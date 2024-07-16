@@ -1,9 +1,10 @@
 import { ConfigProvider, Drawer } from 'antd'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MenuFoldOutlined } from '@ant-design/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faBook, faFileZipper,faLink, faAddressCard, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom'
+import store from '../../redux/store';
 
 import './index.scss'
 
@@ -19,6 +20,20 @@ const custom_menu_fold_outlined={
 
 export default function MobileMenu({open,handleMenuClose}: Props) {
   const [_open,setOpen]=useState<boolean>(open);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const colorBgElevatedRef=useRef<string>('#ffffffdd');
+
+  useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+      colorBgElevatedRef.current=darkMode?'#30307a99':'#ffffffdd';
+    })
+
+    return ()=>{
+      unsubscribe();
+    }
+  },[])
 
   useEffect(()=>{
     setOpen(open);
@@ -36,7 +51,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
         padding:0,
         paddingLG:0,
         paddingXS:0,
-        colorBgElevated:"#ffffffdd"
+        colorBgElevated:colorBgElevatedRef.current
       }
     }}
     >
@@ -50,7 +65,7 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
       // closeIcon={<MenuFoldOutlined style={custom_menu_fold_outlined}/>}
       closeIcon={null}
       >
-        <div className='menu-header'>
+        <div className={isDarkMode?"menu-header-dark":'menu-header'}>
 
           <div className='menu-header-btn-line'>
           <NavLink to="/">
@@ -74,13 +89,13 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
 
         </div>
         
-        <div className='menu-body'>
+        <div className={isDarkMode?'menu-body-dark':'menu-body'}>
           <div onClick={onClose}>
 
             <NavLink to="posts">
-              <div className='menu-body-content-container'>
+              <div className={isDarkMode?'menu-body-content-container-dark':'menu-body-content-container'}>
               <span className='icon-block'>
-                <FontAwesomeIcon icon={faBook}/>
+                <FontAwesomeIcon style={isDarkMode?{color:"#ffffffdd"}:{}} icon={faBook}/>
 
               </span>
                 <span>文章</span>
@@ -89,9 +104,9 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             </NavLink>
             
             <NavLink to="archives">
-              <div className='menu-body-content-container'>
+              <div className={isDarkMode?'menu-body-content-container-dark':'menu-body-content-container'}>
               <span className='icon-block'>
-                <FontAwesomeIcon icon={faFileZipper}/>
+                <FontAwesomeIcon style={isDarkMode?{color:"#ffffffdd"}:{}} icon={faFileZipper}/>
 
               </span>
                 <span>归档</span>
@@ -100,9 +115,9 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             </NavLink>
             
             <NavLink to="media">
-              <div className='menu-body-content-container'>
+              <div className={isDarkMode?'menu-body-content-container-dark':'menu-body-content-container'}>
               <span className='icon-block'>
-                <FontAwesomeIcon icon={faMusic}/>
+                <FontAwesomeIcon style={isDarkMode?{color:"#ffffffdd"}:{}} icon={faMusic}/>
 
               </span>
                 <span>媒体</span>
@@ -111,9 +126,9 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             </NavLink>
 
             <NavLink to="friends">
-              <div className='menu-body-content-container'>
+              <div className={isDarkMode?'menu-body-content-container-dark':'menu-body-content-container'}>
               <span className='icon-block'>
-                <FontAwesomeIcon icon={faLink}/>
+                <FontAwesomeIcon style={isDarkMode?{color:"#ffffffdd"}:{}} icon={faLink}/>
 
               </span>
                 <span>友链</span>
@@ -122,9 +137,9 @@ export default function MobileMenu({open,handleMenuClose}: Props) {
             </NavLink>
 
             <NavLink to="about">
-              <div className='menu-body-content-container'>
+              <div className={isDarkMode?'menu-body-content-container-dark':'menu-body-content-container'}>
               <span className='icon-block'>
-                <FontAwesomeIcon icon={faAddressCard}/>
+                <FontAwesomeIcon style={isDarkMode?{color:"#ffffffdd"}:{}} icon={faAddressCard}/>
 
               </span>
                 <span>关于</span>

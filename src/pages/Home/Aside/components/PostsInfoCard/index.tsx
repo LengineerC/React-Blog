@@ -12,6 +12,7 @@ export default function PostsInfoCard() {
   const [postsCount,setPostsCount]=useState<number>(0);
   const [tagsCount,setTagsCount]=useState<number>(0);
   const [categoriesCount,setCategoriesCount]=useState<number>(0);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   const getData=()=>{
     const {postList,tagsList,categoriesList}=store.getState();
@@ -24,6 +25,8 @@ export default function PostsInfoCard() {
     getData();
 
     const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
       getData();
     })
 
@@ -40,10 +43,10 @@ export default function PostsInfoCard() {
       <div className="post-info-card-main">
 
         <div className="post-info-card-col-1">
-          <div className="post-info-card-col-header">
+          <div className={isDarkMode?'post-info-card-col-header-dark':"post-info-card-col-header"}>
             <FontAwesomeIcon icon={faBook} /> 文章
           </div>
-          <div className="post-info-card-col-content">
+          <div className={isDarkMode?'post-info-card-col-content-dark':"post-info-card-col-content"}>
             {/* <NavLink to="/posts" > */}
               {postsCount}
             {/* </NavLink> */}
@@ -53,10 +56,10 @@ export default function PostsInfoCard() {
         <Divider type="vertical"/>
 
         <div className="post-info-card-col-2">
-          <div className="post-info-card-col-header">
+          <div className={isDarkMode?'post-info-card-col-header-dark':"post-info-card-col-header"}>
             <FontAwesomeIcon icon={faTag} /> 标签
           </div>
-          <div className="post-info-card-col-content">
+          <div className={isDarkMode?'post-info-card-col-content-dark':"post-info-card-col-content"}>
             <NavLink to="/tags" >
               {tagsCount}
             </NavLink>
@@ -66,10 +69,10 @@ export default function PostsInfoCard() {
         <Divider type="vertical"/>
 
         <div className="post-info-card-col-3">
-          <div className="post-info-card-col-header">
+          <div className={isDarkMode?'post-info-card-col-header-dark':"post-info-card-col-header"}>
             <FontAwesomeIcon icon={faBookmark}/> 分类
           </div>
-          <div className="post-info-card-col-content">
+          <div className={isDarkMode?'post-info-card-col-content-dark':"post-info-card-col-content"}>
             <NavLink to="/categories" >
               {categoriesCount}
             </NavLink>

@@ -11,6 +11,11 @@
     max-width: 96%;
 }
 
+.page-options-line-dark{
+    @extend .page-options-line;
+    background-color: #39395899;
+}
+
 @media screen and (max-width:$mobileMaxWidth) {
     .page-options-line{
         padding: 1vh 0 1vh 10px;

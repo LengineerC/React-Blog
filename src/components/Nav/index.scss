@@ -157,3 +157,11 @@
         }
     }
 }
+
+.click-container-dark{
+    @extend .click-container;
+
+    &:hover{
+        background-color: rgba(96, 75, 172, 0.7);
+    }
+}

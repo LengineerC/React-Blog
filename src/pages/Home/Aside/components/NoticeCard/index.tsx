@@ -1,9 +1,24 @@
+import { useEffect, useState } from 'react'
 import Card from '../../../../../components/Card'
 import { NOTICE_CARD_TEXT } from '../../../../../utils/constants'
+import store from '../../../../../redux/store'
 
 import './index.scss'
 
 export default function NoticeCard() {
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+
+  useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
+    return ()=>{
+      unsubscribe();
+    }
+  },[])
+
   return (
     <Card 
     className='aside-card' 
@@ -16,7 +31,7 @@ export default function NoticeCard() {
         </div>
         <hr className='hr-twill'/>
         <div className='notice-card-body'>
-          <div className='notice-card-content'>
+          <div className={isDarkMode?'notice-card-content-dark':'notice-card-content'}>
             {NOTICE_CARD_TEXT}
           </div>
         </div>

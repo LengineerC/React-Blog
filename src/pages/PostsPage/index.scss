@@ -23,4 +23,9 @@
             transform: scale(1.03);
         }
     }
+
+    .choose-btn-dark{
+        @extend .choose-btn;
+        background-color: rgba(65, 65, 65, 0.83);
+    }
 }

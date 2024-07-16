@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Card from '../Card'
 import { PostConfig } from '../../utils/types'
-import MDRender from '../MDRender'
+import MDRenderer from '../MDRenderer'
 import { Skeleton } from 'antd'
 import Tag from '../Tag'
+import Category from '../Category'
+import store from '../../redux/store'
 
 import './index.scss'
-import Category from '../Category'
 
 type Props = {
   config: PostConfig,
@@ -23,8 +24,8 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
   const [markdown, SetMarkdown] = useState<string>("");
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const [loading, setLoading] = useState<boolean>(true);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   useEffect(() => {
     // console.log(postConfig);
@@ -47,6 +48,15 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
 
     if (postConfig && postConfig.categories) {
       setCategories([...postConfig.categories]);
+    }
+
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
+    return ()=>{
+      unsubscribe();
     }
 
   }, [])
@@ -86,21 +96,21 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
             <div className='post-card-main'>
               <NavLink to={`/post/detail/${postConfig.id}`} style={{ textDecoration: "none" }}>
 
-                <div className='post-card-title'>
+                <div className={isDarkMode?"post-card-title-dark":'post-card-title'}>
                   {postTitle}
                 </div>
 
-                <hr className='hr-dashed'/>
+                <hr className={isDarkMode?"hr-dashed-dark":'hr-dashed'}/>
 
-                <div className='post-card-content'>
-                  <MDRender limit={limit} markdown={markdown} showLimitContent={showLimitContent} />
+                <div className={isDarkMode?'post-card-content-dark':'post-card-content'}>
+                  <MDRenderer darkMode={isDarkMode} limit={limit} markdown={markdown} showLimitContent={showLimitContent} />
                 </div>
 
-                <hr  className='hr-double'/>
+                <hr  className={isDarkMode?"hr-double-dark":'hr-double'}/>
               </NavLink>
               {
                 showFooter && (
-                  <div className='post-card-footer'>
+                  <div className={isDarkMode?'post-card-footer-dark':'post-card-footer'}>
                     <div className='post-card-tags-block'>
                       {createTags()}
                     </div>

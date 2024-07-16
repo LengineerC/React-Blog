@@ -13,6 +13,7 @@ type Props = {
   markdown: string,
   limit?:number,
   showLimitContent:boolean,
+  darkMode:boolean,
 }
 
 const marked = new Marked(
@@ -42,7 +43,7 @@ const marked = new Marked(
 //   ]
 // })
 
-export default function MDRender({ markdown,limit=100,showLimitContent }: Props) {
+export default function MDRenderer({ markdown,limit=100,showLimitContent,darkMode }: Props) {
   const [content, setContent] = useState<any>('');
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function MDRender({ markdown,limit=100,showLimitContent }: Props)
   }, [markdown, limit, showLimitContent]);
 
   return (
-    <div className={showLimitContent?"":"markdown-body"}>
+    <div className={showLimitContent?"":`${darkMode?'markdown-body-dark':'markdown-body'}`}>
       {showLimitContent ? (
         <div>{content}</div> 
       ) : (

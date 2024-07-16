@@ -89,6 +89,15 @@
                     color: #1e90ff;
                 }
             }
+
+            .post-page-card-footer-dark{
+                @extend .post-page-card-footer;
+                color: $postColor-dark;
+
+                a{
+                    color: #29b839;
+                }
+            }
             
         }
     }
@@ -121,6 +130,15 @@
         color: #1e6bb9;
     }
     
+}
+
+.copy-button-dark{
+    @extend .copy-button;
+    color: $postColor-dark;
+
+    &:hover{
+        color: #29b839;
+    }
 }
 
 @media screen and (max-width:$mobileMaxWidth){

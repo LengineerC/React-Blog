@@ -165,7 +165,7 @@ export default function Nav() {
         >
           {item.clickable? 
           <NavLink to={item.path}>
-            <div className='click-container'>
+            <div className={isDarkMode?"click-container-dark":'click-container'}>
               <FontAwesomeIcon icon={iconChooser(item.key)} />
               <div className='nav-click-text-container'>
                 {item.name}
@@ -181,7 +181,7 @@ export default function Nav() {
               </div>
             </div>
           </NavLink>:
-            <div className='click-container'>
+            <div className={isDarkMode?"click-container-dark":'click-container'}>
               <FontAwesomeIcon icon={iconChooser(item.key)} />
               <div className='nav-click-text-container'>
                 {item.name}
@@ -294,7 +294,7 @@ export default function Nav() {
         style={show_border}
         >
           <NavLink to="/">
-            <div className='click-container' style={{width:"160px"}}>
+            <div className={isDarkMode?'click-container-dark':'click-container'} style={{width:"160px"}}>
               <FontAwesomeIcon icon={faHouse} />
             </div>
           </NavLink>
@@ -308,7 +308,7 @@ export default function Nav() {
         </Col> */}
 
         <Col className='nav-center-col' flex={1} span={8}>
-        {createCenterColItems()}
+          {createCenterColItems()}
 
         {
         //#region 非动态渲染

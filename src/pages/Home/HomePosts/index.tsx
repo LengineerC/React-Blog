@@ -15,16 +15,21 @@ export default function HomePosts({}: Props) {
   const [pageSize]=useState<number>(10);
   const [currentPage,setCurrentPage]=useState<PostConfig[]>([]);
 
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+
   useEffect(()=>{
     const {postList}=store.getState();
     setPostList(postList);
 
     //先从App中获取所有的页面列表，然后在此存入state
     const unsubscribe=store.subscribe(()=>{
-      const {postList}=store.getState();
+      const {postList,darkMode}=store.getState();
       // console.log(postList);
       
       setPostList(postList);
+      // if(darkMode!==isDarkMode){
+        setIsDarkMode(darkMode);
+      // }
     });
 
     return ()=>{
@@ -80,24 +85,40 @@ export default function HomePosts({}: Props) {
     setPagination(page);
   }
 
+  const getPaginationTheme=()=>{
+    if(!isDarkMode) return({
+      token:{
+        fontFamily:"CustomFont1",
+        colorPrimary:"#67abff",
+        colorText:"#001447",
+      },
+      components:{
+        Pagination:{
+          itemActiveBg:"#ffffff11"
+        }
+      }
+    });
+    else return({
+      token:{
+        fontFamily:"CustomFont1",
+        colorPrimary:"#00e80f",
+        colorText:"#ffffffdd",
+      },
+      components:{
+        Pagination:{
+          itemActiveBg:"#ffffff11"
+        }
+      }
+    })
+  }
+
   return (
     <>
       {createPostCards()}
       <ConfigProvider
-      theme={{
-        token:{
-          fontFamily:"CustomFont1",
-          colorPrimary:"#67abff",
-          colorText:"#001447",
-        },
-        components:{
-          Pagination:{
-            itemActiveBg:"#ffffff11"
-          }
-        }
-      }}
+      theme={getPaginationTheme()}
       >
-        <div className='page-options-line'>
+        <div className={isDarkMode?"page-options-line-dark":'page-options-line'}>
           <Pagination 
           total={postList.length}
           showTotal={(total)=>`共 ${total} 篇文章`}

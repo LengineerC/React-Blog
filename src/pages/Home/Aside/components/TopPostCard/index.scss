@@ -1,4 +1,5 @@
 @import "../../../../../styles/page_layout.scss";
+@import "../../../../../styles/base.scss";
 
 .top-post-card-main{
     width: 100%;
@@ -11,6 +12,7 @@
         font-weight: bold;
         font-size: 20px;
         color: rgb(174, 0, 0);
+        text-shadow: 0 0 5px #ffffffaa;
     }
 
     .hr-twill {
@@ -20,6 +22,7 @@
 		background: repeating-linear-gradient(135deg, #a2a9b6 0px, #a2a9b6 1px, transparent 1px, transparent 6px);
 	}
 }
+
 .top-post-card-link-block{
     @extend .hv-center;
     font-size: 15px;
@@ -31,4 +34,10 @@
     &:hover{
         background-color: rgba(0, 0, 0, 0.1);
     }
+}
+
+.top-post-card-link-block-dark{
+    @extend .top-post-card-link-block;
+    color: $postColor-dark;
+    text-shadow: 0 0 1px #ffffffaa;
 }

@@ -47,7 +47,7 @@ export const SHOW_CLOCK_CARD:boolean=true;
 export const MUSIC_URL:string="https://music.163.com/playlist?id=8741983740";
 
 //是否显示吸底音乐播放器
-export const SHOW_APLAYER:boolean=false;
+export const SHOW_APLAYER:boolean=true;
 
 // 吸底音乐播放器是否默认显示歌词
 export const IRC_TYPE:boolean=false;

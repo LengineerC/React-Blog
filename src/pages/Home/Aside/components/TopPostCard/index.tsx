@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Card from '../../../../../components/Card'
 import store from '../../../../../redux/store'
@@ -17,6 +17,7 @@ const navLinkStyle={
 
 export default function TopPostCard() {
   const [topPosts,setTopPosts]=useState<PostConfig[]>([]);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   
   useEffect(() => {
     //处理axios+redux异步处理导致数据为空的问题的可能解决方案
@@ -25,9 +26,10 @@ export default function TopPostCard() {
     setTopPosts(filteredList);
 
     const unsubscribe = store.subscribe(() => {
-      const { postList } = store.getState();
+      const { postList, darkMode } = store.getState();
       const filteredList = postList.filter(item => item.top);
       setTopPosts(filteredList);
+      setIsDarkMode(darkMode);
     });
 
     return () => {
@@ -50,8 +52,9 @@ export default function TopPostCard() {
           style={navLinkStyle} 
           onClick={()=>store.dispatch(saveSelectedPostConfig(item))}
           >
-            <div className='top-post-card-link-block'>
-                🔥<span style={{color:"orange",marginRight:"10px"}}>HOT!</span>{`${item.title}`}
+            <div className={isDarkMode?'top-post-card-link-block-dark':'top-post-card-link-block'}>
+              🔥<span style={{color:"orange",marginRight:"10px"}}>HOT!</span>
+              {item.title}
             </div>
           </NavLink>
         )

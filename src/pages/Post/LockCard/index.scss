@@ -11,6 +11,12 @@
         font-size: 20px;
         color:$postColor;
         padding-left: 5%;
+        text-shadow: 0 0 10px #ffffff77;
+    }
+
+    .lock-card-title-dark{
+        @extend .lock-card-title;
+        color: $postColor-dark;
     }
 
     .wave-divider {
@@ -32,6 +38,8 @@
 
     .lock-card-input-line{
         height: 20px;
+        margin-bottom: 20px;
+        margin-top: 10px;
 
         .ant-input-outlined{
             background: #ffffff55 !important;
