@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import store from '../../redux/store'
 import { hideNav, showNav } from '../../redux/actions'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -67,6 +67,6 @@ export default function Loading() {
   },[])
 
   return (
-    <div ref={loadingRef} className='loading-main' />
+    <div ref={loadingRef} className={'loading-main'} />
   )
 }

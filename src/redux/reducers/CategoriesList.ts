@@ -12,8 +12,10 @@ export default function categoriesListReducer(prevState=initState,action:Action)
     switch(type){
         case SAVE_CATEGORIES_LIST:
             return payload;
+
         case CLEAR_CATEGORIES_LIST:
             return payload;
+            
         default:
             return prevState;
     }

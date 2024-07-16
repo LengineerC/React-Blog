@@ -1,4 +1,5 @@
 import { SET_DARKMODE_OFF, SET_DARKMODE_ON } from "../constants";
+import { SITE_DEFAULT_THEME_MODE } from "../../utils/constants";
 // import { payloadType } from "../payloadType";
 
 type Action={
@@ -7,7 +8,7 @@ type Action={
     payload:boolean
 }
 
-const initState:boolean=false;
+const initState:boolean=SITE_DEFAULT_THEME_MODE;
 
 export default function darkModeReducer(prevState=initState,action:Action){
     const {type}=action;

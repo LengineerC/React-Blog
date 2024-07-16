@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faBilibili } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { AUTHOR, WEBSITE_START_DATE, EMAIL, BILIBILI_LINK } from '../../utils/constants';
 import { Popover, ConfigProvider } from 'antd';
 // import { makeBadge, ValidationError } from 'badge-maker';
+import store from '../../redux/store';
 
 import "./index.scss"
 
 export default function Footer() {
   const [date]=useState<Date>(new Date());
+  const [isDarkMode,setIsDarkMode]=useState<boolean>();
+
+  useEffect(()=>{
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    });
+
+    return ()=>{
+      unsubscribe();
+    }
+
+  },[])
 
   const calculateDays=()=>{
     let startDate=new Date(WEBSITE_START_DATE);
@@ -18,7 +32,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className='footer-main'>
+    <footer className={isDarkMode?'footer-main-dark':'footer-main'}>
       <div className='footer-left-col'>
         <div className='footer-left-row'>
           <span className='footer-text-des'>

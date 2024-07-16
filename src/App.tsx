@@ -33,7 +33,44 @@ export default function App() {
   //   console.log(showMenuBtn);
   // },[showMenuBtn])
 
+  const getBodyStyleInnerHtml = (isDarkMode:boolean):string => {
+    return isDarkMode ? (`
+      body::-webkit-scrollbar {
+        width: 12px;
+      }
+      body::-webkit-scrollbar-track {
+        background: linear-gradient(#9191a7, #8888a7);
+        border-radius: 100px;
+      }
+      body::-webkit-scrollbar-thumb {
+        background: linear-gradient(#686894, #46466c);
+        border-radius: 50px;
+      }
+      body::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(#7c7ca5, #61618f);
+      }
+    `) : (`
+      body::-webkit-scrollbar {
+        width: 12px;
+      }
+      body::-webkit-scrollbar-track {
+        background: linear-gradient(#b7f9ff, #a3c8db);
+        border-radius: 100px;
+      }
+      body::-webkit-scrollbar-thumb {
+        background: linear-gradient(rgb(103, 171, 255), rgb(62, 125, 202));
+        border-radius: 50px;
+      }
+      body::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(rgb(123, 182, 255), rgb(82, 145, 223));
+      }
+    `);
+  };
+
   useEffect(()=>{
+    const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
+    const {darkMode}=store.getState();
+    bodyStyle.innerHTML=getBodyStyleInnerHtml(darkMode);
     //通过监听页面大小来判断是否需要显示移动端ToolBar的按钮
     // window.addEventListener("resize",handleResize);
     // handleResize();
@@ -87,25 +124,26 @@ export default function App() {
   }
 
   useEffect(()=>{
-    store.subscribe(()=>{
-      const {darkMode}=store.getState();
+    const bodyDom:HTMLElement|null=document.querySelector('body');
+    let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
+    if(bodyDom){
+      bodyDom.style.backgroundImage=`url(${imgUrl})`;
+    }
 
-      setIsDarkMode(darkMode);
+    const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      if(isDarkMode!==darkMode){
+        setIsDarkMode(darkMode);
+        bodyStyle.innerHTML=getBodyStyleInnerHtml(darkMode);
+      }
     })
-    
-    console.log(`Dark mode:${isDarkMode}`);
+
+    return ()=>{
+      unsubscribe();
+    }
     
   },[isDarkMode])
-
-  // Nav test
-  // const show=()=>{
-  //   // console.log(window.innerWidth);
-    
-  //   store.dispatch(showNav());
-  // }
-  // const hidden=()=>{
-  //   store.dispatch(hideNav());
-  // }
 
   // 处理移动端菜单按钮
   const handleMenuOpen=()=>{
@@ -157,11 +195,6 @@ export default function App() {
       <Nav />
       <Main />
       <Top />
-      {/* Nav test */}
-      {/* <Button onClick={show}>show</Button>
-      <Button onClick={hidden}>hidden</Button> */}
-
-      
       <Footer />
 
       {SHOW_APLAYER && <APlayer />}

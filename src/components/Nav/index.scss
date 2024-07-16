@@ -12,9 +12,13 @@
     color:black;
     transform: translateY(0);
     position: fixed;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
 }
 .nav-transparent{
-    background-color: transparent;
+    transition: 0.3s;
+    background-color: transparent !important;
+    backdrop-filter: blur(0);
 }
 
 .hidden-nav{
@@ -48,6 +52,7 @@
     border-radius: 7px;
     height: auto;
     animation: sub-menu-animation 0.15s linear;
+    backdrop-filter: blur(5px);
 
     .sub-menu-item{
         @extend .hv-center;
@@ -71,9 +76,13 @@
 
 @keyframes sub-menu-animation{
     from{
-        transform: translateY(-150px);
+        opacity: 0;
+        // transform: translateY(-150px);
+        // transform: translateY(10px);
+        transform: translateY(-10px);
     }
     to{
+        opacity: 1;
         transform: translateY(0);
     }
 }
@@ -125,5 +134,26 @@
     .nav{
         transform: translateY(-$navHeight);
         transition: transform 0s ease;
+    }
+}
+
+
+// 夜间模式
+.nav-dark{
+    @extend .nav;
+    background-color: $themeBackgroundColor-dark;
+}
+
+.sub-menu-dark{
+    @extend .sub-menu;
+    background-color: $themeBackgroundColor-dark;
+    
+    .sub-menu-item-dark{
+        @extend .sub-menu-item;
+        
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
     }
 }

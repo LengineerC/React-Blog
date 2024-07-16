@@ -103,3 +103,8 @@
         }
     }
 }
+
+.footer-main-dark{
+    @extend .footer-main;
+    background-color: $themeBackgroundColor-dark;
+}

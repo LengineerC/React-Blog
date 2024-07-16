@@ -202,11 +202,14 @@ export default function Nav() {
             <>
               {
                 showSubMenu===item.key && (
-                  <div className='sub-menu'>
+                  <div className={isDarkMode?'sub-menu-dark':'sub-menu'}>
                     {
                       item.options.subItems.map((subItem,index)=>{
                         return(
-                          <div className='sub-menu-item' key={index}>
+                          <div 
+                          className={isDarkMode?'sub-menu-item-dark':'sub-menu-item'} 
+                          key={index}
+                          >
                             {subItem}
                           </div>
                         )
@@ -279,7 +282,11 @@ export default function Nav() {
   },[visible])
 
   return (
-    <nav className={`nav ${!visible?'hidden-nav':''} ${navTransparent?"nav-transparent":''}`}>
+    <nav className={`
+    ${!visible?'hidden-nav':''} 
+    ${isDarkMode?'nav-dark':"nav"}
+    ${navTransparent?"nav-transparent":''}
+    `}>
       <Row>
         <Col 
         span="8" 
