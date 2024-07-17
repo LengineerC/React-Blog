@@ -14,7 +14,7 @@ export const WEBSITE_START_DATE:string="2024-6-8";
 export const SUB_TITLE_ENABLE:boolean=true;
 
 //网站默认主题模式(true为夜间模式，false为亮色模式)
-export const SITE_DEFAULT_THEME_MODE:boolean=true;
+export const SITE_DEFAULT_THEME_MODE:boolean=false;
 
 //副标题默认内容
 export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
