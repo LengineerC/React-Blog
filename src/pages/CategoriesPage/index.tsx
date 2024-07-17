@@ -11,6 +11,7 @@ import "./index.scss";
 export default function CategoriesPage() {
   const [categories,setCategories]=useState<any>();
   const [postCount,setPostCount]=useState<number>(0);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const chartRef=useRef(null);
   
   useEffect(()=>{
@@ -20,9 +21,10 @@ export default function CategoriesPage() {
 
 
     const unsubscribe=store.subscribe(()=>{
-      const {categoriesList={},postList}=store.getState();
+      const {categoriesList={},postList,darkMode}=store.getState();
       setCategories(categoriesList);
       setPostCount(postList.length);
+      setIsDarkMode(darkMode);
     })
 
     return ()=>{
@@ -38,19 +40,52 @@ export default function CategoriesPage() {
       
   },[categories,postCount])
 
+  useEffect(()=>{
+    if(categories && Object.keys(categories).length>0 && postCount!==0){
+      createRadarChart();
+    }
+  },[isDarkMode])
+
   const createRadarChart=()=>{
     const radarChart=echarts.init(chartRef.current);
+    let textStyle={
+      fontFamily:"CustomFont1",
+      fontSize:15,
+      color:`${isDarkMode?'#ffffffcc':'#000000c0'}`
+    };
+    let itemStyle={
+      color: `${isDarkMode?'#42cf52':'#67abff'}`
+    }
+    let axisName={
+      fontFamily:"CustomFont1",
+      fontSize:15,
+      color:`${isDarkMode?'#ffffffcc':'#000000c0'}`,
+      fontWeight:'bold'
+    }
+
+    let max=0;
+    const getMaxCount=()=>{
+      Object.keys(categories).forEach(item=>{
+        if(item.length>max){
+          max=item.length;
+        }
+      })
+    }
+    getMaxCount();
+
     const option = {
+      backgroundColor:"",
       radar: {
         indicator: Object.keys(categories).map(categoryName=>({
           name:categoryName,
-          max:postCount,
+          max:max,
         })),
         name: {
-          textStyle: {
-            color: '#000000c0'
-          }
-        }
+          textStyle: textStyle
+        },
+        axisName,
+        center:["50%","65%"],
+        radius:"100%"
       },
       series: [
         {
@@ -63,10 +98,23 @@ export default function CategoriesPage() {
                 const category=categories[catagoryName];
                 return category?category.length:0;
               }),
+              itemStyle:itemStyle,
+              label: {
+                show: true, 
+                fontSize: 13, 
+                position: 'right', 
+                color:`${isDarkMode?'#ffffff':"#000000"}`,
+                fontWeight:"bold",
+                fontFamily:"CustomFont1",
+                // shadowColor:`${isDarkMode?"#000000aa":"#ffffffaa"}`,
+                // shadowBlur:5,
+                // shadowOffsetX:1,
+                // shadowOffsetY:5,
+              }
             }
           ]
         }
-      ]
+      ],
     };
 
     radarChart.setOption(option);

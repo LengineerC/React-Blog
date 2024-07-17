@@ -203,8 +203,11 @@ export default function App() {
       <Main />
       <Top />
       <Footer />
+      
+      <div className={isDarkMode?"aplayer-container-dark":"aplayer-container"}>
+        {SHOW_APLAYER && <APlayer />}
+      </div>
 
-      {SHOW_APLAYER && <APlayer />}
     </div>
   )
 }

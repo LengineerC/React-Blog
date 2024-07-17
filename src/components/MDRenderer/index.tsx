@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import { Marked } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
+import markedKatex from 'marked-katex-extension'
 
 import "highlight.js/scss/atom-one-dark.scss"
 import "./index.scss"
@@ -28,7 +29,7 @@ const marked = new Marked(
     }
   }),
 );
-
+marked.use(markedKatex());
 
 // 用于自定义目录跳转，使用markdown-navbar可删
 // let headerIndex = 0;

@@ -31,6 +31,7 @@ export default function Archives() {
   const [currentDate]=useState<Date>(new Date());
   const [postList,setPostList]=useState<PostConfig[]>([]);
   const [githubRepoCommits,setGithubRepoCommits]=useState<[]>([]);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
   const dispatch=store.dispatch;
 
@@ -91,6 +92,11 @@ export default function Archives() {
 
   useEffect(()=>{
     const {githubRepoCommits}=store.getState();
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
+
     if(githubRepoCommits || githubRepoCommits.length===0){
       dispatch({
         type:"getGithubRepoCommits",
@@ -101,6 +107,10 @@ export default function Archives() {
       })
     }else{
       formatCommitData(githubRepoCommits);
+    }
+
+    return ()=>{
+      unsubscribe();
     }
   },[])
 
@@ -114,18 +124,37 @@ export default function Archives() {
       setPostList(postList);
     })
 
+    return ()=>{
+      unsubscribe();
+    }
+
+  },[postList])
+
+  useEffect(()=>{
     const heatMap=echarts.init(heatMapRef.current);
+    renderHeatMap(heatMap);
+
+  },[isDarkMode,postList])
+
+  const renderHeatMap=(heatMap:any)=>{
+    let title={
+      top:10,
+      left:"center",
+      text:"文章日历",
+      textStyle:{
+        fontFamily:"CustomFont1",
+        color:`${isDarkMode?"#ffffffaa":"#001447aa"}`,
+        fontWeight:'bold',
+      },
+    }
 
     const option={
-      title:{
-        top:10,
-        left:"center",
-        text:"文章日历"
-      },
+      title:title,
       visualMap:{
         min:0,
         max:100,
         type: 'piecewise',
+        selectedMode:false,
         // tooltip: {
         //   renderMode: 'richText' ,
         //   position: 'top',
@@ -137,12 +166,17 @@ export default function Archives() {
         // inRange:{
         //   color:['#cdd8db','#80cbe0','#2986d2','#0943b7'],
         // },
+        textStyle:{
+          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          fontFamily:"CustomFont1",
+          fontWeight:"bold",
+        },
         pieces: [
-          {min: 4, label: '4+', color: '#0943b7'},
-          {min: 3, max: 3, label: '3', color: '#2986d2'},
-          {min: 2, max: 2, label: '2', color: '#80cbe0'},
-          {min: 1, max: 1, label: '1', color: '#cdd8db'},
-          {min: 0, max: 0, label: '0', color: '#ffffff'}
+          {min: 4, label: '4+', color: `${isDarkMode?'#216e39':'#0943b7'}`},
+          {min: 3, max: 3, label: '3', color: `${isDarkMode?'#30a14e':'#2986d2'}`},
+          {min: 2, max: 2, label: '2', color: `${isDarkMode?'#40c463':'#80cbe0'}`},
+          {min: 1, max: 1, label: '1', color: `${isDarkMode?'#9be9a8':'#cdd8db'}`},
+          {min: 0, max: 0, label: '0', color: `${isDarkMode?'#333333':'#f6f6f6'}`}
         ],
         orient: 'horizontal',
         left: 'center',
@@ -155,8 +189,33 @@ export default function Archives() {
         right: 30,
         cellSize: 15,
         range: currentDate.getFullYear(),
+        splitLine:{
+          lineStyle:{
+            type:'solid',
+            width:2,
+            color:'#001447aa',
+          },
+          show:true,
+        },
         itemStyle: {
           borderWidth: 2,
+          // borderColor:"#aaaaaa99"
+          borderColor:`${isDarkMode?'#aaaaaa99':'#ccc'}`
+        },
+        dayLabel:{
+          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          fontFamily:"CustomFont1",
+          fontWeight:"bold",
+        },
+        monthLabel:{
+          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          fontFamily:"CustomFont1",
+          fontWeight:"bold",
+        },
+        yearLabel:{
+          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          fontFamily:"CustomFont1",
+          fontWeight:"bold",
         },
       },
       series: {
@@ -165,17 +224,15 @@ export default function Archives() {
         data: getFormatData(currentDate.getFullYear().toString()),
         itemStyle:{
           borderRadius: 2,
+          borderColor:`${isDarkMode?'#aaaaaa99':'#ccc'}`
+
         },
       }
     }
     
     heatMap.setOption(option);
 
-    return ()=>{
-      unsubscribe();
-    }
-
-  },[postList])
+  }
 
   return (
     <div className="page-main">
@@ -195,12 +252,13 @@ export default function Archives() {
             theme={{
               components:{
                 Timeline:{
-                  tailColor:"rgb(0, 20, 71)",
+                  tailColor:`${isDarkMode?"#ffffff66":"rgb(0, 20, 71)"}`,
                 }
               },
               token:{
                 fontFamily:"CustomFont1",
                 fontSize:17,
+                colorText:`${isDarkMode?"#ffffffcc":"#001447cc"}`
               }
             }}
             >

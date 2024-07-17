@@ -16,6 +16,11 @@
         font-size: 25px;
         margin-bottom: 15px;
     }
+
+    .media-title-dark{
+        @extend .media-title;
+        color: $postColor-dark;
+    }
     
     .media-card-main-player{
         // display: flex;
@@ -42,6 +47,99 @@
                     background: #67abff;
                 }
             }
+        }
+    }
+    .media-card-main-player-dark{
+        @extend .media-card-main-player;
+
+        .aplayer{
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            max-width: 100%;
+
+            .aplayer-lrc{
+                &::after, &::before{
+                    background:transparent;
+                }
+            }
+        }
+
+        .aplayer-body{
+            background: transparent !important;
+        }
+
+        .aplayer-list{
+            background: #262631aa;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        ol{
+            &::-webkit-scrollbar-thumb{
+                background: #29b839 !important;
+            }
+        }
+
+        li{
+            color: $postColor-dark;
+
+            &:hover{
+                background: #ffffff44 !important;
+            }
+        }
+        .aplayer-list-cur{
+            background-color: #29b839 !important;
+        }
+        .aplayer-list-index,
+        .aplayer-list-author{
+            color: #ffffff99 !important;
+        }
+        .aplayer-list-light{
+            background: #ffffff55 !important;
+        }
+        
+        .aplayer-miniswitcher{
+            border-radius: 0 7px 7px 0 !important;
+        }
+        
+        .aplayer.aplayer-fixed .aplayer-body{
+            border-radius: 0 7px 7px 0 !important;
+        }
+
+        .aplayer-played{
+            background: #29b839 !important;
+
+            .aplayer-thumb{
+                background: #29b839 !important;
+            }
+        }
+        .aplayer-lrc-current{
+            color: $postColor-dark;
+        }
+        .aplayer-volume{
+            background: #42cf52 !important;
+        }
+        .aplayer-info{
+            background: #3d3d4c99;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: none !important;
+        }
+        .aplayer-music{
+            .aplayer-title{
+                color: $postColor-dark;
+            }
+            .aplayer-author{
+                color: #ffffff99 !important;
+            }
+        }
+
+        .aplayer-icon path{
+            fill: #ffffffaa !important;
+        }
+
+        .aplayer-time-inner{
+            color: #ffffffaa !important;
         }
     }
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Card from '../../components/Card';
 import PageTitle from '../../components/PageTitle';
 import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
@@ -11,9 +11,15 @@ export default function Media() {
   const aplayerRef=useRef(null);
   // const aplayerInstanceRef = useRef(null)
   const effectRan=useRef<boolean>(false);
+  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+
   // const location=useLocation();
 
   useEffect(() => {
+    const unsubscribe=store.subscribe(()=>{
+      const {darkMode}=store.getState();
+      setIsDarkMode(darkMode);
+    })
     if(effectRan.current) return;
 
     let aplayerInstance:any=null;
@@ -30,6 +36,7 @@ export default function Media() {
     effectRan.current=true;
 
     return () => {
+      unsubscribe();
       if(aplayerInstance){
         (aplayerInstance as any).destroy();
       }
@@ -45,10 +52,10 @@ export default function Media() {
       <div className="page-main-content">
         <Card>
           <div className="media-card-main">
-            <div className='media-title'>
+            <div className={isDarkMode?'media-title-dark':'media-title'}>
               🎶穢れなき音楽室
             </div>
-            <div className="media-card-main-player">
+            <div className={isDarkMode?'media-card-main-player-dark':"media-card-main-player"}>
               <meting-js 
                 ref={aplayerRef}
                 auto={MUSIC_URL}
@@ -58,7 +65,7 @@ export default function Media() {
               />
             </div>
 
-            <div className='media-title'>
+            <div className={isDarkMode?'media-title-dark':'media-title'}>
               📺远古视频
             </div>
             <div className='media-card-main-video'>

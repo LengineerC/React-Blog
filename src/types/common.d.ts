@@ -13,3 +13,8 @@ declare namespace JSX{
         'meting-js':any,
     }
 }
+
+declare module 'marked-katex-extension'{
+    import func from 'marked-katex-extension';
+    export default func;
+}

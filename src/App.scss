@@ -72,16 +72,176 @@
     // }
 }
 
-.aplayer-body,
-.aplayer-fixed{
-    margin-bottom: 20px !important;
-    margin-bottom: 20px;
+.aplayer-container{
+    .aplayer-body,
+    .aplayer-fixed{
+        margin-bottom: 20px !important;
+        margin-bottom: 20px;
+        background: #ffffff22;
+    }
+    .aplayer-body{
+        background: transparent !important;
+    }
+
+    .aplayer-list{
+        background: #ffffff99;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    ol{
+        &::-webkit-scrollbar-thumb{
+            background: #67abff !important;
+        }
+    }
+
+    li{
+        color: $postColor;
+        border-top: 1px solid #63636366 !important;
+        &:hover{
+            background: #ffffff44 !important;
+        }
+    }
+    .aplayer-list-cur{
+        background-color: #67abff  !important;
+    }
+    .aplayer-list-index,
+    .aplayer-list-author{
+        color: #001447aa !important;
+    }
+    .aplayer-list-light{
+        background: #ffffff75 !important;
+    }
+    
+    .aplayer-miniswitcher{
+        border-radius: 0 7px 7px 0 !important;
+    }
+    
+    .aplayer.aplayer-fixed .aplayer-body{
+        border-radius: 0 7px 7px 0 !important;
+    }
+
+    .aplayer-played{
+        background: #67abff  !important;
+
+        .aplayer-thumb{
+            background: #67abff  !important;
+        }
+    }
+    .aplayer-miniswitcher{
+        background: #ffffffaa;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    .aplayer-info{
+        background: #ffffff99;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-top: none !important;
+    }
+    .aplayer-music{
+        .aplayer-title{
+            color: $postColor;
+        }
+        .aplayer-author{
+            color: #001447aa !important;
+        }
+    }
+
+    .aplayer-icon path{
+        fill: #333 !important;
+    }
+
+    .aplayer-time-inner{
+        color: #001447aa !important;
+    }
 }
 
-.aplayer-miniswitcher{
-    border-radius: 0 7px 7px 0 !important;
-}
+.aplayer-container-dark{
+    .aplayer-body,
+    .aplayer-fixed{
+        margin-bottom: 20px !important;
+        margin-bottom: 20px;
+        background: #ffffff22;
+    }
+    .aplayer-body{
+        background: transparent !important;
+    }
 
-.aplayer.aplayer-fixed .aplayer-body{
-    border-radius: 0 7px 7px 0 !important;
+    .aplayer-list{
+        background: #262631aa;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    ol{
+        &::-webkit-scrollbar-thumb{
+            background: #29b839 !important;
+        }
+    }
+
+    li{
+        color: $postColor-dark;
+
+        &:hover{
+            background: #ffffff44 !important;
+        }
+    }
+    .aplayer-list-cur{
+        background-color: #29b839 !important;
+    }
+    .aplayer-list-index,
+    .aplayer-list-author{
+        color: #ffffff99 !important;
+    }
+    .aplayer-list-light{
+        background: #ffffff55 !important;
+    }
+    
+    .aplayer-miniswitcher{
+        border-radius: 0 7px 7px 0 !important;
+    }
+    
+    .aplayer.aplayer-fixed .aplayer-body{
+        border-radius: 0 7px 7px 0 !important;
+    }
+
+    .aplayer-played{
+        background: #29b839 !important;
+
+        .aplayer-thumb{
+            background: #29b839 !important;
+        }
+    }
+    .aplayer-miniswitcher{
+        background: #5d5d6e99;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    .aplayer-info{
+        background: #3d3d4c99;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-top: none !important;
+    }
+    .aplayer-music{
+        .aplayer-title{
+            color: $postColor-dark;
+        }
+        .aplayer-author{
+            color: #ffffff99 !important;
+        }
+    }
+
+    .aplayer-volume{
+        background: #42cf52 !important;
+    }
+
+    .aplayer-icon path{
+        fill: #ffffffaa !important;
+    }
+
+    .aplayer-time-inner{
+        color: #ffffffaa !important;
+    }
 }

@@ -4,6 +4,7 @@ import { MUSIC_URL, IRC_TYPE } from "../../utils/constants";
 // import { saveAPlayer } from '../../redux/actions';
 
 export default function APlayer(){
+  // const [colorTheme,setColorTheme]=useState(props.theme);
   const metingRef=useRef(null);
   const effectRan=useRef(null);
 
@@ -42,7 +43,7 @@ export default function APlayer(){
       ref={metingRef}
       auto={MUSIC_URL}
       fixed={true}
-      theme="#67abff"
+      // theme={colorTheme}
       volume={0.5}
       IrcType={IRC_TYPE}
     />

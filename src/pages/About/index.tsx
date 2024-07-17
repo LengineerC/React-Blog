@@ -58,18 +58,32 @@ export default function About() {
       console.log(err);
     });
 
-    let categoriesData=getFormatCategoriesData();
     // console.log(categoriesData);
     // const unsubscribe=store.subscribe(()=>{
     //   categoriesData=getFormatCategoriesData();
     // });
-    
-
     const pieChartDom=pieChartRef.current;
     const pieChart=echarts.init(pieChartDom);
+    // window.addEventListener('resize',()=>{
+    //   pieChart.resize();
+    // })
+    renderPieChart(pieChart);
+    
+    return ()=>{
+      unsubscribe();
+    }
+
+  },[])
+
+  const renderPieChart=(pieChart:any)=>{
+    let categoriesData=getFormatCategoriesData();
+
     let option={
       tooltip:{
-        triger:"item"
+        triger:"item",
+        textStyle:{
+          fontFamily:"CustomFont1",
+        }
       },
       // legend: {
       //   orient: 'vertical',
@@ -79,8 +93,14 @@ export default function About() {
         {
           name: 'Categories',
           type: 'pie',
-          radius: '50%',
+          radius: '80%',
           data: categoriesData,
+          label:{
+            color:`${isDarkMode?"#ffffffaa":"#000000aa"}`,
+            fontFamily:"CustomFont1",
+            fontWeight:'bold',
+            fontSize:"15"
+          },
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -92,12 +112,7 @@ export default function About() {
       ]
     }
     pieChart.setOption(option);
-
-    return ()=>{
-      unsubscribe();
-    }
-
-  },[])
+  }
 
   return (
     <div className="page-main">

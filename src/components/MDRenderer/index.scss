@@ -1,14 +1,29 @@
 @import "../../styles/base.scss";
 
 .markdown-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  padding: 20px;
-  border-radius: 5px;
-  width: 100%;
-  font-family: "CustomFont1";
-  line-height: normal;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-family: "CustomFont1";
+    line-height: normal;
 
+    .katex-html{
+        display: none;
+    }
+
+    // .katex-html{
+    semantics{
+        font-size: 18px !important;
+        margin: 5px 0 !important;
+        color: $postColor !important;
+    }
+
+    .katex-display semantics{
+        font-size: 23px !important;
+    }
+    // }
     // pre code {
     //     display: block;
     //     color: #ddd;
@@ -197,6 +212,20 @@
 .markdown-body-dark{
     @extend .markdown-body;
 
+    .katex-html{
+        display: none;
+    }
+
+    semantics{
+        font-size: 20px !important;
+        margin: 5px 0 !important;
+        color: $postColor-dark !important;
+    }
+
+    .katex-display semantics{
+        font-size: 23px !important;
+    }
+
     hr{
         height: .25em;
         background-color: #abb8c5;
@@ -266,7 +295,7 @@
     }
 
     a{
-        color:rgb(41, 184, 57);
+        color:#29b839;
     }
     
     table {
