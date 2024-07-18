@@ -159,8 +159,9 @@ export default function App() {
     <div 
     className="App"
     style={{
-      backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`
-    }}
+      // backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`,
+      '--bgImg':`url(${isDarkMode?bgImgDark:bgImgLight})`
+    } as React.CSSProperties}
     >
       <MobileMenu open={showMenu} handleMenuClose={handleMenuClose}/>
 

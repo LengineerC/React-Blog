@@ -7,8 +7,8 @@ export const MOBILE_MAX_WIDTH:number=992;
 //网站作者
 export const AUTHOR:string="LengineerC";
 
-//网站开始日期
-export const WEBSITE_START_DATE:string="2024-6-8";
+//网站开始日期（严格按照yyyy-mm-dd）
+export const WEBSITE_START_DATE:string="2024-06-08";
 
 //启用副标题
 export const SUB_TITLE_ENABLE:boolean=true;

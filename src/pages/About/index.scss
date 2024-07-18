@@ -5,7 +5,7 @@
     @extend .hv-center;
     width: 100%;
     flex-direction: column;
-    
+    position: relative;
 
     $size:150px;
     .about-avatar{

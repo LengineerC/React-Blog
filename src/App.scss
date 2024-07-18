@@ -4,7 +4,28 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    //解决苹果background-attachment: fixed;失效的问题
+    &::before{
+        min-height: 100vh;
+        content: '';
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: var(--bgImg);
+        background-repeat: no-repeat;
+        background-size: cover; 
+        background-position: center center; 
+    }
 }
+
 
 .mobile-toolbar{
     width: 100vw;
