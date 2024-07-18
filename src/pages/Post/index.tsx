@@ -121,11 +121,42 @@ export default function Post() {
   const copyLink=async ()=>{
     const link=url;
     try{
-      await navigator.clipboard.writeText(link);
-      messageApi.open({
-        type:"success",
-        content:"已复制到剪贴板",
-      })
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(link);
+        messageApi.open({
+          type:"success",
+          content:"已复制到剪贴板",
+        })
+      }else{
+        const textArea = document.createElement("textarea");
+        textArea.value = link;
+        
+        textArea.style.position = "fixed"; 
+        textArea.style.top = "-9999px";
+        textArea.style.left = "-9999px";
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          const successful = document.execCommand("copy");
+          if (successful) {
+            messageApi.open({
+              type: "success",
+              content: "已复制到剪贴板",
+            });
+          } else {
+            throw new Error("复制失败");
+          }
+        } catch (err) {
+          message.error("复制链接出错");
+          console.log("复制链接出错", err);
+        }
+  
+        document.body.removeChild(textArea);
+      }
+      
     }catch(e){
       message.error("复制链接出错");
       console.log("复制链接出错",e);
