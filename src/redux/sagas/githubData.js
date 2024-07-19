@@ -17,7 +17,7 @@ function *getGithubRepoCommits(action){
     const {status,data}=response;
     if(status===200){
         yield put({
-            type:{SAVE_GITHUB_REPO_COMMITS},
+            type:SAVE_GITHUB_REPO_COMMITS,
             payload:data,
         });
 
