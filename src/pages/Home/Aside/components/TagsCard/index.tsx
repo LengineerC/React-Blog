@@ -4,9 +4,11 @@ import store from '../../../../../redux/store'
 import Tag from '../../../../../components/Tag';
 
 import "./index.scss"
+import { useAppSelector } from '../../../../../redux/hooks';
 
 export default function TagsCard() {
   const [tags,setTags]=useState<string[]>([]);
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   const getTagsList=()=>{
     const {tagsList}=store.getState();
@@ -40,6 +42,7 @@ export default function TagsCard() {
     <Card
     className='aside-card' 
     scale={true}
+    darkMode={darkMode}
     >
       <div className='tags-card-main'>
         {createTags()}

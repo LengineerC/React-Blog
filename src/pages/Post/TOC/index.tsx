@@ -9,6 +9,7 @@ import { ConfigProvider, Drawer } from 'antd'
 import { useEffect, useState } from 'react'
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants'
 import store from '../../../redux/store'
+import { useAppSelector } from '../../../redux/hooks'
 
 import "./index.scss"
 
@@ -146,7 +147,8 @@ type Props={
 export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
   const [open,setOpen]=useState<boolean>(showDrawer);
   const [drawerVisible,setDrawerVisible]=useState<boolean>(window.innerWidth<=MOBILE_MAX_WIDTH);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   useEffect(()=>{
     setOpen(showDrawer);
@@ -158,10 +160,10 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
   }
 
   useEffect(()=>{
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
 
     const handleResize=()=>{
       setDrawerVisible(window.innerWidth<=MOBILE_MAX_WIDTH);
@@ -170,29 +172,29 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
     window.addEventListener("resize",handleResize);
 
     return ()=>{
-      unsubscribe();
+      // unsubscribe();
       window.removeEventListener("resize",handleResize);
     }
   },[])
 
   useEffect(()=>{
 
-  },[isDarkMode])
+  },[darkMode])
 
   const getColorBgElevated=():string=>{
-    return isDarkMode?"#1c1c2c99":"#ffffffcc";
+    return darkMode?"#1c1c2c99":"#ffffffcc";
   }
 
   return (
     <>
       {
         !drawerVisible ?(
-        <Card className="aside-card">
-          <div className={isDarkMode?"toc-header-dark":'toc-header'}>
+        <Card className="aside-card" darkMode={darkMode}>
+          <div className={darkMode?"toc-header-dark":'toc-header'}>
             <FontAwesomeIcon icon={faList} />&nbsp;目录
             <hr/>
           </div>
-          <div className={isDarkMode?"toc-content-dark":'toc-content'}>
+          <div className={darkMode?"toc-content-dark":'toc-content'}>
               <MarkdownNavbar 
               // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
               source={markdown} 
@@ -214,24 +216,25 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
           }}
           >
             <Drawer
-            className={isDarkMode?"toc-drawer-dark":'toc-drawer'}
+            className={darkMode?"toc-drawer-dark":'toc-drawer'}
             placement="right"
             open={open}
             onClose={onClose}
             width={250}
             closeIcon={null}
+            // destroyOnClose  //不加此项测试运行手机端不显示目录时滑动过快报错，正式运行不影响，但性能会受损 
             >
-              <div className={isDarkMode?"toc-header-dark":'toc-header'}>
+              <div className={darkMode?"toc-header-dark":'toc-header'}>
                 <FontAwesomeIcon icon={faList} />&nbsp;目录
                 <hr/>
               </div>
               <div className='toc-content'>
-                  <MarkdownNavbar 
-                  // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
-                  source={markdown} 
-                  headingTopOffset={60}
-                  ordered={true}
-                  />
+                <MarkdownNavbar 
+                // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
+                source={markdown} 
+                headingTopOffset={60}
+                ordered={true}
+                />
               </div>
 
             </Drawer>

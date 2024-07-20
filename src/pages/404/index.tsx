@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { NavLink, useLocation } from 'react-router-dom'
 // import { MOBILE_MAX_WIDTH } from '../../utils/constants'
+import Card from '../../components/Card'
+import { useAppSelector } from '../../redux/hooks'
 
 import './index.scss'
-import Card from '../../components/Card'
 
 export default function ErrorPage() {
-
   const location=useLocation();
   const fromPath=location.state?.from || location.pathname;
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   const createXmark=(n:number)=>{
     return Array.from({length:n},(_,index)=>(
@@ -33,7 +34,7 @@ export default function ErrorPage() {
           {/* {isMobile?createXmark(10):createXmark(20)} */}
           {createXmark(10)}
         </div>
-        <Card>
+        <Card darkMode={darkMode}>
 
         <div className='error-info-block'>
           <div style={{marginRight:"5px"}}><FontAwesomeIcon icon={faCircleExclamation}/>&nbsp;ErrorInfo:</div>

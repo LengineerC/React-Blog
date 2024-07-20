@@ -8,27 +8,30 @@ import { saveSelectedPostConfig } from "../../redux/actions";
 import PostCard from "../../components/PostCard";
 
 import "./index.scss"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export default function CategoriesDetail() {
   const {category}=useParams();
-  const [categoriesDetail,setCategoriesDetail]=useState<PostConfig[]>();
+  // const [categoriesDetail,setCategoriesDetail]=useState<PostConfig[]>();
+  const categoriesDetail=useAppSelector(state=>state.categoriesList);
+  const dispatch=useAppDispatch();
 
-  useEffect(()=>{
-    const {categoriesList}=store.getState();
-    setCategoriesDetail(categoriesList[category as string]);
+  // useEffect(()=>{
+  //   const {categoriesList}=store.getState();
+  //   setCategoriesDetail(categoriesList[category as string]);
 
-    const unsubscribe=store.subscribe(()=>{
-      const {categoriesList}=store.getState();
-      setCategoriesDetail(categoriesList[category as string]);
-    })
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {categoriesList}=store.getState();
+  //     setCategoriesDetail(categoriesList[category as string]);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
-  },[category])
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
+  // },[category])
 
   const setSelectedPost=(post:PostConfig)=>{
-    store.dispatch(saveSelectedPostConfig(post));
+    dispatch(saveSelectedPostConfig(post));
   }
 
   const createPostCards=()=>{

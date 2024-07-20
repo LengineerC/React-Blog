@@ -7,9 +7,10 @@ import MDRenderer from '../MDRenderer'
 import { Skeleton } from 'antd'
 import Tag from '../Tag'
 import Category from '../Category'
-import store from '../../redux/store'
+// import store from '../../redux/store'
 
 import './index.scss'
+import { useAppSelector } from '../../redux/hooks'
 
 type Props = {
   config: PostConfig,
@@ -25,7 +26,8 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   useEffect(() => {
     // console.log(postConfig);
@@ -50,14 +52,14 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
       setCategories([...postConfig.categories]);
     }
 
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
 
-    return ()=>{
-      unsubscribe();
-    }
+    // return ()=>{
+    //   unsubscribe();
+    // }
 
   }, [])
 
@@ -90,27 +92,28 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
     <div className='hv-center'>
       <Card
         scale={true}
+        darkMode={darkMode}
       >
         {
           loading ? <Skeleton active /> :
             <div className='post-card-main'>
               <NavLink to={`/post/detail/${postConfig.id}`} style={{ textDecoration: "none" }}>
 
-                <div className={isDarkMode?"post-card-title-dark":'post-card-title'}>
+                <div className={darkMode?"post-card-title-dark":'post-card-title'}>
                   {postTitle}
                 </div>
 
-                <hr className={isDarkMode?"hr-dashed-dark":'hr-dashed'}/>
+                <hr className={darkMode?"hr-dashed-dark":'hr-dashed'}/>
 
-                <div className={isDarkMode?'post-card-content-dark':'post-card-content'}>
-                  <MDRenderer darkMode={isDarkMode} limit={limit} markdown={markdown} showLimitContent={showLimitContent} />
+                <div className={darkMode?'post-card-content-dark':'post-card-content'}>
+                  <MDRenderer darkMode={darkMode} limit={limit} markdown={markdown} showLimitContent={showLimitContent} />
                 </div>
 
-                <hr  className={isDarkMode?"hr-double-dark":'hr-double'}/>
+                <hr  className={darkMode?"hr-double-dark":'hr-double'}/>
               </NavLink>
               {
                 showFooter && (
-                  <div className={isDarkMode?'post-card-footer-dark':'post-card-footer'}>
+                  <div className={darkMode?'post-card-footer-dark':'post-card-footer'}>
                     <div className='post-card-tags-block'>
                       {createTags()}
                     </div>

@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import store from '../../redux/store'
+// import {useState, useEffect} from 'react'
+// import store from '../../redux/store'
 import "./index.scss"
 
 type Props = {
@@ -9,25 +9,26 @@ type Props = {
   bgImage?:string,
   opacity?:number,
   background?:string,
+  darkMode:boolean,
 }
 
-export default function Card({scale=false,children,className="card",bgImage,opacity=1,background}: Props) {
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+export default function Card({scale=false,children,className="card",bgImage,opacity=1,background,darkMode}: Props) {
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
 
-  useEffect(()=>{
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+  // useEffect(()=>{
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {darkMode}=store.getState();
+  //     setIsDarkMode(darkMode);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
-  },[])
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
+  // },[])
 
   return (
     <div 
-    className={`${scale?'card-main-scale':'card-main'} ${className} ${isDarkMode?'card-main-dark':""}`}
+    className={`${scale?'card-main-scale':'card-main'} ${className} ${darkMode?'card-main-dark':""}`}
     style={{
       backgroundImage:`url(${bgImage})`,
       opacity:`${opacity}`,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Col, Row } from 'antd';
-import store from '../../redux/store';
+// import store from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faHouse,
@@ -22,6 +22,9 @@ import { MoonFilled, SunFilled } from '@ant-design/icons';
 import { MenuConfig } from '../../utils/types';
 
 import "./index.scss";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+// import { Dispatch } from 'redux';
+// import { connect } from 'react-redux';
 
 //Nav内容块列宽度显示
 const show_border={
@@ -97,11 +100,16 @@ const navCenterColConfig:MenuConfig[]=[
 ]
 
 export default function Nav() {
-  const [visible,setVisible]=useState<boolean>(store.getState().navState);
+  const navState=useAppSelector(state=>state.navState);
+  const [visible,setVisible]=useState<boolean>(navState);
   // const [lastScrollTop,setLastScrollTop]=useState<number>(0);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(false);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(false);
   const [navTransparent,setNavTransparent]=useState<boolean>(true);
   const [showSubMenu,setShowSubMenu]=useState<string|null>(null);
+
+  const darkMode:boolean=useAppSelector(state=>state.darkMode);
+
+  const dispatch=useAppDispatch();
 
   // const handleScroll=()=>{
   //   let currentScrollTop=window.scrollY || document.documentElement.scrollTop;
@@ -165,7 +173,7 @@ export default function Nav() {
         >
           {item.clickable? 
           <NavLink to={item.path}>
-            <div className={isDarkMode?"click-container-dark":'click-container'}>
+            <div className={darkMode?"click-container-dark":'click-container'}>
               <FontAwesomeIcon icon={iconChooser(item.key)} />
               <div className='nav-click-text-container'>
                 {item.name}
@@ -181,7 +189,7 @@ export default function Nav() {
               </div>
             </div>
           </NavLink>:
-            <div className={isDarkMode?"click-container-dark":'click-container'}>
+            <div className={darkMode?"click-container-dark":'click-container'}>
               <FontAwesomeIcon icon={iconChooser(item.key)} />
               <div className='nav-click-text-container'>
                 {item.name}
@@ -202,12 +210,12 @@ export default function Nav() {
             <>
               {
                 showSubMenu===item.key && (
-                  <div className={isDarkMode?'sub-menu-dark':'sub-menu'}>
+                  <div className={darkMode?'sub-menu-dark':'sub-menu'}>
                     {
                       item.options.subItems.map((subItem,index)=>{
                         return(
                           <div 
-                          className={isDarkMode?'sub-menu-item-dark':'sub-menu-item'} 
+                          className={darkMode?'sub-menu-item-dark':'sub-menu-item'} 
                           key={index}
                           >
                             {subItem}
@@ -243,8 +251,8 @@ export default function Nav() {
   }
 
   const changeDarkMode=()=>{
-    const {dispatch}=store;
-    const {darkMode}=store.getState();
+    // const {dispatch}=store;
+    // const {darkMode}=store.getState();
     if(darkMode){
       dispatch(setDarkModeOFF());
     }else{
@@ -254,10 +262,10 @@ export default function Nav() {
 
   //订阅监听夜间模式切换和滚动事件修改样式
   useEffect(()=>{
-    store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    });
+    // store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // });
 
     window.addEventListener("scroll",handleScroll);
     window.addEventListener("scroll",checkScrollTop);
@@ -271,20 +279,22 @@ export default function Nav() {
   //nav显示状态和redux绑定
   useEffect(()=>{
     // console.log(store.getState());
-    store.subscribe(()=>{
-      const {navState}=store.getState();
-      // console.log(store.getState());
+    // store.subscribe(()=>{
+    //   const {navState}=store.getState();
+    //   // console.log(store.getState());
       
-      if(navState!==visible){
-        setVisible(navState);
-      }
-    });
-  },[visible])
+    //   if(navState!==visible){
+    //     setVisible(navState);
+    //   }
+    // });
+    setVisible(navState);
+    
+  },[navState])
 
   return (
     <nav className={`
     ${!visible?'hidden-nav':''} 
-    ${isDarkMode?'nav-dark':"nav"}
+    ${darkMode?'nav-dark':"nav"}
     ${navTransparent?"nav-transparent":''}
     `}>
       <Row>
@@ -294,7 +304,7 @@ export default function Nav() {
         style={show_border}
         >
           <NavLink to="/">
-            <div className={isDarkMode?'click-container-dark':'click-container'} style={{width:"160px"}}>
+            <div className={darkMode?'click-container-dark':'click-container'} style={{width:"160px"}}>
               <FontAwesomeIcon icon={faHouse} />
             </div>
           </NavLink>
@@ -526,7 +536,7 @@ export default function Nav() {
         style={show_border}
         >
           <div className='nav-tool-click-container' onClick={changeDarkMode}>
-            {!isDarkMode?<MoonFilled />:<SunFilled />}
+            {!darkMode?<MoonFilled />:<SunFilled />}
           </div>
         </Col>
 
@@ -534,3 +544,15 @@ export default function Nav() {
     </nav>
   )
 }
+
+// const mapStateToProps=(state:any)=>({
+//   darkMode:state.darkMode,
+//   navState:state.navState,
+// });
+
+// const mapDispatchToProps=(dispatch:Dispatch)=>({
+//   setDarkModeOFF:dispatch(setDarkModeOFF()),
+//   setDarkModeON:dispatch(setDarkModeON()),
+// });
+
+// export default connect(mapStateToProps,mapDispatchToProps)(Nav);

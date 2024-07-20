@@ -16,15 +16,20 @@ import { SHOW_APLAYER } from './utils/constants';
 // import { aplayerRef } from './refs';
 import bgImgLight from "./assets/image/bg1.webp";
 import bgImgDark from "./assets/image/bg0.webp";
+import { useAppDispatch, useAppSelector } from './redux/hooks';
+import { Dispatch } from 'redux';
 
 import './App.scss';
 
 const MobileMenu=lazy(()=>import('./components/MobileMenu/index'))
 
-export default function App() {
+const App:React.FC<any>=()=>{
   // const [showToolbar, setShowToolbar]=useState<boolean>(false);
   const [showMenu,setShowMenu]=useState<boolean>(false);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(darkMode);
+  const darkMode:boolean=useAppSelector(state=>state.darkMode);
+  const dispatch:Dispatch=useAppDispatch();
 
   // const handleResize=()=>{
   //   // console.log(window.innerWidth);
@@ -71,13 +76,13 @@ export default function App() {
 
   useEffect(()=>{
     const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
-    const {darkMode}=store.getState();
+    // const {darkMode}=store.getState();
     bodyStyle.innerHTML=getBodyStyleInnerHtml(darkMode);
     //通过监听页面大小来判断是否需要显示移动端ToolBar的按钮
     // window.addEventListener("resize",handleResize);
     // handleResize();
 
-    const {dispatch}=store;
+    // const {dispatch}=store;
     //获取文章列表
     axios.get('/json/posts.json')
     .then(response=>{
@@ -108,14 +113,51 @@ export default function App() {
       console.log("获取Categories列表失败",err);
     })
 
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   if(isDarkMode!==darkMode){
+    //     setIsDarkMode(darkMode);
+    //   }
+    // })
+
     return()=>{
       // window.removeEventListener("resize",handleResize);
+      // unsubscribe();
     }
   },[])
 
+  // useEffect(()=>{
+  //   // const bodyDom:HTMLElement|null=document.querySelector('body');
+  //   // let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
+  //   // if(bodyDom){
+  //   //   bodyDom.style.backgroundImage=`url(${imgUrl})`;
+  //   // }
+
+  //   const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
+  //   // const unsubscribe=store.subscribe(()=>{
+  //   //   const {darkMode}=store.getState();
+  //   //   if(isDarkMode!==darkMode){
+  //   //     setIsDarkMode(darkMode);
+  //   //   }
+  //   // })
+  //   bodyStyle.innerHTML=getBodyStyleInnerHtml(d);
+
+  //   // return ()=>{
+  //   //   unsubscribe();
+  //   // }
+    
+  // },[isDarkMode])
+
+  useEffect(()=>{
+    // setIsDarkMode(darkMode);
+    const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
+    bodyStyle.innerHTML=getBodyStyleInnerHtml(darkMode);
+
+  },[darkMode])
+
   const changeDarkMode=()=>{
-    const {dispatch}=store;
-    if(isDarkMode){
+    // const {dispatch}=store;
+    if(darkMode){
       // store.dispatch(darkmodeOFF());
       dispatch(setDarkModeOFF());
     }else{
@@ -124,28 +166,6 @@ export default function App() {
     }
     // console.log(store.getState().darkMode)
   }
-
-  useEffect(()=>{
-    // const bodyDom:HTMLElement|null=document.querySelector('body');
-    // let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
-    // if(bodyDom){
-    //   bodyDom.style.backgroundImage=`url(${imgUrl})`;
-    // }
-
-    const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      if(isDarkMode!==darkMode){
-        setIsDarkMode(darkMode);
-        bodyStyle.innerHTML=getBodyStyleInnerHtml(darkMode);
-      }
-    })
-
-    return ()=>{
-      unsubscribe();
-    }
-    
-  },[isDarkMode])
 
   // 处理移动端菜单按钮
   const handleMenuOpen=()=>{
@@ -160,7 +180,7 @@ export default function App() {
     className="App"
     style={{
       // backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`,
-      '--bgImg':`url(${isDarkMode?bgImgDark:bgImgLight})`
+      '--bgImg':`url(${darkMode?bgImgDark:bgImgLight})`
     } as React.CSSProperties}
     >
       <MobileMenu open={showMenu} handleMenuClose={handleMenuClose}/>
@@ -195,20 +215,38 @@ export default function App() {
 
         <div className='icon-container' style={{"justifyContent": "flex-end"}}>
           <div className='icon-block' onClick={changeDarkMode}>
-            {!isDarkMode?<MoonFilled />:<SunFilled />}
+            {!darkMode?<MoonFilled />:<SunFilled />}
           </div>
         </div>
 
       </div>
       <Nav />
       <Main />
-      <Top />
+      <Top darkMode={darkMode}/>
       <Footer />
       
-      <div className={isDarkMode?"aplayer-container-dark":"aplayer-container"}>
-        {SHOW_APLAYER && <APlayer />}
-      </div>
+      {
+        SHOW_APLAYER && 
+        <div className={darkMode?"aplayer-container-dark":"aplayer-container"}>
+          <APlayer />
+        </div>
+      }
 
     </div>
   )
 }
+
+const mapStateToProps = (state:any) => ({
+  darkMode: state.darkMode,
+});
+
+const mapDispatchToProps = {
+  savePostList,
+  saveTagsList,
+  saveCategoriesList,
+  setDarkModeOFF,
+  setDarkModeON,
+};
+
+// export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default App;

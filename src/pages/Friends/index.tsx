@@ -7,6 +7,7 @@ import store from '../../redux/store'
 import { saveFriendsUrlData } from '../../redux/actions'
 
 import './index.scss'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
 const bgColors=[
   'linear-gradient(to right,#ffb7b7aa 0%,#ff4c4caa 50%,#ffb7b7aa 100%)',
@@ -19,34 +20,38 @@ const bgColors=[
 const darkBgColor:string="linear-gradient(to right,#ffffff55 0%,#c0c0c055 50%,#ffffff55 100%)";
 
 export default function Friends() {
-  const [friendsUrlData,setFriendsUrlData]=useState<FriendUrl[]>([]);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [friendsUrlData,setFriendsUrlData]=useState<FriendUrl[]>([]);
+  const friendsUrlData=useAppSelector(state=>state.friendsUrlData);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+  const dispatch=useAppDispatch();
 
   useEffect(()=>{
-    const {friendsUrlData}=store.getState();
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    });
+    // const {friendsUrlData}=store.getState();
+    
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // });
 
     if(friendsUrlData.length===0){
       axios.get('/json/friends.json')
       .then((response=>{
-        const {dispatch}=store;
         const {data}=response;
-        setFriendsUrlData(data);
+        // setFriendsUrlData(data);
         dispatch(saveFriendsUrlData(data));
       }))
       .catch((err)=>{
         console.log("获取友链数据失败",err);
       });
-    }else{
-      setFriendsUrlData(friendsUrlData);
     }
+    // else{
+    //   setFriendsUrlData(friendsUrlData);
+    // }
 
-    return ()=>{
-      unsubscribe();
-    }
+    // return ()=>{
+    //   unsubscribe();
+    // }
 
   },[])
 
@@ -59,19 +64,20 @@ export default function Friends() {
               <Card
               scale={true}
               className='aside-card'
-              background={isDarkMode?darkBgColor:bgColors[1]}
+              darkMode={darkMode}
+              background={darkMode?darkBgColor:bgColors[1]}
               >
                 <div className='friends-card'>
-                  <div className={isDarkMode?'friends-card-img-dark':'friends-card-img'}>
+                  <div className={darkMode?'friends-card-img-dark':'friends-card-img'}>
                     <img src={item.avatar}/>
                   </div>
 
                   <div className='friends-card-content'>
-                    <div className={isDarkMode?'friends-card-content-title-dark':'friends-card-content-title'}>
+                    <div className={darkMode?'friends-card-content-title-dark':'friends-card-content-title'}>
                       {item.title}
                     </div>
 
-                    <div className={isDarkMode?'friends-card-content-description-dark':'friends-card-content-description'}>
+                    <div className={darkMode?'friends-card-content-description-dark':'friends-card-content-description'}>
                       {item.description}
                     </div>
                   </div>
@@ -91,7 +97,7 @@ export default function Friends() {
       </div>
 
       <div className='page-main-content'>
-        <Card>
+        <Card darkMode={darkMode}>
           <div className='friends-main'>
             {createFriendsUrlCards()}
           </div>

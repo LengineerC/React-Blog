@@ -52,6 +52,7 @@
 - [x] 苹果About页avatar位置错误
 - [x] 苹果background-attachment: fixed;失效
 - [x] 手机端复制文章连接失败
+- [ ] MarkdownNavbar导致的文章页面滑动状态更新过快测试环境报错和性能降低
 
 ---
 ## TODO:

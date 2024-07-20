@@ -6,20 +6,22 @@ import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
 import store from '../../redux/store';
 
 import './index.scss';
+import { useAppSelector } from '../../redux/hooks';
 
 export default function Media() {
   const aplayerRef=useRef(null);
   // const aplayerInstanceRef = useRef(null)
   const effectRan=useRef<boolean>(false);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   // const location=useLocation();
 
   useEffect(() => {
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
     if(effectRan.current) return;
 
     let aplayerInstance:any=null;
@@ -36,7 +38,7 @@ export default function Media() {
     effectRan.current=true;
 
     return () => {
-      unsubscribe();
+      // unsubscribe();
       if(aplayerInstance){
         (aplayerInstance as any).destroy();
       }
@@ -50,12 +52,12 @@ export default function Media() {
         <PageTitle title="Media" />
       </div>
       <div className="page-main-content">
-        <Card>
+        <Card darkMode={darkMode}>
           <div className="media-card-main">
-            <div className={isDarkMode?'media-title-dark':'media-title'}>
+            <div className={darkMode?'media-title-dark':'media-title'}>
               🎶穢れなき音楽室
             </div>
-            <div className={isDarkMode?'media-card-main-player-dark':"media-card-main-player"}>
+            <div className={darkMode?'media-card-main-player-dark':"media-card-main-player"}>
               <meting-js 
                 ref={aplayerRef}
                 auto={MUSIC_URL}
@@ -65,7 +67,7 @@ export default function Media() {
               />
             </div>
 
-            <div className={isDarkMode?'media-title-dark':'media-title'}>
+            <div className={darkMode?'media-title-dark':'media-title'}>
               📺远古视频
             </div>
             <div className='media-card-main-video'>

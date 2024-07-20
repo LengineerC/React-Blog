@@ -6,27 +6,30 @@ import store from "../../redux/store";
 import Tag from "../../components/Tag";
 import * as echarts from 'echarts/core';
 import 'echarts-wordcloud';
+import { useAppSelector } from "../../redux/hooks";
 
 import "./index.scss";
 
 export default function TagsPage() {
-  const [tags,setTags]=useState<any>();
+  // const [tags,setTags]=useState<any>();
+  const tags=useAppSelector(state=>state.tagsList);
+  const darkMode=useAppSelector(state=>state.darkMode);
   const chartRef=useRef(null);
   const navigate=useNavigate();
   
-  useEffect(()=>{
-    const {tagsList}=store.getState();
-    setTags(tagsList);
+  // useEffect(()=>{
+  //   const {tagsList}=store.getState();
+  //   setTags(tagsList);
 
-    const unsubscribe=store.subscribe(()=>{
-      const {tagsList={}}=store.getState();
-      setTags(tagsList);
-    })
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {tagsList={}}=store.getState();
+  //     setTags(tagsList);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
-  },[])
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
+  // },[])
   
   useEffect(()=>{
     if(tags){
@@ -103,14 +106,14 @@ export default function TagsPage() {
       </div>
 
       <div className="page-main-content">
-          <Card>
+          <Card darkMode={darkMode}>
             <div className="tags-page-card-tags">
               {createTags()}
             </div>
           </Card>
 
           <div className="tags-page-chart-main">
-            <Card>
+            <Card darkMode={darkMode}>
               <div className="tags-page-chart-block" ref={chartRef} />
             </Card>
           </div>

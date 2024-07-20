@@ -1,42 +1,47 @@
 import { useState, useEffect } from 'react'
 import { PostConfig } from '../../../utils/types';
-import store from '../../../redux/store';
+// import store from '../../../redux/store';
 import { saveSelectedPostConfig } from '../../../redux/actions';
 import PostCard from '../../../components/PostCard';
 import { Pagination, ConfigProvider } from 'antd';
 
 import './index.scss';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 type Props = {}
 
 export default function HomePosts({}: Props) {
-  const [postList,setPostList]=useState<PostConfig[]>(store.getState().postList);
+  // const [postList,setPostList]=useState<PostConfig[]>(store.getState().postList);
+  const postList=useAppSelector(state=>state.postList);
   const [pagination,setPagination]=useState<number>(1);
   const [pageSize]=useState<number>(10);
   const [currentPage,setCurrentPage]=useState<PostConfig[]>([]);
 
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+  const dispatch=useAppDispatch();
 
-  useEffect(()=>{
-    const {postList}=store.getState();
-    setPostList(postList);
+  // useEffect(()=>{
+  //   const {postList}=store.getState();
+  //   setPostList(postList);
 
-    //先从App中获取所有的页面列表，然后在此存入state
-    const unsubscribe=store.subscribe(()=>{
-      const {postList,darkMode}=store.getState();
-      // console.log(postList);
+  //   //先从App中获取所有的页面列表，然后在此存入state
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {postList,darkMode}=store.getState();
+  //     // console.log(postList);
       
-      setPostList(postList);
-      // if(darkMode!==isDarkMode){
-        setIsDarkMode(darkMode);
-      // }
-    });
+  //     setPostList(postList);
+  //     // if(darkMode!==isDarkMode){
+  //       setIsDarkMode(darkMode);
+  //     // }
+  //   });
 
-    return ()=>{
-      unsubscribe();
-      // console.log(store.getState().selectedPost);
-    }
-  },[]);
+  //   return ()=>{
+  //     unsubscribe();
+  //     // console.log(store.getState().selectedPost);
+  //   }
+  // },[]);
+
   // useEffect(()=>{
   //   console.log(postList);
     
@@ -54,7 +59,7 @@ export default function HomePosts({}: Props) {
   },[pagination,postList])
 
   const setSelectedPost=(selectedPost:PostConfig)=>{
-    store.dispatch(saveSelectedPostConfig(selectedPost));
+    dispatch(saveSelectedPostConfig(selectedPost));
   }
 
   const createPostCards=()=>{
@@ -86,7 +91,7 @@ export default function HomePosts({}: Props) {
   }
 
   const getPaginationTheme=()=>{
-    if(!isDarkMode) return({
+    if(!darkMode) return({
       token:{
         fontFamily:"CustomFont1",
         colorPrimary:"#67abff",
@@ -118,7 +123,7 @@ export default function HomePosts({}: Props) {
       <ConfigProvider
       theme={getPaginationTheme()}
       >
-        <div className={isDarkMode?"page-options-line-dark":'page-options-line'}>
+        <div className={darkMode?"page-options-line-dark":'page-options-line'}>
           <Pagination 
           total={postList.length}
           showTotal={(total)=>`共 ${total} 篇文章`}

@@ -7,25 +7,27 @@ import { saveSelectedPostConfig } from "../../redux/actions";
 import { PostConfig } from "../../utils/types";
 
 import './index.scss'
+import { useAppSelector } from "../../redux/hooks";
 
 export default function TagDetail() {
   const {tag}=useParams();
-  const [tagsDetail,setTagsDetail]=useState<PostConfig[]>();
+  // const [tagsDetail,setTagsDetail]=useState<PostConfig[]>();
+  const tagsDetail=useAppSelector(state=>state.tagsList)[tag as string];
 
-  useEffect(()=>{
-    const {tagsList}=store.getState();
-    setTagsDetail(tagsList[tag as string]);
+  // useEffect(()=>{
+  //   const {tagsList}=store.getState();
+  //   setTagsDetail(tagsList[tag as string]);
 
-    const unsubscribe=store.subscribe(()=>{
-      const {tagsList}=store.getState();
-      setTagsDetail(tagsList[tag as string]);
-    })
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {tagsList}=store.getState();
+  //     setTagsDetail(tagsList[tag as string]);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
 
-  },[tag])
+  // },[tag])
 
   const setSelectedPost=(selectedPost:PostConfig)=>{
     // console.log(selectedPost);
@@ -34,7 +36,7 @@ export default function TagDetail() {
 
   const createPostCards=()=>{
     if(tagsDetail && tagsDetail.length>0){
-      return tagsDetail.map((post)=>{
+      return tagsDetail.map((post:PostConfig)=>{
         return(
           <div 
           style={{width:"100%",marginBottom:"3vh"}} 

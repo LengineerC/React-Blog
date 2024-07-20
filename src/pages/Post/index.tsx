@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Card from '../../components/Card';
 import MDRenderer from '../../components/MDRenderer';
-import store from '../../redux/store';
+// import store from '../../redux/store';
 import { ConfigProvider, FloatButton, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
@@ -21,7 +21,8 @@ import { AUTHOR, DEFAULT_SHOW_TOC } from '../../utils/constants';
 import TOC from './TOC';
 import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/actions';
 import LockCard from './LockCard';
-
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import store from '../../redux/store';
 import './index.scss'
 
 export default function Post() {
@@ -37,7 +38,9 @@ export default function Post() {
   const [messageApi, contextHolder] = message.useMessage();
   const [url,setUrl]=useState<string>(window.location.href);
 
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+  const dispatch=useAppDispatch();
 
   const navigate=useNavigate();
 
@@ -46,10 +49,10 @@ export default function Post() {
       navigate('/');
     }
 
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
 
     axios.get(`/posts/${id}.md`)
     .then(response=>{
@@ -85,9 +88,9 @@ export default function Post() {
     }
 
     return ()=>{
-      unsubscribe();
-      store.dispatch(clearSelectedPostConfig());
-      store.dispatch(clearSelectedPostHtml());
+      // unsubscribe();
+      dispatch(clearSelectedPostConfig());
+      dispatch(clearSelectedPostHtml());
     }
 
   },[])
@@ -173,14 +176,14 @@ export default function Post() {
   }
 
   const getTocBtnToken=()=>{
-    let colorBgElevated=isDarkMode?'#46466c7b':'#ffffff7b';
-    let colorFillContent=isDarkMode?'#686894bb':'#ffffffbb';
+    let colorBgElevated=darkMode?'#46466c7b':'#ffffff7b';
+    let colorFillContent=darkMode?'#686894bb':'#ffffffbb';
     let colorText='#ffffff99';
     let token:any={
       colorBgElevated,
       colorFillContent
     };
-    if(isDarkMode){
+    if(darkMode){
       if(!token.hasOwnProperty('colorText')){
         token['colorText']=colorText;
       }
@@ -216,7 +219,7 @@ export default function Post() {
               !locked?
               <>
                 <div className={showTOC?"post-page-body-content-container-showtoc":'post-page-body-content-container'}>
-                  <Card>
+                  <Card darkMode={darkMode}>
                     <div className='post-page-card-header'>
                       <div className='post-page-card-header-symbol'>
                         <div className='post-page-card-header-symbol-tags'>
@@ -229,17 +232,17 @@ export default function Post() {
                       </div>
 
                       <div className='post-page-card-header-info'>
-                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
+                        <div style={darkMode?{color:"#ffffffcc"}:{}}>
                           <span style={{fontWeight:"bolder"}}><UserOutlined/>&nbsp;作者：</span>
                           {postConfig.author}
                         </div>
 
-                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
+                        <div style={darkMode?{color:"#ffffffcc"}:{}}>
                         <span style={{fontWeight:"bold"}}><ClockCircleOutlined/>&nbsp;发布时间：</span>
                           {postConfig.time}
                         </div>
 
-                        <div style={isDarkMode?{color:"#ffffffcc"}:{}}>
+                        <div style={darkMode?{color:"#ffffffcc"}:{}}>
                         <span style={{fontWeight:"bold"}}><FileWordOutlined />&nbsp;文章字数：</span>
                           {mdLen}
                         </div>
@@ -250,16 +253,16 @@ export default function Post() {
                     <hr className='hr-twill'/>
                     
                     <div className={'post-page-card-container'}>
-                      <MDRenderer darkMode={isDarkMode} markdown={markdown} showLimitContent={false} />
+                      <MDRenderer darkMode={darkMode} markdown={markdown} showLimitContent={false} />
                     </div>
 
                     <hr className='hr-twill'/>
 
-                    <div className={isDarkMode?'post-page-card-footer-dark':'post-page-card-footer'}>
+                    <div className={darkMode?'post-page-card-footer-dark':'post-page-card-footer'}>
                       <div style={{marginBottom:"5px"}}>
                         <span style={{fontWeight:"bold"}}>
                           <LinkOutlined/>文章链接：
-                          <CopyFilled className={isDarkMode?'copy-button-dark':'copy-button'} onClick={copyLink}/>
+                          <CopyFilled className={darkMode?'copy-button-dark':'copy-button'} onClick={copyLink}/>
                         </span>
                         <a href={url}>{url}</a>
                       </div>
@@ -291,7 +294,7 @@ export default function Post() {
           </div>
         </>:(
           <div className='post-page-body'>
-            <Card>
+            <Card darkMode={darkMode}>
               <Skeleton active/>
             </Card>
           </div>

@@ -1,36 +1,41 @@
 import Card from "../../components/Card";
 import PageTitle from "../../components/PageTitle";
-import { useEffect, useRef, useState } from "react";
-import store from "../../redux/store";
+import { useEffect, useRef } from "react";
+// import store from "../../redux/store";
 import * as echarts from 'echarts/core';
 import 'echarts-wordcloud';
 import Category from "../../components/Category";
+import { useAppSelector } from "../../redux/hooks";
 
 import "./index.scss";
 
 export default function CategoriesPage() {
-  const [categories,setCategories]=useState<any>();
-  const [postCount,setPostCount]=useState<number>(0);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [categories,setCategories]=useState<any>();
+  const categories=useAppSelector(state=>state.categoriesList);
+  const postCount=useAppSelector(state=>state.postList).length || 0;
+  // const [postCount,setPostCount]=useState<number>(0);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+
   const chartRef=useRef(null);
   
-  useEffect(()=>{
-    const {categoriesList,postList}=store.getState();
-    setCategories(categoriesList);
-    setPostCount(postList.length);
+  // useEffect(()=>{
+  //   const {categoriesList,postList}=store.getState();
+  //   setCategories(categoriesList);
+  //   setPostCount(postList.length);
 
 
-    const unsubscribe=store.subscribe(()=>{
-      const {categoriesList={},postList,darkMode}=store.getState();
-      setCategories(categoriesList);
-      setPostCount(postList.length);
-      setIsDarkMode(darkMode);
-    })
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {categoriesList={},postList,darkMode}=store.getState();
+  //     setCategories(categoriesList);
+  //     setPostCount(postList.length);
+  //     setIsDarkMode(darkMode);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
-  },[])
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
+  // },[])
   
   useEffect(()=>{
     // console.log(categories,postCount);
@@ -44,22 +49,22 @@ export default function CategoriesPage() {
     if(categories && Object.keys(categories).length>0 && postCount!==0){
       createRadarChart();
     }
-  },[isDarkMode])
+  },[darkMode])
 
   const createRadarChart=()=>{
     const radarChart=echarts.init(chartRef.current);
     let textStyle={
       fontFamily:"CustomFont1",
       fontSize:15,
-      color:`${isDarkMode?'#ffffffcc':'#000000c0'}`
+      color:`${darkMode?'#ffffffcc':'#000000c0'}`
     };
     let itemStyle={
-      color: `${isDarkMode?'#42cf52':'#67abff'}`
+      color: `${darkMode?'#42cf52':'#67abff'}`
     }
     let axisName={
       fontFamily:"CustomFont1",
       fontSize:15,
-      color:`${isDarkMode?'#ffffffcc':'#000000c0'}`,
+      color:`${darkMode?'#ffffffcc':'#000000c0'}`,
       fontWeight:'bold'
     }
 
@@ -103,7 +108,7 @@ export default function CategoriesPage() {
                 show: true, 
                 fontSize: 13, 
                 position: 'right', 
-                color:`${isDarkMode?'#ffffff':"#000000"}`,
+                color:`${darkMode?'#ffffff':"#000000"}`,
                 fontWeight:"bold",
                 fontFamily:"CustomFont1",
                 // shadowColor:`${isDarkMode?"#000000aa":"#ffffffaa"}`,
@@ -140,14 +145,14 @@ export default function CategoriesPage() {
       </div>
 
       <div className="page-main-content">
-          <Card>
+          <Card darkMode={darkMode}>
             <div className="categories-page-card-categories">
               {createCategories()}
             </div>
           </Card>
 
           <div className="categories-page-chart-main">
-            <Card>
+            <Card darkMode={darkMode}>
               <div className="categories-page-chart-block" ref={chartRef} />
             </Card>
           </div>

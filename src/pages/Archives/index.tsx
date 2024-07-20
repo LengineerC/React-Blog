@@ -14,6 +14,7 @@ import Card from "../../components/Card"
 import store from "../../redux/store";
 import { PostConfig } from "../../utils/types";
 import { GITHUB_REPO } from "../../utils/constants";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import "./index.scss"
 
@@ -29,11 +30,13 @@ echarts.use([
 export default function Archives() {
   const heatMapRef=useRef(null);
   const [currentDate]=useState<Date>(new Date());
-  const [postList,setPostList]=useState<PostConfig[]>([]);
+  // const [postList,setPostList]=useState<PostConfig[]>([]);
   const [githubRepoCommits,setGithubRepoCommits]=useState<[]>([]);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+  const postList=useAppSelector(state=>state.postList);
 
-  const dispatch=store.dispatch;
+  const dispatch=useAppDispatch();
 
   const getFormatData=(year:string)=>{
     const date=+echarts.time.parse(year+'-01-01');
@@ -92,10 +95,10 @@ export default function Archives() {
 
   useEffect(()=>{
     const {githubRepoCommits}=store.getState();
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
 
     if(githubRepoCommits || githubRepoCommits.length===0){
       dispatch({
@@ -109,32 +112,32 @@ export default function Archives() {
       formatCommitData(githubRepoCommits);
     }
 
-    return ()=>{
-      unsubscribe();
-    }
+    // return ()=>{
+    //   unsubscribe();
+    // }
   },[])
 
-  useEffect(()=>{
+  // useEffect(()=>{
     
-    const {postList}=store.getState();
-    setPostList(postList);
+  //   const {postList}=store.getState();
+  //   setPostList(postList);
 
-    const unsubscribe=store.subscribe(()=>{
-      const {postList}=store.getState();
-      setPostList(postList);
-    })
+  //   const unsubscribe=store.subscribe(()=>{
+  //     const {postList}=store.getState();
+  //     setPostList(postList);
+  //   })
 
-    return ()=>{
-      unsubscribe();
-    }
+  //   return ()=>{
+  //     unsubscribe();
+  //   }
 
-  },[postList])
+  // },[postList])
 
   useEffect(()=>{
     const heatMap=echarts.init(heatMapRef.current);
     renderHeatMap(heatMap);
 
-  },[isDarkMode,postList])
+  },[darkMode,postList])
 
   const renderHeatMap=(heatMap:any)=>{
     let title={
@@ -143,7 +146,7 @@ export default function Archives() {
       text:"文章日历",
       textStyle:{
         fontFamily:"CustomFont1",
-        color:`${isDarkMode?"#ffffffaa":"#001447aa"}`,
+        color:`${darkMode?"#ffffffaa":"#001447aa"}`,
         fontWeight:'bold',
       },
     }
@@ -167,16 +170,16 @@ export default function Archives() {
         //   color:['#cdd8db','#80cbe0','#2986d2','#0943b7'],
         // },
         textStyle:{
-          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          color: `${darkMode?"#ffffffaa":"#001447aa"}`,
           fontFamily:"CustomFont1",
           fontWeight:"bold",
         },
         pieces: [
-          {min: 4, label: '4+', color: `${isDarkMode?'#216e39':'#0943b7'}`},
-          {min: 3, max: 3, label: '3', color: `${isDarkMode?'#30a14e':'#2986d2'}`},
-          {min: 2, max: 2, label: '2', color: `${isDarkMode?'#40c463':'#80cbe0'}`},
-          {min: 1, max: 1, label: '1', color: `${isDarkMode?'#9be9a8':'#cdd8db'}`},
-          {min: 0, max: 0, label: '0', color: `${isDarkMode?'#333333':'#f6f6f6'}`}
+          {min: 4, label: '4+', color: `${darkMode?'#216e39':'#0943b7'}`},
+          {min: 3, max: 3, label: '3', color: `${darkMode?'#30a14e':'#2986d2'}`},
+          {min: 2, max: 2, label: '2', color: `${darkMode?'#40c463':'#80cbe0'}`},
+          {min: 1, max: 1, label: '1', color: `${darkMode?'#9be9a8':'#cdd8db'}`},
+          {min: 0, max: 0, label: '0', color: `${darkMode?'#333333':'#f6f6f6'}`}
         ],
         orient: 'horizontal',
         left: 'center',
@@ -200,20 +203,20 @@ export default function Archives() {
         itemStyle: {
           borderWidth: 2,
           // borderColor:"#aaaaaa99"
-          borderColor:`${isDarkMode?'#aaaaaa99':'#ccc'}`
+          borderColor:`${darkMode?'#aaaaaa99':'#ccc'}`
         },
         dayLabel:{
-          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          color: `${darkMode?"#ffffffaa":"#001447aa"}`,
           fontFamily:"CustomFont1",
           fontWeight:"bold",
         },
         monthLabel:{
-          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          color: `${darkMode?"#ffffffaa":"#001447aa"}`,
           fontFamily:"CustomFont1",
           fontWeight:"bold",
         },
         yearLabel:{
-          color: `${isDarkMode?"#ffffffaa":"#001447aa"}`,
+          color: `${darkMode?"#ffffffaa":"#001447aa"}`,
           fontFamily:"CustomFont1",
           fontWeight:"bold",
         },
@@ -224,7 +227,7 @@ export default function Archives() {
         data: getFormatData(currentDate.getFullYear().toString()),
         itemStyle:{
           borderRadius: 2,
-          borderColor:`${isDarkMode?'#aaaaaa99':'#ccc'}`
+          borderColor:`${darkMode?'#aaaaaa99':'#ccc'}`
 
         },
       }
@@ -244,6 +247,7 @@ export default function Archives() {
       <div className="page-main-content">
         <Card
         className="card"
+        darkMode={darkMode}
         >
           <div ref={heatMapRef} className="calender-heatmap-block" />
 
@@ -252,13 +256,13 @@ export default function Archives() {
             theme={{
               components:{
                 Timeline:{
-                  tailColor:`${isDarkMode?"#ffffff66":"rgb(0, 20, 71)"}`,
+                  tailColor:`${darkMode?"#ffffff66":"rgb(0, 20, 71)"}`,
                 }
               },
               token:{
                 fontFamily:"CustomFont1",
                 fontSize:17,
-                colorText:`${isDarkMode?"#ffffffcc":"#001447cc"}`
+                colorText:`${darkMode?"#ffffffcc":"#001447cc"}`
               }
             }}
             >

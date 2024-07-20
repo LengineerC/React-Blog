@@ -5,25 +5,15 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { AUTHOR, WEBSITE_START_DATE, EMAIL, BILIBILI_LINK } from '../../utils/constants';
 import { Popover, ConfigProvider } from 'antd';
 // import { makeBadge, ValidationError } from 'badge-maker';
-import store from '../../redux/store';
+// import store from '../../redux/store';
 
 import "./index.scss"
+import { useAppSelector } from '../../redux/hooks';
 
 export default function Footer() {
   const [date]=useState<Date>(new Date());
-  const [isDarkMode,setIsDarkMode]=useState<boolean>();
-
-  useEffect(()=>{
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    });
-
-    return ()=>{
-      unsubscribe();
-    }
-
-  },[])
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>();
+  const darkMode=useAppSelector(state=>state.darkMode);
 
   const calculateDays=()=>{
     let startDate=new Date(WEBSITE_START_DATE);
@@ -32,7 +22,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className={isDarkMode?'footer-main-dark':'footer-main'}>
+    <footer className={darkMode?'footer-main-dark':'footer-main'}>
       <div className='footer-left-col'>
         <div className='footer-left-row'>
           <span className='footer-text-des'>

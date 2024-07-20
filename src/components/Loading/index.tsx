@@ -4,6 +4,7 @@ import { hideNav, showNav } from '../../redux/actions'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import * as echarts from 'echarts';
+import { useAppDispatch } from '../../redux/hooks';
 
 import "./index.scss"
 
@@ -11,9 +12,9 @@ type EChartsOption = echarts.EChartsOption;
 
 export default function Loading() {
   const loadingRef=useRef(null); 
+  const dispatch=useAppDispatch();
 
   useEffect(()=>{
-    const {dispatch}=store;
     // store.dispatch(hideNav());
     dispatch(hideNav())
     let loading=echarts.init(loadingRef.current);
@@ -62,7 +63,7 @@ export default function Loading() {
     loading.setOption(option);
 
     return()=>{
-      store.dispatch(showNav());
+      dispatch(showNav());
     }
   },[])
 

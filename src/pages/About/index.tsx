@@ -4,7 +4,7 @@ import Card from "../../components/Card"
 import avatar from "../../assets/image/avatar.webp";
 import { AUTHOR } from "../../utils/constants";
 import axios from "axios";
-import store from "../../redux/store";
+// import store from "../../redux/store";
 import MDRenderer from "../../components/MDRenderer";
 import * as echarts from 'echarts/core';
 import {
@@ -15,6 +15,7 @@ import {
 import { PieChart } from 'echarts/charts';
 import { LabelLayout } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import { useAppSelector } from "../../redux/hooks";
 
 import "./index.scss"
 
@@ -30,11 +31,14 @@ echarts.use([
 export default function About() {
   const [markdown,setMarkdown]=useState<string>('');
   const pieChartRef=useRef<HTMLDivElement>(null);
-  const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
+  const darkMode=useAppSelector(state=>state.darkMode);
+  const categoriesList=useAppSelector(state=>state.categoriesList);
 
   const getFormatCategoriesData=()=>{
     let data=[];
-    const {categoriesList}=store.getState();
+    // const {categoriesList}=store.getState();
+
     data=Object.keys(categoriesList).map(key=>{
       return({
         name:key,
@@ -45,10 +49,10 @@ export default function About() {
   }
 
   useEffect(()=>{
-    const unsubscribe=store.subscribe(()=>{
-      const {darkMode}=store.getState();
-      setIsDarkMode(darkMode);
-    })
+    // const unsubscribe=store.subscribe(()=>{
+    //   const {darkMode}=store.getState();
+    //   setIsDarkMode(darkMode);
+    // })
 
     axios.get('/aboutme.md')
     .then(res=>{
@@ -69,9 +73,9 @@ export default function About() {
     // })
     renderPieChart(pieChart);
     
-    return ()=>{
-      unsubscribe();
-    }
+    // return ()=>{
+    //   unsubscribe();
+    // }
 
   },[])
 
@@ -96,7 +100,7 @@ export default function About() {
           radius: '80%',
           data: categoriesData,
           label:{
-            color:`${isDarkMode?"#ffffffaa":"#000000aa"}`,
+            color:`${darkMode?"#ffffffaa":"#000000aa"}`,
             fontFamily:"CustomFont1",
             fontWeight:'bold',
             fontSize:"15"
@@ -121,26 +125,26 @@ export default function About() {
       </div>
 
       <div className="page-main-content" style={{marginTop:"15vh"}}>
-        <Card>
+        <Card darkMode={darkMode}>
           <div className="about-main">
             <div className="about-avatar">
               <img src={avatar}/>
             </div>
 
             <div className="about-content">
-              <div className={isDarkMode?"about-content-title-dark":"about-content-title"}>
+              <div className={darkMode?"about-content-title-dark":"about-content-title"}>
                 {AUTHOR}
               </div>
 
               <div className="about-content-text">
                 <MDRenderer
-                darkMode={isDarkMode}
+                darkMode={darkMode}
                 markdown={markdown}
                 showLimitContent={false}
                 />
               </div>
 
-              <div className={isDarkMode?"about-chart-title-dark":"about-chart-title"}>
+              <div className={darkMode?"about-chart-title-dark":"about-chart-title"}>
                 文章数据列表
               </div>
 
