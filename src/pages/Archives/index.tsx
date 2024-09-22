@@ -12,7 +12,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 import PageTitle from "../../components/PageTitle"
 import Card from "../../components/Card"
 import store from "../../redux/store";
-import { PostConfig } from "../../utils/types";
+// import { PostConfig } from "../../utils/types";
 import { GITHUB_REPO } from "../../utils/constants";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 

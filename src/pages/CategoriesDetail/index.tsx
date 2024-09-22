@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 export default function CategoriesDetail() {
   const {category}=useParams();
   // const [categoriesDetail,setCategoriesDetail]=useState<PostConfig[]>();
-  const categoriesDetail=useAppSelector(state=>state.categoriesList);
+  const categoriesDetail=useAppSelector(state=>state.categoriesList)[category as string];
   const dispatch=useAppDispatch();
 
   // useEffect(()=>{
