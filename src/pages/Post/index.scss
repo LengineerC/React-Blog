@@ -114,7 +114,15 @@
         width: 30%;
         padding-left: 20px;
         position: sticky;
-        top: $navHeight + 20px;;
+        top: $navHeight + 20px;
+
+        &.fade-out{
+            animation: toc-fade-out 0.15s linear forwards;
+        }
+
+        &.fade-in{
+            animation: toc-fade-in 0.15s linear forwards;
+        }
     }
 }
 
@@ -138,6 +146,26 @@
 
     &:hover{
         color: #29b839;
+    }
+}
+
+@keyframes toc-fade-out{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes toc-fade-in{
+    from{
+        opacity: 0;
+        display: none;
+    }
+    to{
+        opacity: 1;
     }
 }
 

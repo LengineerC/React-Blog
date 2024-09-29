@@ -3,7 +3,7 @@ import Card from '../../components/Card';
 import PageTitle from '../../components/PageTitle';
 import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
 // import { useLocation } from 'react-router-dom';
-import store from '../../redux/store';
+// import store from '../../redux/store';
 
 import './index.scss';
 import { useAppSelector } from '../../redux/hooks';

@@ -119,6 +119,13 @@ const App:React.FC<any>=()=>{
     //     setIsDarkMode(darkMode);
     //   }
     // })
+    let localStorageDarkMode=localStorage.getItem('darkMode') || 'false';
+    
+    if(localStorageDarkMode==='false'){
+      dispatch(setDarkModeOFF());
+    }else{
+      dispatch(setDarkModeON());
+    }
 
     return()=>{
       // window.removeEventListener("resize",handleResize);
@@ -160,9 +167,11 @@ const App:React.FC<any>=()=>{
     if(darkMode){
       // store.dispatch(darkmodeOFF());
       dispatch(setDarkModeOFF());
+      localStorage.setItem('darkMode','false');
     }else{
       // store.dispatch(darkmodeON());
       dispatch(setDarkModeON());
+      localStorage.setItem('darkMode','true');
     }
     // console.log(store.getState().darkMode)
   }

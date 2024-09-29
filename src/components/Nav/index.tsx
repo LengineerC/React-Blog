@@ -209,22 +209,21 @@ export default function Nav() {
           {item.options.subMenuEnable&&
             <>
               {
-                showSubMenu===item.key && (
-                  <div className={darkMode?'sub-menu-dark':'sub-menu'}>
-                    {
-                      item.options.subItems.map((subItem,index)=>{
-                        return(
-                          <div 
-                          className={darkMode?'sub-menu-item-dark':'sub-menu-item'} 
-                          key={index}
-                          >
-                            {subItem}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
+                // showSubMenu===item.key && 
+                <div className={`${darkMode?'sub-menu-dark':'sub-menu'} ${showSubMenu!==item.key?"fade-out":""}`}>
+                  {
+                    item.options.subItems.map((subItem,index)=>{
+                      return(
+                        <div 
+                        className={darkMode?'sub-menu-item-dark':'sub-menu-item'} 
+                        key={index}
+                        >
+                          {subItem}
+                        </div>
+                      )
+                    })
+                  }
+                </div>
               }
             </>
           }
@@ -255,8 +254,10 @@ export default function Nav() {
     // const {darkMode}=store.getState();
     if(darkMode){
       dispatch(setDarkModeOFF());
+      localStorage.setItem('darkMode','false');
     }else{
       dispatch(setDarkModeON());
+      localStorage.setItem('darkMode','true');
     }
   }
 

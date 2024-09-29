@@ -277,8 +277,8 @@ export default function Post() {
                 </div>
                 
                 <div 
-                className='toc-container' 
-                style={showTOC?{}:{display:"none"}}
+                className={`toc-container ${showTOC?'fade-in':'fade-out'}`} 
+                // style={showTOC?{}:{display:"none"}}
                 >
                   <TOC 
                   showDrawer={showTOCDrawer} 
