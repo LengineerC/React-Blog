@@ -150,6 +150,7 @@
     .nav{
         transform: translateY(-$navHeight);
         transition: transform 0s ease;
+        display: none;
     }
 }
 
