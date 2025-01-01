@@ -3,6 +3,8 @@
 
 .categories-page-card-categories{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .categories-container{
