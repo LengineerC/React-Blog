@@ -14,8 +14,7 @@ import axios from 'axios';
 import APlayer from './components/APlayer';
 import { SHOW_APLAYER } from './utils/constants';
 // import { aplayerRef } from './refs';
-import bgImgLight from "./assets/image/bg1.webp";
-import bgImgDark from "./assets/image/bg0.webp";
+import { BACKGROUND_IMG } from './utils/constants';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { Dispatch } from 'redux';
 
@@ -189,7 +188,7 @@ const App:React.FC<any>=()=>{
     className="App"
     style={{
       // backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`,
-      '--bgImg':`url(${darkMode?bgImgDark:bgImgLight})`
+      '--bgImg':`url(${darkMode?BACKGROUND_IMG.DARK:BACKGROUND_IMG.LIGHT})`
     } as React.CSSProperties}
     >
       <MobileMenu open={showMenu} handleMenuClose={handleMenuClose}/>

@@ -1,3 +1,6 @@
+import bgImgLight from "@/assets/image/bg1.webp";
+import bgImgDark from "@/assets/image/bg0.webp";
+
 //站点标题
 export const SITE_TITLE:string="LengineerC's blog";
 
@@ -18,6 +21,12 @@ export const SITE_DEFAULT_THEME_MODE:boolean=false;
 
 //副标题默认内容
 export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
+
+// 网站亮色暗色背景(文件路径和网址均可)
+export const BACKGROUND_IMG={
+    LIGHT:bgImgLight,
+    DARK:bgImgDark,
+}
 
 //公告栏内容
 export const NOTICE_CARD_TEXT:string="网站正在建设中...";
@@ -60,3 +69,6 @@ export const GITHUB_REPO={
     owner:"LengineerC",
     repo:"React-blog"
 }
+
+// github pages mode
+export const DEPLOY_ON_GITHUB_PAGES:boolean=true;

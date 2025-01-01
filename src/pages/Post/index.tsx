@@ -17,7 +17,7 @@ import {
   UnorderedListOutlined, } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
-import { AUTHOR, DEFAULT_SHOW_TOC } from '../../utils/constants';
+import { AUTHOR, DEFAULT_SHOW_TOC, DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
 import TOC from './TOC';
 import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/actions';
 import LockCard from './LockCard';
@@ -80,11 +80,13 @@ export default function Post() {
     });
 
     //处理因锚点导致的复制链接出错的问题
-    const url=window.location.href;
-    const hashIndex=url.indexOf('#');
-    if(hashIndex!==-1){
-      const newUrl=url.substring(0,hashIndex);
-      setUrl(newUrl);
+    if(!DEPLOY_ON_GITHUB_PAGES){
+      const url=window.location.href;
+      const hashIndex=url.indexOf('#');
+      if(hashIndex!==-1){
+        const newUrl=url.substring(0,hashIndex);
+        setUrl(newUrl);
+      }
     }
 
     return ()=>{

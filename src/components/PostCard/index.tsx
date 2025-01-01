@@ -11,6 +11,7 @@ import Category from '../Category'
 
 import './index.scss'
 import { useAppSelector } from '../../redux/hooks'
+import { DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants'
 
 type Props = {
   config: PostConfig,
@@ -31,8 +32,12 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
 
   useEffect(() => {
     // console.log(postConfig);
-    const { title, path, lock } = postConfig;
-    axios.get(path)
+    const { title, path } = postConfig;
+    let fullPath=DEPLOY_ON_GITHUB_PAGES?
+      `${process.env.PUBLIC_URL}${path}?timestamp=${Date.now()}`:
+      `${process.env.PUBLIC_URL}${path}`
+
+    axios.get(fullPath)
       .then(response => {
         // console.log(response);
         setPostTitle(title)

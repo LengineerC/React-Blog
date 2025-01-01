@@ -1,6 +1,10 @@
 @import "../../styles/base.scss";
 
 @media screen and (max-width:$mobileMaxWidth){
+    .ant-drawer-body{
+        overflow: hidden !important;
+    }
+
     .header-text-center{
         font-family: "CustomFont1";
         display: flex;

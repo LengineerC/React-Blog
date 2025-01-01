@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
+    "@craco/craco": "^7.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
@@ -41,12 +42,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node scripts/generatePostList.js && node scripts/generateClassList.js && react-scripts start",
-    "build": "node scripts/generatePostList.js && node scripts/generateClassList.js && react-scripts build",
+    "start": "npm run gen-posts-config && craco start",
+    "build": "npm run gen-posts-config && craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gen-posts-config": "node scripts/generatePostList.js && node scripts/generateClassList.js",
-    "create-post": "node scripts/createPost.js"
+    "create-post": "node scripts/createPost.js",
+    "predeploy": "craco build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +71,7 @@
   },
   "devDependencies": {
     "@types/markdown-navbar": "^1.4.4",
+    "gh-pages": "^6.2.0",
     "marked-katex-extension-ts": "^0.1.3"
   }
 }
