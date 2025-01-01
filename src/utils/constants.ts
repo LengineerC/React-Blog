@@ -20,7 +20,11 @@ export const SUB_TITLE_ENABLE:boolean=true;
 export const SITE_DEFAULT_THEME_MODE:boolean=false;
 
 //副标题默认内容
-export const SUB_TITLE_TEXT:string="All tragedies crased, I see only wonders.";
+export const SUB_TITLE_TEXTS:string[]=[
+    "All tragedies crased, I see only wonders.",
+    "On n'oublie jamais une personne, on s'habitue seulement à son absence.",
+    "日々私たちが過ごしている日常は、実は、奇跡の連続なのかもしれない。"
+];
 
 // 网站亮色暗色背景(文件路径和网址均可)
 export const BACKGROUND_IMG={
@@ -40,8 +44,8 @@ export const QQ:string="398908838";
 export const BILIBILI_LINK:string="https://space.bilibili.com/92665721";
 
 //自定义目录生效：目录检测标题级数,(不超过5级)，使用markdown-navbar配置无效
-export const MAX_TOC_HEADING:number=2;
-export const TOC_HEADING_CONFIG:string="h2,h3,h4,h5";
+// export const MAX_TOC_HEADING:number=2;
+// export const TOC_HEADING_CONFIG:string="h2,h3,h4,h5";
 
 //Post页是否自动开启目录
 export const DEFAULT_SHOW_TOC:boolean=true;
@@ -71,4 +75,4 @@ export const GITHUB_REPO={
 }
 
 // github pages mode
-export const DEPLOY_ON_GITHUB_PAGES:boolean=true;
+export const DEPLOY_ON_GITHUB_PAGES:boolean=false;

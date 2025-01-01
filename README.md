@@ -6,7 +6,7 @@
 - 文章支持markdown语法，latex支持
 - 支持夜间模式切换
 - APlayer音乐播放器
-- 主要部分功能可配置，配置文件路径`src/utils/contants.ts`
+- **主要部分功能可配置，配置文件路径`src/utils/contants.ts`**
 
 ## 📁 public文件夹介绍
 ### `./`

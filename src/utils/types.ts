@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 //post文件配置
 export type PostConfig={
     id:string,
@@ -18,10 +20,20 @@ export type MenuConfig={
     path:string,
     key:string,
     clickable:boolean,
+    icon:IconDefinition,
     options:{
       subMenuEnable:boolean,
-      subItems:JSX.Element[],
+      subItems?:SubItem[],
     }
+}
+type SubItem=Pick<MenuConfig, "name"|"path"|"icon">;
+
+export type MobileMenuConfig={
+  name:string,
+  path:string,
+  key:string,
+  icon:IconDefinition,
+  subItems?:SubItem[],
 }
 
 // 友链json格式

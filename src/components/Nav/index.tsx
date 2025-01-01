@@ -38,18 +38,21 @@ const navCenterColConfig:MenuConfig[]=[
     path:"posts",
     key:"posts",
     clickable:false,
+    icon:faBook,
     options:{
       subMenuEnable:true,
       subItems:[
-        <NavLink to="/tags">
-          <FontAwesomeIcon style={{marginRight:"5px"}} icon={faTag}/>
-          标签
-        </NavLink>,
-        <NavLink to="/categories">
-          <FontAwesomeIcon style={{marginRight:"5px"}} icon={faBookmark}/>
-          分类
-        </NavLink>,
-      ],
+        {
+          path:"tags",
+          name:"标签",
+          icon:faTag
+        },
+        {
+          path:"categories",
+          name:"分类",
+          icon:faBookmark
+        },
+      ]
     }
   },
   {
@@ -57,10 +60,9 @@ const navCenterColConfig:MenuConfig[]=[
     path:"archives",
     key:"archives",
     clickable:true,
+    icon:faFileZipper,
     options:{
       subMenuEnable:false,
-      subItems:[
-      ],
     }
   },
   {
@@ -68,11 +70,10 @@ const navCenterColConfig:MenuConfig[]=[
     path:"media",
     key:"media",
     clickable:true,
+    icon:faMusic,
     options:{
       subMenuEnable:false,
-      subItems:[
-        <p>music</p>
-      ],
+      subItems:[],
     }
   },
   {
@@ -80,10 +81,9 @@ const navCenterColConfig:MenuConfig[]=[
     path:"friends",
     key:"friends",
     clickable:true,
+    icon:faLink,
     options:{
       subMenuEnable:false,
-      subItems:[
-      ],
     }
   },
   {
@@ -91,10 +91,9 @@ const navCenterColConfig:MenuConfig[]=[
     path:"about",
     key:"about",
     clickable:true,
+    icon:faAddressCard,
     options:{
       subMenuEnable:false,
-      subItems:[
-      ],
     }
   },
 ]
@@ -143,23 +142,6 @@ export default function Nav() {
     // }
   }
 
-  const iconChooser=(name:string):IconDefinition=>{
-    switch(name){
-      case "posts":
-        return faBook;
-      case "archives":
-        return faFileZipper;
-      case "media":
-        return faMusic;
-      case "friends":
-        return faLink;
-      case "about":
-        return faAddressCard;
-      default:
-        return faXmark;
-    }
-  }
-
   const createCenterColItems=()=>{
     return navCenterColConfig.map(item=>{
       return(
@@ -174,7 +156,7 @@ export default function Nav() {
           {item.clickable? 
           <NavLink to={item.path}>
             <div className={darkMode?"click-container-dark":'click-container'}>
-              <FontAwesomeIcon icon={iconChooser(item.key)} />
+              <FontAwesomeIcon icon={item.icon} />
               <div className='nav-click-text-container'>
                 {item.name}
                 {item.options.subMenuEnable &&
@@ -190,7 +172,7 @@ export default function Nav() {
             </div>
           </NavLink>:
             <div className={darkMode?"click-container-dark":'click-container'}>
-              <FontAwesomeIcon icon={iconChooser(item.key)} />
+              <FontAwesomeIcon icon={item.icon} />
               <div className='nav-click-text-container'>
                 {item.name}
                 {item.options.subMenuEnable &&
@@ -206,7 +188,7 @@ export default function Nav() {
             </div>
           }
 
-          {item.options.subMenuEnable&&
+          {item.options.subMenuEnable&&item.options.subItems&&
             <>
               {
                 // showSubMenu===item.key && 
@@ -218,7 +200,10 @@ export default function Nav() {
                         className={darkMode?'sub-menu-item-dark':'sub-menu-item'} 
                         key={index}
                         >
-                          {subItem}
+                          <NavLink to={`/${subItem.path}`}>
+                            <FontAwesomeIcon style={{marginRight:"5px"}} icon={subItem.icon}/>
+                            {subItem.name}
+                          </NavLink>
                         </div>
                       )
                     })
@@ -311,223 +296,9 @@ export default function Nav() {
           </NavLink>
         </Col>
 
-        {/*用于间隔*/}
-        {/* <Col 
-        span="1"
-        style={show_border}
-        >
-        </Col> */}
-
         <Col className='nav-center-col' flex={1} span={8}>
           {createCenterColItems()}
 
-        {
-        //#region 非动态渲染
-        /*
-        <div 
-        className='nav-content-container' 
-        onMouseEnter={()=>handleMouseEnter("articles")}
-        onMouseLeave={handleMouseLeave}
-        style={show_border}
-        >
-          <NavLink to="articles">
-            <div 
-            className='click-container'
-            >
-              <FontAwesomeIcon icon={faBook} />
-              <div className='nav-click-text-container'>
-                文章
-                {subMenuConfig.articles.enable&&
-                  <span className='nav-click-text-icon'>
-                    {
-                      showSubMenu?
-                      <FontAwesomeIcon icon={faAngleUp} />
-                      :<FontAwesomeIcon icon={faAngleDown} />
-                    }
-                  </span>
-                }
-              </div>
-            </div>
-          </NavLink>
-
-          {subMenuConfig.articles.enable&&
-            <>
-              {
-                showSubMenu==="articles" && (
-                  <div className='sub-menu'>
-                    {
-                      subMenuConfig.articles.subItems.map((item,index)=>{
-                        return(
-                          <div className='sub-menu-item' key={index}>
-                            {item}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
-              }
-            </>
-          }
-        </div>
-
-        <div 
-        className='nav-content-container' 
-        style={show_border}
-        onMouseEnter={()=>handleMouseEnter("archives")}
-        onMouseLeave={handleMouseLeave}
-        // push={1}
-        >
-          <NavLink to="archives">
-            <div className='click-container'>
-              <FontAwesomeIcon icon={faFileZipper} />
-              <div className='nav-click-text-container'>
-                归档
-                {subMenuConfig.archives.enable&&
-                  <span className='nav-click-text-icon'>
-                    {
-                      showSubMenu?
-                      <FontAwesomeIcon icon={faAngleUp} />
-                      :<FontAwesomeIcon icon={faAngleDown} />
-                    }
-                  </span>
-                }
-              </div>
-            </div>
-          </NavLink>
-          
-          {subMenuConfig.archives.enable&&
-            <>
-              {
-                showSubMenu==="articles" && (
-                  <div className='sub-menu'>
-                    {
-                      subMenuConfig.archives.subItems.map((item,index)=>{
-                        return(
-                          <div className='sub-menu-item' key={index}>
-                            {item}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
-              }
-            </>
-          }
-        </div>
-
-        <div 
-        className='nav-content-container' 
-        style={show_border}
-        onMouseEnter={()=>handleMouseEnter("media")}
-        onMouseLeave={handleMouseLeave}
-        // push={1}
-        >
-          <NavLink to="media">
-            <div className='click-container'>
-              <FontAwesomeIcon icon={faMusic} />
-              <div className='nav-click-text-container'>
-                媒体
-                {subMenuConfig.media.enable&&
-                  <span className='nav-click-text-icon'>
-                    {
-                      showSubMenu?
-                      <FontAwesomeIcon icon={faAngleUp} />
-                      :<FontAwesomeIcon icon={faAngleDown} />
-                    }
-                  </span>
-                }
-              </div>
-            </div>
-          </NavLink>
-
-          {subMenuConfig.media.enable&&
-            <>
-              {
-                showSubMenu==="articles" && (
-                  <div className='sub-menu'>
-                    {
-                      subMenuConfig.media.subItems.map((item,index)=>{
-                        return(
-                          <div className='sub-menu-item' key={index}>
-                            {item}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
-              }
-            </>
-          }
-        </div>
-
-        <div
-        className='nav-content-container' 
-        style={show_border}
-        onMouseEnter={()=>handleMouseEnter("friends")}
-        onMouseLeave={handleMouseLeave}
-        // push={1}
-        >
-          <NavLink to="friends">
-            <div className='click-container'>
-              <FontAwesomeIcon icon={faLink} />
-              <div className='nav-click-text-container'>
-                友链
-                {subMenuConfig.friends.enable&&
-                  <span className='nav-click-text-icon'>
-                    {
-                      showSubMenu?
-                      <FontAwesomeIcon icon={faAngleUp} />
-                      :<FontAwesomeIcon icon={faAngleDown} />
-                    }
-                  </span>
-                }
-              </div>
-            </div>
-          </NavLink>
-
-          {subMenuConfig.friends.enable&&
-            <>
-              {
-                showSubMenu==="articles" && (
-                  <div className='sub-menu'>
-                    {
-                      subMenuConfig.friends.subItems.map((item,index)=>{
-                        return(
-                          <div className='sub-menu-item' key={index}>
-                            {item}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                )
-              }
-            </>
-          }
-        </div>
-
-        <div 
-        className='nav-content-container' 
-        style={show_border}
-        onMouseEnter={()=>handleMouseEnter("about")}
-        onMouseLeave={handleMouseLeave}
-        // push={1}
-        >
-          <NavLink to="about">
-            <div className='click-container'>
-              <FontAwesomeIcon icon={faAddressCard} />
-              <div className='nav-click-text-container'>
-                关于
-              </div>
-            </div>
-          </NavLink>
-        </div> 
-        */
-        //#endregion
-        }
         </Col>
 
         <Col 
@@ -545,15 +316,3 @@ export default function Nav() {
     </nav>
   )
 }
-
-// const mapStateToProps=(state:any)=>({
-//   darkMode:state.darkMode,
-//   navState:state.navState,
-// });
-
-// const mapDispatchToProps=(dispatch:Dispatch)=>({
-//   setDarkModeOFF:dispatch(setDarkModeOFF()),
-//   setDarkModeON:dispatch(setDarkModeON()),
-// });
-
-// export default connect(mapStateToProps,mapDispatchToProps)(Nav);

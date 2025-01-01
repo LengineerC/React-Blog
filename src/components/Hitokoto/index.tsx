@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { HITOKOTO_GET_ENABLE, SUB_TITLE_ENABLE, SUB_TITLE_TEXT } from '../../utils/constants';
+import { HITOKOTO_GET_ENABLE, SUB_TITLE_ENABLE, SUB_TITLE_TEXTS } from '../../utils/constants';
 import './index.scss'
+import { genRandomInt } from '@/utils/functions';
 
 const jinrishici = require('jinrishici');
 export default function Hitokoto() {
-  const [sentence,setSentence]=useState<string>(SUB_TITLE_TEXT);
+  const [sentence,setSentence]=useState<string>(SUB_TITLE_TEXTS[genRandomInt(0,SUB_TITLE_TEXTS.length-1)]);
   
   useEffect(()=>{
     if(HITOKOTO_GET_ENABLE && SUB_TITLE_ENABLE){

@@ -12,8 +12,6 @@ const Post=lazy(()=>import("../pages/Post/index.tsx"));
 const PostsPage=lazy(()=>import("../pages/PostsPage/index.tsx"));
 const Archives=lazy(()=>import("../pages/Archives/index.tsx"));
 const Friends=lazy(()=>import("../pages/Friends/index.tsx"));
-
-// 播放器问题暂时不采用懒加载并移出路由表，路由配置移入Main
 const Media=lazy(()=>import("../pages/Media/index.tsx"));
 
 const routes=[
@@ -49,7 +47,6 @@ const routes=[
         path:"archives",
         element:<Archives />
     },
-    // 播放器问题暂时不采用懒加载并移出路由表，路由配置移入Main
     {
         path:"media",
         element:<Media />
