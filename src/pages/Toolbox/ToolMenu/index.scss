@@ -1,0 +1,92 @@
+@import "../../../styles/base.scss";
+@import "../../../styles/page_layout.scss";
+
+.toolbox-main{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+
+    .toolbox-item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 15px 10px;
+        transition: .3s;
+
+        &:hover{
+            transform: scale(1.02);
+            background: radial-gradient(
+                ellipse, 
+                transparentize($themeBackgroundColor,.5) 0%,
+                transparent 75% 
+            );
+        }
+
+        &.dark:hover{
+            transform: scale(1.02);
+            background: radial-gradient(
+                ellipse, 
+                mix($themeBackgroundColor-dark,#ffffffaa,80%) 0%,
+                transparent 75% 
+            );
+        }
+
+        .item-title{
+            color: $postColor;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: "CustomFont1";
+
+            &.dark{
+                color: $postColor-dark;
+            }
+        }
+
+        .item-center-line{
+            margin: 0 8px;
+            margin-top: 3px;
+            flex: 1;
+            height: 1px;
+            background-image: linear-gradient(
+                to right, 
+                $postColor 0%,
+                $postColor 50%,
+                transparent 50%
+            );
+            background-size: 8px 1px;
+            background-repeat: repeat-x;
+
+            &.dark{
+                background-image: linear-gradient(
+                    to right, 
+                    $postColor-dark 0%,
+                    $postColor-dark 50%,
+                    transparent 50%
+                );
+            }
+        }
+
+        .item-info-container{
+            display: flex;
+            flex-direction: row;
+            @extend .hv-center;
+
+            .item-info{
+                color: $postColor;
+                font-size: 18px;
+                font-family: "CustomFont1";
+                padding-bottom: 2px;
+
+                &.dark{
+                    color: $postColor-dark;
+                }
+            }
+        }
+
+    }
+}

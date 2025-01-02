@@ -10,7 +10,9 @@ import {
   faAddressCard, 
   faMusic,   
   faAngleDown, 
-  faAngleUp,  
+  faAngleUp,
+  faToolbox,  
+  faWindowRestore,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../../redux/hooks';
@@ -30,43 +32,43 @@ const custom_menu_fold_outlined = {
 
 const menuConig:MobileMenuConfig[]=[
   {
-    path:"posts",
+    path:"/posts",
     key:"posts",
     name:"文章",
     icon:faBook
   },
   {
-    path:"archives",
+    path:"/archives",
     key:"archives",
     name:"归档",
     icon:faFileZipper
   },
   {
-    path:"media",
-    key:"media",
-    name:"媒体",
-    icon:faMusic,
+    name:"应用",
+    path:"application",
+    key:"application",
+    icon:faWindowRestore,
     subItems:[
       {
-        name:"文章",
-        path:"posts",
-        icon:faBook
+        path:"/media",
+        name:"媒体",
+        icon:faMusic
       },
       {
-        name:"文章",
-        path:"posts",
-        icon:faBook
+        path:"/toolbox",
+        name:"工具箱",
+        icon:faToolbox,
       },
     ],
   },
   {
-    path:"friends",
+    path:"/friends",
     key:"friends",
     name:"友链",
     icon:faLink
   },
   {
-    path:"about",
+    path:"/about",
     key:"about",
     name:"关于",
     icon:faAddressCard

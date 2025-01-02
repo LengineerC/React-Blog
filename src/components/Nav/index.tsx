@@ -15,6 +15,8 @@ import {
   faXmark, 
   faTag,
   faBookmark,
+  faToolbox,
+  faWindowRestore
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { setDarkModeOFF, setDarkModeON } from '../../redux/actions';
@@ -43,12 +45,12 @@ const navCenterColConfig:MenuConfig[]=[
       subMenuEnable:true,
       subItems:[
         {
-          path:"tags",
+          path:"/tags",
           name:"标签",
           icon:faTag
         },
         {
-          path:"categories",
+          path:"/categories",
           name:"分类",
           icon:faBookmark
         },
@@ -57,7 +59,7 @@ const navCenterColConfig:MenuConfig[]=[
   },
   {
     name:"归档",
-    path:"archives",
+    path:"/archives",
     key:"archives",
     clickable:true,
     icon:faFileZipper,
@@ -66,19 +68,30 @@ const navCenterColConfig:MenuConfig[]=[
     }
   },
   {
-    name:"媒体",
-    path:"media",
-    key:"media",
-    clickable:true,
-    icon:faMusic,
+    name:"应用",
+    path:"application",
+    key:"application",
+    clickable:false,
+    icon:faWindowRestore,
     options:{
-      subMenuEnable:false,
-      subItems:[],
+      subMenuEnable:true,
+      subItems:[
+        {
+          path:"/media",
+          name:"媒体",
+          icon:faMusic
+        },
+        {
+          path:"/toolbox",
+          name:"工具箱",
+          icon:faToolbox,
+        },
+      ],
     }
   },
   {
     name:"友链",
-    path:"friends",
+    path:"/friends",
     key:"friends",
     clickable:true,
     icon:faLink,
@@ -88,7 +101,7 @@ const navCenterColConfig:MenuConfig[]=[
   },
   {
     name:"关于",
-    path:"about",
+    path:"/about",
     key:"about",
     clickable:true,
     icon:faAddressCard,
@@ -200,7 +213,7 @@ export default function Nav() {
                         className={darkMode?'sub-menu-item-dark':'sub-menu-item'} 
                         key={index}
                         >
-                          <NavLink to={`/${subItem.path}`}>
+                          <NavLink to={`${subItem.path}`}>
                             <FontAwesomeIcon style={{marginRight:"5px"}} icon={subItem.icon}/>
                             {subItem.name}
                           </NavLink>

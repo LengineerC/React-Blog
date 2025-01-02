@@ -14,7 +14,7 @@ export type PostConfig={
     tags?:[],
 };
 
-// Nav菜单配置
+// Nav菜单配置(要展开子菜单path不能以/开头)
 export type MenuConfig={
     name:string,
     path:string,
@@ -34,6 +34,12 @@ export type MobileMenuConfig={
   key:string,
   icon:IconDefinition,
   subItems?:SubItem[],
+}
+
+export type ToolMenuConfigItem={
+  name:string,
+  path:string,
+  key:string
 }
 
 // 友链json格式

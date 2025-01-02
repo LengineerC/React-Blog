@@ -95,7 +95,7 @@
                 color: $postColor-dark;
 
                 a{
-                    color: #29b839;
+                    color: $dark-highlight-color;
                 }
             }
             
@@ -145,7 +145,7 @@
     color: $postColor-dark;
 
     &:hover{
-        color: #29b839;
+        color: $dark-highlight-color;
     }
 }
 

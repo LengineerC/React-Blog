@@ -1,4 +1,6 @@
 import { lazy } from "react"
+import toolboxRoutes from "./toolboxRoutes.js";
+import { Navigate } from "react-router-dom";
 // import Loading from "../components/Loading/index";
 
 const Home=lazy(()=>import("../pages/Home/index.tsx"));
@@ -13,6 +15,8 @@ const PostsPage=lazy(()=>import("../pages/PostsPage/index.tsx"));
 const Archives=lazy(()=>import("../pages/Archives/index.tsx"));
 const Friends=lazy(()=>import("../pages/Friends/index.tsx"));
 const Media=lazy(()=>import("../pages/Media/index.tsx"));
+const Toolbox=lazy(()=>import("../pages/Toolbox/index.tsx"));
+
 
 const routes=[
     {
@@ -20,43 +24,54 @@ const routes=[
         element:<Home />
     },
     {
-        path:"post/detail/:id",
+        path:"/post/detail/:id",
         element:<Post />
     },
     {
-        path:"tags",
+        path:"/tags",
         element: <TagsPage />
     },
     {
-        path:"tags/:tag",
+        path:"/tags/:tag",
         element: <TagDetail />
     },
     {
-        path:"categories",
+        path:"/categories",
         element:<CategoriesPage />
     },
     {
-        path:"categories/:category",
+        path:"/categories/:category",
         element:<CategoriesDetail />
     },
     {
-        path:"posts",
+        path:"/posts",
         element:<PostsPage />
     },
     {
-        path:"archives",
+        path:"/archives",
         element:<Archives />
     },
     {
-        path:"media",
+        path:"/toolbox",
+        element:<Toolbox />,
+        children: [
+            ...toolboxRoutes,
+            {
+                path:"",
+                element:<Navigate to="menu" />
+            }
+        ],
+    },
+    {
+        path:"/media",
         element:<Media />
     },
     {
-        path:"friends",
+        path:"/friends",
         element:<Friends />
     },
     {
-        path:"about",
+        path:"/about",
         element:<About />
     },
     // {

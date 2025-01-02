@@ -76,7 +76,7 @@
 
         ol{
             &::-webkit-scrollbar-thumb{
-                background: #29b839 !important;
+                background: $dark-highlight-color !important;
             }
         }
 
@@ -88,7 +88,7 @@
             }
         }
         .aplayer-list-cur{
-            background-color: #29b839 !important;
+            background-color: $dark-highlight-color !important;
         }
         .aplayer-list-index,
         .aplayer-list-author{
@@ -107,10 +107,10 @@
         }
 
         .aplayer-played{
-            background: #29b839 !important;
+            background: $dark-highlight-color !important;
 
             .aplayer-thumb{
-                background: #29b839 !important;
+                background: $dark-highlight-color !important;
             }
         }
         .aplayer-lrc-current{

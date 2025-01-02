@@ -169,7 +169,7 @@
 
         &:hover{
             transform: scale(1.01);
-            color: #29b839;
+            color: $dark-highlight-color;
             font-weight: bold;
         }
 
@@ -186,7 +186,7 @@
 
     .active{
         transform: scale(1.01);
-        color: #29b839;
+        color: $dark-highlight-color;
         font-weight: bold;
     }
 }
@@ -206,7 +206,7 @@
 
         &:hover{
             transform: scale(1.01);
-            color: #29b839;
+            color: $dark-highlight-color;
             font-weight: bold;
         }
 
@@ -223,7 +223,7 @@
 
     .active{
         transform: scale(1.01);
-        color: #29b839;
+        color: $dark-highlight-color;
         font-weight: bold;
     }
 }
