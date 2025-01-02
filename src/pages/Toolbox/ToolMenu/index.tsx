@@ -10,7 +10,8 @@ const toolMenuConfig:ToolMenuConfigItem[]=[
   {
     path:"unicode",
     key:"unicode",
-    name:"Unicode转换器"
+    name:"Unicode转换器",
+    info:"加密通话"
   },
 ];
 
@@ -40,7 +41,7 @@ export default function ToolMenu() {
 
       <div className="item-info-container">
         <div className={`item-info ${darkMode&&"dark"}`}>
-          test
+          {item.info}
         </div>
 
         <FontAwesomeIcon 

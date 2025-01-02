@@ -140,6 +140,7 @@
     justify-content: center;
     align-items: center;
     width: $navHeight;
+    cursor: pointer;
 
     &:hover{
         transform: scale(1.2);

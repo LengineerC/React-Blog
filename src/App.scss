@@ -31,7 +31,7 @@
     width: 100vw;
     background-color: transparent;
     position: fixed;
-    height: ($navHeight)-15;
+    height: $navHeight;
     display: flex;
     flex-direction: row;
     z-index: 1000;
@@ -50,14 +50,15 @@
         justify-content: center;
         align-items: center;
         color: white;
-        height: ($navHeight)-15;
+        height: $navHeight;
         width: $navHeight;
         font-size: 25px;
-        padding-top: 10px;
+        // padding-top: 10px;
         border-radius: 5px;
     
         &:hover{
-            background-color: rgba(255, 255, 255, 0.5);
+            // background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
         }
     }
 }

@@ -39,7 +39,8 @@ export type MobileMenuConfig={
 export type ToolMenuConfigItem={
   name:string,
   path:string,
-  key:string
+  key:string,
+  info:string,
 }
 
 // 友链json格式
