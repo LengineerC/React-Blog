@@ -93,10 +93,13 @@
                 transition: .3s;
                 overflow: hidden;
 
+                &.dark{
+                    background-color: trasnparentize(mix($themeBackgroundColor-dark,#fcfcfc99,95%),.1);
+                }
+
                 .submenu-item-container{
                     display: flex;
                     flex-direction: row;
-                    color:$postColor;
                     font-size: 15px;
                     height: 60px;
                     transition: 0.3s;
@@ -107,6 +110,15 @@
 
                     &:hover{
                         background-color: rgb(215, 215, 215);
+                    }
+
+                    .submenu-item-label{
+                        font-family: "CustomFont1";
+                        color:$postColor;
+
+                        &.dark{
+                            color: $postColor-dark;
+                        }
                     }
 
                     .icon-block{
@@ -123,7 +135,6 @@
             // border:1px solid black;
             display: flex;
             flex-direction: row;
-            color:$postColor;
             font-size: 15px;
             height: 60px;
             transition: 0.3s;
@@ -134,6 +145,15 @@
 
             &:hover{
                 background-color: rgb(215, 215, 215);
+            }
+
+            .menu-item-label{
+                font-family: "CustomFont1";
+                color:$postColor;
+
+                &.dark{
+                    color: $postColor-dark;
+                }
             }
 
             .menu-body-content-container-extend{

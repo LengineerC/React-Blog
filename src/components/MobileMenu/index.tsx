@@ -126,7 +126,7 @@ export default function MobileMenu({ open, handleMenuClose }: Props) {
             <FontAwesomeIcon style={darkMode ? { color: "#ffffffdd" } : {}} icon={icon} />
           </span>
 
-          <span>{name}</span>
+          <span className={`menu-item-label ${darkMode&&"dark"}`}>{name}</span>
 
           <span className="menu-body-content-container-extend">&nbsp;</span>
         </div>
@@ -138,7 +138,7 @@ export default function MobileMenu({ open, handleMenuClose }: Props) {
             <span className='icon-block'>
               <FontAwesomeIcon style={darkMode ? { color: "#ffffffdd" } : {}} icon={icon} />
             </span>
-            <span>{name}</span>
+            <span className={`menu-item-label ${darkMode&&"dark"}`}>{name}</span>
             <span className="menu-body-content-container-extend">
               {
                 isExpanded?
@@ -150,7 +150,7 @@ export default function MobileMenu({ open, handleMenuClose }: Props) {
         </>
 
         <div 
-        className='submenu-container'
+        className={`submenu-container ${darkMode&&"dark"}`}
         style={{
           height:isExpanded?`${subItems.length*60}px`:0
         }}
@@ -162,7 +162,7 @@ export default function MobileMenu({ open, handleMenuClose }: Props) {
                   <FontAwesomeIcon style={darkMode ? { color: "#ffffffdd" } : {}} icon={subItem.icon} />
 
                 </span>
-                <span>{subItem.name}</span>
+                <span className={`submenu-item-label ${darkMode&&"dark"}`}>{subItem.name}</span>
                 
                 <span>&nbsp;</span>
               </div>
