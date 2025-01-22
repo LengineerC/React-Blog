@@ -4,7 +4,8 @@ import Card from '../../../components/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList } from '@fortawesome/free-solid-svg-icons'
 // import { TOC_HEADING_CONFIG, MAX_TOC_HEADING } from '../../../utils/constants'
-import MarkdownNavbar from 'markdown-navbar'
+import MarkdownNavbar from './MarkdownNavBar/index'
+// import MarkdownNavbar from 'markdown-navbar'
 import { ConfigProvider, Drawer } from 'antd'
 import { useEffect, useState } from 'react'
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants'
@@ -13,7 +14,7 @@ import { useAppSelector } from '../../../redux/hooks'
 
 import "./index.scss"
 
-//#region 手动实现有bug
+//#region 手动实现 有bug
 // type Props={
 //   markdown:'';
 // }
@@ -138,6 +139,7 @@ import "./index.scss"
 // }
 //#endregion
 
+
 type Props={
   markdown:string;
   showDrawer:boolean,
@@ -177,13 +179,21 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
     }
   },[])
 
-  useEffect(()=>{
-
-  },[darkMode])
-
   const getColorBgElevated=():string=>{
     return darkMode?"#1c1c2c99":"#ffffffcc";
   }
+
+  // const onHashChange=(newHash:any, oldHash:any)=>{
+  //   console.log(newHash,oldHash);
+    
+  //   window.history.replaceState(null,"",`${window.location.href}#${newHash}`);
+  // }
+
+  // const onNavItemClick=(event:any,element:any,hashValue:any)=>{
+  //   // console.log(event,element,hashValue);
+  //   console.log(window.location);
+  //   window.history.replaceState(null,"",`${window.location.href}#${hashValue}`);
+  // }
 
   return (
     <>
@@ -196,8 +206,8 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
           </div>
           <div className={darkMode?"toc-content-dark":'toc-content'}>
               <MarkdownNavbar 
-              // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
               source={markdown} 
+              // updateHashAuto={false}
               headingTopOffset={60}
               ordered={true}
               />
@@ -232,6 +242,7 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
                 <MarkdownNavbar 
                 // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
                 source={markdown} 
+                // updateHashAuto={false}
                 headingTopOffset={60}
                 ordered={true}
                 />

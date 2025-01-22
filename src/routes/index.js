@@ -2,6 +2,7 @@ import { lazy } from "react"
 import toolboxRoutes from "./toolboxRoutes.js";
 import { Navigate } from "react-router-dom";
 // import Loading from "../components/Loading/index";
+import Toolbox from "../pages/Toolbox/index.tsx";
 
 const Home=lazy(()=>import("../pages/Home/index.tsx"));
 const TagsPage=lazy(()=>import("../pages/TagsPage/index.tsx"));
@@ -15,7 +16,7 @@ const PostsPage=lazy(()=>import("../pages/PostsPage/index.tsx"));
 const Archives=lazy(()=>import("../pages/Archives/index.tsx"));
 const Friends=lazy(()=>import("../pages/Friends/index.tsx"));
 const Media=lazy(()=>import("../pages/Media/index.tsx"));
-const Toolbox=lazy(()=>import("../pages/Toolbox/index.tsx"));
+// const Toolbox=lazy(()=>import("../pages/Toolbox/index.tsx"));
 
 
 const routes=[

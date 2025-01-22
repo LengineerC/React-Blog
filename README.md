@@ -58,6 +58,7 @@
 - [x] 苹果background-attachment: fixed;失效
 - [x] 手机端复制文章连接失败
 - [ ] MarkdownNavbar导致的文章页面滑动状态更新过快测试环境报错和性能降低
+- [x] Github Pages部署状态下偶尔出现的路由跳转路径错误
 
 ---
 ## TODO:

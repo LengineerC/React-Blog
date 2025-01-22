@@ -28,7 +28,7 @@ import './index.scss'
 export default function Post() {
   const {id}=useParams();
   const [markdown,setMarkdown]=useState<string>("");
-  const [postConfig,setPostConfig]=useState<PostConfig>(store.getState().selectedPostConfig as PostConfig);
+  const [postConfig,setPostConfig]=useState<PostConfig>();
   const [mdLen,setMdLen]=useState<number>(0);
   const [locked,setLocked]=useState<boolean>(false);
   const [showTOC,setShowTOC]=useState<boolean>(DEFAULT_SHOW_TOC);
@@ -41,18 +41,25 @@ export default function Post() {
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode=useAppSelector(state=>state.darkMode);
   const dispatch=useAppDispatch();
+  const postList=useAppSelector(state=>state.postList);
 
   const navigate=useNavigate();
+
+  useEffect(()=>{
+    if(postList.length>0){
+      postList.forEach(pc=>{
+        if(pc.id===id){
+          setPostConfig(pc);
+        }
+      });
+    }
+
+  },[postList])
 
   useEffect(()=>{
     if(!id){
       navigate('/');
     }
-
-    // const unsubscribe=store.subscribe(()=>{
-    //   const {darkMode}=store.getState();
-    //   setIsDarkMode(darkMode);
-    // })
 
     axios.get(`/posts/${id}.md`)
     .then(response=>{
@@ -70,7 +77,7 @@ export default function Post() {
       }
       
       setLocked(initPostConfig.lock);
-      setPostConfig(initPostConfig);
+      // setPostConfig(initPostConfig);
     })
     .catch(err=>{
       console.log("Post: 文章获取失败",err);
@@ -236,12 +243,12 @@ export default function Post() {
                       <div className='post-page-card-header-info'>
                         <div style={darkMode?{color:"#ffffffcc"}:{}}>
                           <span style={{fontWeight:"bolder"}}><UserOutlined/>&nbsp;作者：</span>
-                          {postConfig.author}
+                          {postConfig?.author}
                         </div>
 
                         <div style={darkMode?{color:"#ffffffcc"}:{}}>
                         <span style={{fontWeight:"bold"}}><ClockCircleOutlined/>&nbsp;发布时间：</span>
-                          {postConfig.time}
+                          {postConfig?.time}
                         </div>
 
                         <div style={darkMode?{color:"#ffffffcc"}:{}}>
@@ -290,7 +297,7 @@ export default function Post() {
                 </div>
               </>:<LockCard 
                   onClose={()=>{setLocked(false)}}
-                  password={postConfig.password}
+                  password={postConfig?.password}
                   />
             }
           </div>
