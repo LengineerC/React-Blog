@@ -75,4 +75,4 @@ export const GITHUB_REPO={
 }
 
 // github pages mode
-export const DEPLOY_ON_GITHUB_PAGES:boolean=false;
+export const DEPLOY_ON_GITHUB_PAGES:boolean=true;

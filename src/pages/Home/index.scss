@@ -14,6 +14,7 @@
 
     .home-body-left-col{
         @extend .hv-center;
+        justify-content: flex-start;
         flex-direction: column;
         width: 75%;
         padding-right: 7%;
