@@ -99,7 +99,8 @@ export default function HomePosts({}: Props) {
       },
       components:{
         Pagination:{
-          itemActiveBg:"#ffffff11"
+          itemActiveBg:"#ffffff11",
+          itemBg:"#ffffff00",
         }
       }
     });
@@ -111,7 +112,8 @@ export default function HomePosts({}: Props) {
       },
       components:{
         Pagination:{
-          itemActiveBg:"#ffffff11"
+          itemActiveBg:"#ffffff11",
+          itemBg:"#ffffff00",
         }
       }
     })
