@@ -106,5 +106,5 @@
 
 .footer-main-dark{
     @extend .footer-main;
-    background-color: $themeBackgroundColor-dark;
+    background-color: transparentize($themeBackgroundColor-dark,.4);
 }

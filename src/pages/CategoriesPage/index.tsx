@@ -3,6 +3,7 @@ import PageTitle from "../../components/PageTitle";
 import { useEffect, useRef } from "react";
 // import store from "../../redux/store";
 import * as echarts from 'echarts/core';
+import { RadarChart } from 'echarts/charts';
 import 'echarts-wordcloud';
 import Category from "../../components/Category";
 import { useAppSelector } from "../../redux/hooks";
@@ -52,6 +53,7 @@ export default function CategoriesPage() {
   },[darkMode])
 
   const createRadarChart=()=>{
+    echarts.use([RadarChart]); 
     const radarChart=echarts.init(chartRef.current);
     let textStyle={
       fontFamily:"CustomFont1",

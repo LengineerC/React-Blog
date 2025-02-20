@@ -196,7 +196,7 @@
 }
 
 .toc-drawer-dark{
-    background: $themeBackgroundColor-dark;
+    background: transparentize($themeBackgroundColor-dark,.4);
     .title-anchor{
         color: $postColor-dark;
         font-family: "CustomFont1";

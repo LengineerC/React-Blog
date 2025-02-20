@@ -161,12 +161,12 @@
 // 夜间模式
 .nav-dark{
     @extend .nav;
-    background-color: $themeBackgroundColor-dark;
+    background-color: transparentize($themeBackgroundColor-dark,.4);
 }
 
 .sub-menu-dark{
     @extend .sub-menu;
-    background-color: $themeBackgroundColor-dark;
+    background-color: transparentize($themeBackgroundColor-dark,.4);
     
     .sub-menu-item-dark{
         @extend .sub-menu-item;

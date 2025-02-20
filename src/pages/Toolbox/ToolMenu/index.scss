@@ -31,7 +31,7 @@
             transform: scale(1.02);
             background: radial-gradient(
                 ellipse, 
-                mix($themeBackgroundColor-dark,#ffffffaa,80%) 0%,
+                mix(transparentize($themeBackgroundColor-dark,.4),#ffffffaa,80%) 0%,
                 transparent 75% 
             );
         }
