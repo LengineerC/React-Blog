@@ -58,7 +58,15 @@ export default function TopPostCard() {
           >
             <div className={darkMode?'top-post-card-link-block-dark':'top-post-card-link-block'}>
               🔥<span style={{color:"orange",marginRight:"10px"}}>HOT!</span>
-              {item.title}
+              
+              <span style={{
+                maxWidth:"60%",
+                whiteSpace:"nowrap",
+                overflow:"hidden",
+                textOverflow:"ellipsis"
+              }}>
+                {item.title}
+              </span>
             </div>
           </NavLink>
         )

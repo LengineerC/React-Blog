@@ -91,8 +91,8 @@ export default function CategoriesPage() {
           textStyle: textStyle
         },
         axisName,
-        center:["50%","65%"],
-        radius:"100%"
+        center:["50%","50%"],
+        radius:"70%"
       },
       series: [
         {

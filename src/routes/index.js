@@ -1,7 +1,7 @@
 import { lazy } from "react"
 import toolboxRoutes from "./toolboxRoutes.js";
 import { Navigate } from "react-router-dom";
-import Loading from "../components/Loading/index";
+// import Loading from "../components/Loading/index";
 import Toolbox from "../pages/Toolbox/index.tsx";
 
 const Home=lazy(()=>import("../pages/Home/index.tsx"));
@@ -75,10 +75,10 @@ const routes=[
         path:"/about",
         element:<About />
     },
-    {
-        path:"loading",
-        element:<Loading/>
-    },
+    // {
+    //     path:"loading",
+    //     element:<Loading/>
+    // },
     // {
     //     path:"404",
     //     element:<ErrorPage />

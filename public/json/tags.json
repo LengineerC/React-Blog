@@ -1,4 +1,44 @@
 {
+  "树莓派": [
+    {
+      "id": "raspi4b-hostapd-5g-hotspot",
+      "tags": [
+        "树莓派",
+        "硬件"
+      ],
+      "categories": [
+        "笔记",
+        "教程"
+      ],
+      "top": true,
+      "title": "树莓派4B使用hostapd开启5G热点",
+      "author": "LengineerC",
+      "time": "2025-03-03 14:04:51",
+      "lock": false,
+      "password": "",
+      "path": "/posts/raspi4b-hostapd-5g-hotspot.md"
+    }
+  ],
+  "硬件": [
+    {
+      "id": "raspi4b-hostapd-5g-hotspot",
+      "tags": [
+        "树莓派",
+        "硬件"
+      ],
+      "categories": [
+        "笔记",
+        "教程"
+      ],
+      "top": true,
+      "title": "树莓派4B使用hostapd开启5G热点",
+      "author": "LengineerC",
+      "time": "2025-03-03 14:04:51",
+      "lock": false,
+      "password": "",
+      "path": "/posts/raspi4b-hostapd-5g-hotspot.md"
+    }
+  ],
   "tag1": [
     {
       "id": "test_auto_create1",
