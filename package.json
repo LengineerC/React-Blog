@@ -44,7 +44,7 @@
   },
   "scripts": {
     "start": "npm run gen-posts-config && craco start",
-    "build": "npm run gen-posts-config && npm gen-sitemap && craco build",
+    "build": "npm run gen-posts-config && npm run gen-sitemap && craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gen-sitemap": "node scripts/sitemap.js",
