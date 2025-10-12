@@ -22,7 +22,7 @@ export default function Toolbox() {
   return (
     <div className='page-main'>
       <div className='page-main-title'>
-        <PageTitle title={"Toolbox - "+subtitle}/>
+        <PageTitle title={"Toolbox ~ "+subtitle}/>
       </div>
 
       <div className='page-main-content'>
