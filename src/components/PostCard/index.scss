@@ -1,93 +1,92 @@
-@import "../../styles/base.scss";
-@import "../../styles/page_layout.scss";
+@use '../../styles/base.scss' as *;
+@use '../../styles/page_layout.scss' as *;
 
-.post-card-main{
-    // background-color: black;
-    display: flex;
-    flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    font-family: "CustomFont1";
+.post-card-main {
+  // background-color: black;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  font-family: 'CustomFont1';
+  width: 100%;
+
+  .hr-dashed {
     width: 100%;
+    color: #fff;
+    border: 1px dashed #fff;
+  }
+  .hr-dashed-dark {
+    width: 100%;
+    color: #a0a0a0bb;
+    border: 1px dashed #a0a0a0bb;
+  }
 
-    .hr-dashed{
-        width: 100%;
-        color: #fff;
-        border: 1px dashed #fff;
-    }
-    .hr-dashed-dark{
-        width: 100%;
-        color: #a0a0a0bb;
-        border: 1px dashed #a0a0a0bb;
-    }
-    
-	.hr-double{
-		border: 0;
-        margin: 20px 0 0 0;
-		border-top: 3px double #fff;
-	}
-    .hr-double-dark{
-		border: 0;
-        margin: 20px 0 0 0;
-		border-top: 3px double #a0a0a0bb;
-    }
-
+  .hr-double {
+    border: 0;
+    margin: 20px 0 0 0;
+    border-top: 3px double #fff;
+  }
+  .hr-double-dark {
+    border: 0;
+    margin: 20px 0 0 0;
+    border-top: 3px double #a0a0a0bb;
+  }
 }
 
-.post-card-title{
-    padding-left: 10px;
-    font-size: 20px;
-    color: $postColor;
-    font-weight: bold;
-    text-align: center;
+.post-card-title {
+  padding-left: 10px;
+  font-size: 20px;
+  color: $postColor;
+  font-weight: bold;
+  text-align: center;
 }
 
-.post-card-content{
-    color: $postColor;
+.post-card-content {
+  color: $postColor;
 }
 
-.post-card-footer{
-    color: $postColor;
+.post-card-footer {
+  color: $postColor;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  .post-card-tags-block {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    
-    .post-card-tags-block{
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 35%;
-        // flex-direction: column;
-        .post-card-tag-container{
-            margin-right: 3px;
-            margin-bottom: 3px;
-        }
+    flex-wrap: wrap;
+    max-width: 35%;
+    // flex-direction: column;
+    .post-card-tag-container {
+      margin-right: 3px;
+      margin-bottom: 3px;
     }
+  }
 
-    .post-card-categories-block{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        max-width: 35%;
-        // flex-direction: column;
-        .post-card-category-container{
-            margin-right: 3px;
-            margin-bottom: 3px;
-        }
+  .post-card-categories-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 35%;
+    // flex-direction: column;
+    .post-card-category-container {
+      margin-right: 3px;
+      margin-bottom: 3px;
     }
+  }
 }
 
 // 夜间模式
-.post-card-title-dark{
-    @extend .post-card-title;
-    color: $postColor-dark;
-} 
-
-.post-card-content-dark{
-    @extend .post-card-content;
-    color: $postColor-dark;
+.post-card-title-dark {
+  @extend .post-card-title;
+  color: $postColor-dark;
 }
 
-.post-card-footer-dark{
-    @extend .post-card-footer;
-    color: $postColor-dark;
+.post-card-content-dark {
+  @extend .post-card-content;
+  color: $postColor-dark;
+}
+
+.post-card-footer-dark {
+  @extend .post-card-footer;
+  color: $postColor-dark;
 }

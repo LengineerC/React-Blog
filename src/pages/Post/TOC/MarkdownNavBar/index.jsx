@@ -4,9 +4,9 @@ import { throttle } from 'lodash';
 
 /**
  * 个人修改后的MarkdownNavbar，以适配HashRoute
- * 
+ *
  * 仓库原链接 {@link https://github.com/parksben/markdown-navbar/tree/master MarkdownNavbar}
- * 
+ *
  * 遵循MIT Licens
  */
 export class MarkdownNavbar extends Component {
@@ -28,36 +28,36 @@ export class MarkdownNavbar extends Component {
     updateHashAuto: true,
     declarative: false,
     className: '',
-    onNavItemClick: () => { },
-    onHashChange: () => { },
+    onNavItemClick: () => {},
+    onHashChange: () => {},
   };
 
   constructor(props) {
     super(props);
     this.state = {
       currentListNo: '',
-      navStructure: []
+      navStructure: [],
     };
   }
 
   safeScrollTo(element, top, left = 0, smooth) {
-    if (!element) return
+    if (!element) return;
     if (typeof element.scrollTo === 'function') {
       const scrollConfig = {
         top,
         left,
-      }
+      };
       if (smooth) {
-        scrollConfig.behavior = "smooth"
+        scrollConfig.behavior = 'smooth';
       }
-      element.scrollTo(scrollConfig)
+      element.scrollTo(scrollConfig);
     } else {
       if (element === window) {
-        document.documentElement.scrollTop = top
-        document.documentElement.scrollLeft = left
+        document.documentElement.scrollTop = top;
+        document.documentElement.scrollLeft = left;
       } else {
-        element.scrollTop = top
-        element.scrollLeft = left
+        element.scrollTop = top;
+        element.scrollLeft = left;
       }
     }
   }
@@ -65,40 +65,39 @@ export class MarkdownNavbar extends Component {
     if (this.addTargetTimeout) {
       clearTimeout(this.addTargetTimeout);
     }
-    const currentListNo=this.state.currentListNo;
+    const currentListNo = this.state.currentListNo;
 
     this.setState({ navStructure: this.getNavStructure(source) }, () => {
       this.addTargetTimeout = setTimeout(() => {
         this.initHeadingsId();
 
-          if(currentListNo) {
-            this.setState({currentListNo:currentListNo})
-          }
-          else if (this.state.navStructure.length) {
-            // console.log(this.state.navStructure);
+        if (currentListNo) {
+          this.setState({ currentListNo: currentListNo });
+        } else if (this.state.navStructure.length) {
+          // console.log(this.state.navStructure);
 
-            const { listNo } = this.state.navStructure[0]
-            this.setState({
-              currentListNo: listNo
-            })
-          }
+          const { listNo } = this.state.navStructure[0];
+          this.setState({
+            currentListNo: listNo,
+          });
+        }
         document.addEventListener('scroll', this.winScroll, false);
         window.addEventListener('hashchange', this.winHashChange, false);
       }, 500);
-    })
+    });
   }
 
   componentDidMount() {
     // 初始化列表数据
-    const { source } = this.props
+    const { source } = this.props;
 
-    this.refreshNav(source)
+    this.refreshNav(source);
   }
   componentWillReceiveProps(newProps) {
     // 复用时开启，用于在source更新时刷新列表
-    const { source } = newProps
+    const { source } = newProps;
     // if(source!=source)
-    this.refreshNav(source)
+    this.refreshNav(source);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -108,13 +107,13 @@ export class MarkdownNavbar extends Component {
       }
       this.scrollEventLock = true;
 
-      this.safeScrollTo(window, 0, 0)
-      this.safeScrollTo(this.refs.container, 0, 0)
+      this.safeScrollTo(window, 0, 0);
+      this.safeScrollTo(this.refs.container, 0, 0);
       this.setState({
         currentListNo: '',
       });
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-      Array.prototype.slice.apply(headings).forEach((h) => (h.dataset.id = ''));
+      Array.prototype.slice.apply(headings).forEach(h => (h.dataset.id = ''));
 
       this.scrollEventLockTimer = setTimeout(() => {
         this.initHeadingsId();
@@ -135,18 +134,18 @@ export class MarkdownNavbar extends Component {
     window.removeEventListener('hashchange', this.winHashChange, false);
   }
   trimArrZero(arr) {
-    let start, end
+    let start, end;
     for (start = 0; start < arr.length; start++) {
       if (arr[start]) {
-        break
+        break;
       }
     }
     for (end = arr.length - 1; end >= 0; end--) {
       if (arr[end]) {
-        break
+        break;
       }
     }
-    return arr.slice(start, end + 1)
+    return arr.slice(start, end + 1);
   }
 
   getNavStructure(source) {
@@ -174,16 +173,16 @@ export class MarkdownNavbar extends Component {
     }));
 
     let maxLevel = 0;
-    navData.forEach((t) => {
+    navData.forEach(t => {
       if (t.level > maxLevel) {
-        maxLevel = t.level
+        maxLevel = t.level;
       }
-    })
+    });
     let matchStack = [];
     // 此部分重构，原有方法会出现次级标题后再次出现高级标题时，listNo重复的bug
     for (let i = 0; i < navData.length; i++) {
       const t = navData[i];
-      const { level } = t
+      const { level } = t;
       while (matchStack.length && matchStack[matchStack.length - 1].level > level) {
         matchStack.pop();
       }
@@ -193,19 +192,19 @@ export class MarkdownNavbar extends Component {
         matchStack.push({
           level,
           arr,
-        })
-        t.listNo = this.trimArrZero(arr).join(".")
+        });
+        t.listNo = this.trimArrZero(arr).join('.');
         continue;
       }
       const { arr } = matchStack[matchStack.length - 1];
-      const newArr = arr.slice()
+      const newArr = arr.slice();
       newArr[level - 1] += 1;
       matchStack.push({
         level,
-        arr: newArr
-      })
-      t.listNo = this.trimArrZero(newArr).join(".")
-    };
+        arr: newArr,
+      });
+      t.listNo = this.trimArrZero(newArr).join('.');
+    }
     return navData;
   }
 
@@ -217,7 +216,7 @@ export class MarkdownNavbar extends Component {
     this.scrollTimeout = setTimeout(() => {
       const target = document.querySelector(`[data-id="${dataId}"]`);
       if (target && typeof target.offsetTop === 'number') {
-        this.safeScrollTo(window, target.offsetTop - this.props.headingTopOffset, 0)
+        this.safeScrollTo(window, target.offsetTop - this.props.headingTopOffset, 0);
       }
     }, 0);
   }
@@ -226,18 +225,14 @@ export class MarkdownNavbar extends Component {
     const headingId = decodeURIComponent(
       this.props.declarative
         ? window.location.hash.replace(/^#/, '').trim()
-        : (window.location.hash.match(/heading-\d+/g) || [])[0]
+        : (window.location.hash.match(/heading-\d+/g) || [])[0],
     );
 
-    this.state.navStructure.forEach((t) => {
+    this.state.navStructure.forEach(t => {
       const headings = document.querySelectorAll(`h${t.level}`);
       const curHeading = Array.prototype.slice
         .apply(headings)
-        .find(
-          (h) =>
-            h.innerText.trim() === t.text.trim() &&
-            (!h.dataset || !h.dataset.id)
-        );
+        .find(h => h.innerText.trim() === t.text.trim() && (!h.dataset || !h.dataset.id));
 
       if (curHeading) {
         curHeading.dataset.id = this.props.declarative
@@ -257,14 +252,14 @@ export class MarkdownNavbar extends Component {
   getHeadingList() {
     const headingList = [];
 
-    this.state.navStructure.forEach((t) => {
+    this.state.navStructure.forEach(t => {
       const headings = document.querySelectorAll(`h${t.level}`);
       const curHeading = Array.prototype.slice
         .apply(headings)
         .find(
-          (h) =>
+          h =>
             h.innerText.trim() === t.text.trim() &&
-            !headingList.find((x) => x.offsetTop === h.offsetTop)
+            !headingList.find(x => x.offsetTop === h.offsetTop),
         );
       if (curHeading) {
         headingList.push({
@@ -278,29 +273,21 @@ export class MarkdownNavbar extends Component {
     return headingList;
   }
 
-  getCurrentHashValue = () =>
-    decodeURIComponent(window.location.hash.replace(/^#/, ''));
+  getCurrentHashValue = () => decodeURIComponent(window.location.hash.replace(/^#/, ''));
 
   winScroll = throttle(() => {
     if (this.scrollEventLock) return;
 
     const scrollTop =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+      window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    const newHeadingList = this.getHeadingList().map((h) => ({
+    const newHeadingList = this.getHeadingList().map(h => ({
       ...h,
-      distanceToTop: Math.abs(
-        scrollTop + this.props.headingTopOffset - h.offsetTop
-      ),
+      distanceToTop: Math.abs(scrollTop + this.props.headingTopOffset - h.offsetTop),
     }));
-    const distanceList = newHeadingList.map((h) => h.distanceToTop);
+    const distanceList = newHeadingList.map(h => h.distanceToTop);
     const minDistance = Math.min(...distanceList);
-    const curHeading = newHeadingList.find(
-      (h) => h.distanceToTop === minDistance
-    );
+    const curHeading = newHeadingList.find(h => h.distanceToTop === minDistance);
 
     if (!curHeading) return;
 
@@ -338,30 +325,28 @@ export class MarkdownNavbar extends Component {
     // if (this.updateHashTimeout) {
     //   clearTimeout(this.updateHashTimeout);
     // }
-
     // const baseUrl=window.location.href.replace(/(?<=#)[^/]*/g,'');
-
     // this.updateHashTimeout = setTimeout(() => {
     //   window.history.replaceState(
     //     {},
     //     '',
     //     `${window.location.pathname}${window.location.search}#${value}`
     //   );
-
     //   window.history.replaceState(null,"",baseUrl+value);
     // }, 0);
   }
 
   render() {
-    const {source}=this.props;
-    const tBlocks = this.getNavStructure(source).map((t) => {
-      const cls = `title-anchor title-level${t.level} ${this.state.currentListNo === t.listNo ? 'active' : ''
-        }`;
+    const { source } = this.props;
+    const tBlocks = this.getNavStructure(source).map(t => {
+      const cls = `title-anchor title-level${t.level} ${
+        this.state.currentListNo === t.listNo ? 'active' : ''
+      }`;
 
       return (
         <div
           className={cls}
-          onClick={(evt) => {
+          onClick={evt => {
             const currentHash = this.props.declarative
               ? `${t.listNo}-${t.text}` // 加入listNo确保hash唯一ZZ
               : `heading-${t.index}`;
@@ -381,17 +366,15 @@ export class MarkdownNavbar extends Component {
               currentListNo: t.listNo,
             });
           }}
-          key={`title_anchor_${Math.random().toString(36).substring(2)}`}>
+          key={`title_anchor_${Math.random().toString(36).substring(2)}`}
+        >
           {this.props.ordered ? <small>{t.listNo}</small> : null}
           {t.text}
-        </div>);
+        </div>
+      );
     });
 
-    return (
-      <div className={`markdown-navigation ${this.props.className}`}>
-        {tBlocks}
-      </div>
-    );
+    return <div className={`markdown-navigation ${this.props.className}`}>{tBlocks}</div>;
   }
 }
 

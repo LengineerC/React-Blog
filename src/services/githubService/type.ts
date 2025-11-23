@@ -1,4 +1,4 @@
-export interface GetRepoCommitsPayload{
-    owner:string,
-    repo:string,
+export interface GetRepoCommitsPayload {
+  owner: string;
+  repo: string;
 }

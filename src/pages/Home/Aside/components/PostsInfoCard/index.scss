@@ -1,58 +1,57 @@
-@import "../../../../../styles/base.scss";
-@import "../../../../../styles/page_layout.scss";
+@use '../../../../../styles/base.scss' as *;
+@use '../../../../../styles/page_layout.scss' as *;
 
-.post-info-card-main{
-    @extend .hv-center;
-    width: 100%;
-    display: flex;
+.post-info-card-main {
+  @extend .hv-center;
+  width: 100%;
+  display: flex;
 
-    @for $i from 1 through 3{
-        .post-info-card-col-#{$i}{
-            width: 33%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-        }
+  @for $i from 1 through 3 {
+    .post-info-card-col-#{$i} {
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  .post-info-card-col-header {
+    font-family: 'CustomFont1';
+    color: $postColor;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .post-info-card-col-header-dark {
+    @extend .post-info-card-col-header;
+    color: $postColor-dark;
+  }
+
+  .post-info-card-col-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'CustomFont1';
+    color: $postColor;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
     }
 
-    .post-info-card-col-header{
-        font-family: "CustomFont1";
-        color: $postColor;
-        font-size: 15px;
-        font-weight: bold;
+    a {
+      text-decoration: none;
+      color: rgb(70, 146, 238);
     }
+  }
 
-    .post-info-card-col-header-dark{
-        @extend .post-info-card-col-header;
-        color: $postColor-dark;
+  .post-info-card-col-content-dark {
+    @extend .post-info-card-col-content;
+    color: $postColor-dark;
+
+    a {
+      text-decoration: none;
+      color: $dark-highlight-color;
     }
-
-    .post-info-card-col-content{
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-family: "CustomFont1";
-        color: $postColor;
-        transition: 0.3s;
-
-        &:hover{
-            transform: scale(1.1);
-        }
-
-        a{
-            text-decoration: none;
-            color: rgb(70, 146, 238);
-        }
-
-    }
-
-    .post-info-card-col-content-dark{
-        @extend .post-info-card-col-content;
-        color: $postColor-dark;
-
-        a{
-            text-decoration: none;
-            color: $dark-highlight-color;
-        }
-    }
+  }
 }

@@ -12,7 +12,7 @@ export default function Main() {
   const [isLoading, setIsLoading] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const loadingStartTime = useRef(0);
-  const minimumLoadingTime = 700; 
+  const minimumLoadingTime = 700;
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,26 +34,13 @@ export default function Main() {
     <main>
       <TransitionGroup>
         {showLoading && (
-          <CSSTransition
-            in={isLoading}
-            timeout={500}
-            classNames="loading-transition"
-            unmountOnExit
-          >
+          <CSSTransition in={isLoading} timeout={500} classNames="loading-transition" unmountOnExit>
             <Loading />
           </CSSTransition>
         )}
 
-        <CSSTransition
-          key={location.key}
-          timeout={500}
-          classNames="page-transition"
-        >
-          <Suspense
-            fallback={
-              <span style={{ display: 'none' }} />
-            }
-          >
+        <CSSTransition key={location.key} timeout={500} classNames="page-transition">
+          <Suspense fallback={<span style={{ display: 'none' }} />}>
             <LoadingTracker onFinish={handleLoadingFinish} />
             {elements}
           </Suspense>
@@ -63,10 +50,10 @@ export default function Main() {
   );
 }
 
-type Props={
-  onFinish:()=>void
-}
-function LoadingTracker({ onFinish }:Props) {
+type Props = {
+  onFinish: () => void;
+};
+function LoadingTracker({ onFinish }: Props) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

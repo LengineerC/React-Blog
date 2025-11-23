@@ -1,7 +1,7 @@
 /**
  * Generate random integer in [min, max]
- * @param min 
- * @param max 
+ * @param min
+ * @param max
  * @returns {number}
  */
 export const genRandomInt = (min: number, max: number): number =>
@@ -25,36 +25,34 @@ export const copyText = async (text: string): Promise<boolean> => {
 
       return true;
     } else {
-      const textArea = document.createElement("textarea");
+      const textArea = document.createElement('textarea');
       textArea.value = text;
 
-      textArea.style.position = "fixed";
-      textArea.style.top = "-9999px";
-      textArea.style.left = "-9999px";
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
 
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
 
       try {
-        const successful = document.execCommand("copy");
+        const successful = document.execCommand('copy');
         if (successful) {
           return true;
         } else {
-          throw new Error("复制失败");
+          throw new Error('复制失败');
         }
       } catch (err) {
-        console.log("复制链接出错", err);
+        console.log('复制链接出错', err);
 
         return false;
       } finally {
         document.body.removeChild(textArea);
       }
-
     }
-
   } catch (e) {
-    console.log("复制链接出错", e);
+    console.log('复制链接出错', e);
     return false;
   }
-}
+};

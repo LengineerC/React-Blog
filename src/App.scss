@@ -1,269 +1,267 @@
-@import "./styles/base.scss";
+@use './styles/base.scss' as *;
 
-.App{
-    display: flex;
-    flex-direction: column;
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  //解决苹果background-attachment: fixed;失效的问题
+  &::before {
     min-height: 100vh;
-    background-size: cover; 
-    background-position: center center; 
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: var(--bgImg);
     background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    //解决苹果background-attachment: fixed;失效的问题
-    &::before{
-        min-height: 100vh;
-        content: '';
-        position: fixed;
-        z-index: -1;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-image: var(--bgImg);
-        background-repeat: no-repeat;
-        background-size: cover; 
-        background-position: center center; 
-    }
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
-
-.mobile-toolbar{
-    width: 100vw;
-    background-color: transparent;
-    position: fixed;
-    height: $navHeight;
+.mobile-toolbar {
+  width: 100vw;
+  background-color: transparent;
+  position: fixed;
+  height: $navHeight;
+  display: flex;
+  flex-direction: row;
+  z-index: 1000;
+  .icon-container {
     display: flex;
     flex-direction: row;
-    z-index: 1000;
-    .icon-container{
-        display: flex;
-        flex-direction: row;
-    
-        align-items: center;
-        width: 50%;
-    
+
+    align-items: center;
+    width: 50%;
+  }
+
+  .icon-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: $navHeight;
+    width: $navHeight;
+    font-size: 25px;
+    // padding-top: 10px;
+    border-radius: 5px;
+
+    &:hover {
+      // background-color: rgba(255, 255, 255, 0.5);
+      transform: scale(1.1);
     }
-    
-    .icon-block{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        height: $navHeight;
-        width: $navHeight;
-        font-size: 25px;
-        // padding-top: 10px;
-        border-radius: 5px;
-    
-        &:hover{
-            // background-color: rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
-        }
-    }
+  }
 }
-@media screen and (min-width:$mobileMaxWidth) {
-    .mobile-toolbar{
-        display: none;
-    }
+@media screen and (min-width: $mobileMaxWidth) {
+  .mobile-toolbar {
+    display: none;
+  }
 }
 
-.App{
-    // background-image: url(./assets/image/bg1.webp);
-    background-position: center 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.App {
+  // background-image: url(./assets/image/bg1.webp);
+  background-position: center 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
-    // &::-webkit-scrollbar {
-    //     width: 12px;
-    // }
-    
-    // &::-webkit-scrollbar-track {
-    //     background: linear-gradient(#b7f9ff,#a3c8db);
-    //     border-radius: 100px;
-    // }
-    
-    // &::-webkit-scrollbar-thumb {
-    //     background: linear-gradient(rgb(103,171,255),rgb(62, 125, 202));
-    //     border-radius: 50px;
+  // &::-webkit-scrollbar {
+  //     width: 12px;
+  // }
 
-    //     &:active{
-    //         background: linear-gradient(rgb(123, 182, 255),rgb(82, 145, 223));
-    //     }
-    // }
+  // &::-webkit-scrollbar-track {
+  //     background: linear-gradient(#b7f9ff,#a3c8db);
+  //     border-radius: 100px;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //     background: linear-gradient(rgb(103,171,255),rgb(62, 125, 202));
+  //     border-radius: 50px;
+
+  //     &:active{
+  //         background: linear-gradient(rgb(123, 182, 255),rgb(82, 145, 223));
+  //     }
+  // }
 }
 
-.aplayer-container{
-    .aplayer-body,
-    .aplayer-fixed{
-        margin-bottom: 20px !important;
-        margin-bottom: 20px;
-        background: #ffffff22;
-    }
-    .aplayer-body{
-        background: transparent !important;
-    }
+.aplayer-container {
+  .aplayer-body,
+  .aplayer-fixed {
+    margin-bottom: 20px !important;
+    margin-bottom: 20px;
+    background: #ffffff22;
+  }
+  .aplayer-body {
+    background: transparent !important;
+  }
 
-    .aplayer-list{
-        background: #ffffff99;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
+  .aplayer-list {
+    background: #ffffff99;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 
-    ol{
-        &::-webkit-scrollbar-thumb{
-            background: #67abff !important;
-        }
+  ol {
+    &::-webkit-scrollbar-thumb {
+      background: #67abff !important;
     }
+  }
 
-    li{
-        color: $postColor;
-        border-top: 1px solid #63636366 !important;
-        &:hover{
-            background: #ffffff44 !important;
-        }
+  li {
+    color: $postColor;
+    border-top: 1px solid #63636366 !important;
+    &:hover {
+      background: #ffffff44 !important;
     }
-    .aplayer-list-cur{
-        background-color: #67abff  !important;
-    }
-    .aplayer-list-index,
-    .aplayer-list-author{
-        color: #001447aa !important;
-    }
-    .aplayer-list-light{
-        background: #ffffff75 !important;
-    }
-    
-    .aplayer-miniswitcher{
-        border-radius: 0 7px 7px 0 !important;
-    }
-    
-    .aplayer.aplayer-fixed .aplayer-body{
-        border-radius: 0 7px 7px 0 !important;
-    }
+  }
+  .aplayer-list-cur {
+    background-color: #67abff !important;
+  }
+  .aplayer-list-index,
+  .aplayer-list-author {
+    color: #001447aa !important;
+  }
+  .aplayer-list-light {
+    background: #ffffff75 !important;
+  }
 
-    .aplayer-played{
-        background: #67abff  !important;
+  .aplayer-miniswitcher {
+    border-radius: 0 7px 7px 0 !important;
+  }
 
-        .aplayer-thumb{
-            background: #67abff  !important;
-        }
-    }
-    .aplayer-miniswitcher{
-        background: #ffffffaa;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
-    .aplayer-info{
-        background: #ffffff99;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border-top: none !important;
-    }
-    .aplayer-music{
-        .aplayer-title{
-            color: $postColor;
-        }
-        .aplayer-author{
-            color: #001447aa !important;
-        }
-    }
+  .aplayer.aplayer-fixed .aplayer-body {
+    border-radius: 0 7px 7px 0 !important;
+  }
 
-    .aplayer-icon path{
-        fill: #333 !important;
-    }
+  .aplayer-played {
+    background: #67abff !important;
 
-    .aplayer-time-inner{
-        color: #001447aa !important;
+    .aplayer-thumb {
+      background: #67abff !important;
     }
+  }
+  .aplayer-miniswitcher {
+    background: #ffffffaa;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  .aplayer-info {
+    background: #ffffff99;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: none !important;
+  }
+  .aplayer-music {
+    .aplayer-title {
+      color: $postColor;
+    }
+    .aplayer-author {
+      color: #001447aa !important;
+    }
+  }
+
+  .aplayer-icon path {
+    fill: #333 !important;
+  }
+
+  .aplayer-time-inner {
+    color: #001447aa !important;
+  }
 }
 
-.aplayer-container-dark{
-    .aplayer-body,
-    .aplayer-fixed{
-        margin-bottom: 20px !important;
-        margin-bottom: 20px;
-        background: #ffffff22;
-    }
-    .aplayer-body{
-        background: transparent !important;
-    }
+.aplayer-container-dark {
+  .aplayer-body,
+  .aplayer-fixed {
+    margin-bottom: 20px !important;
+    margin-bottom: 20px;
+    background: #ffffff22;
+  }
+  .aplayer-body {
+    background: transparent !important;
+  }
 
-    .aplayer-list{
-        background: #262631aa;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
+  .aplayer-list {
+    background: #262631aa;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 
-    ol{
-        &::-webkit-scrollbar-thumb{
-            background: $dark-highlight-color !important;
-        }
+  ol {
+    &::-webkit-scrollbar-thumb {
+      background: $dark-highlight-color !important;
     }
+  }
 
-    li{
-        color: $postColor-dark;
+  li {
+    color: $postColor-dark;
 
-        &:hover{
-            background: #ffffff44 !important;
-        }
+    &:hover {
+      background: #ffffff44 !important;
     }
-    .aplayer-list-cur{
-        background-color: $dark-highlight-color !important;
-    }
-    .aplayer-list-index,
-    .aplayer-list-author{
-        color: #ffffff99 !important;
-    }
-    .aplayer-list-light{
-        background: #ffffff55 !important;
-    }
-    
-    .aplayer-miniswitcher{
-        border-radius: 0 7px 7px 0 !important;
-    }
-    
-    .aplayer.aplayer-fixed .aplayer-body{
-        border-radius: 0 7px 7px 0 !important;
-    }
+  }
+  .aplayer-list-cur {
+    background-color: $dark-highlight-color !important;
+  }
+  .aplayer-list-index,
+  .aplayer-list-author {
+    color: #ffffff99 !important;
+  }
+  .aplayer-list-light {
+    background: #ffffff55 !important;
+  }
 
-    .aplayer-played{
-        background: $dark-highlight-color !important;
+  .aplayer-miniswitcher {
+    border-radius: 0 7px 7px 0 !important;
+  }
 
-        .aplayer-thumb{
-            background: $dark-highlight-color !important;
-        }
-    }
-    .aplayer-miniswitcher{
-        background: #5d5d6e99;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
-    .aplayer-info{
-        background: #3d3d4c99;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border-top: none !important;
-    }
-    .aplayer-music{
-        .aplayer-title{
-            color: $postColor-dark;
-        }
-        .aplayer-author{
-            color: #ffffff99 !important;
-        }
-    }
+  .aplayer.aplayer-fixed .aplayer-body {
+    border-radius: 0 7px 7px 0 !important;
+  }
 
-    .aplayer-volume{
-        background: #42cf52 !important;
-    }
+  .aplayer-played {
+    background: $dark-highlight-color !important;
 
-    .aplayer-icon path{
-        fill: #ffffffaa !important;
+    .aplayer-thumb {
+      background: $dark-highlight-color !important;
     }
+  }
+  .aplayer-miniswitcher {
+    background: #5d5d6e99;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  .aplayer-info {
+    background: #3d3d4c99;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: none !important;
+  }
+  .aplayer-music {
+    .aplayer-title {
+      color: $postColor-dark;
+    }
+    .aplayer-author {
+      color: #ffffff99 !important;
+    }
+  }
 
-    .aplayer-time-inner{
-        color: #ffffffaa !important;
-    }
+  .aplayer-volume {
+    background: #42cf52 !important;
+  }
+
+  .aplayer-icon path {
+    fill: #ffffffaa !important;
+  }
+
+  .aplayer-time-inner {
+    color: #ffffffaa !important;
+  }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 // import store from '../../redux/store'
 // import { hideNav, showNav } from '../../redux/actions'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react'
 // import * as echarts from 'echarts';
 import { useAppSelector } from '../../redux/hooks';
 
-import "./index.scss"
+import './index.scss';
 
 // type EChartsOption = echarts.EChartsOption;
 
 // export default function Loading() {
-//   const loadingRef=useRef(null); 
+//   const loadingRef=useRef(null);
 //   const dispatch=useAppDispatch();
 
 //   useEffect(()=>{
@@ -73,12 +73,10 @@ import "./index.scss"
 // }
 
 export default function Loading() {
-  const darkMode = useAppSelector((s) => s.darkMode);
+  const darkMode = useAppSelector(s => s.ui.darkMode);
 
   return (
-    <div
-      className={`loading-main ${darkMode && "dark"}`}
-    >
+    <div className={`loading-main ${darkMode && 'dark'}`}>
       <div className={!darkMode ? 'loader' : 'loader-dark'}>
         <div className="face face1">
           <div className="circle"></div>

@@ -1,45 +1,50 @@
-@import "../../../../../styles/base.scss";
-@import "../../../../../styles/page_layout.scss";
+@use '../../../../../styles/base.scss' as *;
+@use '../../../../../styles/page_layout.scss' as *;
 
-.notice-card-main{
-    font-family: "CustomFont1";
-    width: 20vw;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    max-width: 100%;
-    min-height: 130px;
+.notice-card-main {
+  font-family: 'CustomFont1';
+  width: 20vw;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  max-width: 100%;
+  min-height: 130px;
 
-    .hr-twill {
-        width: 80%;
-		border: 0;
-		padding: 3px;
-		background: repeating-linear-gradient(135deg, #a2a9b6 0px, #a2a9b6 1px, transparent 1px, transparent 6px);
-	}
-
+  .hr-twill {
+    width: 80%;
+    border: 0;
+    padding: 3px;
+    background: repeating-linear-gradient(
+      135deg,
+      #a2a9b6 0px,
+      #a2a9b6 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  }
 }
 
-.notice-card-header{
-    text-align: center;
+.notice-card-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(174, 0, 0);
+  text-shadow: 0 0 5px #ffffffaa;
+}
+
+.notice-card-body {
+  @extend .hv-center;
+  width: auto;
+  padding: 0 10px 0 15px;
+
+  .notice-card-content {
+    color: $postColor;
     font-weight: bold;
-    font-size: 20px;
-    color: rgb(174, 0, 0);
-    text-shadow: 0 0 5px #ffffffaa;
-}
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+  }
 
-.notice-card-body{
-    @extend .hv-center;
-    width: auto;
-    padding:0 10px 0 15px;
-
-    .notice-card-content{
-        color: $postColor;
-        font-weight: bold;
-        text-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
-    }
-
-    .notice-card-content-dark{
-        color: $postColor-dark;
-        font-weight: bold;
-        text-shadow: 0 0 1px rgba(198, 198, 198, 0.5);
-    }
+  .notice-card-content-dark {
+    color: $postColor-dark;
+    font-weight: bold;
+    text-shadow: 0 0 1px rgba(198, 198, 198, 0.5);
+  }
 }

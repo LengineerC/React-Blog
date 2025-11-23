@@ -1,5 +1,5 @@
-@import "../../styles/page_layout.scss";
-@import "../../styles/base.scss";
+@use '../../styles/page_layout.scss' as *;
+@use '../../styles/base.scss' as *;
 
 // .loading-main{
 //     @extend .hv-center;
@@ -36,7 +36,6 @@
 //     }
 // }
 
-
 // @keyframes title-text{
 //     0%{
 //         transform: scale(1);
@@ -63,212 +62,212 @@
 //     background: #393958;
 // }
 
-.loading-main{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    z-index: 2500;
-    background: mix($themeBackgroundColor,#fff,45%);
-    // animation: fadeIn 0.5s forwards;
+.loading-main {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  z-index: 2500;
+  background: mix($themeBackgroundColor, #fff, 45%);
+  // animation: fadeIn 0.5s forwards;
 
-    &.dark{
-        background: $themeBackgroundColor-dark;
-    }
+  &.dark {
+    background: $themeBackgroundColor-dark;
+  }
 
-    // &.fade-out {
-    //     animation: fadeOut 0.5s forwards;
-    // }
+  // &.fade-out {
+  //     animation: fadeOut 0.5s forwards;
+  // }
 
+  .loader {
+    $color1: mix($themeBackgroundColor, #000, 80%);
+    $color2: mix($dark-highlight-color, #000, 80%);
 
-    .loader{
-        $color1:mix($themeBackgroundColor,#000,80%);
-        $color2:mix($dark-highlight-color,#000,80%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    // background: #000;
 
+    .face {
+      position: absolute;
+      border: 2px solid #063e9815;
+
+      &.face1 {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // background-color: #fff;
+        // box-shadow: 0 0 3px #00000011;
+        border-radius: 50%;
+        border-left: 2px solid $color1;
+        border-top: 2px solid $color1;
+        animation: animate 3s linear infinite;
+
+        .circle {
+          transform: rotate(-45deg);
+
+          &::before {
+            background: $color1;
+            box-shadow:
+              0 0 20px $color1,
+              0 0 40px $color1,
+              0 0 60px $color1,
+              0 0 80px $color1,
+              0 0 100px $color1;
+          }
+        }
+      }
+
+      &.face2 {
+        top: 30px;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+        // background-color: #fff;
+        // box-shadow: 0 0 3px #00000033;
+        border-radius: 50%;
+        border-right: 2px solid $color2;
+        border-bottom: 2px solid $color2;
+        animation: animate 3s linear reverse infinite;
+
+        .circle {
+          transform: rotate(-45deg);
+
+          &::before {
+            background: $color2;
+            box-shadow:
+              0 0 20px $color2,
+              0 0 40px $color2,
+              0 0 60px $color2,
+              0 0 80px $color2,
+              0 0 100px $color2;
+          }
+        }
+      }
+
+      .circle {
         position: absolute;
-        top: 50%;
+        top: calc(50% - 1px);
         left: 50%;
-        transform: translate(-50%,-50%);
-        width: 200px;
-        height: 200px;
-        box-sizing: border-box;
-        // background: #000;
+        width: 50%;
+        height: 2px;
+        // background: #fff;
+        transform-origin: left;
 
-        .face{
-            position: absolute;
-            border: 2px solid #063e9815;
-
-            &.face1{
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                // background-color: #fff;
-                // box-shadow: 0 0 3px #00000011;
-                border-radius: 50%;
-                border-left: 2px solid $color1;
-                border-top: 2px solid $color1;
-                animation: animate 3s linear infinite;
-
-                .circle{
-                    transform: rotate(-45deg);
-
-                    &::before{
-                        background: $color1;
-                        box-shadow: 0 0 20px $color1, 
-                                    0 0 40px $color1,
-                                    0 0 60px $color1,
-                                    0 0 80px $color1,
-                                    0 0 100px $color1;
-                    }
-                }
-            }
-
-            &.face2{
-                top: 30px;
-                left: 30px;
-                right: 30px;
-                bottom: 30px;
-                // background-color: #fff;
-                // box-shadow: 0 0 3px #00000033;
-                border-radius: 50%;
-                border-right: 2px solid $color2;
-                border-bottom: 2px solid $color2;
-                animation: animate 3s linear reverse infinite;
-
-                .circle{
-                    transform: rotate(-45deg);
-
-                    &::before{
-                        background: $color2;
-                        box-shadow: 0 0 20px $color2, 
-                                    0 0 40px $color2,
-                                    0 0 60px $color2,
-                                    0 0 80px $color2,
-                                    0 0 100px $color2;
-                    
-                    }
-                }
-            }
-
-            .circle{
-                position: absolute;
-                top: calc(50% - 1px);
-                left: 50%;
-                width: 50%;
-                height: 2px;
-                // background: #fff;
-                transform-origin: left;
-
-                &::before{
-                    content: '';
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background: #fff;
-                    top: -4px;
-                    right: -6px;
-                }
-            }
+        &::before {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #fff;
+          top: -4px;
+          right: -6px;
         }
-
+      }
     }
+  }
 
-    .loader-dark{
-        @extend .loader;
-        $color1:mix($themeBackgroundColor,#fff,30%);
-        $color2:mix($dark-highlight-color,#fff,30%);
+  .loader-dark {
+    @extend .loader;
+    $color1: mix($themeBackgroundColor, #fff, 30%);
+    $color2: mix($dark-highlight-color, #fff, 30%);
 
-        .face{
-            position: absolute;
-            border: 2px solid #063e9815;
+    .face {
+      position: absolute;
+      border: 2px solid #063e9815;
 
-            &.face1{
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                // background-color: #fff;
-                // box-shadow: 0 0 3px #00000011;
-                border-radius: 50%;
-                border-left: 2px solid $color1;
-                border-top: 2px solid $color1;
-                animation: animate 3s linear infinite;
+      &.face1 {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // background-color: #fff;
+        // box-shadow: 0 0 3px #00000011;
+        border-radius: 50%;
+        border-left: 2px solid $color1;
+        border-top: 2px solid $color1;
+        animation: animate 3s linear infinite;
 
-                .circle{
-                    transform: rotate(-45deg);
+        .circle {
+          transform: rotate(-45deg);
 
-                    &::before{
-                        background: $color1;
-                        box-shadow: 0 0 20px $color1, 
-                                    0 0 40px $color1,
-                                    0 0 60px $color1,
-                                    0 0 80px $color1,
-                                    0 0 100px $color1;
-                    }
-                }
-            }
-
-            &.face2{
-                top: 30px;
-                left: 30px;
-                right: 30px;
-                bottom: 30px;
-                // background-color: #fff;
-                // box-shadow: 0 0 3px #00000033;
-                border-radius: 50%;
-                border-right: 2px solid $color2;
-                border-bottom: 2px solid $color2;
-                animation: animate 3s linear reverse infinite;
-
-                .circle{
-                    transform: rotate(-45deg);
-
-                    &::before{
-                        background: $color2;
-                        box-shadow: 0 0 20px $color2, 
-                                    0 0 40px $color2,
-                                    0 0 60px $color2,
-                                    0 0 80px $color2,
-                                    0 0 100px $color2;
-                    
-                    }
-                }
-            }
-
-            .circle{
-                position: absolute;
-                top: calc(50% - 1px);
-                left: 50%;
-                width: 50%;
-                height: 2px;
-                // background: #fff;
-                transform-origin: left;
-
-                &::before{
-                    content: '';
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background: #fff;
-                    top: -4px;
-                    right: -6px;
-                }
-            }
+          &::before {
+            background: $color1;
+            box-shadow:
+              0 0 20px $color1,
+              0 0 40px $color1,
+              0 0 60px $color1,
+              0 0 80px $color1,
+              0 0 100px $color1;
+          }
         }
+      }
+
+      &.face2 {
+        top: 30px;
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+        // background-color: #fff;
+        // box-shadow: 0 0 3px #00000033;
+        border-radius: 50%;
+        border-right: 2px solid $color2;
+        border-bottom: 2px solid $color2;
+        animation: animate 3s linear reverse infinite;
+
+        .circle {
+          transform: rotate(-45deg);
+
+          &::before {
+            background: $color2;
+            box-shadow:
+              0 0 20px $color2,
+              0 0 40px $color2,
+              0 0 60px $color2,
+              0 0 80px $color2,
+              0 0 100px $color2;
+          }
+        }
+      }
+
+      .circle {
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 50%;
+        width: 50%;
+        height: 2px;
+        // background: #fff;
+        transform-origin: left;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #fff;
+          top: -4px;
+          right: -6px;
+        }
+      }
     }
+  }
 }
 
-@keyframes animate{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 // @keyframes fadeIn{
@@ -288,4 +287,3 @@
 //       opacity: 0;
 //     }
 //   }
-  

@@ -1,37 +1,36 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react';
 import PageTitle from '@/components/PageTitle';
 import { useAppSelector } from '@/redux/hooks';
 import Card from '@/components/Card';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import "./index.scss";
+import './index.scss';
 
 export default function Toolbox() {
-  const darkMode=useAppSelector(state=>state.darkMode);
-  const [subtitle,setSubtitle]=useState<string>("");
-  
-  const location=useLocation();
+  const darkMode = useAppSelector(state => state.ui.darkMode);
+  const [subtitle, setSubtitle] = useState<string>('');
 
-  useEffect(()=>{
+  const location = useLocation();
+
+  useEffect(() => {
     // console.log(location.pathname);
-    const paths=location.pathname.split('/');
+    const paths = location.pathname.split('/');
     setSubtitle(paths[2]);
-    
-  },[location]);
+  }, [location]);
 
   return (
-    <div className='page-main'>
-      <div className='page-main-title'>
-        <PageTitle title={"Toolbox ~ "+subtitle}/>
+    <div className="page-main">
+      <div className="page-main-title">
+        <PageTitle title={'Toolbox ~ ' + subtitle} />
       </div>
 
-      <div className='page-main-content'>
+      <div className="page-main-content">
         <Card darkMode={darkMode}>
           {/* <Suspense> */}
-            <Outlet />
+          <Outlet />
           {/* </Suspense> */}
         </Card>
       </div>
     </div>
-  )
+  );
 }

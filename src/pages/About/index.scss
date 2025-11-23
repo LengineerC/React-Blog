@@ -1,90 +1,88 @@
-@import "../../styles/page_layout.scss";
-@import "../../styles/base.scss";
+@use '../../styles/page_layout.scss' as *;
+@use '../../styles/base.scss' as *;
 
-.about-main{
+.about-main {
+  @extend .hv-center;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+
+  $size: 150px;
+  .about-avatar {
+    width: $size;
+    height: $size;
+    border-radius: $size/2;
+    overflow: hidden;
+    position: absolute;
+    top: -$size/2;
+    box-shadow: 0 0 10px rgba(119, 119, 119, 0.75);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: scale-down;
+    }
+  }
+
+  .about-content {
+    @extend .hv-center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: $size/2;
+
+    .about-content-title {
+      font-family: 'CustomFont1';
+      font-size: 25px;
+      color: $postColor;
+    }
+
+    .about-content-title-dark {
+      font-family: 'CustomFont1';
+      font-size: 25px;
+      color: $postColor-dark;
+    }
+
+    .about-content-text {
+      @extend.hv-center;
+      width: 100%;
+      font-family: 'CustomFont1';
+    }
+  }
+
+  .about-chart-title,
+  .about-chart-title-dark {
+    width: 100%;
+    text-align: center;
+    font-family: 'CustomFont1';
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .about-chart-title {
+    color: $postColor;
+  }
+  .about-chart-title-dark {
+    color: $postColor-dark;
+  }
+
+  .about-chart {
     @extend .hv-center;
     width: 100%;
-    flex-direction: column;
-    position: relative;
 
-    $size:150px;
-    .about-avatar{
-        width: $size;
-        height: $size;
-        border-radius: $size/2;
-        overflow: hidden;
-        position: absolute;
-        top: -$size/2;
-        box-shadow: 0 0 10px rgba(119, 119, 119, 0.75);
-        
-        img{
-            width: 100%;
-            height: 100%;
-            object-fit: scale-down;
-        }
+    .about-chart-item {
+      @extend .hv-center;
+      width: 50%;
+      height: 300px;
     }
+  }
 
-    .about-content{
-        @extend .hv-center;
-        flex-direction: column;
+  @media screen and (max-width: $mobileMaxWidth) {
+    .about-chart {
+      flex-direction: column;
+
+      .about-chart-item {
         width: 100%;
-        margin-top: $size/2;
-
-        .about-content-title{
-            font-family: "CustomFont1";
-            font-size: 25px;
-            color: $postColor;
-        }
-
-        .about-content-title-dark{
-            font-family: "CustomFont1";
-            font-size: 25px;
-            color: $postColor-dark
-        }
-
-        .about-content-text{
-            @extend.hv-center;
-            width: 100%;
-            font-family: "CustomFont1";
-        }
-
+      }
     }
-
-    .about-chart-title,
-    .about-chart-title-dark{
-        width: 100%;
-        text-align: center;
-        font-family: "CustomFont1";
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    .about-chart-title{
-        color: $postColor;
-    }
-    .about-chart-title-dark{
-        color:$postColor-dark;
-    }
-
-    .about-chart{
-        @extend .hv-center;
-        width: 100%;
-
-        .about-chart-item{
-            @extend .hv-center;
-            width: 50%;
-            height: 300px;
-        }
-    }
-
-    @media screen and (max-width:$mobileMaxWidth) {
-        .about-chart{
-            flex-direction: column;
-    
-            .about-chart-item{
-                width: 100%;
-            }
-        }
-    }
-    
+  }
 }

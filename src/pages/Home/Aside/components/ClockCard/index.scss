@@ -1,22 +1,22 @@
-@import "../../../../../styles/base.scss";
-@import "../../../../../styles/page_layout.scss";
+@use '../../../../../styles/base.scss' as *;
+@use '../../../../../styles/page_layout.scss' as *;
 
-.clock-card-main{
-    font-family: "CustomFont1";
-    flex-direction: column;
-    @extend .hv-center;
-    width: 100%;
-    height: auto;
-    text-align: center;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-    color:$postColor;
-    font-size: 20px;
-    font-weight: bold;
-    // font-family: Arial, Helvetica, sans-serif;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    // background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+.clock-card-main {
+  font-family: 'CustomFont1';
+  flex-direction: column;
+  @extend .hv-center;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  color: $postColor;
+  font-size: 20px;
+  font-weight: bold;
+  // font-family: Arial, Helvetica, sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  // background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 
-    // box-shadow:inset 0 0 15px white;
+  // box-shadow:inset 0 0 15px white;
 }

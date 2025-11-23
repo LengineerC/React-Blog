@@ -1,49 +1,54 @@
-@import "../../../styles/base.scss";
+@use '../../../styles/base.scss' as *;
 
-.lock-card-main{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+.lock-card-main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 
-    .lock-card-title{
-        font-family: "CustomFont1";
-        font-weight: bold;
-        font-size: 20px;
-        color:$postColor;
-        padding-left: 5%;
-        text-shadow: 0 0 10px #ffffff77;
+  .lock-card-title {
+    font-family: 'CustomFont1';
+    font-weight: bold;
+    font-size: 20px;
+    color: $postColor;
+    padding-left: 5%;
+    text-shadow: 0 0 10px #ffffff77;
+  }
+
+  .lock-card-title-dark {
+    @extend .lock-card-title;
+    color: $postColor-dark;
+  }
+
+  .wave-divider {
+    height: 5px;
+    background-size: 200% 100%;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      #f6f6f6 10px,
+      #f6f6f6 20px
+    );
+    animation: wave-animation 15s linear infinite;
+    margin: 10px 0;
+  }
+
+  @keyframes wave-animation {
+    from {
+      background-position: 0 0;
     }
-
-    .lock-card-title-dark{
-        @extend .lock-card-title;
-        color: $postColor-dark;
+    to {
+      background-position: -200% 0;
     }
+  }
 
-    .wave-divider {
-        height: 5px; 
-        background-size: 200% 100%;
-        background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, #f6f6f6 10px, #f6f6f6 20px);
-        animation: wave-animation 15s linear infinite;
-        margin: 10px 0;
+  .lock-card-input-line {
+    height: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    .ant-input-outlined {
+      background: #ffffff55 !important;
     }
-    
-    @keyframes wave-animation {
-        from {
-            background-position: 0 0;
-        }
-        to {
-            background-position: -200% 0;
-        }
-    }
-
-    .lock-card-input-line{
-        height: 20px;
-        margin-bottom: 20px;
-        margin-top: 10px;
-
-        .ant-input-outlined{
-            background: #ffffff55 !important;
-        }
-    }
-
+  }
 }

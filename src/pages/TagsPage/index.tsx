@@ -1,22 +1,21 @@
-import { useNavigate, useParams } from "react-router-dom";
-import Card from "../../components/Card";
-import PageTitle from "../../components/PageTitle";
-import { useEffect, useRef, useState } from "react";
-import store from "../../redux/store";
-import Tag from "../../components/Tag";
+import { useNavigate } from 'react-router-dom';
+import Card from '../../components/Card';
+import PageTitle from '../../components/PageTitle';
+import { useEffect, useRef } from 'react';
+import Tag from '../../components/Tag';
 import * as echarts from 'echarts/core';
 import 'echarts-wordcloud';
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from '../../redux/hooks';
 
-import "./index.scss";
+import './index.scss';
 
 export default function TagsPage() {
   // const [tags,setTags]=useState<any>();
-  const tags=useAppSelector(state=>state.tagsList);
-  const darkMode=useAppSelector(state=>state.darkMode);
-  const chartRef=useRef(null);
-  const navigate=useNavigate();
-  
+  const tags = useAppSelector(state => state.taxonomy.tagsList);
+  const darkMode = useAppSelector(state => state.ui.darkMode);
+  const chartRef = useRef(null);
+  const navigate = useNavigate();
+
   // useEffect(()=>{
   //   const {tagsList}=store.getState();
   //   setTags(tagsList);
@@ -30,16 +29,15 @@ export default function TagsPage() {
   //     unsubscribe();
   //   }
   // },[])
-  
-  useEffect(()=>{
-    if(tags){
+
+  useEffect(() => {
+    if (tags) {
       createWordCloud();
     }
-      
-  },[tags])
+  }, [tags]);
 
-  const createWordCloud=()=>{
-    let wordcloud=echarts.init(chartRef.current);
+  const createWordCloud = () => {
+    let wordcloud = echarts.init(chartRef.current);
     const option = {
       series: [
         {
@@ -50,7 +48,7 @@ export default function TagsPage() {
           shape: 'pentagon',
           textStyle: {
             normal: {
-              color: ()=>{
+              color: () => {
                 return (
                   'rgb(' +
                   [
@@ -67,58 +65,54 @@ export default function TagsPage() {
               shadowColor: '#333',
             },
           },
-          data:Object.keys(tags).map(tagName=>{
-            return ({
-              name:tagName,
-              value:parseInt(tags[tagName].length),
-              link:`/tags/${tagName}`,
-            })
-          })
-        }
-      ]
+          data: Object.keys(tags).map(tagName => {
+            return {
+              name: tagName,
+              value: tags[tagName].length,
+              link: `/tags/${tagName}`,
+            };
+          }),
+        },
+      ],
     };
-    
+
     wordcloud.setOption(option);
-    wordcloud.on('click', function (params:any) {
+    wordcloud.on('click', function (params: any) {
       if (params.data && params.data.link) {
-        navigate(`${params.data.link}`)
+        navigate(`${params.data.link}`);
       }
     });
-  }
+  };
 
-  const createTags=():React.ReactNode=>{
-    if(tags){
-      return Object.keys(tags).map((tag:any)=>{
+  const createTags = (): React.ReactNode => {
+    if (tags) {
+      return Object.keys(tags).map((tag: any) => {
         return (
           <div className="tag-container" key={tag}>
             <Tag tag={tag} />
           </div>
-        )
-      })
+        );
+      });
     }
-  }
+  };
 
   return (
     <div className="page-main">
-
       <div className="page-main-title">
-        <PageTitle title="Tags"/>
+        <PageTitle title="Tags" />
       </div>
 
       <div className="page-main-content">
+        <Card darkMode={darkMode}>
+          <div className="tags-page-card-tags">{createTags()}</div>
+        </Card>
+
+        <div className="tags-page-chart-main">
           <Card darkMode={darkMode}>
-            <div className="tags-page-card-tags">
-              {createTags()}
-            </div>
+            <div className="tags-page-chart-block" ref={chartRef} />
           </Card>
-
-          <div className="tags-page-chart-main">
-            <Card darkMode={darkMode}>
-              <div className="tags-page-chart-block" ref={chartRef} />
-            </Card>
-          </div>
+        </div>
       </div>
-
     </div>
-  )
+  );
 }

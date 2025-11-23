@@ -1,7 +1,5 @@
-import "./index.scss";
+import './index.scss';
 
 export default function AreaDivider() {
-  return (
-    <div className="area-divider" />  
-  );
+  return <div className="area-divider" />;
 }

@@ -1,15 +1,13 @@
-import "./index.scss"
+import './index.scss';
 
 type Props = {
-  title: string
-}
+  title: string;
+};
 
 export default function PageTitle({ title }: Props) {
   return (
     <>
-      <div className='page-title'>
-        {title}
-      </div>
+      <div className="page-title">{title}</div>
     </>
-  )
+  );
 }

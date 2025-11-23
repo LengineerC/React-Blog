@@ -1,26 +1,25 @@
-@import "../../styles/base.scss";
-@import "../../styles/page_layout.scss";
+@use '../../styles/base.scss' as *;
+@use '../../styles/page_layout.scss' as *;
 
-.categories-page-card-categories{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.categories-page-card-categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.categories-container{
-    margin-right: 5px;
-    margin-bottom: 5px;
+.categories-container {
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
-.categories-page-chart-main{
-    @extend .hv-center;
-    margin-top:25px;
-    width: 100%;
+.categories-page-chart-main {
+  @extend .hv-center;
+  margin-top: 25px;
+  width: 100%;
 }
 
-.categories-page-chart-block{
-    height:37vh;
-    width: 100%;
-    max-width: 100vw;
-    
+.categories-page-chart-block {
+  height: 37vh;
+  width: 100%;
+  max-width: 100vw;
 }

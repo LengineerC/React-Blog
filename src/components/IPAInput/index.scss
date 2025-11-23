@@ -1,179 +1,179 @@
-@import "../../styles/base.scss";
-@import "../../styles/page_layout.scss";
+@use '../../styles/base.scss' as *;
+@use '../../styles/page_layout.scss' as *;
 
 .ipa-main {
+  @extend .hv-center;
+  height: auto;
+  flex-direction: column;
+  width: 100%;
+
+  .display-area {
+    display: flex;
+    position: sticky;
+    top: $navHeight + 20px;
+    height: auto;
+    width: 100%;
+
+    textarea {
+      z-index: 1;
+      font-size: 20px;
+      backdrop-filter: blur(10px);
+      // background: #ffffff;
+      font-family: 'CustomFont1';
+      box-shadow: 3px 1px 10px 3px #00000015;
+      color: $postColor;
+      width: 100%;
+      height: 20vh;
+      resize: none;
+      background: none;
+      border-radius: 5px;
+      padding: 3px;
+      transition: 0.09s;
+      border-color: transparentize($themeBackgroundColor, 0.3);
+      outline-color: transparentize($themeBackgroundColor, 0.3);
+
+      &:focus {
+        // outline: none;
+        box-shadow: 0 0 10px 1px #69696933;
+        outline: 2px mix(transparentize($themeBackgroundColor, 0.3), #6d6d6d, 90%) solid;
+      }
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: transparentize($themeBackgroundColor, 0.3);
+        border-radius: 50px;
+      }
+
+      &::-webkit-scrollbar-thumb:active {
+        background: mix(transparentize($themeBackgroundColor, 0.3), #fff, 90%);
+      }
+
+      &.dark {
+        border-color: $postColor-dark;
+        outline-color: $postColor-dark;
+        color: $postColor-dark;
+
+        &:focus {
+          // outline: none;
+          box-shadow: 0 0 10px 1px #fbfbfb33;
+          outline: 2px mix($postColor-dark, #6d6d6d, 90%) solid;
+        }
+
+        &::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: mix(transparentize($themeBackgroundColor-dark, 0.4), #fff, 80%);
+          border-radius: 50px;
+        }
+
+        &::-webkit-scrollbar-thumb:active {
+          background: mix(transparentize($themeBackgroundColor-dark, 0.4), #fff, 70%);
+        }
+      }
+    }
+
+    .tool-bar {
+      z-index: 2;
+      position: absolute;
+      bottom: 2px;
+      right: 5px;
+      overflow: hidden;
+      opacity: 0;
+      display: flex;
+      flex-direction: row;
+      height: auto;
+      padding: 3px 1px;
+      // background-color: #ffffff55;
+      transition: 0.2s;
+
+      &.fade-in {
+        opacity: 1;
+      }
+
+      .tool-btn {
+        color: $postColor;
+        transition: 0.3s;
+        font-size: 18px;
+        margin: 0 3px;
+        margin-bottom: 3px;
+        cursor: pointer;
+
+        &:hover {
+          color: #1e6bb9;
+        }
+
+        &.dark {
+          color: $postColor-dark;
+
+          &:hover {
+            color: $dark-highlight-color;
+          }
+        }
+      }
+    }
+  }
+
+  .ipa-keys {
     @extend .hv-center;
     height: auto;
     flex-direction: column;
     width: 100%;
+    margin-top: 20px;
 
-    .display-area {
+    .keys-area {
+      width: 100%;
+      color: $postColor;
+
+      &.dark {
+        color: $postColor-dark;
+      }
+
+      .keys-area-title {
+        font-family: 'CustomFont1';
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      .keys-container {
         display: flex;
-        position: sticky;
-        top: $navHeight + 20px;
-        height: auto;
-        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
 
-        textarea {
-            z-index: 1;
-            font-size: 20px;
-            backdrop-filter: blur(10px);
-            // background: #ffffff;
-            font-family: "CustomFont1";
-            box-shadow: 3px 1px 10px 3px #00000015;
-            color: $postColor;
-            width: 100%;
-            height: 20vh;
-            resize: none;
-            background: none;
-            border-radius: 5px;
-            padding: 3px;
-            transition: .09s;
-            border-color: transparentize($themeBackgroundColor, .3);
-            outline-color: transparentize($themeBackgroundColor, .3);
+        .key {
+          display: flex;
+          @extend .hv-center;
+          height: 30px;
+          width: 20px;
+          font-size: 18px;
+          margin: 3px 5px;
+          border-radius: 3px;
+          background-color: transparentize($themeBackgroundColor, 0.65);
+          user-select: none;
+          transition: 0.2s;
+          cursor: pointer;
 
-            &:focus {
-                // outline: none;
-                box-shadow: 0 0 10px 1px #69696933;
-                outline: 2px mix(transparentize($themeBackgroundColor, .3), #6d6d6d, 90%) solid;
+          &:hover {
+            background-color: transparentize($themeBackgroundColor, 0.8);
+            transform: scale(1.1);
+          }
+
+          &.dark {
+            background-color: transparentize($dark-highlight-color, 0.65);
+
+            &:hover {
+              background-color: transparentize($dark-highlight-color, 0.3);
+              transform: scale(1.1);
             }
-
-            &::-webkit-scrollbar {
-                width: 5px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: transparentize($themeBackgroundColor, .3);
-                border-radius: 50px;
-            }
-
-            &::-webkit-scrollbar-thumb:active {
-                background: mix(transparentize($themeBackgroundColor, .3), #fff, 90%);
-            }
-
-            &.dark {
-                border-color: $postColor-dark;
-                outline-color: $postColor-dark;
-                color: $postColor-dark;
-
-                &:focus {
-                    // outline: none;
-                    box-shadow: 0 0 10px 1px #fbfbfb33;
-                    outline: 2px mix($postColor-dark, #6d6d6d, 90%) solid;
-                }
-
-                &::-webkit-scrollbar {
-                    width: 5px;
-                }
-
-                &::-webkit-scrollbar-thumb {
-                    background: mix(transparentize($themeBackgroundColor-dark, .4), #fff, 80%);
-                    border-radius: 50px;
-                }
-
-                &::-webkit-scrollbar-thumb:active {
-                    background: mix(transparentize($themeBackgroundColor-dark, .4), #fff, 70%);
-                }
-            }
+          }
         }
-
-        .tool-bar {
-            z-index: 2;
-            position: absolute;
-            bottom: 2px;
-            right: 5px;
-            overflow: hidden;
-            opacity: 0;
-            display: flex;
-            flex-direction: row;
-            height: auto;
-            padding: 3px 1px;
-            // background-color: #ffffff55;
-            transition: 0.2s;
-
-            &.fade-in {
-                opacity: 1;
-            }
-
-            .tool-btn {
-                color: $postColor;
-                transition: 0.3s;
-                font-size: 18px;
-                margin: 0 3px;
-                margin-bottom: 3px;
-                cursor: pointer;
-
-                &:hover {
-                    color: #1e6bb9;
-                }
-
-                &.dark {
-                    color: $postColor-dark;
-
-                    &:hover {
-                        color: $dark-highlight-color;
-                    }
-                }
-            }
-        }
+      }
     }
-
-    .ipa-keys {
-        @extend .hv-center;
-        height: auto;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 20px;
-
-        .keys-area {
-            width: 100%;
-            color: $postColor;
-
-            &.dark {
-                color: $postColor-dark;
-            }
-
-            .keys-area-title {
-                font-family: "CustomFont1";
-                font-weight: bold;
-                font-size: 22px;
-                margin-bottom: 15px;
-            }
-
-            .keys-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-
-                .key {
-                    display: flex;
-                    @extend .hv-center;
-                    height: 30px;
-                    width: 20px;
-                    font-size: 18px;
-                    margin: 3px 5px;
-                    border-radius: 3px;
-                    background-color: transparentize($themeBackgroundColor, 0.65);
-                    user-select: none;
-                    transition: 0.2s;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: transparentize($themeBackgroundColor, 0.8);
-                        transform: scale(1.1);
-                    }
-
-                    &.dark {
-                        background-color: transparentize($dark-highlight-color, 0.65);
-
-                        &:hover {
-                            background-color: transparentize($dark-highlight-color, 0.3);
-                            transform: scale(1.1);
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
 }

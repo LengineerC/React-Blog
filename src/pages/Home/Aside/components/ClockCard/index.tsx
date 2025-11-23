@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import Card from "../../../../../components/Card";
+import { useEffect, useState } from 'react';
+import Card from '../../../../../components/Card';
 // import store from "../../../../../redux/store";
-import { useAppSelector } from "../../../../../redux/hooks";
+import { useAppSelector } from '../../../../../redux/hooks';
 
 import './index.scss';
-import Clock from "@/components/Clock";
+import Clock from '@/components/Clock';
 
 export default function ClockCard() {
-  const darkMode=useAppSelector(state=>state.darkMode);
+  const darkMode = useAppSelector(state => state.ui.darkMode);
 
   // const [date,setDate]=useState<Date>(new Date());
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
@@ -26,7 +26,7 @@ export default function ClockCard() {
   //   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   //   const dayOfWeek = daysOfWeek[date.getUTCDay()];
   //   const day = date.getDate();
-  //   const month = date.getMonth() + 1; 
+  //   const month = date.getMonth() + 1;
   //   const year = date.getFullYear();
   //   const hours = date.getHours();
   //   const minutes = date.getMinutes();
@@ -44,27 +44,24 @@ export default function ClockCard() {
   //         {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
   //       </span>
   //     </>
-  //   );  
+  //   );
   // };
 
   return (
     <Card
-    className="aside-card"
-    scale={true}
-    background={
-      darkMode?"rgba(20, 7, 94, 0.5)":"#BAD8F0AA"
-      // 'linear-gradient(90deg,rgba(35, 9, 184, 0.5),rgba(20, 7, 94, 0.5)'
-      // :"linear-gradient(90deg,rgba(27, 109, 209,0.5),rgba(177, 255, 82, 0.5))"
-    }
-    darkMode={darkMode}
+      className="aside-card"
+      scale={true}
+      background={
+        darkMode ? 'rgba(20, 7, 94, 0.5)' : '#BAD8F0AA'
+        // 'linear-gradient(90deg,rgba(35, 9, 184, 0.5),rgba(20, 7, 94, 0.5)'
+        // :"linear-gradient(90deg,rgba(27, 109, 209,0.5),rgba(177, 255, 82, 0.5))"
+      }
+      darkMode={darkMode}
     >
       <div className="clock-card-main">
         {/* {getFormattedDate(date)} */}
-        <Clock 
-          width={150}
-          height={150}
-        />
+        <Clock width={150} height={150} />
       </div>
     </Card>
-  )
+  );
 }

@@ -2,6 +2,36 @@
   "name": "blog",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "npm run gen-posts-config && craco start",
+    "build": "npm run gen-posts-config && npm run gen-sitemap && craco build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "gen-sitemap": "node scripts/sitemap.js",
+    "gen-posts-config": "node scripts/generatePostList.js && node scripts/generateClassList.js",
+    "create-post": "node scripts/createPost.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss,json,md}\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@craco/craco": "^7.1.0",
@@ -14,10 +44,6 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.98",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
     "antd": "^5.18.0",
     "axios": "^1.7.2",
     "echarts": "^5.5.0",
@@ -38,43 +64,19 @@
     "react-transition-group": "^4.4.5",
     "redux": "^5.0.1",
     "redux-saga": "^1.3.0",
-    "sass": "^1.77.4",
+    "sass": "^1.94.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "npm run gen-posts-config && craco start",
-    "build": "npm run gen-posts-config && npm run gen-sitemap && craco build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "gen-sitemap": "node scripts/sitemap.js",
-    "gen-posts-config": "node scripts/generatePostList.js && node scripts/generateClassList.js",
-    "create-post": "node scripts/createPost.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
+    "@types/jest": "^27.5.2",
     "@types/markdown-navbar": "^1.4.4",
+    "@types/node": "^16.18.98",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@types/react-transition-group": "^4.4.12",
     "gh-pages": "^6.2.0",
-    "marked-katex-extension-ts": "^0.1.3"
+    "marked-katex-extension-ts": "^0.1.3",
+    "prettier": "^3.6.2"
   }
 }

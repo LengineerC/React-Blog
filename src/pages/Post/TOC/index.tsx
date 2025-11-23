@@ -1,18 +1,14 @@
-// import { useEffect, useRef, useState } from 'react'
-import Card from '../../../components/Card'
-// import store from '../../../redux/store'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faList } from '@fortawesome/free-solid-svg-icons'
-// import { TOC_HEADING_CONFIG, MAX_TOC_HEADING } from '../../../utils/constants'
-import MarkdownNavbar from './MarkdownNavBar/index'
+import Card from '../../../components/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
+import MarkdownNavbar from './MarkdownNavBar/index';
 // import MarkdownNavbar from 'markdown-navbar'
-import { ConfigProvider, Drawer } from 'antd'
-import { useEffect, useState } from 'react'
-import { MOBILE_MAX_WIDTH } from '../../../utils/constants'
-import store from '../../../redux/store'
-import { useAppSelector } from '../../../redux/hooks'
+import { ConfigProvider, Drawer } from 'antd';
+import { useEffect, useState } from 'react';
+import { MOBILE_MAX_WIDTH } from '../../../utils/constants';
+import { useAppSelector } from '../../../redux/hooks';
 
-import "./index.scss"
+import './index.scss';
 
 //#region 手动实现 有bug
 // type Props={
@@ -51,7 +47,7 @@ import "./index.scss"
 //     const {selectedPostHtmlReducer}=store.getState();
 //     const toc=generateToc(selectedPostHtmlReducer);
 //     setTOCItems(toc);
-    
+
 //     const unsubscribe=store.subscribe(()=>{
 //       const {selectedPostHtmlReducer}=store.getState();
 //       if(selectedPostHtmlReducer!==''){
@@ -72,10 +68,10 @@ import "./index.scss"
 //         // Sort by intersection ratio
 //         visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 //         console.log(visibleEntries);
-        
+
 //         setActiveId(visibleEntries[0].target.id);
 //       }
-//     }, { 
+//     }, {
 //       threshold: [0.1,0.5,1.0],
 //      });
 
@@ -109,12 +105,12 @@ import "./index.scss"
 //       return TOCItems.map(item=>{
 //         return (
 //           <li key={item.anchor} style={{marginLeft: (item.level-MAX_TOC_HEADING)*10}}>
-//             <p 
+//             <p
 //             onClick={()=>scrollToHeading(item.anchor)}
 //             className={activeId===item.anchor?"active":""}
 //             >
 //               {item.text}
-//             </p>          
+//             </p>
 //           </li>
 //         )
 //       })
@@ -133,59 +129,58 @@ import "./index.scss"
 //         </ul>
 //       </div>
 
-
 //     </Card>
 //   )
 // }
 //#endregion
 
+type Props = {
+  markdown: string;
+  showDrawer: boolean;
+  callbackOnClose: Function;
+};
 
-type Props={
-  markdown:string;
-  showDrawer:boolean,
-  callbackOnClose:Function,
-}
+export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
+  const [open, setOpen] = useState<boolean>(showDrawer);
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(
+    window.innerWidth <= MOBILE_MAX_WIDTH,
+  );
+  const darkMode = useAppSelector(state => state.ui.darkMode);
 
-export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
-  const [open,setOpen]=useState<boolean>(showDrawer);
-  const [drawerVisible,setDrawerVisible]=useState<boolean>(window.innerWidth<=MOBILE_MAX_WIDTH);
-  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
-  const darkMode=useAppSelector(state=>state.darkMode);
-
-  useEffect(()=>{
+  useEffect(() => {
     setOpen(showDrawer);
-  },[showDrawer])
-  
-  const onClose=()=>{
+  }, [showDrawer]);
+
+  const onClose = () => {
     setOpen(false);
     callbackOnClose();
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     // const unsubscribe=store.subscribe(()=>{
     //   const {darkMode}=store.getState();
     //   setIsDarkMode(darkMode);
     // })
 
-    const handleResize=()=>{
-      setDrawerVisible(window.innerWidth<=MOBILE_MAX_WIDTH);
-    }
+    const handleResize = () => {
+      setDrawerVisible(window.innerWidth <= MOBILE_MAX_WIDTH);
+    };
 
-    window.addEventListener("resize",handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return ()=>{
+    return () => {
       // unsubscribe();
-      window.removeEventListener("resize",handleResize);
-    }
-  },[])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-  const getColorBgElevated=():string=>{
-    return darkMode?"#1c1c2c99":"#ffffffcc";
-  }
+  const getColorBgElevated = (): string => {
+    return darkMode ? '#1c1c2c99' : '#ffffffcc';
+  };
 
   // const onHashChange=(newHash:any, oldHash:any)=>{
   //   console.log(newHash,oldHash);
-    
+
   //   window.history.replaceState(null,"",`${window.location.href}#${newHash}`);
   // }
 
@@ -197,61 +192,61 @@ export default function TOC({markdown, showDrawer,callbackOnClose}:Props) {
 
   return (
     <>
-      {
-        !drawerVisible ?(
+      {!drawerVisible ? (
         <Card className="aside-card" darkMode={darkMode}>
-          <div className={darkMode?"toc-header-dark":'toc-header'}>
-            <FontAwesomeIcon icon={faList} />&nbsp;目录
-            <hr/>
+          <div className={darkMode ? 'toc-header-dark' : 'toc-header'}>
+            <FontAwesomeIcon icon={faList} />
+            &nbsp;目录
+            <hr />
           </div>
-          <div className={darkMode?"toc-content-dark":'toc-content'}>
-              <MarkdownNavbar 
-              source={markdown} 
+          <div className={darkMode ? 'toc-content-dark' : 'toc-content'}>
+            <MarkdownNavbar
+              source={markdown}
               // updateHashAuto={false}
               headingTopOffset={60}
               ordered={true}
-              />
+            />
           </div>
-
-        </Card>):(
-          <div className='toc-drawer-block'>
+        </Card>
+      ) : (
+        <div className="toc-drawer-block">
           <ConfigProvider
-          theme={{
-            token:{
-              padding:0,
-              paddingLG:0,
-              paddingXS:0,
-              colorBgElevated:getColorBgElevated()
-            }
-          }}
+            theme={{
+              token: {
+                padding: 0,
+                paddingLG: 0,
+                paddingXS: 0,
+                colorBgElevated: getColorBgElevated(),
+              },
+            }}
           >
             <Drawer
-            className={darkMode?"toc-drawer-dark":'toc-drawer'}
-            placement="right"
-            open={open}
-            onClose={onClose}
-            width={250}
-            closeIcon={null}
-            // destroyOnClose  //不加此项测试运行手机端不显示目录时滑动过快报错，正式运行不影响，但性能会受损 
+              className={darkMode ? 'toc-drawer-dark' : 'toc-drawer'}
+              placement="right"
+              open={open}
+              onClose={onClose}
+              width={250}
+              closeIcon={null}
+            // destroyOnClose  //不加此项测试运行手机端不显示目录时滑动过快报错，正式运行不影响，但性能会受损
             >
-              <div className={darkMode?"toc-header-dark":'toc-header'}>
-                <FontAwesomeIcon icon={faList} />&nbsp;目录
-                <hr/>
+              <div className={darkMode ? 'toc-header-dark' : 'toc-header'}>
+                <FontAwesomeIcon icon={faList} />
+                &nbsp;目录
+                <hr />
               </div>
-              <div className='toc-content'>
-                <MarkdownNavbar 
-                // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)} 
-                source={markdown} 
-                // updateHashAuto={false}
-                headingTopOffset={60}
-                ordered={true}
+              <div className="toc-content">
+                <MarkdownNavbar
+                  // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)}
+                  source={markdown}
+                  // updateHashAuto={false}
+                  headingTopOffset={60}
+                  ordered={true}
                 />
               </div>
-
             </Drawer>
           </ConfigProvider>
-        </div>)
-      }
+        </div>
+      )}
     </>
-  )
+  );
 }

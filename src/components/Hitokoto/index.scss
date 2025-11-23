@@ -1,31 +1,31 @@
-@import "../../styles/base.scss";
+@use '../../styles/base.scss' as *;
 
-.hitokoto{
-    color: white;
-    text-shadow: 2px 2px 5px rgb(32, 32, 32);
-    font-family: "CustomFont1";
-    font-size: 20px;
-    // animation: content-slide-in 2s steps(20) forwards;
-    overflow: hidden;
-    // white-space: nowrap;
-    position: relative;
-    text-align: center;
+.hitokoto {
+  color: white;
+  text-shadow: 2px 2px 5px rgb(32, 32, 32);
+  font-family: 'CustomFont1';
+  font-size: 20px;
+  // animation: content-slide-in 2s steps(20) forwards;
+  overflow: hidden;
+  // white-space: nowrap;
+  position: relative;
+  text-align: center;
 
-    &::after{
-        content: '';
-        position: absolute;
-        right: 0;
-        height: 25px;
-        // animation: sprinkle-bling 1s steps(2) infinite;
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    height: 25px;
+    // animation: sprinkle-bling 1s steps(2) infinite;
+  }
 }
 
-@media screen and (max-width:$mobileMaxWidth) {
-    .hitokoto{
-        word-break: normal;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+@media screen and (max-width: $mobileMaxWidth) {
+  .hitokoto {
+    word-break: normal;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 // @keyframes content-slide-in {

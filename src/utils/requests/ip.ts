@@ -1,1 +1,1 @@
-export const githubBaseUrl:string="https://api.github.com";
+export const githubBaseUrl: string = 'https://api.github.com';

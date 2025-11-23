@@ -1,23 +1,23 @@
-@import "../../../styles/base.scss";
-@import "../../../styles/page_layout.scss";
+@use '../../../styles/base.scss' as *;
+@use '../../../styles/page_layout.scss' as *;
 
-aside{
-    // @extend .hv-center;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+aside {
+  // @extend .hv-center;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 70%;
+
+  .aside-item-container {
     width: 100%;
-    height: 70%;
+    margin-bottom: 20px;
+  }
 
-    .aside-item-container{
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .sticky-block{
-        width: 100%;
-        margin-bottom: 20px;
-        position: sticky;
-        top:$navHeight + 20px;
-    }
+  .sticky-block {
+    width: 100%;
+    margin-bottom: 20px;
+    position: sticky;
+    top: $navHeight + 20px;
+  }
 }

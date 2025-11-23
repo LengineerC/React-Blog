@@ -1,55 +1,55 @@
-@import "../../styles/base.scss";
-@import "../../styles/page_layout.scss";
+@use '../../styles/base.scss' as *;
+@use '../../styles/page_layout.scss' as *;
 
-.card-main{
-    @extend .hv-center;
-    flex-direction: column;
-    background-color: rgba(235, 235, 235, 0.85);
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-sizing: border-box;
-    word-break: break-all;
-    padding:24px 50px 24px 50px;
-    
-    background-position: center 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    //如果post后续添加标签选择器
-    // .card-main-text-container{
-    //     word-break: break-all;
-    //     padding:24px 50px 24px 50px;
-    //     width: 100%;
+.card-main {
+  @extend .hv-center;
+  flex-direction: column;
+  background-color: rgba(235, 235, 235, 0.85);
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-sizing: border-box;
+  word-break: break-all;
+  padding: 24px 50px 24px 50px;
 
-    // }
+  background-position: center 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  //如果post后续添加标签选择器
+  // .card-main-text-container{
+  //     word-break: break-all;
+  //     padding:24px 50px 24px 50px;
+  //     width: 100%;
+
+  // }
 }
 
-.card-main-scale{
-    @extend .card-main;
-    transition: 0.3s;
+.card-main-scale {
+  @extend .card-main;
+  transition: 0.3s;
 
-    &:hover{
-        transform: scale(1.02);
-    }
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
-.aside-card{
-    @extend .card-main;
-    padding:5px 10px 5px 10px;
-    // text-align: center;
-    word-break: normal;
+.aside-card {
+  @extend .card-main;
+  padding: 5px 10px 5px 10px;
+  // text-align: center;
+  word-break: normal;
 }
 
-.card-main-dark{
-    @extend .card-main;
-    background-color: rgba(65, 65, 65, 0.83);
+.card-main-dark {
+  @extend .card-main;
+  background-color: rgba(65, 65, 65, 0.83);
 }
 
-@media screen and (max-width:$mobileMaxWidth){
-    .card-main{
-        width: 95%;
-        padding: 15px 10px;
-    }
+@media screen and (max-width: $mobileMaxWidth) {
+  .card-main {
+    width: 95%;
+    padding: 15px 10px;
+  }
 }

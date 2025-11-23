@@ -1,17 +1,18 @@
-$textColor:#fff;
+$textColor: #fff;
 
 //导航栏高度
-$navHeight:60px;
+$navHeight: 60px;
 
 //移动端设备最大宽度
-$mobileMaxWidth:992px;
+$mobileMaxWidth: 992px;
 
 //Sans&圆体中文
 @font-face {
-    font-family: "CustomFont1";
-    src: url(../assets/fonts/font.ttf);
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'CustomFont1';
+  src: url(../assets/fonts/font.woff2) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 //浅色主题背景色
@@ -19,16 +20,16 @@ $themeBackgroundColor: #67abff;
 
 //深色模式背景主题色
 $themeBackgroundColor-dark: #393958;
-$dark-highlight-color:#29B839;
+$dark-highlight-color: #29b839;
 
 // 文章字体颜色
-$postColor:#1f1e33;
-$postColor-dark:#ffffffcc;
+$postColor: #1f1e33;
+$postColor-dark: #ffffffcc;
 
 //Nav栏背景色
 // $navBackgroundColor:rgba(211, 236, 255, 0.65);
-$navBackgroundColor:mix(transparentize($themeBackgroundColor,.3),rgba(0,0,0,0.1),75%);
+$navBackgroundColor: mix(transparentize($themeBackgroundColor, 0.3), rgba(0, 0, 0, 0.1), 75%);
 
 //Footer背景色
 // $footerBackgroundColor:rgba(178, 196, 210, 0.7);
-$footerBackgroundColor:mix(transparentize($themeBackgroundColor,.3),rgba(0,0,0,0.1));
+$footerBackgroundColor: mix(transparentize($themeBackgroundColor, 0.3), rgba(0, 0, 0, 0.1));

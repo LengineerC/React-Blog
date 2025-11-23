@@ -1,116 +1,113 @@
-@import "../../styles/page_layout.scss";
-@import "../../styles/base.scss";
+@use '../../styles/page_layout.scss' as *;
+@use '../../styles/base.scss' as *;
 
-.card-container{
-    width: 100%;
+.card-container {
+  width: 100%;
 
-    a{
-        text-decoration: none;
-        color: $postColor;
-    }
+  a {
+    text-decoration: none;
+    color: $postColor;
+  }
 }
 
-.friends-main{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 2vw;
-    row-gap: 2vh;
+.friends-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2vw;
+  row-gap: 2vh;
 
-    .friends-card{
-        @extend .hv-center;
-        flex-direction: row;
-        justify-content: space-evenly;
-        width: 100%;
-        min-width: 175px;
+  .friends-card {
+    @extend .hv-center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    min-width: 175px;
+    height: 100%;
+    min-height: 100px;
+    // margin-right: 3vw;
+
+    .friends-card-img,
+    .friends-card-img-dark {
+      $length: 70px;
+      // display: flex;
+      overflow: hidden;
+      width: $length;
+      height: $length;
+      // border: 1px solid black;
+      background: #fff;
+      border-radius: $length/2;
+      // margin: 3%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+      img {
         height: 100%;
-        min-height: 100px;
-        // margin-right: 3vw;
-
-        .friends-card-img,
-        .friends-card-img-dark{
-            $length:70px;
-            // display: flex;
-            overflow: hidden;
-            width: $length;
-            height: $length;
-            // border: 1px solid black;
-            background: #fff;
-            border-radius: $length/2;
-            // margin: 3%;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            
-            img{
-                height: 100%;
-                width: 100%;
-                object-fit: scale-down;
-            }
-        }
-        .friends-card-img-dark{
-            box-shadow: 0 0 5px rgba(255,255,255,0.3);
-        }
-
-        .friends-card-content{
-            font-family: "CustomFont1";
-            display: flex;
-            flex-direction: column;
-            width: 60%;
-
-            .friends-card-content-title,
-            .friends-card-content-title-dark{
-                color: rgb(73, 146, 236);
-                height: 32px;
-                font-size: 23px;
-                text-align: center;
-                margin-bottom: 3px;
-                word-break: keep-all;
-                // line-height: 25px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .friends-card-content-title-dark{
-                color: $dark-highlight-color;
-            }
-
-            .friends-card-content-description,
-            .friends-card-content-description-dark{
-                border-top: 1px dashed rgb(159, 159, 159);
-                // padding-top: 5px;
-                height: 85px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                word-break: normal;
-                font-size: 15px;
-                color: $postColor;
-            }
-            .friends-card-content-description-dark{
-                color: $postColor-dark;
-            }
-            
-        }
+        width: 100%;
+        object-fit: scale-down;
+      }
+    }
+    .friends-card-img-dark {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
     }
 
+    .friends-card-content {
+      font-family: 'CustomFont1';
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+
+      .friends-card-content-title,
+      .friends-card-content-title-dark {
+        color: rgb(73, 146, 236);
+        height: 32px;
+        font-size: 23px;
+        text-align: center;
+        margin-bottom: 3px;
+        word-break: keep-all;
+        // line-height: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .friends-card-content-title-dark {
+        color: $dark-highlight-color;
+      }
+
+      .friends-card-content-description,
+      .friends-card-content-description-dark {
+        border-top: 1px dashed rgb(159, 159, 159);
+        // padding-top: 5px;
+        height: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: normal;
+        font-size: 15px;
+        color: $postColor;
+      }
+      .friends-card-content-description-dark {
+        color: $postColor-dark;
+      }
+    }
+  }
 }
 
-@media screen and (max-width:$mobileMaxWidth) {
-    .card-container{
-        width: 100%;
-        margin: auto;
-        // display: flex;
-        // justify-content: center;
-        align-items: center;
+@media screen and (max-width: $mobileMaxWidth) {
+  .card-container {
+    width: 100%;
+    margin: auto;
+    // display: flex;
+    // justify-content: center;
+    align-items: center;
 
-        a{
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
+    a {
+      display: flex;
+      justify-content: center;
+      position: relative;
     }
+  }
 
-    .friends-main{
-        grid-template-columns: 1fr;
-        column-gap: 0;
-        place-items: center;
-    }
+  .friends-main {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    place-items: center;
+  }
 }

@@ -1,34 +1,33 @@
-@import "../../styles/base.scss";
+@use '../../styles/base.scss' as *;
 
-.page-title{
-    color: white;
-    font-size: 55px;
-    font-family: "CustomFont1";
+.page-title {
+  color: white;
+  font-size: 55px;
+  font-family: 'CustomFont1';
+  text-shadow: 3px 3px 10px rgb(37, 37, 37);
+  word-break: break-all;
+  text-align: center;
+  padding: 0 10vw;
+
+  animation: page-title-animation 3s;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: $mobileMaxWidth) {
+  .page-title {
+    padding: 0 5vw;
+    font-size: 35px;
+  }
+}
+
+@keyframes page-title-animation {
+  0% {
     text-shadow: 3px 3px 10px rgb(37, 37, 37);
-    word-break: break-all;
-    text-align: center;
-    padding: 0 10vw;
-
-    animation: page-title-animation 3s;
-    animation-iteration-count: infinite;
-
-}
-
-@media screen and (max-width:$mobileMaxWidth){
-    .page-title{
-        padding: 0 5vw;
-        font-size: 35px;
-    }
-}
-
-@keyframes page-title-animation{
-    0%{
-        text-shadow: 3px 3px 10px rgb(37, 37, 37);
-    }
-    50%{
-        text-shadow: 3px 3px 5px rgb(37, 37, 37);
-    }
-    100%{
-        text-shadow: 3px 3px 10px rgb(37, 37, 37);
-    }
+  }
+  50% {
+    text-shadow: 3px 3px 5px rgb(37, 37, 37);
+  }
+  100% {
+    text-shadow: 3px 3px 10px rgb(37, 37, 37);
+  }
 }

@@ -1,48 +1,37 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Card from '../../components/Card';
 import PageTitle from '../../components/PageTitle';
 import { BILIBILI_VIDEO_URL, IRC_TYPE, MUSIC_URL } from '../../utils/constants';
-// import { useLocation } from 'react-router-dom';
-// import store from '../../redux/store';
-
-import './index.scss';
 import { useAppSelector } from '../../redux/hooks';
 
-export default function Media() {
-  const aplayerRef=useRef(null);
-  // const aplayerInstanceRef = useRef(null)
-  const effectRan=useRef<boolean>(false);
-  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
-  const darkMode=useAppSelector(state=>state.darkMode);
+import './index.scss';
 
-  // const location=useLocation();
+export default function Media() {
+  const aplayerRef = useRef(null);
+  const effectRan = useRef<boolean>(false);
+  const darkMode = useAppSelector(state => state.ui.darkMode);
+
 
   useEffect(() => {
-    // const unsubscribe=store.subscribe(()=>{
-    //   const {darkMode}=store.getState();
-    //   setIsDarkMode(darkMode);
-    // })
-    if(effectRan.current) return;
+    if (effectRan.current) return;
 
-    let aplayerInstance:any=null;
+    let aplayerInstance: any = null;
     const checkAPlayerInstance = () => {
       if (aplayerRef.current && (aplayerRef as any).current.aplayer) {
         aplayerInstance = (aplayerRef as any).current.aplayer;
-        
       } else {
         setTimeout(checkAPlayerInstance, 100);
       }
     };
 
     checkAPlayerInstance();
-    effectRan.current=true;
+    effectRan.current = true;
 
     return () => {
-      // unsubscribe();
-      if(aplayerInstance){
+      if (aplayerInstance) {
         (aplayerInstance as any).destroy();
       }
-      effectRan.current=false;
+      effectRan.current = false;
     };
   }, []);
 
@@ -54,11 +43,9 @@ export default function Media() {
       <div className="page-main-content">
         <Card darkMode={darkMode}>
           <div className="media-card-main">
-            <div className={darkMode?'media-title-dark':'media-title'}>
-              🎶穢れなき音楽室
-            </div>
-            <div className={darkMode?'media-card-main-player-dark':"media-card-main-player"}>
-              <meting-js 
+            <div className={darkMode ? 'media-title-dark' : 'media-title'}>🎶穢れなき音楽室</div>
+            <div className={darkMode ? 'media-card-main-player-dark' : 'media-card-main-player'}>
+              <meting-js
                 ref={aplayerRef}
                 auto={MUSIC_URL}
                 theme="#67abff"
@@ -67,17 +54,14 @@ export default function Media() {
               />
             </div>
 
-            <div className={darkMode?'media-title-dark':'media-title'}>
-              📺远古视频
-            </div>
-            <div className='media-card-main-video'>
-              <iframe 
+            <div className={darkMode ? 'media-title-dark' : 'media-title'}>📺远古视频</div>
+            <div className="media-card-main-video">
+              <iframe
                 src={BILIBILI_VIDEO_URL}
-                scrolling="no" 
-                frameBorder="no" 
+                scrolling="no"
+                frameBorder="no"
                 allowFullScreen={true}
-                >
-              </iframe>
+              ></iframe>
             </div>
           </div>
         </Card>
