@@ -1723,6 +1723,11 @@
   resolved "https://registry.npmmirror.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz#4fc56c15c580b9adb7dc3c333a134e540b44bfb1"
   integrity sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==
 
+"@lengineerc/utils@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@lengineerc/utils/-/utils-1.0.4.tgz#8974745252a639f671f5a19e23af298842528434"
+  integrity sha512-JVm4M0KfiDvYe5ZJlb/26zMDdv5tLkOmzDGm2ennvvuR0K+mFrbsqWPHqjW5881DvzKF9gLmotfTIhMeIIn6sg==
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.npmmirror.com/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz#dbf733a965ca47b1973177dc0bb6c889edcfb129"

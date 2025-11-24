@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { HITOKOTO_GET_ENABLE, SUB_TITLE_ENABLE, SUB_TITLE_TEXTS } from '../../utils/constants';
+import { genRandomInt } from '@lengineerc/utils';
 import './index.scss';
-import { genRandomInt } from '@/utils/functions';
 
 const jinrishici = require('jinrishici');
 export default function Hitokoto() {
