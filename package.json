@@ -51,6 +51,7 @@
     "framer-motion": "^12.23.24",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
+    "html-react-parser": "^5.2.10",
     "jinrishici": "^1.0.6",
     "markdown-navbar": "^1.4.3",
     "marked": "^13.0.0",

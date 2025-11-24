@@ -50,6 +50,9 @@ export const BILIBILI_LINK: string = 'https://space.bilibili.com/92665721';
 //Post页是否自动开启目录
 export const DEFAULT_SHOW_TOC: boolean = true;
 
+// 文章代码块是否默认收起
+export const CODE_BLOCK_COLLAPSED: boolean = false;
+
 // 显示ClockCard
 export const SHOW_CLOCK_CARD: boolean = true;
 

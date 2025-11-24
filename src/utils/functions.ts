@@ -44,7 +44,7 @@ export const copyText = async (text: string): Promise<boolean> => {
           throw new Error('复制失败');
         }
       } catch (err) {
-        console.log('复制链接出错', err);
+        console.log('复制失败', err);
 
         return false;
       } finally {
@@ -52,7 +52,7 @@ export const copyText = async (text: string): Promise<boolean> => {
       }
     }
   } catch (e) {
-    console.log('复制链接出错', e);
+    console.log('复制失败', e);
     return false;
   }
 };

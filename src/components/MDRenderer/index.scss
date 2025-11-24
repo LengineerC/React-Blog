@@ -23,6 +23,7 @@
   .katex-display semantics {
     font-size: 23px !important;
   }
+
   // }
   // pre code {
   //     display: block;
@@ -59,6 +60,7 @@
 
   h1 {
     font-size: 34px;
+
     &:before {
       content: '🖌️';
     }
@@ -66,6 +68,7 @@
 
   h2 {
     font-size: 28px;
+
     &:before {
       content: '✒️';
     }
@@ -73,6 +76,7 @@
 
   h3 {
     font-size: 23px;
+
     &:before {
       content: '🖋️';
     }
@@ -80,6 +84,7 @@
 
   h4 {
     font-size: 19px;
+
     &:before {
       content: '✏️';
     }
@@ -87,6 +92,7 @@
 
   h5 {
     font-size: 16px;
+
     &:before {
       content: '📌';
     }
@@ -181,8 +187,79 @@
   //     justify-content: flex-end;
   // }
 
+  .code-block-wrapper {
+    width: auto;
+    height: auto;
+    background: rgb(45, 45, 45);
+    border-radius: 5px;
+
+    .code-header {
+      $default-color: #dddddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 0;
+      min-height: 30px;
+      max-height: 30px;
+      border-bottom: 1px solid transparentize($default-color , .5);
+
+      .language {
+        color: $default-color;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0 10px;
+        padding-bottom: 5px;
+      }
+
+      .operations {
+        display: flex;
+        width: auto;
+        height: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 10px;
+
+        .collapse-btn {
+          color: $default-color;
+          margin: 0 3px;
+        }
+
+        .copy-btn {
+          color: $postColor;
+          transition: 0.3s;
+          font-size: 18px;
+          margin: 0 3px;
+          cursor: pointer;
+          color: $default-color;
+
+          &:hover {
+            color: #1e6bb9;
+          }
+
+          &.dark {
+            color: $postColor-dark;
+
+            &:hover {
+              color: $dark-highlight-color;
+            }
+          }
+        }
+      }
+    }
+
+    .code-body {
+      width: auto;
+      height: auto;
+      transition: 0.3s;
+
+      &.collapsed {
+        height: 0;
+        overflow: hidden;
+      }
+    }
+  }
+
   pre code.hljs {
-    // padding-top: 0 !important;
     display: block;
     overflow-x: auto;
     padding: 1em;
@@ -260,6 +337,7 @@
 
   h1 {
     font-size: 34px;
+
     &:before {
       content: '🖌️';
     }
@@ -267,6 +345,7 @@
 
   h2 {
     font-size: 28px;
+
     &:before {
       content: '✒️';
     }
@@ -274,6 +353,7 @@
 
   h3 {
     font-size: 23px;
+
     &:before {
       content: '🖋️';
     }
@@ -281,6 +361,7 @@
 
   h4 {
     font-size: 19px;
+
     &:before {
       content: '✏️';
     }
@@ -288,6 +369,7 @@
 
   h5 {
     font-size: 16px;
+
     &:before {
       content: '📌';
     }
