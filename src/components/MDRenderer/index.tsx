@@ -3,9 +3,8 @@ import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
 import markedKatex from 'marked-katex-extension';
-import parser from 'html-react-parser';
+import parser, { domToReact } from 'html-react-parser';
 import { Image, message } from 'antd';
-import domToReact from 'html-react-parser/lib/dom-to-react';
 import { CopyFilled } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
@@ -76,7 +75,7 @@ function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
     <div className="code-block-wrapper">
       {contextHolder}
       <div className="code-header">
-        <div className="language">{language}</div>
+        <div className="language">{language.toLowerCase()}</div>
 
         <div className="operations">
           <CopyFilled className={`copy-btn ${darkMode && 'dark'}`} onClick={copyCode} />
@@ -93,7 +92,7 @@ function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
       </div>
 
       <div className={`code-body ${isCollapsed && 'collapsed'}`}>
-        <pre>
+        <pre style={{ margin: '0' }}>
           <code className={`hljs language-${language}`}>{children}</code>
         </pre>
       </div>
