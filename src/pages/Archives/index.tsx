@@ -13,6 +13,7 @@ import PageTitle from '../../components/PageTitle';
 import Card from '../../components/Card';
 import { GITHUB_REPO } from '../../utils/constants';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { MOBILE_MAX_WIDTH } from '../../utils/constants';
 
 import './index.scss';
 
@@ -26,7 +27,7 @@ echarts.use([
 ]);
 
 export default function Archives() {
-  const heatMapRef = useRef(null);
+  const heatMapRef = useRef<HTMLDivElement>(null);
   const [currentDate] = useState<Date>(new Date());
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const postList = useAppSelector(state => state.post.postList);
@@ -105,24 +106,20 @@ export default function Archives() {
   }, [githubRepoCommits, dispatch]);
 
   useEffect(() => {
-    const heatMap = echarts.init(heatMapRef.current);
+    const width = window.innerWidth > MOBILE_MAX_WIDTH ? 1150 : 900;
+    const heatMap = echarts.init(heatMapRef.current, null, {
+      width,
+    });
+
     renderHeatMap(heatMap);
+
+    return () => {
+      heatMap.dispose();
+    };
   }, [darkMode, postList]);
 
   const renderHeatMap = (heatMap: any) => {
-    let title = {
-      top: 10,
-      left: 'center',
-      text: '文章日历',
-      textStyle: {
-        fontFamily: 'CustomFont1',
-        color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
-        fontWeight: 'bold',
-      },
-    };
-
     const option = {
-      title: title,
       visualMap: {
         min: 0,
         max: 100,
@@ -134,7 +131,7 @@ export default function Archives() {
           fontWeight: 'bold',
         },
         pieces: [
-          { min: 4, label: '4+', color: `${darkMode ? '#216e39' : '#0943b7'}` },
+          { min: 4, label: '3+', color: `${darkMode ? '#216e39' : '#0943b7'}` },
           { min: 3, max: 3, label: '3', color: `${darkMode ? '#30a14e' : '#2986d2'}` },
           { min: 2, max: 2, label: '2', color: `${darkMode ? '#40c463' : '#80cbe0'}` },
           { min: 1, max: 1, label: '1', color: `${darkMode ? '#9be9a8' : '#cdd8db'}` },
@@ -142,11 +139,13 @@ export default function Archives() {
         ],
         orient: 'horizontal',
         left: 'center',
-        top: 45,
+        // top: 45,
+        top: 10,
         percision: 0,
       },
       calendar: {
-        top: 100,
+        // top: 100,
+        top: 65,
         left: 30,
         right: 30,
         cellSize: 15,
@@ -202,7 +201,21 @@ export default function Archives() {
 
       <div className="page-main-content">
         <Card className="card" darkMode={darkMode}>
-          <div ref={heatMapRef} className="calender-heatmap-block" />
+          <div className="calender-heatmap-container ">
+            <div
+              style={{
+                width: '100%',
+                textAlign: 'center',
+                fontSize: 20,
+                fontFamily: 'CustomFont1',
+                color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
+                fontWeight: 'bold',
+              }}
+            >
+              文章日历
+            </div>
+            <div ref={heatMapRef} className="calender-heatmap-block" />
+          </div>
 
           <div className="time-line-block">
             <ConfigProvider
@@ -219,20 +232,7 @@ export default function Archives() {
                 },
               }}
             >
-              <Timeline
-                mode="alternate"
-                // items={[
-                //   {
-                //     children:"构建中",
-                //     color:"red"
-                //   },
-                //   {
-                //     children:"立项 2024-06-08",
-                //     color:"green"
-                //   },
-                // ]}
-                items={formattedCommits}
-              />
+              <Timeline mode="alternate" items={formattedCommits} />
             </ConfigProvider>
           </div>
         </Card>

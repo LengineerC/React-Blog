@@ -1,51 +1,23 @@
 import { useState, useEffect } from 'react';
 import { PostConfig } from '../../../utils/types';
-// import store from '../../../redux/store';
 import { saveSelectedPostConfig } from '../../../redux/slices/postSlice';
 import PostCard from '../../../components/PostCard';
 import { Pagination, ConfigProvider } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { motion } from 'framer-motion';
 
 import './index.scss';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 
 type Props = {};
 
 export default function HomePosts({}: Props) {
-  // const [postList,setPostList]=useState<PostConfig[]>(store.getState().postList);
   const postList = useAppSelector(state => state.post.postList);
   const [pagination, setPagination] = useState<number>(1);
   const [pageSize] = useState<number>(10);
   const [currentPage, setCurrentPage] = useState<PostConfig[]>([]);
 
-  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const dispatch = useAppDispatch();
-
-  // useEffect(()=>{
-  //   const {postList}=store.getState();
-  //   setPostList(postList);
-
-  //   //先从App中获取所有的页面列表，然后在此存入state
-  //   const unsubscribe=store.subscribe(()=>{
-  //     const {postList,darkMode}=store.getState();
-  //     // console.log(postList);
-
-  //     setPostList(postList);
-  //     // if(darkMode!==isDarkMode){
-  //       setIsDarkMode(darkMode);
-  //     // }
-  //   });
-
-  //   return ()=>{
-  //     unsubscribe();
-  //     // console.log(store.getState().selectedPost);
-  //   }
-  // },[]);
-
-  // useEffect(()=>{
-  //   console.log(postList);
-
-  // },[postList])
 
   useEffect(() => {
     if (postList.length !== 0) {
@@ -67,13 +39,17 @@ export default function HomePosts({}: Props) {
 
     return currentPage.map(item => {
       return (
-        <div
+        <motion.div
           style={{ width: '100%', marginBottom: '3vh' }}
           onClick={() => setSelectedPost(item)}
           key={item.id}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <PostCard config={item} key={item.id} limit={250} showLimitContent={true} />
-        </div>
+        </motion.div>
       );
     });
   };

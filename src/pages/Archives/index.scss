@@ -4,8 +4,40 @@
   width: 100%;
 }
 
-.calender-heatmap-block {
+.calender-heatmap-container {
   width: 100%;
-  height: 30vh;
-  margin-bottom: 5vh;
+  height: auto;
+  @extend .hv-center;
+  flex-direction: column;
+
+  .calender-heatmap-block {
+    width: 100%;
+    height: 23vh;
+    min-height: 23vh;
+    margin-bottom: 5vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      width: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      // background-color: rgb(77, 144, 227);
+      background: #ffffff46;
+      // box-shadow: inset 1px 1px 3px 0 rgba(255,255,255,0.5);
+      border-radius: 50px;
+      transition: 0.5s;
+
+      &:hover {
+        background-color: #ffffff6b;
+      }
+    }
+
+    &>div {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

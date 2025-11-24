@@ -16,20 +16,6 @@ export default function TagsPage() {
   const chartRef = useRef(null);
   const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   const {tagsList}=store.getState();
-  //   setTags(tagsList);
-
-  //   const unsubscribe=store.subscribe(()=>{
-  //     const {tagsList={}}=store.getState();
-  //     setTags(tagsList);
-  //   })
-
-  //   return ()=>{
-  //     unsubscribe();
-  //   }
-  // },[])
-
   useEffect(() => {
     if (tags) {
       createWordCloud();
@@ -47,23 +33,19 @@ export default function TagsPage() {
           rotationRange: [0, 0],
           shape: 'pentagon',
           textStyle: {
-            normal: {
-              color: () => {
-                return (
-                  'rgb(' +
-                  [
-                    Math.round(Math.random() * 255),
-                    Math.round(Math.random() * 255),
-                    Math.round(Math.random() * 255),
-                  ].join(',') +
-                  ')'
-                );
-              },
+            color: () => {
+              return (
+                'rgb(' +
+                [
+                  Math.round(Math.random() * 255),
+                  Math.round(Math.random() * 255),
+                  Math.round(Math.random() * 255),
+                ].join(',') +
+                ')'
+              );
             },
-            emphasis: {
-              shadowBlur: 10,
-              shadowColor: '#333',
-            },
+            shadowBlur: 10,
+            shadowColor: '#333',
           },
           data: Object.keys(tags).map(tagName => {
             return {

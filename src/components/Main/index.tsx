@@ -92,6 +92,11 @@ export default function Main() {
     const used = Date.now() - startTime.current;
     const remain = Math.max(minimum - used, 0);
 
+    window.scrollTo({
+      left: 0,
+      top: 0,
+    });
+
     setTimeout(() => {
       setLoadingVisible(false);
       document.body.style.overflow = '';
