@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { throttle } from 'lodash';
 
@@ -7,7 +7,7 @@ import { throttle } from 'lodash';
  *
  * 仓库原链接 {@link https://github.com/parksben/markdown-navbar/tree/master MarkdownNavbar}
  *
- * 遵循MIT Licens
+ * 遵循MIT Licences
  */
 export class MarkdownNavbar extends Component {
   static propTypes = {

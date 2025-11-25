@@ -8,6 +8,8 @@
   width: 100%;
   font-family: 'CustomFont1';
   line-height: normal;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 
   .katex-html {
     display: none;
@@ -192,9 +194,9 @@
     height: auto;
     background: rgb(45, 45, 45);
     border-radius: 5px;
+    $default-color: #dddddd;
 
     .code-header {
-      $default-color: #dddddd;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -202,6 +204,13 @@
       min-height: 30px;
       max-height: 30px;
       border-bottom: 1px solid transparentize($default-color , .5);
+      background-color: rgb(40, 40, 40);
+      border-radius: 5px 5px 0 0;
+
+      &.collapsed {
+        border-radius: 5px;
+        border-bottom: none;
+      }
 
       .language {
         color: $default-color;
@@ -251,6 +260,54 @@
       height: auto;
       transition: 0.3s;
 
+      .code-row {
+        display: flex;
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        align-items: stretch;
+
+        .line-num {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          box-sizing: border-box;
+          width: 40px;
+          max-width: 40px;
+          flex-shrink: 0;
+          overflow: hidden;
+          text-align: right;
+          color: transparentize($default-color, .4);
+          user-select: none;
+          position: sticky;
+          left: 0;
+          z-index: 1;
+          font-size: 12px;
+          line-height: inherit;
+          padding: 0 6px 0 0;
+          background: rgb(40, 40, 40);
+          border-right: 1px solid rgba(255, 255, 255, 0.1);
+          font-variant-numeric: tabular-nums;
+          font-feature-settings: 'tnum';
+
+          &::before {
+            content: attr(data-num);
+          }
+        }
+
+        .code-content {
+          display: block;
+          flex: 1;
+          min-width: 0;
+          padding: 4px 12px;
+          white-space: pre;
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+      }
+
       &.collapsed {
         height: 0;
         overflow: hidden;
@@ -258,14 +315,19 @@
     }
   }
 
+  pre {
+    margin: 0;
+    position: relative;
+  }
+
   pre code.hljs {
     display: block;
     overflow-x: auto;
-    padding: 1em;
     background: rgb(45, 45, 45);
-    // border-radius: 5px;
     color: #ddd;
+    padding: 0;
     max-height: 90vh;
+    white-space: pre;
 
     &::-webkit-scrollbar {
       height: 6px;
@@ -273,15 +335,12 @@
     }
 
     &::-webkit-scrollbar-track {
-      // background-color: #bababa;
       background: #ffffff3f;
       border-radius: 100px;
     }
 
     &::-webkit-scrollbar-thumb {
-      // background-color: rgb(77, 144, 227);
       background: #ffffff46;
-      // box-shadow: inset 1px 1px 3px 0 rgba(255,255,255,0.5);
       border-radius: 50px;
       transition: 0.5s;
 
@@ -448,9 +507,8 @@
   }
 
   pre {
+    margin: 0;
     position: relative;
-    display: block;
-    width: 100%;
   }
 
   // pre::before{
@@ -465,15 +523,13 @@
   // }
 
   pre code.hljs {
-    // padding-top: 0 !important;
     display: block;
     overflow-x: auto;
-    padding: 1em;
     background: rgb(45, 45, 45);
-    // border-radius: 5px;
     color: #ddd;
+    padding: 0;
     max-height: 90vh;
-    text-shadow: none;
+    white-space: pre;
 
     &::-webkit-scrollbar {
       height: 6px;

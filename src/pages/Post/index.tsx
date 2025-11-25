@@ -57,14 +57,10 @@ export default function Post() {
 
   useEffect(() => {
     if (!postConfig) return;
-    const path = '/posts' +
-      (postConfig.category === '未分类' ? '' : `/${postConfig.category}`)
-      +`/${postConfig.id}.md`;
 
     axios
-      .get(path)
+      .get(postConfig.path)
       .then(response => {
-        console.log(response.data);
         setMarkdown(response.data);
         setMdLen(response.data.length);
 
@@ -77,11 +73,9 @@ export default function Post() {
         }
 
         setLocked(initPostConfig.lock);
-        // setPostConfig(initPostConfig);
       })
       .catch(err => {
         console.log('Post: 文章获取失败', err);
-        // console.log(window.location.pathname);
 
         navigate(`/articles/${id}`);
       });

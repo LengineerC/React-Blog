@@ -24,13 +24,27 @@ type Props = {
 const marked = new Marked(
   markedHighlight({
     langPrefix: 'hljs language-',
-    highlight(code, lang, info) {
+    highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
       const highlightedCode = hljs.highlight(code, { language }).value;
+
+      const normalizedCode = code.replace(/\r\n/g, '\n');
+      const rawLines = normalizedCode.split('\n');
+      const highlightedLines = highlightedCode.split('\n');
+
+      const processedCodeLines = rawLines.map((_, index) => {
+        const lineHtml = highlightedLines[index] ?? '';
+        const safeLine = lineHtml === '' ? '&nbsp;' : lineHtml;
+
+        return `<div class="code-row">
+          <span class="line-num" data-num="${index + 1}"></span>
+          <span class="code-content">${safeLine}</span>
+        </div>`;
+      });
+
       const raw = encodeURIComponent(code);
 
-      // return highlightedCode;
-      return `<code class="hljs language-${language}" data-raw="${raw}">${highlightedCode}</code>`;
+      return `<code class="hljs language-${language}" data-raw="${raw}">${processedCodeLines.join('')}</code>`;
     },
   }),
 );
@@ -74,7 +88,7 @@ function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
   return (
     <div className="code-block-wrapper">
       {contextHolder}
-      <div className="code-header">
+      <div className={`code-header ${isCollapsed && 'collapsed'}`}>
         <div className="language">{language.toLowerCase()}</div>
 
         <div className="operations">

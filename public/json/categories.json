@@ -1,4 +1,20 @@
 {
+  "中文": [
+    {
+      "id": "中文测试",
+      "tags": [
+        "中文"
+      ],
+      "category": "中文",
+      "top": false,
+      "title": "中文测试",
+      "author": "",
+      "time": "2025-11-25 11:12:18",
+      "lock": false,
+      "password": "",
+      "path": "/posts/中文/中文测试.md"
+    }
+  ],
   "c1": [
     {
       "id": "714test",

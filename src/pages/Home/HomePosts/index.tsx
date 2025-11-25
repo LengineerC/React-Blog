@@ -10,7 +10,7 @@ import './index.scss';
 
 type Props = {};
 
-export default function HomePosts({}: Props) {
+export default function HomePosts({ }: Props) {
   const postList = useAppSelector(state => state.post.postList);
   const [pagination, setPagination] = useState<number>(1);
   const [pageSize] = useState<number>(10);
@@ -43,8 +43,8 @@ export default function HomePosts({}: Props) {
           style={{ width: '100%', marginBottom: '3vh' }}
           onClick={() => setSelectedPost(item)}
           key={item.id}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.2 }}
         >
