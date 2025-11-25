@@ -7,11 +7,10 @@ import MDRenderer from '../MDRenderer';
 import { Skeleton } from 'antd';
 import Tag from '../Tag';
 import Category from '../Category';
-// import store from '../../redux/store'
-
-import './index.scss';
 import { useAppSelector } from '../../redux/hooks';
 import { DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
+
+import './index.scss';
 
 type Props = {
   config: PostConfig;
@@ -24,10 +23,9 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
   const [postConfig] = useState<PostConfig>(config);
   const [postTitle, setPostTitle] = useState<string>('');
   const [markdown, SetMarkdown] = useState<string>('');
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState<string[]>([]);
+  const [category, setCategory] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
 
   useEffect(() => {
@@ -53,18 +51,9 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
       setTags([...postConfig.tags]);
     }
 
-    if (postConfig && postConfig.categories) {
-      setCategories([...postConfig.categories]);
+    if (postConfig) {
+      setCategory(postConfig.category);
     }
-
-    // const unsubscribe=store.subscribe(()=>{
-    //   const {darkMode}=store.getState();
-    //   setIsDarkMode(darkMode);
-    // })
-
-    // return ()=>{
-    //   unsubscribe();
-    // }
   }, []);
 
   const createTags = () => {
@@ -80,14 +69,12 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
   };
 
   const createCategories = () => {
-    if (categories) {
-      return categories.map((item, index) => {
-        return (
-          <div key={index} className="post-card-category-container">
-            <Category category={item} />
-          </div>
-        );
-      });
+    if (category) {
+      return (
+        <div key={category} className="post-card-category-container">
+          <Category category={category} />
+        </div>
+      );
     }
   };
 

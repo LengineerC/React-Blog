@@ -24,15 +24,14 @@ postObjs.map(post=>{
     })
 })
 postObjs.map(post=>{
-    post.categories.map(category=>{
-        if(categoriesObj.hasOwnProperty(category)){
-            let preCategoryObj=[...categoriesObj[category]];
-            categoriesObj[category]=[...preCategoryObj,post];
-        }else{
-            let newCategoryObj=[post];
-            categoriesObj[category]=[...newCategoryObj];
-        }
-    })
+    const category = post.category || '未分类';
+    if(categoriesObj.hasOwnProperty(category)){
+        let preCategoryObj=[...categoriesObj[category]];
+        categoriesObj[category]=[...preCategoryObj,post];
+    }else{
+        let newCategoryObj=[post];
+        categoriesObj[category]=[...newCategoryObj];
+    }
 })
 
 // console.log(tagsObj);

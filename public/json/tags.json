@@ -6,17 +6,14 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "c1",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
       "time": "2024-06-16 12:22:40",
       "lock": true,
       "password": "114514",
-      "path": "/posts/test_auto_create1.md"
+      "path": "/posts/c1/test_auto_create1.md"
     },
     {
       "id": "test_auto_create2",
@@ -24,17 +21,14 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "c1",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
       "time": "2024-06-16 12:22:40",
       "lock": true,
       "password": "114514",
-      "path": "/posts/test_auto_create2.md"
+      "path": "/posts/c1/test_auto_create2.md"
     },
     {
       "id": "test_auto_create3",
@@ -42,10 +36,7 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "未分类",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
@@ -60,10 +51,7 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "未分类",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
@@ -79,17 +67,13 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "c1",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
       "time": "2024-06-16 12:13:26",
       "lock": false,
-      "path": "/posts/test_auto_create.md"
+      "path": "/posts/c1/test_auto_create.md"
     },
     {
       "id": "test_auto_create5",
@@ -98,11 +82,7 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "未分类",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
@@ -118,17 +98,14 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "c1",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
       "time": "2024-06-16 12:22:40",
       "lock": true,
       "password": "114514",
-      "path": "/posts/test_auto_create1.md"
+      "path": "/posts/c1/test_auto_create1.md"
     },
     {
       "id": "test_auto_create2",
@@ -136,17 +113,14 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "c1",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
       "time": "2024-06-16 12:22:40",
       "lock": true,
       "password": "114514",
-      "path": "/posts/test_auto_create2.md"
+      "path": "/posts/c1/test_auto_create2.md"
     },
     {
       "id": "test_auto_create3",
@@ -154,10 +128,7 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "未分类",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
@@ -172,10 +143,7 @@
         "tag1",
         "tag2"
       ],
-      "categories": [
-        "c1",
-        "c3"
-      ],
+      "category": "未分类",
       "top": false,
       "title": "auto1",
       "author": "LengineerC",
@@ -191,17 +159,13 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "c1",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
       "time": "2024-06-16 12:13:26",
       "lock": false,
-      "path": "/posts/test_auto_create.md"
+      "path": "/posts/c1/test_auto_create.md"
     },
     {
       "id": "test_auto_create5",
@@ -210,11 +174,7 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "未分类",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
@@ -231,17 +191,13 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "c1",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
       "time": "2024-06-16 12:13:26",
       "lock": false,
-      "path": "/posts/test_auto_create.md"
+      "path": "/posts/c1/test_auto_create.md"
     },
     {
       "id": "test_auto_create5",
@@ -250,17 +206,28 @@
         "tag2",
         "tag3"
       ],
-      "categories": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "category": "未分类",
       "top": true,
       "title": "auto0",
       "author": "LengineerC",
       "time": "2024-06-16 12:13:26",
       "lock": false,
       "path": "/posts/test_auto_create5.md"
+    }
+  ],
+  "test": [
+    {
+      "id": "test_file_with_spaces",
+      "tags": [
+        "test"
+      ],
+      "category": "c_test",
+      "top": false,
+      "title": "测试文件名空格",
+      "author": "LengineerC",
+      "time": "2024-01-01 12:00:00",
+      "lock": false,
+      "path": "/posts/c_test/test_file_with_spaces.md"
     }
   ]
 }

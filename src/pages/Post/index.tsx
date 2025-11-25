@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Card from '../../components/Card';
 import MDRenderer from '../../components/MDRenderer';
-// import store from '../../redux/store';
 import { ConfigProvider, FloatButton, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
@@ -40,7 +39,6 @@ export default function Post() {
   const [messageApi, contextHolder] = message.useMessage();
   const [url, setUrl] = useState<string>(window.location.href);
 
-  // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const dispatch = useAppDispatch();
   const postList = useAppSelector(state => state.post.postList);
@@ -58,14 +56,15 @@ export default function Post() {
   }, [postList]);
 
   useEffect(() => {
-    if (!id) {
-      navigate('/');
-    }
+    if (!postConfig) return;
+    const path = '/posts' +
+      (postConfig.category === '未分类' ? '' : `/${postConfig.category}`)
+      +`/${postConfig.id}.md`;
 
     axios
-      .get(`/posts/${id}.md`)
+      .get(path)
       .then(response => {
-        // console.log(response);
+        console.log(response.data);
         setMarkdown(response.data);
         setMdLen(response.data.length);
 
@@ -82,10 +81,16 @@ export default function Post() {
       })
       .catch(err => {
         console.log('Post: 文章获取失败', err);
-        console.log(window.location.pathname);
+        // console.log(window.location.pathname);
 
         navigate(`/articles/${id}`);
       });
+  }, [postConfig]);
+
+  useEffect(() => {
+    if (!id) {
+      navigate('/');
+    }
 
     //处理因锚点导致的复制链接出错的问题
     if (!DEPLOY_ON_GITHUB_PAGES) {
@@ -98,7 +103,6 @@ export default function Post() {
     }
 
     return () => {
-      // unsubscribe();
       dispatch(clearSelectedPostConfig());
       dispatch(clearSelectedPostHtml());
     };
@@ -119,14 +123,12 @@ export default function Post() {
 
   const createCategories = () => {
     if (postConfig) {
-      const { categories = [] } = postConfig;
-      return categories.map((item, index) => {
-        return (
-          <div key={index} className="post-page-card-header-symbol-category-block">
-            <Category category={item} />
-          </div>
-        );
-      });
+      const { category } = postConfig;
+      return (
+        <div key={category} className="post-page-card-header-symbol-category-block">
+          <Category category={category} />
+        </div>
+      );
     }
   };
 
@@ -279,7 +281,7 @@ export default function Post() {
 
                   <div
                     className={`toc-container ${showTOC ? 'fade-in' : 'fade-out'}`}
-                    // style={showTOC?{}:{display:"none"}}
+                  // style={showTOC?{}:{display:"none"}}
                   >
                     <TOC
                       showDrawer={showTOCDrawer}

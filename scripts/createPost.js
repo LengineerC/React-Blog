@@ -35,9 +35,8 @@ const postData = {
   time: getCurrentTime(),
   lock: false,
   top: false,
-  categories:null,
-  tags:null,
-  content:""
+  tags: [],
+  content: ""
 };
 
 const frontMatter = matter.stringify(postData.content, {
@@ -45,10 +44,8 @@ const frontMatter = matter.stringify(postData.content, {
   author: postData.author,
   time: postData.time,
   lock: postData.lock,
-  password:'',
+  password: '',
   top: postData.top,
-//   categories: postData.categories,
-//   tags: postData.tags,
 });
 
 if (!fs.existsSync(postsDir)) {

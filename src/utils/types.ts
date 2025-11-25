@@ -10,8 +10,8 @@ export type PostConfig = {
   password: string;
   path: string;
   top?: boolean;
-  categories?: [];
-  tags?: [];
+  category: string;
+  tags: string[];
 };
 
 export type Categories = Record<string, PostConfig[]>;
