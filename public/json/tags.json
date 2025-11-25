@@ -15,6 +15,40 @@
       "path": "/posts/中文/中文测试.md"
     }
   ],
+  "前端": [
+    {
+      "id": "react-context-singleton",
+      "tags": [
+        "前端",
+        "React"
+      ],
+      "category": "c_test",
+      "top": false,
+      "title": "React使用Context创建对象单例",
+      "author": "LengineerC",
+      "time": "2025-01-02 12:07:58",
+      "lock": false,
+      "password": "",
+      "path": "/posts/c_test/react-context-singleton.md"
+    }
+  ],
+  "React": [
+    {
+      "id": "react-context-singleton",
+      "tags": [
+        "前端",
+        "React"
+      ],
+      "category": "c_test",
+      "top": false,
+      "title": "React使用Context创建对象单例",
+      "author": "LengineerC",
+      "time": "2025-01-02 12:07:58",
+      "lock": false,
+      "password": "",
+      "path": "/posts/c_test/react-context-singleton.md"
+    }
+  ],
   "tag1": [
     {
       "id": "test_auto_create1",

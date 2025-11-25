@@ -26,19 +26,41 @@ const marked = new Marked(
     langPrefix: 'hljs language-',
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-      const highlightedCode = hljs.highlight(code, { language }).value;
+      const normalizedCode = code.replace(/\r\n?/g, '\n');
+      const highlightedCode = hljs.highlight(normalizedCode, { language }).value.replace(/\r\n?/g, '\n');
 
-      const normalizedCode = code.replace(/\r\n/g, '\n');
       const rawLines = normalizedCode.split('\n');
       const highlightedLines = highlightedCode.split('\n');
 
+      const spanTagPattern = /<\/?span\b[^>]*>/g;
+      let carryStack: string[] = [];
+
       const processedCodeLines = rawLines.map((_, index) => {
+        const startStack = [...carryStack];
+        const prefix = startStack.join('');
+
         const lineHtml = highlightedLines[index] ?? '';
         const safeLine = lineHtml === '' ? '&nbsp;' : lineHtml;
 
+        const tagsInLine = safeLine.match(spanTagPattern) ?? [];
+        tagsInLine.forEach((tag) => {
+          if (tag.startsWith('</')) {
+            carryStack.pop();
+          } else {
+            carryStack.push(tag);
+          }
+        });
+
+        const endStack = [...carryStack];
+        const suffix = endStack
+          .slice()
+          .reverse()
+          .map(() => '</span>')
+          .join('');
+
         return `<div class="code-row">
           <span class="line-num" data-num="${index + 1}"></span>
-          <span class="code-content">${safeLine}</span>
+          <span class="code-content">${prefix}${safeLine}${suffix}</span>
         </div>`;
       });
 
