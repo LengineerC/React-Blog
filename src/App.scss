@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use './styles/base.scss' as *;
 
 .App {
@@ -9,20 +10,46 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  //解决苹果background-attachment: fixed;失效的问题
-  &::before {
-    min-height: 100vh;
-    content: '';
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: var(--bgImg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+  @mixin app-before($darkmode) {
+
+    // 解决苹果background-attachment: fixed;失效的问题
+    &::before {
+      min-height: 100vh;
+      content: '';
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      @if $darkmode {
+        $delta-start: 17;
+        $delta-end: 10;
+        $start-color: color.adjust($themeBackgroundColor-dark, $saturation: $delta-start, $lightness: $delta-start);
+        $end-color: color.adjust($themeBackgroundColor-dark, $saturation: $delta-end, $lightness: $delta-end);
+        background: linear-gradient(to right bottom, $start-color, $end-color);
+      }
+
+      @else {
+        $delta-start: 17;
+        $delta-end: 10;
+        $start-color: color.adjust($themeBackgroundColor, $saturation: $delta-start, $lightness: $delta-start);
+        $end-color: color.adjust($themeBackgroundColor, $saturation: $delta-end, $lightness: $delta-end);
+        background: linear-gradient(to right bottom, $start-color, $end-color);
+      }
+
+      background-image: var(--bgImg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  @include app-before($darkmode: false);
+
+  &.dark {
+    @include app-before($darkmode: true);
   }
 }
 
@@ -34,6 +61,7 @@
   display: flex;
   flex-direction: row;
   z-index: 1000;
+
   .icon-container {
     display: flex;
     flex-direction: row;
@@ -51,54 +79,29 @@
     height: $navHeight;
     width: $navHeight;
     font-size: 25px;
-    // padding-top: 10px;
     border-radius: 5px;
 
     &:hover {
-      // background-color: rgba(255, 255, 255, 0.5);
       transform: scale(1.1);
     }
   }
 }
+
 @media screen and (min-width: $mobileMaxWidth) {
   .mobile-toolbar {
     display: none;
   }
 }
 
-.App {
-  // background-image: url(./assets/image/bg1.webp);
-  background-position: center 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  // &::-webkit-scrollbar {
-  //     width: 12px;
-  // }
-
-  // &::-webkit-scrollbar-track {
-  //     background: linear-gradient(#b7f9ff,#a3c8db);
-  //     border-radius: 100px;
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //     background: linear-gradient(rgb(103,171,255),rgb(62, 125, 202));
-  //     border-radius: 50px;
-
-  //     &:active{
-  //         background: linear-gradient(rgb(123, 182, 255),rgb(82, 145, 223));
-  //     }
-  // }
-}
-
 .aplayer-container {
+
   .aplayer-body,
   .aplayer-fixed {
     margin-bottom: 20px !important;
     margin-bottom: 20px;
     background: #ffffff22;
   }
+
   .aplayer-body {
     background: transparent !important;
   }
@@ -118,17 +121,21 @@
   li {
     color: $postColor;
     border-top: 1px solid #63636366 !important;
+
     &:hover {
       background: #ffffff44 !important;
     }
   }
+
   .aplayer-list-cur {
     background-color: #67abff !important;
   }
+
   .aplayer-list-index,
   .aplayer-list-author {
     color: #001447aa !important;
   }
+
   .aplayer-list-light {
     background: #ffffff75 !important;
   }
@@ -148,21 +155,25 @@
       background: #67abff !important;
     }
   }
+
   .aplayer-miniswitcher {
     background: #ffffffaa;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
   }
+
   .aplayer-info {
     background: #ffffff99;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border-top: none !important;
   }
+
   .aplayer-music {
     .aplayer-title {
       color: $postColor;
     }
+
     .aplayer-author {
       color: #001447aa !important;
     }
@@ -178,12 +189,14 @@
 }
 
 .aplayer-container-dark {
+
   .aplayer-body,
   .aplayer-fixed {
     margin-bottom: 20px !important;
     margin-bottom: 20px;
     background: #ffffff22;
   }
+
   .aplayer-body {
     background: transparent !important;
   }
@@ -207,13 +220,16 @@
       background: #ffffff44 !important;
     }
   }
+
   .aplayer-list-cur {
     background-color: $dark-highlight-color !important;
   }
+
   .aplayer-list-index,
   .aplayer-list-author {
     color: #ffffff99 !important;
   }
+
   .aplayer-list-light {
     background: #ffffff55 !important;
   }
@@ -233,21 +249,25 @@
       background: $dark-highlight-color !important;
     }
   }
+
   .aplayer-miniswitcher {
     background: #5d5d6e99;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
   }
+
   .aplayer-info {
     background: #3d3d4c99;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border-top: none !important;
   }
+
   .aplayer-music {
     .aplayer-title {
       color: $postColor-dark;
     }
+
     .aplayer-author {
       color: #ffffff99 !important;
     }

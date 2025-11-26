@@ -191,7 +191,7 @@ const App: React.FC<any> = () => {
 
   return (
     <div
-      className="App"
+      className={`App ${darkMode && 'dark'}`}
       style={
         {
           // backgroundImage:`url(${isDarkMode?bgImgDark:bgImgLight})`,

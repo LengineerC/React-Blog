@@ -210,7 +210,8 @@ export default function Post() {
                               <UserOutlined />
                               &nbsp;作者：
                             </span>
-                            {postConfig?.author}
+
+                            <span style={{ whiteSpace: 'nowrap' }}>{postConfig?.author}</span>
                           </div>
 
                           <div style={darkMode ? { color: '#ffffffcc' } : {}}>
@@ -218,7 +219,8 @@ export default function Post() {
                               <ClockCircleOutlined />
                               &nbsp;发布时间：
                             </span>
-                            {postConfig?.time}
+
+                            <span style={{ whiteSpace: 'nowrap' }}>{postConfig?.time}</span>
                           </div>
 
                           <div style={darkMode ? { color: '#ffffffcc' } : {}}>
@@ -226,7 +228,8 @@ export default function Post() {
                               <FileWordOutlined />
                               &nbsp;文章字数：
                             </span>
-                            {mdLen}
+
+                            <span style={{ whiteSpace: 'nowrap' }}>{mdLen}</span>
                           </div>
                         </div>
                       </div>
@@ -275,7 +278,7 @@ export default function Post() {
 
                   <div
                     className={`toc-container ${showTOC ? 'fade-in' : 'fade-out'}`}
-                  // style={showTOC?{}:{display:"none"}}
+                    // style={showTOC?{}:{display:"none"}}
                   >
                     <TOC
                       showDrawer={showTOCDrawer}
