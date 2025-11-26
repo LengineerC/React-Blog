@@ -1,7 +1,124 @@
 @use '../../styles/page_layout.scss' as *;
+@use '../../styles/base.scss' as *;
 
 .time-line-block {
   width: 100%;
+
+  .post-tl {
+    @extend .hv-center;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    transition: 0.2s;
+    font-family: "CustomFont1";
+    color: $postColor;
+
+    &.dark {
+      color: $postColor-dark;
+    }
+
+    .year-block {
+      width: 100%;
+
+      .hr-twill {
+        width: 100%;
+        border: 0;
+        padding: 3px;
+        background: repeating-linear-gradient(135deg,
+            #a2a9b6 0px,
+            #a2a9b6 1px,
+            transparent 1px,
+            transparent 6px);
+
+        margin-top: 10px;
+      }
+
+      .year {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .month-placeholder {
+        height: 50px;
+      }
+
+      .month {
+        @mixin total-color($dark) {
+          @if $dark {
+            border: 5px solid $dark-highlight-color;
+            background-color: $themeBackgroundColor-dark;
+          }
+
+          @else {
+            background-color: #eee;
+            border: 5px solid $themeBackgroundColor;
+          }
+        }
+
+        @extend .hv-center;
+        @include total-color($dark: false);
+        padding: 10px;
+        border-radius: 50%;
+        $size: 50px;
+        height: $size;
+        width: $size;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.2s;
+
+        &.dark {
+          @include total-color($dark: true);
+        }
+      }
+
+      .date {
+        white-space: nowrap;
+        width: auto;
+        position: absolute;
+        right: 10px;
+        top: 2px;
+        font-size: 14px;
+      }
+
+      .post {
+        height: auto;
+        min-height: 40px;
+        padding-bottom: 10px;
+        $width: 33vw;
+        max-width: $width;
+        width: $width;
+        
+        .post-title {
+          width: fit-content;
+          transition: 0.2s;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.01) translateX(5px);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mobileMaxWidth) {
+
+  .time-line-block {
+
+    .post-tl {
+      .year-block {
+        .post {
+          $width: 33vw;
+          max-width: $width;
+          width: $width;
+        }
+      }
+    }
+  }
 }
 
 .calender-heatmap-container {

@@ -33,7 +33,8 @@ export const BACKGROUND_IMG = {
 };
 
 //公告栏内容
-export const NOTICE_CARD_TEXT: string = '网站正在建设中...';
+export const NOTICE_CARD_TEXT: string =
+  '欢迎来到我的博客，该网站为初学React时候的练手项目，现在持续优化代码中。有意见欢迎联系！';
 
 //Hitokoto获取，关闭使用默认副标题内容
 export const HITOKOTO_GET_ENABLE: boolean = false;
@@ -50,7 +51,6 @@ export const BILIBILI_LINK: string = 'https://space.bilibili.com/92665721';
 //Post页是否自动开启目录
 export const DEFAULT_SHOW_TOC: boolean = true;
 
-// 文章代码块是否默认收起
 export const CODE_BLOCK_COLLAPSED: boolean = false;
 
 // 显示ClockCard
@@ -60,7 +60,7 @@ export const SHOW_CLOCK_CARD: boolean = true;
 // export const MUSIC_SERVER:string="netease";
 
 //音乐播放器歌单url(根据服务器设置)，详情见https://github.com/metowolf/MetingJS
-export const MUSIC_URL: string = 'https://music.163.com/playlist?id=8741983740';
+export const MUSIC_URL: string = 'https://music.163.com/playlist?id=13174138370';
 
 //是否显示吸底音乐播放器
 export const SHOW_APLAYER: boolean = false;
@@ -71,6 +71,9 @@ export const IRC_TYPE: boolean = false;
 // B站视频地址
 export const BILIBILI_VIDEO_URL: string =
   '//player.bilibili.com/player.html?isOutside=true&aid=43083956&bvid=BV1Pb411S7Tu&cid=75540675&p=1';
+
+// 归档时间轴是否使用github commits
+export const USE_GITHUB_COMMITS: boolean = false;
 
 // 时间轴的github用户名和仓库名
 export const GITHUB_REPO = {

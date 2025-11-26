@@ -11,9 +11,11 @@ import { HeatmapChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import PageTitle from '../../components/PageTitle';
 import Card from '../../components/Card';
-import { GITHUB_REPO } from '../../utils/constants';
+import { GITHUB_REPO, USE_GITHUB_COMMITS } from '../../utils/constants';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { MOBILE_MAX_WIDTH } from '../../utils/constants';
+import { PostConfig } from '@/utils/types';
+import { useNavigate } from 'react-router-dom';
 
 import './index.scss';
 
@@ -34,6 +36,7 @@ export default function Archives() {
   const githubRepoCommits = useAppSelector(state => state.app.githubRepoCommits);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const getFormatData = (year: string) => {
     const date = +echarts.time.parse(year + '-01-01');
@@ -97,6 +100,8 @@ export default function Archives() {
   }, [githubRepoCommits]);
 
   useEffect(() => {
+    if (!USE_GITHUB_COMMITS) return;
+
     if (!githubRepoCommits || githubRepoCommits.length === 0) {
       dispatch({
         type: 'getGithubRepoCommits',
@@ -193,6 +198,98 @@ export default function Archives() {
     heatMap.setOption(option);
   };
 
+  const createTimelines = () => {
+    if (postList.length === 0) return null;
+
+    const postsTimeMap = [...postList]
+      .sort((a, b) => Date.parse(b.time) - Date.parse(a.time))
+      .reduce((acc, cur) => {
+        const date = new Date(cur.time);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        if (!acc.has(year)) {
+          const monthMap = new Map();
+          monthMap.set(month, [cur]);
+          acc.set(year, monthMap);
+        } else {
+          const monthMap = acc.get(year)!;
+
+          if (!monthMap.has(month)) {
+            monthMap.set(month, [cur]);
+          } else {
+            const posts = monthMap.get(month);
+            monthMap.set(month, [...(posts ?? []), cur]);
+          }
+
+          acc.set(year, monthMap);
+        }
+
+        return acc;
+      }, new Map<number, Map<number, PostConfig[]>>());
+
+    const nodes: React.ReactNode[] = [];
+
+    postsTimeMap.forEach((monthMap, year) => {
+      const monthItems: any[] = [];
+
+      monthMap.forEach((posts, month) => {
+        const monthNode = (
+          <div className={`month ${darkMode && 'dark'}`} key={month}>
+            {month}
+          </div>
+        );
+
+        const monthItem = {
+          children: <div className="month-placeholder" />,
+          dot: monthNode,
+          color: darkMode ? '#29b839' : '#67abff',
+        };
+        monthItems.push(monthItem);
+
+        posts.forEach(post => {
+          const postNode = (
+            <div
+              className="post"
+              key={post.id}
+            >
+              <div
+                className='post-title'
+                onClick={() => {
+                  navigate(`/post/detail/${post.id}`);
+                }}
+              >
+                {post.title}
+              </div>
+            </div>
+          );
+          const postItem = {
+            label: <div className="date">{post.time.split(' ')[0]}</div>,
+            children: postNode,
+            color: darkMode ? '#29b839' : '#67abff',
+          };
+
+          monthItems.push(postItem);
+        });
+      });
+
+      const yearNode = (
+        <div className="year-block" key={year}>
+          <div className="year">
+            {year}
+            <div className='hr-twill' />
+          </div>
+
+          <Timeline items={monthItems} mode='left' />
+        </div>
+      );
+
+      nodes.push(yearNode);
+    });
+
+    return <div className={`post-tl ${darkMode && 'dark'}`}>{nodes}</div>;
+  };
+
   return (
     <div className="page-main">
       <div className="page-main-title">
@@ -223,6 +320,7 @@ export default function Archives() {
                 components: {
                   Timeline: {
                     tailColor: `${darkMode ? '#ffffff66' : 'rgb(0, 20, 71)'}`,
+                    dotBg: 'none',
                   },
                 },
                 token: {
@@ -232,7 +330,11 @@ export default function Archives() {
                 },
               }}
             >
-              <Timeline mode="alternate" items={formattedCommits} />
+              {
+                USE_GITHUB_COMMITS ?
+                  <Timeline mode="alternate" items={formattedCommits} /> :
+                  createTimelines()
+              }
             </ConfigProvider>
           </div>
         </Card>
