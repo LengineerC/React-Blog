@@ -90,7 +90,7 @@
         $width: 33vw;
         max-width: $width;
         width: $width;
-        
+
         .post-title {
           width: fit-content;
           transition: 0.2s;
@@ -129,8 +129,8 @@
 
   .calender-heatmap-block {
     width: 100%;
-    height: 23vh;
-    min-height: 23vh;
+    height: 200px;
+    min-height: 200px;
     margin-bottom: 5vh;
     overflow-x: auto;
     overflow-y: hidden;
