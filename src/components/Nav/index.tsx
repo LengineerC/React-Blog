@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactElement, RefObject, useEffect, useImperativeHandle, useState } from 'react';
 import { Col, Row } from 'antd';
 // import store from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,8 +11,6 @@ import {
   faMusic,
   faAngleDown,
   faAngleUp,
-  IconDefinition,
-  faXmark,
   faTag,
   faBookmark,
   faToolbox,
@@ -111,7 +109,12 @@ const navCenterColConfig: MenuConfig[] = [
   },
 ];
 
-export default function Nav() {
+interface Props {
+  // ref?: RefObject<any>;
+  toggleDarkMode: () => void;
+}
+
+export default function Nav({ toggleDarkMode }: Props) {
   const navState = useAppSelector(state => state.ui.navState);
   const [visible, setVisible] = useState<boolean>(navState);
   // const [lastScrollTop,setLastScrollTop]=useState<number>(0);
@@ -164,7 +167,7 @@ export default function Nav() {
           onMouseEnter={() => handleMouseEnter(item.path)}
           onMouseLeave={handleMouseLeave}
           key={item.key}
-          // push={1}
+        // push={1}
         >
           {item.clickable ? (
             <NavLink to={item.path}>
@@ -247,17 +250,17 @@ export default function Nav() {
     setShowSubMenu(null);
   };
 
-  const changeDarkMode = () => {
-    // const {dispatch}=store;
-    // const {darkMode}=store.getState();
-    if (darkMode) {
-      dispatch(setDarkModeOFF());
-      localStorage.setItem('darkMode', 'false');
-    } else {
-      dispatch(setDarkModeON());
-      localStorage.setItem('darkMode', 'true');
-    }
-  };
+  // const changeDarkMode = () => {
+  //   // const {dispatch}=store;
+  //   // const {darkMode}=store.getState();
+  //   if (darkMode) {
+  //     dispatch(setDarkModeOFF());
+  //     localStorage.setItem('darkMode', 'false');
+  //   } else {
+  //     dispatch(setDarkModeON());
+  //     localStorage.setItem('darkMode', 'true');
+  //   }
+  // };
 
   //订阅监听夜间模式切换和滚动事件修改样式
   useEffect(() => {
@@ -289,6 +292,10 @@ export default function Nav() {
     setVisible(navState);
   }, [navState]);
 
+  // useImperativeHandle(ref, () => ({ 
+  //   changeDarkMode,
+  // }), []);
+
   return (
     <nav
       className={`
@@ -319,7 +326,7 @@ export default function Nav() {
           // push={1}
           style={show_border}
         >
-          <div className="nav-tool-click-container" onClick={changeDarkMode}>
+          <div className="nav-tool-click-container" onClick={toggleDarkMode}>
             {!darkMode ? <MoonFilled /> : <SunFilled />}
           </div>
         </Col>

@@ -54,12 +54,14 @@ export default function About() {
       .catch(err => {
         console.log(err);
       });
+  }, []);
 
+  useEffect(() => {
     const pieChartDom = pieChartRef.current;
     const pieChart = echarts.init(pieChartDom);
 
     renderPieChart(pieChart);
-  }, []);
+  }, [darkMode]);
 
   const renderPieChart = (pieChart: any) => {
     let categoriesData = getFormatCategoriesData();

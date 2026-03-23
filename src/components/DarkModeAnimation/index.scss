@@ -1,0 +1,182 @@
+@use "../../styles/base.scss" as *;
+
+.dark-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  .sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient($themeBackgroundColor, #f6f6f6);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);
+      opacity: 0;
+    }
+  }
+
+  &.to-dark {
+    .sky::before {
+      animation: fade-in 2s cubic-bezier(0.7, 0, 0, 1) forwards;
+    }
+
+    .stars {
+      opacity: 0;
+      animation: fade-in 2s cubic-bezier(0.7, 0, 0, 1) forwards;
+    }
+
+    .planet::after {
+      background: linear-gradient(#fefefe, #fffbe8);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &.to-light {
+    .sky::before {
+      opacity: 1;
+      animation: fade-out 2s cubic-bezier(0.7, 0, 0, 1) forwards;
+    }
+
+    .stars {
+      opacity: 1;
+      animation: fade-out 2s cubic-bezier(0.7, 0, 0, 1) forwards;
+    }
+
+    .planet::after {
+      background: linear-gradient(#fefefe, #fffbe8);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &.dark {
+    .sky::before {
+      opacity: 1;
+    }
+  }
+
+  .planet {
+    position: fixed;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    animation: planet-move 2s cubic-bezier(0.7, 0, 0, 1);
+    transform-origin: center bottom;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 35%;
+      top: 40%;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(#fefefe, #fffbe8);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow: 100px 200px white,
+        300px 400px white,
+        500px 600px white,
+        800px 100px white;
+      animation: animStar 50s linear infinite;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes planet-move {
+  0% {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes planet-move {
+  0% {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@-webkit-keyframes animStar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2000px);
+  }
+}

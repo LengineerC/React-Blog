@@ -15,6 +15,7 @@
   transition: 0.3s;
   backdrop-filter: blur(5px);
 }
+
 .nav-transparent {
   transition: 0.3s;
   background-color: transparent !important;
@@ -86,6 +87,7 @@
     // transform: translateY(10px);
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -97,6 +99,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-10px);
@@ -115,10 +118,12 @@
   align-items: center;
   width: 1.3 * $navHeight;
   border-radius: 3px;
+
   &:hover {
     background-color: rgba(0, 128, 225, 0.7);
     // transform: scale(1.1);
   }
+
   // text-shadow: 1px 1px 5px black;
 
   .nav-click-text-container {
@@ -141,6 +146,7 @@
   align-items: center;
   width: $navHeight;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     transform: scale(1.2);

@@ -18,6 +18,8 @@ import { SHOW_APLAYER } from './utils/constants';
 import { BACKGROUND_IMG } from './utils/constants';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { Dispatch } from 'redux';
+import DarkModeAnimation from './components/DarkModeAnimation';
+import { AnimatePresence } from 'framer-motion';
 
 import './App.scss';
 
@@ -26,6 +28,9 @@ const MobileMenu = lazy(() => import('./components/MobileMenu/index'));
 const App: React.FC<any> = () => {
   // const [showToolbar, setShowToolbar]=useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  // 为处理夜间模式切换动画新增state
+  const [showAnimation, setShowAnimation] = useState(false);
+
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(darkMode);
   const darkMode: boolean = useAppSelector(state => state.ui.darkMode);
@@ -139,28 +144,6 @@ const App: React.FC<any> = () => {
     };
   }, []);
 
-  // useEffect(()=>{
-  //   // const bodyDom:HTMLElement|null=document.querySelector('body');
-  //   // let imgUrl=isDarkMode?"./image/bg0.webp":"./image/bg1.webp";
-  //   // if(bodyDom){
-  //   //   bodyDom.style.backgroundImage=`url(${imgUrl})`;
-  //   // }
-
-  //   const bodyStyle=document.querySelector('#bodyStyle') as HTMLElement;
-  //   // const unsubscribe=store.subscribe(()=>{
-  //   //   const {darkMode}=store.getState();
-  //   //   if(isDarkMode!==darkMode){
-  //   //     setIsDarkMode(darkMode);
-  //   //   }
-  //   // })
-  //   bodyStyle.innerHTML=getBodyStyleInnerHtml(d);
-
-  //   // return ()=>{
-  //   //   unsubscribe();
-  //   // }
-
-  // },[isDarkMode])
-
   useEffect(() => {
     // setIsDarkMode(darkMode);
     const bodyStyle = document.querySelector('#bodyStyle') as HTMLElement;
@@ -168,17 +151,20 @@ const App: React.FC<any> = () => {
   }, [darkMode]);
 
   const changeDarkMode = () => {
-    // const {dispatch}=store;
-    if (darkMode) {
-      // store.dispatch(darkmodeOFF());
-      dispatch(setDarkModeOFF());
-      localStorage.setItem('darkMode', 'false');
-    } else {
-      // store.dispatch(darkmodeON());
-      dispatch(setDarkModeON());
-      localStorage.setItem('darkMode', 'true');
-    }
-    // console.log(store.getState().darkMode)
+    // const preOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // document.body.style.paddingRight = '12px';
+    setShowAnimation(true);
+
+    setTimeout(() => {
+      if (darkMode) {
+        dispatch(setDarkModeOFF());
+        localStorage.setItem('darkMode', 'false');
+      } else {
+        dispatch(setDarkModeON());
+        localStorage.setItem('darkMode', 'true');
+      }
+    },500);
   };
 
   // 处理移动端菜单按钮
@@ -199,6 +185,21 @@ const App: React.FC<any> = () => {
         } as React.CSSProperties
       }
     >
+      <AnimatePresence
+        onExitComplete={() => {
+          document.body.style.overflow = '';
+          // document.body.style.paddingRight = '';
+        }}
+      >
+        {showAnimation && (
+          <DarkModeAnimation
+            key="dark-animation"
+            darkMode={darkMode}
+            onFinish={() => setShowAnimation(false)}
+          />
+        )}
+      </AnimatePresence>
+
       <MobileMenu open={showMenu} handleMenuClose={handleMenuClose} />
 
       {/* {
@@ -234,7 +235,7 @@ const App: React.FC<any> = () => {
           </div>
         </div>
       </div>
-      <Nav />
+      <Nav toggleDarkMode={changeDarkMode} />
       <Main />
       <Top darkMode={darkMode} />
       <Footer />
