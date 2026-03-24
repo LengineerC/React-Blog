@@ -3,6 +3,7 @@ import { useLocation, useRoutes } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import routes from '../../routes';
 import Loading from '../Loading';
+import FloatBtnGroup from '../FloatBtnGroup';
 
 export default function Main() {
   const elements = useRoutes(routes);
@@ -34,7 +35,7 @@ export default function Main() {
   };
 
   return (
-    <main className="relative">
+    <main style={{ position: "relative" }}>
       <AnimatePresence>
         {loadingVisible && (
           <motion.div
@@ -64,6 +65,8 @@ export default function Main() {
           </Suspense>
         </motion.div>
       </AnimatePresence>
+
+      {!loadingVisible && <FloatBtnGroup />}
     </main>
   );
 }

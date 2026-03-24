@@ -7,6 +7,8 @@ import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { DEPLOY_ON_GITHUB_PAGES } from './utils/constants';
+import { PostProvider } from './context/PostContext';
+
 import './index.css';
 
 const Router = DEPLOY_ON_GITHUB_PAGES ? HashRouter : BrowserRouter;
@@ -16,7 +18,9 @@ root.render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
-        <App />
+        <PostProvider>
+          <App />
+        </PostProvider>
       </Provider>
     </Router>
   </React.StrictMode>,

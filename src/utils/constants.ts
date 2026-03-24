@@ -36,6 +36,9 @@ export const BACKGROUND_IMG = {
 export const NOTICE_CARD_TEXT: string =
   '欢迎来到我的博客，该网站为初学React时候的练手项目，现在持续优化代码中。有意见欢迎联系！';
 
+// 是否显示滚动条
+export const SHOW_SCROLLBAR: boolean = false;
+
 //Hitokoto获取，关闭使用默认副标题内容
 export const HITOKOTO_GET_ENABLE: boolean = false;
 

@@ -1,6 +1,6 @@
 import { motion, Variants } from 'framer-motion';
-import './index.scss';
 import { useState } from 'react';
+import './index.scss';
 
 interface Props {
   darkMode: boolean;

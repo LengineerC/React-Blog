@@ -10,10 +10,9 @@ import { savePostList } from './redux/slices/postSlice';
 import { saveTagsList, saveCategoriesList } from './redux/slices/taxonomySlice';
 
 import Footer from './components/Footer';
-import Top from './components/Top';
 import axios from 'axios';
 import APlayer from './components/APlayer';
-import { SHOW_APLAYER } from './utils/constants';
+import { SHOW_APLAYER, SHOW_SCROLLBAR } from './utils/constants';
 // import { aplayerRef } from './refs';
 import { BACKGROUND_IMG } from './utils/constants';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
@@ -46,6 +45,12 @@ const App: React.FC<any> = () => {
   // },[showMenuBtn])
 
   const getBodyStyleInnerHtml = (isDarkMode: boolean): string => {
+    if (!SHOW_SCROLLBAR) return `
+      body::-webkit-scrollbar {
+        display: none;
+      }
+    `;
+
     return isDarkMode
       ? `
       body::-webkit-scrollbar {
@@ -164,7 +169,7 @@ const App: React.FC<any> = () => {
         dispatch(setDarkModeON());
         localStorage.setItem('darkMode', 'true');
       }
-    },500);
+    }, 500);
   };
 
   // 处理移动端菜单按钮
@@ -237,7 +242,7 @@ const App: React.FC<any> = () => {
       </div>
       <Nav toggleDarkMode={changeDarkMode} />
       <Main />
-      <Top darkMode={darkMode} />
+
       <Footer />
 
       {SHOW_APLAYER && (

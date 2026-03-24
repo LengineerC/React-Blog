@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Card from '../../components/Card';
 import MDRenderer from '../../components/MDRenderer';
-import { ConfigProvider, FloatButton, Skeleton, message } from 'antd';
+import { ConfigProvider, Skeleton, message } from 'antd';
 import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
 import {
@@ -13,16 +13,16 @@ import {
   CopyrightOutlined,
   LinkOutlined,
   CopyFilled,
-  UnorderedListOutlined,
 } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
-import { AUTHOR, DEFAULT_SHOW_TOC, DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
+import { AUTHOR, DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
 import TOC from './TOC';
 import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/slices/postSlice';
 import LockCard from './LockCard';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { copyText } from '@/utils/functions';
+import { usePostContext } from '@/context/PostContext';
 
 import './index.scss';
 
@@ -32,9 +32,11 @@ export default function Post() {
   const [postConfig, setPostConfig] = useState<PostConfig>();
   const [mdLen, setMdLen] = useState<number>(0);
   const [locked, setLocked] = useState<boolean>(false);
-  const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
+  // const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
+  const { showTOC, setInPost, showTOCDrawer, setShowTOCDrawer } = usePostContext();
+
   //显示移动端TOC Drawer
-  const [showTOCDrawer, setShowTOCDrawer] = useState<boolean>(false);
+  // const [showTOCDrawer, setShowTOCDrawer] = useState<boolean>(false);
 
   const [messageApi, contextHolder] = message.useMessage();
   const [url, setUrl] = useState<string>(window.location.href);
@@ -54,6 +56,10 @@ export default function Post() {
       });
     }
   }, [postList]);
+
+  useEffect(() => {
+    setInPost(!locked);
+  }, [locked]);
 
   useEffect(() => {
     if (!postConfig) return;
@@ -97,6 +103,7 @@ export default function Post() {
     }
 
     return () => {
+      setInPost(false);
       dispatch(clearSelectedPostConfig());
       dispatch(clearSelectedPostHtml());
     };
@@ -137,30 +144,30 @@ export default function Post() {
     }
   };
 
-  const handleShowTOC = () => {
-    setShowTOC(!showTOC);
-    setShowTOCDrawer(!showTOCDrawer);
-  };
+  // const handleShowTOC = () => {
+  //   setShowTOC(!showTOC);
+  //   setShowTOCDrawer(!showTOCDrawer);
+  // };
 
   const callbackCloseDrawer = () => {
     setShowTOCDrawer(false);
   };
 
-  const getTocBtnToken = () => {
-    let colorBgElevated = darkMode ? '#46466c7b' : '#ffffff7b';
-    let colorFillContent = darkMode ? '#686894bb' : '#ffffffbb';
-    let colorText = '#ffffff99';
-    let token: any = {
-      colorBgElevated,
-      colorFillContent,
-    };
-    if (darkMode) {
-      if (!token.hasOwnProperty('colorText')) {
-        token['colorText'] = colorText;
-      }
-    }
-    return token;
-  };
+  // const getTocBtnToken = () => {
+  //   let colorBgElevated = darkMode ? '#46466c7b' : '#ffffff7b';
+  //   let colorFillContent = darkMode ? '#686894bb' : '#ffffffbb';
+  //   let colorText = '#ffffff99';
+  //   let token: any = {
+  //     colorBgElevated,
+  //     colorFillContent,
+  //   };
+  //   if (darkMode) {
+  //     if (!token.hasOwnProperty('colorText')) {
+  //       token['colorText'] = colorText;
+  //     }
+  //   }
+  //   return token;
+  // };
 
   return (
     <div className="post-page-main">
@@ -278,7 +285,7 @@ export default function Post() {
 
                   <div
                     className={`toc-container ${showTOC ? 'fade-in' : 'fade-out'}`}
-                    // style={showTOC?{}:{display:"none"}}
+                  // style={showTOC?{}:{display:"none"}}
                   >
                     <TOC
                       showDrawer={showTOCDrawer}
@@ -304,7 +311,7 @@ export default function Post() {
             </Card>
           </div>
         )}
-        {!locked && (
+        {/* {!locked && (
           <ConfigProvider
             theme={{
               token: getTocBtnToken(),
@@ -316,7 +323,7 @@ export default function Post() {
               onClick={handleShowTOC}
             />
           </ConfigProvider>
-        )}
+        )} */}
       </ConfigProvider>
     </div>
   );
