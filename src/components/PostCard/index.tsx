@@ -78,6 +78,17 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
     }
   };
 
+  const showAbstract = () => {
+    const { abstract = '' } = postConfig;
+    if (abstract.length > 0) return abstract;
+    return (<MDRenderer
+      darkMode={darkMode}
+      limit={limit}
+      markdown={markdown}
+      showLimitContent={showLimitContent}
+    />);
+  };
+
   return (
     <div className="hv-center">
       <Card scale={true} darkMode={darkMode}>
@@ -93,12 +104,7 @@ export default function PostCard({ config, limit, showLimitContent, showFooter =
               <hr className={darkMode ? 'hr-dashed-dark' : 'hr-dashed'} />
 
               <div className={darkMode ? 'post-card-content-dark' : 'post-card-content'}>
-                <MDRenderer
-                  darkMode={darkMode}
-                  limit={limit}
-                  markdown={markdown}
-                  showLimitContent={showLimitContent}
-                />
+                {showAbstract()}
               </div>
 
               <hr className={darkMode ? 'hr-double-dark' : 'hr-double'} />

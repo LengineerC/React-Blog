@@ -5,6 +5,7 @@ export type PostConfig = {
   id: string;
   title: string;
   author: string;
+  abstract?: string;
   time: string;
   lock: boolean;
   password: string;
