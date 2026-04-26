@@ -1,4 +1,5 @@
 @use '../../styles/base.scss' as *;
+@use '../../styles/page_layout.scss' as *;
 
 .markdown-body {
   font-family: Arial, sans-serif;
@@ -13,11 +14,10 @@
 
   .katex-display{
     overflow-x: scroll;
-    display: flex;
-
+    @extend .hv-center;
 
     &::-webkit-scrollbar {
-      height: 3px;
+      height: 6px;
       width: 0px;
     }
 
@@ -26,8 +26,13 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #33333346;
+      background: #33333330;
       border-radius: 50px;
+      transition: 0.2s;
+
+      &:hover {
+        background: #33333320;
+      }
     }
   }
 
@@ -358,11 +363,10 @@
 
   .katex-display{
     overflow-x: scroll;
-    display: flex;
-
+    @extend .hv-center;
 
     &::-webkit-scrollbar {
-      height: 3px;
+      height: 6px;
       width: 0px;
     }
 
@@ -373,6 +377,11 @@
     &::-webkit-scrollbar-thumb {
       background: #ffffff46;
       border-radius: 50px;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: #ffffff6b;
+      }
     }
   }
 
