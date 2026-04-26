@@ -11,6 +11,26 @@
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 
+  .katex-display{
+    overflow-x: scroll;
+    display: flex;
+
+
+    &::-webkit-scrollbar {
+      height: 3px;
+      width: 0px;
+    }
+
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #33333346;
+      border-radius: 50px;
+    }
+  }
+
   .katex-html {
     display: none;
   }
@@ -334,6 +354,26 @@
 
   .katex-html {
     display: none;
+  }
+
+  .katex-display{
+    overflow-x: scroll;
+    display: flex;
+
+
+    &::-webkit-scrollbar {
+      height: 3px;
+      width: 0px;
+    }
+
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ffffff46;
+      border-radius: 50px;
+    }
   }
 
   semantics {
