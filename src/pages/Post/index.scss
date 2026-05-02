@@ -114,17 +114,20 @@
 
   .toc-container {
     height: 100%;
-    width: 30%;
+    // width: 30%;
     padding-left: 20px;
     position: sticky;
     top: $navHeight + 20px;
 
     &.fade-out {
       animation: toc-fade-out 0.15s linear forwards;
+      width: 0;
+      padding: 0;
     }
 
     &.fade-in {
       animation: toc-fade-in 0.15s linear forwards;
+      width: 30%;
     }
   }
 }
