@@ -4,7 +4,7 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import MarkdownNavbar from './MarkdownNavBar/index';
 // import MarkdownNavbar from 'markdown-navbar'
 import { ConfigProvider, Drawer } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants';
 import { useAppSelector } from '../../../redux/hooks';
 
@@ -146,6 +146,14 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
     window.innerWidth <= MOBILE_MAX_WIDTH,
   );
   const darkMode = useAppSelector(state => state.ui.darkMode);
+  const tocSource = useMemo(
+    () =>
+      markdown.replace(
+        /[`~]{3,}[\s\S]*?[`~]{3,}/g,
+        '',
+      ),
+    [markdown],
+  );
 
   useEffect(() => {
     setOpen(showDrawer);
@@ -201,7 +209,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
           </div>
           <div className={darkMode ? 'toc-content-dark' : 'toc-content'}>
             <MarkdownNavbar
-              source={markdown}
+              source={tocSource}
               // updateHashAuto={false}
               headingTopOffset={60}
               ordered={true}
@@ -237,7 +245,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
               <div className="toc-content">
                 <MarkdownNavbar
                   // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)}
-                  source={markdown}
+                  source={tocSource}
                   // updateHashAuto={false}
                   headingTopOffset={60}
                   ordered={true}
