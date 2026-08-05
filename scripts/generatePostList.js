@@ -6,9 +6,35 @@ const currentDirectory = process.cwd();
 
 const postsDir = path.join(currentDirectory, 'public', 'posts');
 const outputFilePath = path.join(currentDirectory, 'public/json', 'posts.json');
+const ABSTRACT_MAX_LENGTH = 250;
 
 function normalizeName(name) {
   return name.trim().replace(/\s+/g, '_');
+}
+
+function normalizePlainText(markdown) {
+  return markdown
+    .replace(/<!--[^]*?-->/g, ' ')
+    .replace(/(```|~~~)[^\n]*\n[^]*?\1/g, ' ')
+    .replace(/\$\$[^]*?\$\$/g, ' ')
+    .replace(/\$[^$\n]+\$/g, ' ')
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/^\s*\|?(?:\s*:?-+:?\s*\|)+\s*$/gm, ' ')
+    .replace(/^\s{0,3}(?:#{1,6}|>|[-+*]|\d+[.)])\s+/gm, '')
+    .replace(/[|*_~]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function createAbstract(markdown, maxLength = ABSTRACT_MAX_LENGTH) {
+  const plainText = normalizePlainText(markdown);
+  const characters = Array.from(plainText);
+  return characters.length > maxLength
+    ? `${characters.slice(0, maxLength).join('')}...`
+    : plainText;
 }
 
 function getAllMarkdownFiles(dir, baseDir = dir, relativePath = '', category = '未分类') {
@@ -27,7 +53,7 @@ function getAllMarkdownFiles(dir, baseDir = dir, relativePath = '', category = '
         console.log(`Renamed folder: ${item} -> ${normalizedItem}`);
         itemPath = newItemPath;
       }
-      
+
       const subRelativePath = relativePath ? `${relativePath}/${normalizedItem}` : normalizedItem;
       const subCategory = normalizedItem;
       files.push(...getAllMarkdownFiles(itemPath, baseDir, subRelativePath, subCategory));
@@ -39,12 +65,12 @@ function getAllMarkdownFiles(dir, baseDir = dir, relativePath = '', category = '
         console.log(`Renamed file: ${item} -> ${normalizedItem}`);
         itemPath = newItemPath;
       }
-      
+
       const relativeFilePath = relativePath ? `${relativePath}/${normalizedItem}` : normalizedItem;
       files.push({
         filePath: itemPath,
         relativePath: relativeFilePath,
-        category: category
+        category: category,
       });
     }
   }
@@ -56,9 +82,13 @@ const files = getAllMarkdownFiles(postsDir);
 
 const posts = files.map(({ filePath, relativePath, category }) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  const { data } = matter(fileContents);
+  const { data, content } = matter(fileContents);
 
-  const { categories, ...restData } = data;
+  const { categories, abstract: configuredAbstract, ...restData } = data;
+  const abstract =
+    typeof configuredAbstract === 'string' && configuredAbstract.trim()
+      ? configuredAbstract.trim()
+      : createAbstract(content);
 
   return {
     id: path.basename(relativePath, '.md'),
@@ -66,7 +96,8 @@ const posts = files.map(({ filePath, relativePath, category }) => {
     category,
     top: false,
     ...restData,
-    path: `/posts/${relativePath}`
+    abstract,
+    path: `/posts/${relativePath}`,
   };
 });
 

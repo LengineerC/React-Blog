@@ -28,7 +28,7 @@ export default function CategoriesDetail() {
             onClick={() => setSelectedPost(post)}
             key={post.id}
           >
-            <PostCard config={post} key={post.id} limit={250} showLimitContent={true} />
+            <PostCard config={post} />
           </div>
         );
       });

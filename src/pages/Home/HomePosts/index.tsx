@@ -8,9 +8,7 @@ import { motion } from 'framer-motion';
 
 import './index.scss';
 
-type Props = {};
-
-export default function HomePosts({ }: Props) {
+export default function HomePosts() {
   const postList = useAppSelector(state => state.post.postList);
   const [pagination, setPagination] = useState<number>(1);
   const [pageSize] = useState<number>(10);
@@ -48,7 +46,7 @@ export default function HomePosts({ }: Props) {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <PostCard config={item} key={item.id} limit={250} showLimitContent={true} />
+          <PostCard config={item} />
         </motion.div>
       );
     });

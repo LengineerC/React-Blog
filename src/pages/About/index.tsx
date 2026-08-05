@@ -121,7 +121,7 @@ export default function About() {
               </div>
 
               <div className="about-content-text">
-                <MDRenderer darkMode={darkMode} markdown={markdown} showLimitContent={false} />
+                <MDRenderer darkMode={darkMode} markdown={markdown} />
               </div>
 
               <div className={darkMode ? 'about-chart-title-dark' : 'about-chart-title'}>

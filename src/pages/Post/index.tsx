@@ -244,11 +244,7 @@ export default function Post() {
                       <hr className="hr-twill" />
 
                       <div className={'post-page-card-container'}>
-                        <MDRenderer
-                          darkMode={darkMode}
-                          markdown={markdown}
-                          showLimitContent={false}
-                        />
+                        <MDRenderer darkMode={darkMode} markdown={markdown} />
                       </div>
 
                       <hr className="hr-twill" />
@@ -285,7 +281,7 @@ export default function Post() {
 
                   <div
                     className={`toc-container ${showTOC ? 'fade-in' : 'fade-out'}`}
-                  // style={showTOC?{}:{display:"none"}}
+                    // style={showTOC?{}:{display:"none"}}
                   >
                     <TOC
                       showDrawer={showTOCDrawer}
