@@ -31,42 +31,34 @@ export default function About() {
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const categoriesList = useAppSelector(state => state.taxonomy.categoriesList);
 
-  const getFormatCategoriesData = () => {
-    let data = [];
-    // const {categoriesList}=store.getState();
-
-    data = Object.keys(categoriesList).map(key => {
-      return {
-        name: key,
-        value: categoriesList[key].length,
-      };
-    });
-    return data;
-  };
-
   useEffect(() => {
+    const controller = new AbortController();
+
     axios
-      .get('/aboutme.md')
+      .get('/aboutme.md', { signal: controller.signal })
       .then(res => {
         const { data } = res;
         setMarkdown(data);
       })
       .catch(err => {
-        console.log(err);
+        if (!axios.isCancel(err)) console.log(err);
       });
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {
-    const pieChartDom = pieChartRef.current;
-    const pieChart = echarts.init(pieChartDom);
+    if (!pieChartRef.current || Object.keys(categoriesList).length === 0) return;
 
-    renderPieChart(pieChart);
-  }, [darkMode]);
+    const categoriesData = Object.keys(categoriesList).map(key => ({
+      name: key,
+      value: categoriesList[key].length,
+    }));
+    const pieChart = echarts.init(pieChartRef.current);
 
-  const renderPieChart = (pieChart: any) => {
-    let categoriesData = getFormatCategoriesData();
-
-    let option = {
+    const option = {
       tooltip: {
         triger: 'item',
         textStyle: {
@@ -100,7 +92,11 @@ export default function About() {
       ],
     };
     pieChart.setOption(option);
-  };
+
+    return () => {
+      pieChart.dispose();
+    };
+  }, [categoriesList, darkMode]);
 
   return (
     <div className="page-main">
@@ -112,7 +108,7 @@ export default function About() {
         <Card darkMode={darkMode}>
           <div className="about-main">
             <div className="about-avatar">
-              <img src={avatar} />
+              <img src={avatar} alt={`${AUTHOR} avatar`} />
             </div>
 
             <div className="about-content">

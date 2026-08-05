@@ -17,13 +17,9 @@ export default function TagsPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (tags) {
-      createWordCloud();
-    }
-  }, [tags]);
+    if (!chartRef.current || Object.keys(tags).length === 0) return;
 
-  const createWordCloud = () => {
-    let wordcloud = echarts.init(chartRef.current);
+    const wordcloud = echarts.init(chartRef.current);
     const option = {
       series: [
         {
@@ -59,12 +55,19 @@ export default function TagsPage() {
     };
 
     wordcloud.setOption(option);
-    wordcloud.on('click', function (params: any) {
+    const handleClick = (params: any) => {
       if (params.data && params.data.link) {
         navigate(`${params.data.link}`);
       }
-    });
-  };
+    };
+
+    wordcloud.on('click', handleClick);
+
+    return () => {
+      wordcloud.off('click', handleClick);
+      wordcloud.dispose();
+    };
+  }, [navigate, tags]);
 
   const createTags = (): React.ReactNode => {
     if (tags) {
