@@ -16,6 +16,7 @@ export class MarkdownNavbar extends Component {
     headingTopOffset: PropTypes.number,
     updateHashAuto: PropTypes.bool,
     declarative: PropTypes.bool,
+    smoothScroll: PropTypes.bool,
     className: PropTypes.string,
     onNavItemClick: PropTypes.func,
     onHashChange: PropTypes.func,
@@ -27,6 +28,7 @@ export class MarkdownNavbar extends Component {
     headingTopOffset: 0,
     updateHashAuto: true,
     declarative: false,
+    smoothScroll: true,
     className: '',
     onNavItemClick: () => {},
     onHashChange: () => {},
@@ -130,6 +132,9 @@ export class MarkdownNavbar extends Component {
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
     }
+    if (this.scrollEventLockTimer) {
+      clearTimeout(this.scrollEventLockTimer);
+    }
     document.removeEventListener('scroll', this.winScroll, false);
     window.removeEventListener('hashchange', this.winHashChange, false);
   }
@@ -216,7 +221,10 @@ export class MarkdownNavbar extends Component {
     this.scrollTimeout = setTimeout(() => {
       const target = document.querySelector(`[data-id="${dataId}"]`);
       if (target && typeof target.offsetTop === 'number') {
-        this.safeScrollTo(window, target.offsetTop - this.props.headingTopOffset, 0);
+        const smooth =
+          this.props.smoothScroll &&
+          !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        this.safeScrollTo(window, target.offsetTop - this.props.headingTopOffset, 0, smooth);
       }
     }, 0);
   }

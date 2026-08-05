@@ -146,14 +146,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
     window.innerWidth <= MOBILE_MAX_WIDTH,
   );
   const darkMode = useAppSelector(state => state.ui.darkMode);
-  const tocSource = useMemo(
-    () =>
-      markdown.replace(
-        /[`~]{3,}[\s\S]*?[`~]{3,}/g,
-        '',
-      ),
-    [markdown],
-  );
+  const tocSource = useMemo(() => markdown.replace(/[`~]{3,}[\s\S]*?[`~]{3,}/g, ''), [markdown]);
 
   useEffect(() => {
     setOpen(showDrawer);
@@ -235,7 +228,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
               onClose={onClose}
               width={250}
               closeIcon={null}
-            // destroyOnClose  //不加此项测试运行手机端不显示目录时滑动过快报错，正式运行不影响，但性能会受损
+              // destroyOnClose  //不加此项测试运行手机端不显示目录时滑动过快报错，正式运行不影响，但性能会受损
             >
               <div className={darkMode ? 'toc-header-dark' : 'toc-header'}>
                 <FontAwesomeIcon icon={faList} />
@@ -244,7 +237,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
               </div>
               <div className="toc-content">
                 <MarkdownNavbar
-                  // onNavItemClick={(event,element,hash)=>handleClick(event,element,hash)}
+                  onNavItemClick={onClose}
                   source={tocSource}
                   // updateHashAuto={false}
                   headingTopOffset={60}
