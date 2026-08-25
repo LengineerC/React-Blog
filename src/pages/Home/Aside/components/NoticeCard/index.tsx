@@ -14,7 +14,7 @@ export default function NoticeCard() {
     <Card
       className="aside-card"
       scale={true}
-      background={darkMode ? '#54000077' : '#F0808077'}
+      background={darkMode ? '#54000077' : '#FFD70077'}
       darkMode={darkMode}
     >
       <div className="notice-card-main">
