@@ -2,7 +2,7 @@ import Card from '../../../../../components/Card';
 import { Divider } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faTag, faBookmark } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 // import store from "../../../../../redux/store"
 import { useAppSelector } from '../../../../../redux/hooks';
 import { NavLink } from 'react-router-dom';

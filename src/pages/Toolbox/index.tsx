@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageTitle from '@/components/PageTitle';
 import { useAppSelector } from '@/redux/hooks';
 import Card from '@/components/Card';

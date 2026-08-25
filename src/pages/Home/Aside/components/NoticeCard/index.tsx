@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import Card from '../../../../../components/Card';
 import { NOTICE_CARD_TEXT } from '../../../../../utils/constants';
 // import store from '../../../../../redux/store'
@@ -14,7 +14,7 @@ export default function NoticeCard() {
     <Card
       className="aside-card"
       scale={true}
-      bgImage={require('../../../../../assets/image/notice-card-bg.png')}
+      background={darkMode ? '#54000077' : '#F0808077'}
       darkMode={darkMode}
     >
       <div className="notice-card-main">

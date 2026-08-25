@@ -52,7 +52,7 @@ export default function Archives() {
       const postDateArr: [string, number][] = [];
       const postTimeHash: any = {};
 
-      postList.map(post => {
+      postList.forEach(post => {
         const postTime = post.time.split(' ');
         if (postTime[0].slice(0, 4) === currentDate.getFullYear().toString()) {
           if (!postTimeHash.hasOwnProperty(postTime[0])) {
@@ -63,7 +63,7 @@ export default function Archives() {
         }
       });
 
-      Object.keys(postTimeHash).map(key => {
+      Object.keys(postTimeHash).forEach(key => {
         postDateArr.push([key, postTimeHash[key]]);
       });
 
@@ -109,19 +109,6 @@ export default function Archives() {
       });
     }
   }, [githubRepoCommits, dispatch]);
-
-  useEffect(() => {
-    const width = window.innerWidth > MOBILE_MAX_WIDTH ? 1150 : 900;
-    const heatMap = echarts.init(heatMapRef.current, null, {
-      width,
-    });
-
-    renderHeatMap(heatMap);
-
-    return () => {
-      heatMap.dispose();
-    };
-  }, [darkMode, postList]);
 
   const renderHeatMap = (heatMap: any) => {
     const option = {
@@ -198,6 +185,19 @@ export default function Archives() {
     heatMap.setOption(option);
   };
 
+  useEffect(() => {
+    const width = window.innerWidth > MOBILE_MAX_WIDTH ? 1150 : 900;
+    const heatMap = echarts.init(heatMapRef.current, null, {
+      width,
+    });
+
+    renderHeatMap(heatMap);
+
+    return () => {
+      heatMap.dispose();
+    };
+  }, [darkMode, postList]);
+
   const createTimelines = () => {
     if (postList.length === 0) return null;
 
@@ -249,12 +249,9 @@ export default function Archives() {
 
         posts.forEach(post => {
           const postNode = (
-            <div
-              className="post"
-              key={post.id}
-            >
+            <div className="post" key={post.id}>
               <div
-                className='post-title'
+                className="post-title"
                 onClick={() => {
                   navigate(`/post/detail/${post.id}`);
                 }}
@@ -277,10 +274,10 @@ export default function Archives() {
         <div className="year-block" key={year}>
           <div className="year">
             {year}
-            <div className='hr-twill' />
+            <div className="hr-twill" />
           </div>
 
-          <Timeline items={monthItems} mode='left' />
+          <Timeline items={monthItems} mode="left" />
         </div>
       );
 
@@ -330,11 +327,11 @@ export default function Archives() {
                 },
               }}
             >
-              {
-                USE_GITHUB_COMMITS ?
-                  <Timeline mode="alternate" items={formattedCommits} /> :
-                  createTimelines()
-              }
+              {USE_GITHUB_COMMITS ? (
+                <Timeline mode="alternate" items={formattedCommits} />
+              ) : (
+                createTimelines()
+              )}
             </ConfigProvider>
           </div>
         </Card>

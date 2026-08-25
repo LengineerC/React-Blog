@@ -5,8 +5,7 @@ import Card from '../../../../../components/Card';
 // import { PostConfig } from '../../../../../utils/types'
 // import axios from 'axios'
 // import PostCard from '../../../HomePosts/PostCard'
-import { saveSelectedPostConfig } from '../../../../../redux/slices/postSlice';
-import { useAppDispatch, useAppSelector } from '../../../../../redux/hooks';
+import { useAppSelector } from '../../../../../redux/hooks';
 
 import './index.scss';
 
@@ -21,7 +20,6 @@ export default function TopPostCard() {
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const topPosts = useAppSelector(state => state.post.postList).filter(item => item.top);
-  const dispatch = useAppDispatch();
 
   // useEffect(() => {
   //   //处理axios+redux异步处理导致数据为空的问题的可能解决方案
@@ -50,12 +48,7 @@ export default function TopPostCard() {
       return topPosts.map(item => {
         // console.log(item);
         return (
-          <NavLink
-            key={item.id}
-            to={`/post/detail/${item.id}`}
-            style={navLinkStyle}
-            onClick={() => dispatch(saveSelectedPostConfig(item))}
-          >
+          <NavLink key={item.id} to={`/post/detail/${item.id}`} style={navLinkStyle}>
             <div
               className={darkMode ? 'top-post-card-link-block-dark' : 'top-post-card-link-block'}
             >

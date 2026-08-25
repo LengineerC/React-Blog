@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import Card from '../../components/Card';
 import MDRenderer from '../../components/MDRenderer';
 import { ConfigProvider, Skeleton, message } from 'antd';
-import { PostConfig } from '../../utils/types';
 import PageTitle from '../../components/PageTitle';
 import {
   UserOutlined,
@@ -18,20 +16,18 @@ import Tag from '../../components/Tag';
 import Category from '../../components/Category';
 import { AUTHOR, DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
 import TOC from './TOC';
-import { clearSelectedPostConfig, clearSelectedPostHtml } from '../../redux/slices/postSlice';
 import LockCard from './LockCard';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 import { copyText } from '@/utils/functions';
 import { usePostContext } from '@/context/PostContext';
+import { getCachedPostContent, loadPostContent } from '../../services/postContentCache';
 
 import './index.scss';
 
 export default function Post() {
   const { id } = useParams();
   const [markdown, setMarkdown] = useState<string>('');
-  const [postConfig, setPostConfig] = useState<PostConfig>();
-  const [mdLen, setMdLen] = useState<number>(0);
-  const [locked, setLocked] = useState<boolean>(false);
+  const [unlockedPostId, setUnlockedPostId] = useState<string>();
   // const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
   const { showTOC, setInPost, showTOCDrawer, setShowTOCDrawer } = usePostContext();
 
@@ -42,50 +38,48 @@ export default function Post() {
   const [url, setUrl] = useState<string>(window.location.href);
 
   const darkMode = useAppSelector(state => state.ui.darkMode);
-  const dispatch = useAppDispatch();
   const postList = useAppSelector(state => state.post.postList);
+  const postConfig = useMemo(() => postList.find(post => post.id === id), [id, postList]);
+  const locked = Boolean(postConfig?.lock && unlockedPostId !== id);
+  const mdLen = markdown.length;
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (postList.length > 0) {
-      postList.forEach(pc => {
-        if (pc.id === id) {
-          setPostConfig(pc);
-        }
-      });
+    setInPost(Boolean(postConfig && !locked));
+
+    return () => setInPost(false);
+  }, [locked, postConfig, setInPost]);
+
+  useEffect(() => {
+    if (!postConfig || locked) {
+      setMarkdown('');
+      return;
     }
-  }, [postList]);
 
-  useEffect(() => {
-    setInPost(!locked);
-  }, [locked]);
+    let active = true;
+    const cachedContent = getCachedPostContent(postConfig.path);
 
-  useEffect(() => {
-    if (!postConfig) return;
+    if (cachedContent !== undefined) {
+      setMarkdown(cachedContent);
+      return;
+    }
 
-    axios
-      .get(postConfig.path)
-      .then(response => {
-        setMarkdown(response.data);
-        setMdLen(response.data.length);
-
-        let initPostConfig = {} as PostConfig;
-        for (let pc of postList) {
-          if (pc.id === id) {
-            initPostConfig = pc;
-            break;
-          }
-        }
-
-        setLocked(initPostConfig.lock);
+    setMarkdown('');
+    loadPostContent(postConfig.path)
+      .then(content => {
+        if (active) setMarkdown(content);
       })
       .catch(err => {
+        if (!active) return;
         console.log('Post: 文章获取失败', err);
-
         navigate(`/articles/${id}`);
       });
-  }, [postConfig]);
+
+    return () => {
+      active = false;
+    };
+  }, [id, locked, navigate, postConfig]);
 
   useEffect(() => {
     if (!id) {
@@ -101,13 +95,7 @@ export default function Post() {
         setUrl(newUrl);
       }
     }
-
-    return () => {
-      setInPost(false);
-      dispatch(clearSelectedPostConfig());
-      dispatch(clearSelectedPostHtml());
-    };
-  }, []);
+  }, [id, navigate]);
 
   const createTags = () => {
     if (postConfig) {
@@ -293,7 +281,7 @@ export default function Post() {
               ) : (
                 <LockCard
                   onClose={() => {
-                    setLocked(false);
+                    setUnlockedPostId(id);
                   }}
                   password={postConfig?.password}
                 />

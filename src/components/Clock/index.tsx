@@ -19,6 +19,28 @@ export default function Clock(props: Props) {
   const handsRef = useRef<HTMLCanvasElement>(null);
   const handsCtxRef = useRef<CanvasRenderingContext2D | null>(null);
 
+  const initCanvas = () => {
+    const { width, height } = props;
+
+    if (dialPlateRef.current) {
+      dialPlateRef.current.width = width * dpr;
+      dialPlateRef.current.height = height * dpr;
+      dialPlateRef.current.style.width = `${width}px`;
+      dialPlateRef.current.style.height = `${height}px`;
+
+      dialPlateCtxRef.current?.scale(dpr, dpr);
+    }
+
+    if (handsRef.current) {
+      handsRef.current.width = width * dpr;
+      handsRef.current.height = height * dpr;
+      handsRef.current.style.width = `${width}px`;
+      handsRef.current.style.height = `${height}px`;
+
+      handsCtxRef.current?.scale(dpr, dpr);
+    }
+  };
+
   useEffect(() => {
     const dialPlateCtx = dialPlateRef.current?.getContext('2d');
     const handsCtx = handsRef.current?.getContext('2d');
@@ -47,28 +69,6 @@ export default function Clock(props: Props) {
   useEffect(() => {
     drawHands();
   }, [date]);
-
-  const initCanvas = () => {
-    const { width, height } = props;
-
-    if (dialPlateRef.current) {
-      dialPlateRef.current.width = width * dpr;
-      dialPlateRef.current.height = height * dpr;
-      dialPlateRef.current.style.width = `${width}px`;
-      dialPlateRef.current.style.height = `${height}px`;
-
-      dialPlateCtxRef.current?.scale(dpr, dpr);
-    }
-
-    if (handsRef.current) {
-      handsRef.current.width = width * dpr;
-      handsRef.current.height = height * dpr;
-      handsRef.current.style.width = `${width}px`;
-      handsRef.current.style.height = `${height}px`;
-
-      handsCtxRef.current?.scale(dpr, dpr);
-    }
-  };
 
   const drawDialPlate = () => {
     if (dialPlateRef.current && dialPlateCtxRef.current) {

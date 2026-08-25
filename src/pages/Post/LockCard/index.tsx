@@ -19,7 +19,7 @@ export default function LockCard({ onClose, password }: Props) {
 
   const verifyPassword = () => {
     const inputContent = inputRef.current?.input.value;
-    if (inputContent == password) {
+    if (inputContent === password) {
       onClose();
     } else {
       messageApi.open({

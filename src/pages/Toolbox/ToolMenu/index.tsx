@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/redux/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ToolMenuConfigItem } from '@/utils/types';
 
 import './index.scss';

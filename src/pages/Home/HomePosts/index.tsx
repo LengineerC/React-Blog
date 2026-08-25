@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import { PostConfig } from '../../../utils/types';
-import { saveSelectedPostConfig } from '../../../redux/slices/postSlice';
+import { useMemo, useState } from 'react';
 import PostCard from '../../../components/PostCard';
 import { Pagination, ConfigProvider } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { useAppSelector } from '../../../redux/hooks';
 import { motion } from 'framer-motion';
 
 import './index.scss';
@@ -11,25 +9,13 @@ import './index.scss';
 export default function HomePosts() {
   const postList = useAppSelector(state => state.post.postList);
   const [pagination, setPagination] = useState<number>(1);
-  const [pageSize] = useState<number>(10);
-  const [currentPage, setCurrentPage] = useState<PostConfig[]>([]);
+  const pageSize = 10;
+  const currentPage = useMemo(
+    () => postList.slice((pagination - 1) * pageSize, pagination * pageSize),
+    [pagination, postList],
+  );
 
   const darkMode = useAppSelector(state => state.ui.darkMode);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (postList.length !== 0) {
-      let slicedPage = [...postList];
-      slicedPage = slicedPage.slice((pagination - 1) * pageSize, pagination * pageSize);
-      // console.log(slicedPage);
-
-      setCurrentPage(slicedPage);
-    }
-  }, [pagination, postList]);
-
-  const setSelectedPost = (selectedPost: PostConfig) => {
-    dispatch(saveSelectedPostConfig(selectedPost));
-  };
 
   const createPostCards = () => {
     // console.log("postlist",postList);
@@ -39,7 +25,6 @@ export default function HomePosts() {
       return (
         <motion.div
           style={{ width: '100%', marginBottom: '3vh' }}
-          onClick={() => setSelectedPost(item)}
           key={item.id}
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

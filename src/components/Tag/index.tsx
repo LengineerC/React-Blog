@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { genRandomInt } from '@lengineerc/utils';
 
 import './index.scss';
 import { NavLink } from 'react-router-dom';
@@ -9,13 +10,7 @@ type Props = {
 };
 
 export default function Tag({ tag, reload = false }: Props) {
-  const [bgColor, setBgColor] = useState<number>(0);
-
-  useEffect(() => {
-    let color = Math.floor(Math.random() * 3);
-    // console.log(color);
-    setBgColor(color);
-  }, []);
+  const [bgColor] = useState(() => genRandomInt(0, 2));
 
   const colorChooser = (color: number): string => {
     let style = 'tag-bg-color-';

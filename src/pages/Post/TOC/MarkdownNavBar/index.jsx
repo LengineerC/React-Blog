@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { throttle } from 'lodash';
+import { throttle } from '@lengineerc/utils';
 
 /**
  * 个人修改后的MarkdownNavbar，以适配HashRoute
@@ -323,7 +323,7 @@ export class MarkdownNavbar extends Component {
     this.setState({
       currentListNo: curHeading.listNo,
     });
-  }, 300);
+  });
 
   winHashChange = () => {
     this.scrollToTarget(this.state.navStructure);
@@ -374,7 +374,7 @@ export class MarkdownNavbar extends Component {
               currentListNo: t.listNo,
             });
           }}
-          key={`title_anchor_${Math.random().toString(36).substring(2)}`}
+          key={`title-anchor-${t.index}-${t.listNo}`}
         >
           {this.props.ordered ? <small>{t.listNo}</small> : null}
           {t.text}
