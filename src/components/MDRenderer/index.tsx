@@ -34,6 +34,20 @@ interface CodeBlockProps {
   children: ReactNode;
   darkMode: boolean;
 }
+
+function MarkdownImage({ attribs }: { attribs: Record<string, string> }) {
+  return (
+    <span className="markdown-image-container">
+      <Image
+        src={attribs.src}
+        alt={attribs.alt}
+        title={attribs.title}
+        style={{ maxWidth: '100%', cursor: 'zoom-in' }}
+      />
+    </span>
+  );
+}
+
 function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [isCollapsed, setIsCollapsed] = useState(CODE_BLOCK_COLLAPSED);
@@ -93,26 +107,12 @@ function MDRenderer({ html, darkMode }: Props) {
                 domNode.children[0].name === 'img'
               ) {
                 const img = domNode.children[0];
-                return (
-                  <Image
-                    src={img.attribs.src}
-                    alt={img.attribs.alt}
-                    title={img.attribs.title}
-                    style={{ maxWidth: '100%', cursor: 'zoom-in' }}
-                  />
-                );
+                return <MarkdownImage attribs={img.attribs} />;
               }
             }
 
             if (domNode.name === 'img') {
-              return (
-                <Image
-                  src={domNode.attribs.src}
-                  alt={domNode.attribs.alt}
-                  title={domNode.attribs.title}
-                  style={{ maxWidth: '100%', cursor: 'zoom-in' }}
-                />
-              );
+              return <MarkdownImage attribs={domNode.attribs} />;
             }
 
             if (domNode.name === 'pre') {

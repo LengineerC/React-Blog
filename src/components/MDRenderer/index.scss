@@ -121,14 +121,24 @@
     color: $postColor;
   }
 
-  p img {
+  .markdown-image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin: 20px 0;
-    height: auto;
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow:
-      0 5px 25px 0 rgba(0, 0, 0, 0.2),
-      0 10px 30px -11px rgba(0, 0, 0, 0.6);
+
+    .ant-image {
+      max-width: 100%;
+    }
+
+    .ant-image-img {
+      height: auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow:
+        0 5px 25px 0 rgba(0, 0, 0, 0.2),
+        0 10px 30px -11px rgba(0, 0, 0, 0.6);
+    }
   }
 
   a {
@@ -463,16 +473,6 @@
   p {
     margin: 7px 0;
     color: $postColor-dark;
-  }
-
-  p img {
-    margin: 20px 0;
-    height: auto;
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow:
-      0 5px 25px 0 rgba(0, 0, 0, 0.2),
-      0 10px 30px -11px rgba(0, 0, 0, 0.6);
   }
 
   a {
