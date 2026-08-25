@@ -9,10 +9,23 @@ export type PostConfig = {
   time: string;
   lock: boolean;
   password: string;
-  path: string;
+  contentPath: string;
   top?: boolean;
   category: string;
   tags: string[];
+};
+
+export type PostTocItem = {
+  id: string;
+  level: number;
+  text: string;
+  listNo: string;
+};
+
+export type PostContent = {
+  html: string;
+  toc: PostTocItem[];
+  characterCount: number;
 };
 
 export type Categories = Record<string, PostConfig[]>;

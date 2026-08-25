@@ -21,12 +21,13 @@ import { useAppSelector } from '../../redux/hooks';
 import { copyText } from '@/utils/functions';
 import { usePostContext } from '@/context/PostContext';
 import { getCachedPostContent, loadPostContent } from '../../services/postContentCache';
+import { PostContent } from '../../utils/types';
 
 import './index.scss';
 
 export default function Post() {
-  const { id } = useParams();
-  const [markdown, setMarkdown] = useState<string>('');
+  const id = useParams()['*'];
+  const [content, setContent] = useState<PostContent>();
   const [unlockedPostId, setUnlockedPostId] = useState<string>();
   // const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
   const { showTOC, setInPost, showTOCDrawer, setShowTOCDrawer } = usePostContext();
@@ -39,9 +40,21 @@ export default function Post() {
 
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const postList = useAppSelector(state => state.post.postList);
-  const postConfig = useMemo(() => postList.find(post => post.id === id), [id, postList]);
+  const postConfig = useMemo(() => {
+    const exactMatch = postList.find(post => post.id === id);
+    if (exactMatch || !id?.includes('/')) {
+      if (exactMatch) return exactMatch;
+
+      const legacyMatches = postList.filter(
+        post => post.id.slice(post.id.lastIndexOf('/') + 1) === id,
+      );
+      return legacyMatches.length === 1 ? legacyMatches[0] : undefined;
+    }
+
+    return undefined;
+  }, [id, postList]);
   const locked = Boolean(postConfig?.lock && unlockedPostId !== id);
-  const mdLen = markdown.length;
+  const characterCount = content?.characterCount ?? 0;
 
   const navigate = useNavigate();
 
@@ -53,22 +66,22 @@ export default function Post() {
 
   useEffect(() => {
     if (!postConfig || locked) {
-      setMarkdown('');
+      setContent(undefined);
       return;
     }
 
     let active = true;
-    const cachedContent = getCachedPostContent(postConfig.path);
+    const cachedContent = getCachedPostContent(postConfig.contentPath);
 
     if (cachedContent !== undefined) {
-      setMarkdown(cachedContent);
+      setContent(cachedContent);
       return;
     }
 
-    setMarkdown('');
-    loadPostContent(postConfig.path)
-      .then(content => {
-        if (active) setMarkdown(content);
+    setContent(undefined);
+    loadPostContent(postConfig.contentPath)
+      .then(postContent => {
+        if (active) setContent(postContent);
       })
       .catch(err => {
         if (!active) return;
@@ -224,7 +237,7 @@ export default function Post() {
                               &nbsp;文章字数：
                             </span>
 
-                            <span style={{ whiteSpace: 'nowrap' }}>{mdLen}</span>
+                            <span style={{ whiteSpace: 'nowrap' }}>{characterCount}</span>
                           </div>
                         </div>
                       </div>
@@ -232,7 +245,7 @@ export default function Post() {
                       <hr className="hr-twill" />
 
                       <div className={'post-page-card-container'}>
-                        <MDRenderer darkMode={darkMode} markdown={markdown} />
+                        <MDRenderer darkMode={darkMode} html={content?.html ?? ''} />
                       </div>
 
                       <hr className="hr-twill" />
@@ -273,7 +286,7 @@ export default function Post() {
                   >
                     <TOC
                       showDrawer={showTOCDrawer}
-                      markdown={markdown}
+                      items={content?.toc ?? []}
                       callbackOnClose={callbackCloseDrawer}
                     />
                   </div>

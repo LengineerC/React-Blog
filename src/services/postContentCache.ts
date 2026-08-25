@@ -1,14 +1,15 @@
 import { LRUCache } from '@lengineerc/utils';
 import axios from 'axios';
+import { PostContent } from '../utils/types';
 
 const MAX_CACHE_ENTRIES = 6;
 const MAX_CACHEABLE_CHARACTERS_PER_POST = 200_000;
 
-const contentCache = new LRUCache<string, string>(MAX_CACHE_ENTRIES);
-const pendingRequests = new Map<string, Promise<string>>();
+const contentCache = new LRUCache<string, PostContent>(MAX_CACHE_ENTRIES);
+const pendingRequests = new Map<string, Promise<PostContent>>();
 
-function cacheContent(path: string, content: string) {
-  if (content.length <= MAX_CACHEABLE_CHARACTERS_PER_POST) {
+function cacheContent(path: string, content: PostContent) {
+  if (content.html.length <= MAX_CACHEABLE_CHARACTERS_PER_POST) {
     contentCache.set(path, content);
   }
 }
@@ -25,7 +26,7 @@ export function loadPostContent(path: string) {
   if (pendingRequest) return pendingRequest;
 
   const request = axios
-    .get<string>(path)
+    .get<PostContent>(path)
     .then(response => {
       const content = response.data;
       cacheContent(path, content);

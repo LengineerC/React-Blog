@@ -19,7 +19,9 @@ const staticRoutes = [
 
 const posts = require('../public/json/posts.json');
 
-const postRoutes = posts.map(post => `/post/detail/${post.id}`);
+const postRoutes = posts.map(post =>
+  `/post/detail/${post.id.split('/').map(encodeURIComponent).join('/')}`
+);
 
 const tagSet = new Set();
 const categorySet = new Set();

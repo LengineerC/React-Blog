@@ -24,7 +24,7 @@ const routes = [
     element: <Home />,
   },
   {
-    path: '/post/detail/:id',
+    path: '/post/detail/*',
     element: <Post />,
   },
   {

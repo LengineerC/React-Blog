@@ -4,9 +4,10 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import MarkdownNavbar from './MarkdownNavBar/index';
 // import MarkdownNavbar from 'markdown-navbar'
 import { ConfigProvider, Drawer } from 'antd';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants';
 import { useAppSelector } from '../../../redux/hooks';
+import { PostTocItem } from '../../../utils/types';
 
 import './index.scss';
 
@@ -135,19 +136,17 @@ import './index.scss';
 //#endregion
 
 type Props = {
-  markdown: string;
+  items: PostTocItem[];
   showDrawer: boolean;
-  callbackOnClose: Function;
+  callbackOnClose: () => void;
 };
 
-export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
+export default function TOC({ items, showDrawer, callbackOnClose }: Props) {
   const [open, setOpen] = useState<boolean>(showDrawer);
   const [drawerVisible, setDrawerVisible] = useState<boolean>(
     window.innerWidth <= MOBILE_MAX_WIDTH,
   );
   const darkMode = useAppSelector(state => state.ui.darkMode);
-  const tocSource = useMemo(() => markdown.replace(/[`~]{3,}[\s\S]*?[`~]{3,}/g, ''), [markdown]);
-
   useEffect(() => {
     setOpen(showDrawer);
   }, [showDrawer]);
@@ -202,7 +201,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
           </div>
           <div className={darkMode ? 'toc-content-dark' : 'toc-content'}>
             <MarkdownNavbar
-              source={tocSource}
+              items={items}
               // updateHashAuto={false}
               headingTopOffset={60}
               ordered={true}
@@ -238,7 +237,7 @@ export default function TOC({ markdown, showDrawer, callbackOnClose }: Props) {
               <div className="toc-content">
                 <MarkdownNavbar
                   onNavItemClick={onClose}
-                  source={tocSource}
+                  items={items}
                   // updateHashAuto={false}
                   headingTopOffset={60}
                   ordered={true}

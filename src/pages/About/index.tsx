@@ -3,7 +3,6 @@ import PageTitle from '../../components/PageTitle';
 import Card from '../../components/Card';
 import avatar from '../../assets/image/avatar.webp';
 import { AUTHOR } from '../../utils/constants';
-import axios from 'axios';
 // import store from "../../redux/store";
 import MDRenderer from '../../components/MDRenderer';
 import * as echarts from 'echarts/core';
@@ -12,6 +11,8 @@ import { PieChart } from 'echarts/charts';
 import { LabelLayout } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 import { useAppSelector } from '../../redux/hooks';
+import { loadPostContent } from '../../services/postContentCache';
+import { PostContent } from '../../utils/types';
 
 import './index.scss';
 
@@ -25,27 +26,25 @@ echarts.use([
 ]);
 
 export default function About() {
-  const [markdown, setMarkdown] = useState<string>('');
+  const [content, setContent] = useState<PostContent>();
   const pieChartRef = useRef<HTMLDivElement>(null);
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const categoriesList = useAppSelector(state => state.taxonomy.categoriesList);
 
   useEffect(() => {
-    const controller = new AbortController();
+    let active = true;
 
-    axios
-      .get('/aboutme.md', { signal: controller.signal })
-      .then(res => {
-        const { data } = res;
-        setMarkdown(data);
+    loadPostContent('/generated/about.json')
+      .then(aboutContent => {
+        if (active) setContent(aboutContent);
       })
       .catch(err => {
-        if (!axios.isCancel(err)) console.log(err);
+        if (active) console.log('About: 内容获取失败', err);
       });
 
     return () => {
-      controller.abort();
+      active = false;
     };
   }, []);
 
@@ -117,7 +116,7 @@ export default function About() {
               </div>
 
               <div className="about-content-text">
-                <MDRenderer darkMode={darkMode} markdown={markdown} />
+                <MDRenderer darkMode={darkMode} html={content?.html ?? ''} />
               </div>
 
               <div className={darkMode ? 'about-chart-title-dark' : 'about-chart-title'}>

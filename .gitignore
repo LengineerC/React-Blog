@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /.vscode/
+
+/public/generated
+/public/json/categories.json
+/public/json/posts.json
+/public/json/tags.json

@@ -98,7 +98,7 @@
       margin-right: 5px;
     }
   }
-  @for $i from 2 through 5 {
+  @for $i from 1 through 6 {
     .title-level#{$i} {
       padding-left: 7px * $i;
     }
@@ -180,7 +180,7 @@
       margin-right: 5px;
     }
   }
-  @for $i from 2 through 5 {
+  @for $i from 1 through 6 {
     .title-level#{$i} {
       padding-left: 7px * $i;
     }
@@ -216,7 +216,7 @@
       margin-right: 5px;
     }
   }
-  @for $i from 2 through 5 {
+  @for $i from 1 through 6 {
     .title-level#{$i} {
       padding-left: 7px * $i;
     }

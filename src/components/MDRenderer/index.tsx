@@ -1,8 +1,4 @@
-import { ReactNode, useMemo, useState } from 'react';
-import { Marked } from 'marked';
-import { markedHighlight } from 'marked-highlight';
-import hljs from 'highlight.js';
-import markedKatex from 'marked-katex-extension';
+import { memo, ReactNode, useState } from 'react';
 import parser, { domToReact } from 'html-react-parser';
 import { Image, message } from 'antd';
 import { CopyFilled } from '@ant-design/icons';
@@ -15,62 +11,9 @@ import 'highlight.js/scss/atom-one-dark.scss';
 import './index.scss';
 
 type Props = {
-  markdown: string;
+  html: string;
   darkMode: boolean;
 };
-
-const marked = new Marked(
-  markedHighlight({
-    langPrefix: 'hljs language-',
-    highlight(code, lang) {
-      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-      const normalizedCode = code.replace(/\r\n?/g, '\n');
-      const highlightedCode = hljs
-        .highlight(normalizedCode, { language })
-        .value.replace(/\r\n?/g, '\n');
-
-      const rawLines = normalizedCode.split('\n');
-      const highlightedLines = highlightedCode.split('\n');
-
-      const spanTagPattern = /<\/?span\b[^>]*>/g;
-      let carryStack: string[] = [];
-
-      const processedCodeLines = rawLines.map((_, index) => {
-        const startStack = [...carryStack];
-        const prefix = startStack.join('');
-
-        const lineHtml = highlightedLines[index] ?? '';
-        const safeLine = lineHtml === '' ? '&nbsp;' : lineHtml;
-
-        const tagsInLine = safeLine.match(spanTagPattern) ?? [];
-        tagsInLine.forEach(tag => {
-          if (tag.startsWith('</')) {
-            carryStack.pop();
-          } else {
-            carryStack.push(tag);
-          }
-        });
-
-        const endStack = [...carryStack];
-        const suffix = endStack
-          .slice()
-          .reverse()
-          .map(() => '</span>')
-          .join('');
-
-        return `<div class="code-row">
-          <span class="line-num" data-num="${index + 1}"></span>
-          <span class="code-content">${prefix}${safeLine}${suffix}</span>
-        </div>`;
-      });
-
-      const raw = encodeURIComponent(code);
-
-      return `<code class="hljs language-${language}" data-raw="${raw}">${processedCodeLines.join('')}</code>`;
-    },
-  }),
-);
-marked.use(markedKatex());
 
 // 用于自定义目录跳转，使用markdown-navbar可删
 // let headerIndex = 0;
@@ -136,17 +79,11 @@ function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
   );
 }
 
-export default function MDRenderer({ markdown, darkMode }: Props) {
-  const content = useMemo(() => {
-    // 去掉 yaml front matter
-    const cleanedMarkdown = markdown.replace(/^-{3}[\s\S]*?-{3}/, '');
-    return marked.parse(cleanedMarkdown) as string;
-  }, [markdown]);
-
+function MDRenderer({ html, darkMode }: Props) {
   return (
     <div className={darkMode ? 'markdown-body-dark' : 'markdown-body'}>
       <div>
-        {parser(content, {
+        {parser(html, {
           replace: (domNode: any) => {
             // marked在img标签外会裹一层p，antd-Image包含div，防止p中出现div的特殊处理
             if (domNode.name === 'p') {
@@ -203,3 +140,5 @@ export default function MDRenderer({ markdown, darkMode }: Props) {
     </div>
   );
 }
+
+export default memo(MDRenderer);
