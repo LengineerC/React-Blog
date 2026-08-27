@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { DEPLOY_ON_GITHUB_PAGES } from './utils/constants';
+import { CUSTOM_FONT_FAMILY, DEPLOY_ON_GITHUB_PAGES } from './utils/constants';
 import { PostProvider } from './context/PostContext';
 
 import './index.css';
@@ -16,13 +17,21 @@ const Router = DEPLOY_ON_GITHUB_PAGES ? HashRouter : BrowserRouter;
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Router>
-      <Provider store={store}>
-        <PostProvider>
-          <App />
-        </PostProvider>
-      </Provider>
-    </Router>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: CUSTOM_FONT_FAMILY,
+        },
+      }}
+    >
+      <Router>
+        <Provider store={store}>
+          <PostProvider>
+            <App />
+          </PostProvider>
+        </Provider>
+      </Router>
+    </ConfigProvider>
   </React.StrictMode>,
 );
 
