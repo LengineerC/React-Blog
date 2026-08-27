@@ -6,14 +6,11 @@ $navHeight: 60px;
 //移动端设备最大宽度
 $mobileMaxWidth: 992px;
 
-//Sans&圆体中文
-@font-face {
-  font-family: 'CustomFont1';
-  src: url(../assets/fonts/font.woff2) format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+// Comic Sans MS + 圆体中文整合字体，以及整合字体缺字时的回退顺序
+$customFontFallback: 'Comic Sans MS', 'YouYuan', '幼圆', 'Yuanti SC', 'PingFang SC',
+  'Microsoft YaHei', system-ui, sans-serif;
+$customFontFamily: 'CustomFont1', $customFontFallback;
+$customFullFontFamily: 'CustomFont1Full', $customFontFallback;
 
 //浅色主题背景色
 $themeBackgroundColor: #67abff;

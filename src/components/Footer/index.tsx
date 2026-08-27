@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faBilibili } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { AUTHOR, WEBSITE_START_DATE, EMAIL, BILIBILI_LINK } from '../../utils/constants';
+import {
+  AUTHOR,
+  WEBSITE_START_DATE,
+  EMAIL,
+  BILIBILI_LINK,
+  CUSTOM_FONT_FAMILY,
+} from '../../utils/constants';
 import { Popover, ConfigProvider } from 'antd';
 // import { makeBadge, ValidationError } from 'badge-maker';
 // import store from '../../redux/store';
@@ -59,7 +65,7 @@ export default function Footer() {
           token: {
             colorBgElevated: '#ffffffbb',
             lineHeight: 0.1,
-            fontFamily: 'CustomFont1',
+            fontFamily: CUSTOM_FONT_FAMILY,
           },
           components: {
             Popover: {

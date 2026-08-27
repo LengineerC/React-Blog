@@ -1,6 +1,14 @@
 @use '../../styles/base.scss' as *;
 @use '../../styles/page_layout.scss' as *;
 
+@font-face {
+  font-family: 'CustomFont1Full';
+  src: url('../../assets/fonts/font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .unicode-main {
   @extend .hv-center;
   flex-direction: row;
@@ -19,7 +27,7 @@
     textarea {
       font-size: 15px;
       color: $postColor;
-      font-family: 'CustomFont1';
+      font-family: $customFullFontFamily;
       // width: 100%;
       flex: 1;
       resize: none;
@@ -90,7 +98,7 @@
     }
 
     .label {
-      font-family: 'CustomFont1';
+      font-family: $customFontFamily;
       color: $postColor;
       font-size: 18;
       font-weight: bold;
@@ -118,7 +126,7 @@
       .switcher-label {
         @extend .hv-center;
         color: $postColor;
-        font-family: 'CustomFont1';
+        font-family: $customFontFamily;
         font-size: 18;
         width: 15px;
         font-weight: bold;
@@ -159,7 +167,7 @@
       transition: 0.1s;
       border: 1px transparentize($themeBackgroundColor, 0.3) solid;
       color: $postColor;
-      font-family: 'CustomFont1';
+      font-family: $customFontFamily;
       font-weight: bold;
       user-select: none;
 

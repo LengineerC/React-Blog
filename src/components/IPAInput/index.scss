@@ -19,7 +19,7 @@
       font-size: 20px;
       backdrop-filter: blur(10px);
       // background: #ffffff;
-      font-family: 'CustomFont1';
+      font-family: $customFontFamily;
       box-shadow: 3px 1px 10px 3px #00000015;
       color: $postColor;
       width: 100%;
@@ -134,7 +134,7 @@
       }
 
       .keys-area-title {
-        font-family: 'CustomFont1';
+        font-family: $customFontFamily;
         font-weight: bold;
         font-size: 22px;
         margin-bottom: 15px;

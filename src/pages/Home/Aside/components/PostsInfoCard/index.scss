@@ -17,7 +17,7 @@
   }
 
   .post-info-card-col-header {
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     color: $postColor;
     font-size: 15px;
     font-weight: bold;
@@ -31,7 +31,7 @@
   .post-info-card-col-content {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     color: $postColor;
     transition: 0.3s;
 

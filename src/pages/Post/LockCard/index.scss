@@ -6,7 +6,7 @@
   flex-direction: column;
 
   .lock-card-title {
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     font-weight: bold;
     font-size: 20px;
     color: $postColor;

@@ -11,9 +11,13 @@ import { HeatmapChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 import PageTitle from '../../components/PageTitle';
 import Card from '../../components/Card';
-import { GITHUB_REPO, USE_GITHUB_COMMITS } from '../../utils/constants';
+import {
+  CUSTOM_FONT_FAMILY,
+  GITHUB_REPO,
+  MOBILE_MAX_WIDTH,
+  USE_GITHUB_COMMITS,
+} from '../../utils/constants';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { MOBILE_MAX_WIDTH } from '../../utils/constants';
 import { PostConfig } from '@/utils/types';
 import { useNavigate } from 'react-router-dom';
 
@@ -119,7 +123,7 @@ export default function Archives() {
         selectedMode: false,
         textStyle: {
           color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
-          fontFamily: 'CustomFont1',
+          fontFamily: CUSTOM_FONT_FAMILY,
           fontWeight: 'bold',
         },
         pieces: [
@@ -157,17 +161,17 @@ export default function Archives() {
         },
         dayLabel: {
           color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
-          fontFamily: 'CustomFont1',
+              fontFamily: CUSTOM_FONT_FAMILY,
           fontWeight: 'bold',
         },
         monthLabel: {
           color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
-          fontFamily: 'CustomFont1',
+              fontFamily: CUSTOM_FONT_FAMILY,
           fontWeight: 'bold',
         },
         yearLabel: {
           color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
-          fontFamily: 'CustomFont1',
+            fontFamily: CUSTOM_FONT_FAMILY,
           fontWeight: 'bold',
         },
       },
@@ -301,7 +305,7 @@ export default function Archives() {
                 width: '100%',
                 textAlign: 'center',
                 fontSize: 20,
-                fontFamily: 'CustomFont1',
+                fontFamily: CUSTOM_FONT_FAMILY,
                 color: `${darkMode ? '#ffffffaa' : '#001447aa'}`,
                 fontWeight: 'bold',
               }}
@@ -321,7 +325,7 @@ export default function Archives() {
                   },
                 },
                 token: {
-                  fontFamily: 'CustomFont1',
+                  fontFamily: CUSTOM_FONT_FAMILY,
                   fontSize: 17,
                   colorText: `${darkMode ? '#ffffffcc' : '#001447cc'}`,
                 },

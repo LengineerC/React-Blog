@@ -2,7 +2,7 @@
 @use '../../../../../styles/page_layout.scss' as *;
 
 .clock-card-main {
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   flex-direction: column;
   @extend .hv-center;
   width: 100%;

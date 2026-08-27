@@ -2,7 +2,7 @@
 
 .toc-header {
   color: $postColor;
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   width: 100%;
   font-size: 20px;
   text-align: center;
@@ -59,7 +59,7 @@
 
   // p{
   //     color: $postColor;
-  //     font-family: "CustomFont1";
+  //     font-family: $customFontFamily;
   //     margin: 5px 0 10px 0;
   //     width: 100%;
   //     transition: 0.3s;
@@ -83,7 +83,7 @@
   //markdown-navbar
   .title-anchor {
     color: $postColor;
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     width: 100%;
     margin-bottom: 5px;
     transition: 0.3s;
@@ -141,7 +141,7 @@
 
   // p{
   //     color: $postColor;
-  //     font-family: "CustomFont1";
+  //     font-family: $customFontFamily;
   //     margin: 5px 0 10px 0;
   //     width: 100%;
   //     transition: 0.3s;
@@ -165,7 +165,7 @@
   //markdown-navbar
   .title-anchor {
     color: $postColor-dark;
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     width: 100%;
     margin-bottom: 5px;
     transition: 0.3s;
@@ -201,7 +201,7 @@
   background: transparentize($themeBackgroundColor-dark, 0.4);
   .title-anchor {
     color: $postColor-dark;
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     width: 100%;
     margin-bottom: 5px;
     transition: 0.3s;

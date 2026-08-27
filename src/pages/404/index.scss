@@ -19,7 +19,7 @@
   word-break: break-all;
   @extend .hv-center;
   color: white;
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   font-size: 20px;
   border-radius: 3px;
   background-color: #ff373790;
@@ -60,7 +60,7 @@
 }
 
 .return-click-block {
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   @extend .hv-center;
   width: 10vw;
   height: 7vh;

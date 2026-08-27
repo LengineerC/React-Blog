@@ -52,7 +52,7 @@
     }
 
     .friends-card-content {
-      font-family: 'CustomFont1';
+      font-family: $customFontFamily;
       display: flex;
       flex-direction: column;
       width: 60%;

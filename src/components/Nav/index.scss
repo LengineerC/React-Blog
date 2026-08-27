@@ -74,6 +74,7 @@
     }
 
     a {
+  font-family: $customFontFamily;
       text-decoration: none;
       color: $postColor;
     }
@@ -176,6 +177,7 @@
     @extend .sub-menu-item;
 
     a {
+  font-family: $customFontFamily;
       text-decoration: none;
       color: #fff;
     }

@@ -7,7 +7,7 @@
   padding: 20px;
   border-radius: 5px;
   width: 100%;
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   line-height: normal;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -191,9 +191,13 @@
 
   code {
     background-color: #afb8c15e;
-    padding: 0 5px;
+    padding: 2px 5px;
+    margin: 0 1px;
     border-radius: 5px;
     color: rgb(9, 103, 32);
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;  
   }
 
   pre {
@@ -524,8 +528,12 @@
   }
 
   code {
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: keep-all;
     background-color: #d9d9d95e;
-    padding: 0 5px;
+    padding: 2px 5px;
+    margin: 0 1px;
     border-radius: 5px;
     color: rgb(167, 0, 0);
     text-shadow: 0 0 2px rgba(204, 204, 204, 0.694);

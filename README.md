@@ -84,6 +84,9 @@ public/post-images/react/hooks/use-context/cover.png
 ### 安装依赖
 
 - `npm install`
+- 安装字体裁剪工具：`python -m pip install fonttools brotli`
+
+`npm start`和`npm run build`会根据当前页面及文章实际使用的字符生成`public/generated/font-subset.woff2`。完整字体仅在进入Unicode转换工具时按需加载。
 
 ### 修改域名
 

@@ -8,6 +8,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 import Category from '../../components/Category';
 import { useAppSelector } from '../../redux/hooks';
 import { Categories } from '../../utils/types';
+import { CUSTOM_FONT_FAMILY } from '../../utils/constants';
 
 import './index.scss';
 
@@ -24,13 +25,13 @@ function createRadarOption(categories: Categories, darkMode: boolean) {
       indicator: categoryNames.map(name => ({ name, max })),
       name: {
         textStyle: {
-          fontFamily: 'CustomFont1',
+          fontFamily: CUSTOM_FONT_FAMILY,
           fontSize: 15,
           color: textColor,
         },
       },
       axisName: {
-        fontFamily: 'CustomFont1',
+        fontFamily: CUSTOM_FONT_FAMILY,
         fontSize: 15,
         color: textColor,
         fontWeight: 'bold',
@@ -55,7 +56,7 @@ function createRadarOption(categories: Categories, darkMode: boolean) {
               position: 'right',
               color: darkMode ? '#ffffff' : '#000000',
               fontWeight: 'bold',
-              fontFamily: 'CustomFont1',
+              fontFamily: CUSTOM_FONT_FAMILY,
             },
           },
         ],

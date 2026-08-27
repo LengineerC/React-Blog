@@ -13,7 +13,7 @@
 }
 
 .footer-main {
-  font-family: 'CustomFont1';
+  font-family: $customFontFamily;
   display: flex;
   justify-content: center;
   background-color: $footerBackgroundColor;

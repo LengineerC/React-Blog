@@ -10,7 +10,7 @@
     width: 100%;
     flex-direction: column;
     transition: 0.2s;
-    font-family: "CustomFont1";
+    font-family: $customFontFamily;
     color: $postColor;
 
     &.dark {

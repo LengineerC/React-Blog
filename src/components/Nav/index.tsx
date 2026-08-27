@@ -17,7 +17,7 @@ import {
   faWindowRestore,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import { setDarkModeOFF, setDarkModeON } from '../../redux/slices/uiSlice';
+// import { setDarkModeOFF, setDarkModeON } from '../../redux/slices/uiSlice';
 import { MoonFilled, SunFilled } from '@ant-design/icons';
 import { MenuConfig } from '../../utils/types';
 
@@ -167,7 +167,7 @@ export default function Nav({ toggleDarkMode }: Props) {
           onMouseEnter={() => handleMouseEnter(item.path)}
           onMouseLeave={handleMouseLeave}
           key={item.key}
-        // push={1}
+          // push={1}
         >
           {item.clickable ? (
             <NavLink to={item.path}>
@@ -292,7 +292,7 @@ export default function Nav({ toggleDarkMode }: Props) {
     setVisible(navState);
   }, [navState]);
 
-  // useImperativeHandle(ref, () => ({ 
+  // useImperativeHandle(ref, () => ({
   //   changeDarkMode,
   // }), []);
 

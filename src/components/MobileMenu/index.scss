@@ -7,7 +7,7 @@
   }
 
   .header-text-center {
-    font-family: 'CustomFont1';
+    font-family: $customFontFamily;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@
           }
 
           .submenu-item-label {
-            font-family: 'CustomFont1';
+            font-family: $customFontFamily;
             color: $postColor;
 
             &.dark {
@@ -148,7 +148,7 @@
       }
 
       .menu-item-label {
-        font-family: 'CustomFont1';
+        font-family: $customFontFamily;
         color: $postColor;
 
         &.dark {

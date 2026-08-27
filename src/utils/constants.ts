@@ -7,6 +7,10 @@ export const SITE_TITLE: string = "LengineerC's blog";
 //判断移动设备的宽度边界(px)，修改后base.scss里面对应的也要修改
 export const MOBILE_MAX_WIDTH: number = 992;
 
+// 整合字体缺字时的回退顺序
+export const CUSTOM_FONT_FAMILY: string =
+  "'CustomFont1', 'Comic Sans MS', 'YouYuan', '幼圆', 'Yuanti SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif";
+
 //网站作者
 export const AUTHOR: string = 'LengineerC';
 

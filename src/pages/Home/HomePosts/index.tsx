@@ -3,6 +3,7 @@ import PostCard from '../../../components/PostCard';
 import { Pagination, ConfigProvider } from 'antd';
 import { useAppSelector } from '../../../redux/hooks';
 import { motion } from 'framer-motion';
+import { CUSTOM_FONT_FAMILY } from '../../../utils/constants';
 
 import './index.scss';
 
@@ -47,7 +48,7 @@ export default function HomePosts() {
     if (!darkMode)
       return {
         token: {
-          fontFamily: 'CustomFont1',
+          fontFamily: CUSTOM_FONT_FAMILY,
           colorPrimary: '#67abff',
           colorText: '#001447',
         },
@@ -61,7 +62,7 @@ export default function HomePosts() {
     else
       return {
         token: {
-          fontFamily: 'CustomFont1',
+          fontFamily: CUSTOM_FONT_FAMILY,
           colorPrimary: '#00e80f',
           colorText: '#ffffffdd',
         },

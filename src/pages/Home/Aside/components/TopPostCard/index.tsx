@@ -6,13 +6,14 @@ import Card from '../../../../../components/Card';
 // import axios from 'axios'
 // import PostCard from '../../../HomePosts/PostCard'
 import { useAppSelector } from '../../../../../redux/hooks';
+import { CUSTOM_FONT_FAMILY } from '../../../../../utils/constants';
 
 import './index.scss';
 
 const navLinkStyle = {
   textDecoration: 'none',
   color: 'rgb(0, 20, 71)',
-  fontFamily: 'CustomFont1',
+  fontFamily: CUSTOM_FONT_FAMILY,
 };
 
 export default function TopPostCard() {

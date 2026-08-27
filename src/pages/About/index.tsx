@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import PageTitle from '../../components/PageTitle';
 import Card from '../../components/Card';
 import avatar from '../../assets/image/avatar.webp';
-import { AUTHOR } from '../../utils/constants';
+import { AUTHOR, CUSTOM_FONT_FAMILY } from '../../utils/constants';
 // import store from "../../redux/store";
 import MDRenderer from '../../components/MDRenderer';
 import * as echarts from 'echarts/core';
@@ -61,7 +61,7 @@ export default function About() {
       tooltip: {
         triger: 'item',
         textStyle: {
-          fontFamily: 'CustomFont1',
+          fontFamily: CUSTOM_FONT_FAMILY,
         },
       },
       // legend: {
@@ -76,7 +76,7 @@ export default function About() {
           data: categoriesData,
           label: {
             color: `${darkMode ? '#ffffffaa' : '#000000aa'}`,
-            fontFamily: 'CustomFont1',
+            fontFamily: CUSTOM_FONT_FAMILY,
             fontWeight: 'bold',
             fontSize: '15',
           },

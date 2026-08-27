@@ -10,6 +10,7 @@
 
 # production
 /build
+/.font-subset-cache.json
 
 # misc
 .DS_Store

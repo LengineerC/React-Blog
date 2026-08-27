@@ -36,7 +36,7 @@
 
       .post-page-card-header {
         color: $postColor;
-        font-family: 'CustomFont1';
+        font-family: $customFontFamily;
         height: auto;
         width: 100%;
 
@@ -83,7 +83,7 @@
       .post-page-card-footer {
         margin-top: 20px;
         color: $postColor;
-        font-family: 'CustomFont1';
+        font-family: $customFontFamily;
         display: flex;
         flex-direction: column;
         width: 100%;
