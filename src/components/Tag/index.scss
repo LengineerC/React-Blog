@@ -10,7 +10,7 @@
 
 @for $i from 0 through 2 {
   .tag-bg-color-#{$i} {
-    text-align: center;
+    text-align: left;
     padding: 2px 7px;
     padding-bottom: 5px;
     border-radius: 7px;

@@ -219,7 +219,7 @@ export default function Post() {
                               &nbsp;作者：
                             </span>
 
-                            <span style={{ whiteSpace: 'nowrap' }}>{postConfig?.author}</span>
+                            <span style={{ whiteSpace: 'normal' }}>{postConfig?.author}</span>
                           </div>
 
                           <div style={darkMode ? { color: '#ffffffcc' } : {}}>
@@ -228,7 +228,7 @@ export default function Post() {
                               &nbsp;发布时间：
                             </span>
 
-                            <span style={{ whiteSpace: 'nowrap' }}>{postConfig?.time}</span>
+                            <span style={{ whiteSpace: 'normal' }}>{postConfig?.time}</span>
                           </div>
 
                           <div style={darkMode ? { color: '#ffffffcc' } : {}}>
@@ -237,7 +237,7 @@ export default function Post() {
                               &nbsp;文章字数：
                             </span>
 
-                            <span style={{ whiteSpace: 'nowrap' }}>{characterCount}</span>
+                            <span style={{ whiteSpace: 'normal' }}>{characterCount}</span>
                           </div>
                         </div>
                       </div>
