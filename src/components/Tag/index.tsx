@@ -25,7 +25,7 @@ export default function Tag({ tag, reload = false }: Props) {
 
   return (
     <div className="tag-main">
-      <NavLink onClick={reloadPage} to={`/tags/${tag}`} style={{ textDecoration: 'none' }}>
+      <NavLink className="tag-link" onClick={reloadPage} to={`/tags/${tag}`}>
         <div className={colorChooser(bgColor)}>{tag}</div>
       </NavLink>
     </div>

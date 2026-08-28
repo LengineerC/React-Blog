@@ -48,14 +48,14 @@ export default function PostCard({ config, showFooter = true }: Props) {
             </div>
 
             <hr className={darkMode ? 'hr-double-dark' : 'hr-double'} />
-          </NavLink>
-          {showFooter && (
-            <div className={darkMode ? 'post-card-footer-dark' : 'post-card-footer'}>
-              <div className="post-card-tags-block">{createTags()}</div>
+            {showFooter && (
+              <div className={darkMode ? 'post-card-footer-dark' : 'post-card-footer'}>
+                <div className="post-card-categories-block">{createCategories()}</div>
 
-              <div className="post-card-categories-block">{createCategories()}</div>
-            </div>
-          )}
+                <div className="post-card-tags-block">{createTags()}</div>
+              </div>
+            )}
+          </NavLink>
         </div>
       </Card>
     </div>

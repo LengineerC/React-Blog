@@ -42,29 +42,40 @@
 
         .post-page-card-header-symbol {
           display: flex;
+          min-width: 0;
+          align-items: flex-start;
+          gap: 8px 16px;
           justify-content: space-between;
           margin-bottom: 30px;
 
           .post-page-card-header-symbol-tags {
             display: flex;
-            width: 35%;
+            justify-content: flex-end;
+            min-width: 0;
+            max-width: calc(67% - 16px);
+            flex: 1 1 calc(67% - 16px);
             flex-wrap: wrap;
+            gap: 5px;
 
             .post-page-card-header-symbol-tag-block {
-              margin-right: 3px;
-              margin-bottom: 3px;
+              min-width: 0;
+              max-width: 100%;
             }
           }
 
           .post-page-card-header-symbol-categories {
             display: flex;
-            justify-content: flex-end;
-            width: 35%;
+            min-width: 0;
+            max-width: 33%;
+            flex: 0 1 33%;
             flex-wrap: wrap;
+            gap: 5px;
+            justify-content: flex-start;
 
             .post-page-card-header-symbol-category-block {
-              margin-left: 3px;
-              margin-bottom: 3px;
+              min-width: 0;
+              max-width: 100%;
+              overflow-wrap: anywhere;
             }
           }
         }
@@ -185,6 +196,20 @@
     }
     .post-page-card-header {
       padding: 0 5px;
+
+      .post-page-card-header-symbol {
+        gap: 8px;
+
+        .post-page-card-header-symbol-tags {
+          max-width: calc(67% - 8px);
+          flex-basis: calc(67% - 8px);
+        }
+
+        .post-page-card-header-symbol-categories {
+          max-width: 33%;
+          flex-basis: 33%;
+        }
+      }
 
       .post-page-card-header-info {
         flex-direction: column;

@@ -46,31 +46,58 @@
 }
 
 .post-card-footer {
-  color: $postColor;
   display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 8px 20px;
   justify-content: space-between;
   margin-top: 10px;
+  color: $postColor;
 
   .post-card-tags-block {
     display: flex;
+    min-width: 0;
+    max-width: calc(67% - 20px);
+    flex: 1 1 calc(67% - 20px);
     flex-wrap: wrap;
-    max-width: 35%;
-    // flex-direction: column;
+    gap: 5px;
+    justify-content: flex-end;
+
     .post-card-tag-container {
-      margin-right: 3px;
-      margin-bottom: 3px;
+      min-width: 0;
+      max-width: 100%;
     }
   }
 
   .post-card-categories-block {
     display: flex;
+    min-width: 0;
+    max-width: 33%;
+    flex: 0 1 33%;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    max-width: 35%;
-    // flex-direction: column;
+    gap: 5px;
+    justify-content: flex-start;
+
     .post-card-category-container {
-      margin-right: 3px;
-      margin-bottom: 3px;
+      min-width: 0;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+@media screen and (max-width: $mobileMaxWidth) {
+  .post-card-footer {
+    gap: 8px;
+
+    .post-card-tags-block {
+      max-width: calc(67% - 8px);
+      flex-basis: calc(67% - 8px);
+    }
+
+    .post-card-categories-block {
+      max-width: 33%;
+      flex-basis: 33%;
     }
   }
 }

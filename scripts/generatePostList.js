@@ -156,7 +156,8 @@ function createContentCompiler(postId, { Marked, Renderer, markedHighlight, hljs
 
   renderer.image = function image(token) {
     const href = resolvePostImageHref(token.href, postId);
-    return defaultImageRenderer.call(this, { ...token, href });
+    const imageHtml = defaultImageRenderer.call(this, { ...token, href });
+    return imageHtml.replace('<img ', '<img data-markdown-image="true" ');
   };
 
   const marked = new Marked(

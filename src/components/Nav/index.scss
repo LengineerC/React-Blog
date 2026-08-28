@@ -128,7 +128,7 @@
   // text-shadow: 1px 1px 5px black;
 
   .nav-click-text-container {
-    font-size: 15px;
+    font-size: 17px;
     margin-left: 5px;
 
     .nav-click-text-icon {
@@ -140,7 +140,7 @@
 .nav-tool-click-container {
   display: flex;
   color: white;
-  font-size: 20px;
+  font-size: 19px;
   transition: 0.3s;
   height: $navHeight;
   justify-content: center;
@@ -148,6 +148,7 @@
   width: $navHeight;
   cursor: pointer;
   user-select: none;
+  padding: 0 5px;
 
   &:hover {
     transform: scale(1.2);
@@ -177,7 +178,7 @@
     @extend .sub-menu-item;
 
     a {
-  font-family: $customFontFamily;
+      font-family: $customFontFamily;
       text-decoration: none;
       color: #fff;
     }

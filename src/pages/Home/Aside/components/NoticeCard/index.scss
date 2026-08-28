@@ -38,13 +38,13 @@
 
   .notice-card-content {
     color: $postColor;
-    font-weight: bold;
+    font-size: 18px;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
   }
 
   .notice-card-content-dark {
     color: $postColor-dark;
-    font-weight: bold;
+    font-size: 18px;
     text-shadow: 0 0 1px rgba(198, 198, 198, 0.5);
   }
 }

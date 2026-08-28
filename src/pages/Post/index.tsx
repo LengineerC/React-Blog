@@ -205,11 +205,11 @@ export default function Post() {
                     <Card darkMode={darkMode}>
                       <div className="post-page-card-header">
                         <div className="post-page-card-header-symbol">
-                          <div className="post-page-card-header-symbol-tags">{createTags()}</div>
-
                           <div className="post-page-card-header-symbol-categories">
                             {createCategories()}
                           </div>
+
+                          <div className="post-page-card-header-symbol-tags">{createTags()}</div>
                         </div>
 
                         <div className="post-page-card-header-info">

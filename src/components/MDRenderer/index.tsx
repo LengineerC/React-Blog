@@ -48,6 +48,10 @@ function MarkdownImage({ attribs }: { attribs: Record<string, string> }) {
   );
 }
 
+function isMarkdownImage(domNode: any) {
+  return domNode?.name === 'img' && domNode.attribs?.['data-markdown-image'] === 'true';
+}
+
 function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
   const [messageApi, contextHolder] = message.useMessage();
   const [isCollapsed, setIsCollapsed] = useState(CODE_BLOCK_COLLAPSED);
@@ -104,14 +108,14 @@ function MDRenderer({ html, darkMode }: Props) {
               if (
                 domNode.children &&
                 domNode.children.length === 1 &&
-                domNode.children[0].name === 'img'
+                isMarkdownImage(domNode.children[0])
               ) {
                 const img = domNode.children[0];
                 return <MarkdownImage attribs={img.attribs} />;
               }
             }
 
-            if (domNode.name === 'img') {
+            if (isMarkdownImage(domNode)) {
               return <MarkdownImage attribs={domNode.attribs} />;
             }
 
