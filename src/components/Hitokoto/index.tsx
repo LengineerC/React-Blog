@@ -2,15 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { HITOKOTO_GET_ENABLE, SUB_TITLE_ENABLE, SUB_TITLE_TEXTS } from '../../utils/constants';
 import { genRandomInt } from '@lengineerc/utils';
+import { load as loadJinrishici } from 'jinrishici';
 import './index.scss';
 
-const jinrishici = require('jinrishici');
 export default function Hitokoto() {
-  const [sentence, setSentence] = useState<string>(
-    SUB_TITLE_TEXTS[genRandomInt(0, SUB_TITLE_TEXTS.length - 1)],
-  );
+  const [sentence, setSentence] = useState<string>(SUB_TITLE_TEXTS[0]);
 
   useEffect(() => {
+    setSentence(SUB_TITLE_TEXTS[genRandomInt(0, SUB_TITLE_TEXTS.length - 1)]);
+
     if (HITOKOTO_GET_ENABLE && SUB_TITLE_ENABLE) {
       axios
         .get('https://v1.hitokoto.cn')
@@ -20,7 +20,7 @@ export default function Hitokoto() {
         .catch(e => {
           console.log('hitokoto获取失败', e);
           console.log('获取今日诗词');
-          jinrishici.load(
+          loadJinrishici(
             (result: any) => {
               setSentence(result.data.content);
             },

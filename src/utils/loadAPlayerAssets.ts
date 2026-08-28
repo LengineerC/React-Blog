@@ -5,7 +5,7 @@ const METING_SCRIPT_ID = 'meting-script';
 let assetsPromise: Promise<void> | null = null;
 
 function getAssetUrl(path: string) {
-  return `${process.env.PUBLIC_URL || ''}${path}`;
+  return `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
 }
 
 function loadStylesheet(id: string, href: string) {

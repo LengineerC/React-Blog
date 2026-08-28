@@ -11,7 +11,7 @@ type Props = {
 export default function Clock(props: Props) {
   const darkMode = useAppSelector(s => s.ui.darkMode);
 
-  const [dpr] = useState<number>(window.devicePixelRatio || 1);
+  const [dpr, setDpr] = useState<number>(1);
   const [date, setDate] = useState<Date>(new Date());
 
   const dialPlateRef = useRef<HTMLCanvasElement>(null);
@@ -42,6 +42,10 @@ export default function Clock(props: Props) {
   };
 
   useEffect(() => {
+    setDpr(window.devicePixelRatio || 1);
+  }, []);
+
+  useEffect(() => {
     const dialPlateCtx = dialPlateRef.current?.getContext('2d');
     const handsCtx = handsRef.current?.getContext('2d');
 
@@ -59,7 +63,7 @@ export default function Clock(props: Props) {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [dpr]);
 
   useEffect(() => {
     drawDialPlate();

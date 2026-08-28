@@ -14,14 +14,14 @@ import {
 } from '@ant-design/icons';
 import Tag from '../../components/Tag';
 import Category from '../../components/Category';
-import { AUTHOR, DEPLOY_ON_GITHUB_PAGES } from '../../utils/constants';
+import { AUTHOR } from '../../utils/constants';
 import TOC from './TOC';
 import LockCard from './LockCard';
 import { useAppSelector } from '../../redux/hooks';
 import { copyText } from '@/utils/functions';
 import { usePostContext } from '@/context/PostContext';
 import { getCachedPostContent, loadPostContent } from '../../services/postContentCache';
-import { PostContent } from '../../utils/types';
+import { PostConfig, PostContent } from '../../utils/types';
 
 import './index.scss';
 
@@ -42,9 +42,21 @@ function PostContentSkeleton({ darkMode }: { darkMode: boolean }) {
   );
 }
 
-export default function Post() {
-  const id = useParams()['*'];
-  const [loadedContent, setLoadedContent] = useState<LoadedPostContent>();
+type Props = {
+  initialPostConfig?: PostConfig;
+  initialContent?: PostContent;
+};
+
+export default function Post({ initialPostConfig, initialContent }: Props) {
+  // Static hosts serve each article from a directory URL ending in `/`.
+  // React Router includes that final slash in a wildcard param in the browser,
+  // while the build-time post id has no trailing slash.
+  const id = useParams()['*']?.replace(/^\/+|\/+$/g, '');
+  const [loadedContent, setLoadedContent] = useState<LoadedPostContent | undefined>(() =>
+    initialPostConfig && initialContent
+      ? { path: initialPostConfig.contentPath, value: initialContent }
+      : undefined,
+  );
   const [unlockedPostId, setUnlockedPostId] = useState<string>();
   // const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
   const { showTOC, setInPost, showTOCDrawer, setShowTOCDrawer } = usePostContext();
@@ -53,11 +65,13 @@ export default function Post() {
   // const [showTOCDrawer, setShowTOCDrawer] = useState<boolean>(false);
 
   const [messageApi, contextHolder] = message.useMessage();
-  const [url, setUrl] = useState<string>(window.location.href);
+  const [url, setUrl] = useState<string>('');
 
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const postList = useAppSelector(state => state.post.postList);
   const postConfig = useMemo(() => {
+    if (initialPostConfig?.id === id) return initialPostConfig;
+
     const exactMatch = postList.find(post => post.id === id);
     if (exactMatch || !id?.includes('/')) {
       if (exactMatch) return exactMatch;
@@ -69,7 +83,7 @@ export default function Post() {
     }
 
     return undefined;
-  }, [id, postList]);
+  }, [id, initialPostConfig, postList]);
   const content =
     loadedContent && loadedContent.path === postConfig?.contentPath
       ? loadedContent.value
@@ -93,6 +107,12 @@ export default function Post() {
 
     let active = true;
     const contentPath = postConfig.contentPath;
+
+    if (initialContent && initialPostConfig?.contentPath === contentPath) {
+      setLoadedContent({ path: contentPath, value: initialContent });
+      return;
+    }
+
     const cachedContent = getCachedPostContent(contentPath);
 
     if (cachedContent !== undefined) {
@@ -108,28 +128,21 @@ export default function Post() {
       .catch(err => {
         if (!active) return;
         console.log('Post: 文章获取失败', err);
-        navigate(`/articles/${id}`);
+        navigate('/posts');
       });
 
     return () => {
       active = false;
     };
-  }, [id, locked, navigate, postConfig]);
+  }, [id, initialContent, initialPostConfig, locked, navigate, postConfig]);
 
   useEffect(() => {
     if (!id) {
       navigate('/');
     }
 
-    //处理因锚点导致的复制链接出错的问题
-    if (!DEPLOY_ON_GITHUB_PAGES) {
-      const url = window.location.href;
-      const hashIndex = url.indexOf('#');
-      if (hashIndex !== -1) {
-        const newUrl = url.substring(0, hashIndex);
-        setUrl(newUrl);
-      }
-    }
+    // 目录锚点不属于文章 canonical 地址。
+    setUrl(window.location.href.split('#')[0]);
   }, [id, navigate]);
 
   const createTags = () => {

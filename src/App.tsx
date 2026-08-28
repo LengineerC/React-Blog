@@ -6,11 +6,8 @@ import { MenuOutlined, SunFilled, MoonFilled } from '@ant-design/icons';
 
 // import { MOBILE_MAX_WIDTH } from './utils/constants';
 import { setDarkModeOFF, setDarkModeON } from './redux/slices/uiSlice';
-import { savePostList } from './redux/slices/postSlice';
-import { saveTagsList, saveCategoriesList } from './redux/slices/taxonomySlice';
 
 import Footer from './components/Footer';
-import axios from 'axios';
 import APlayer from './components/APlayer';
 import { SHOW_APLAYER, SHOW_SCROLLBAR } from './utils/constants';
 // import { aplayerRef } from './refs';
@@ -45,7 +42,8 @@ const App: React.FC<any> = () => {
   // },[showMenuBtn])
 
   const getBodyStyleInnerHtml = (isDarkMode: boolean): string => {
-    if (!SHOW_SCROLLBAR) return `
+    if (!SHOW_SCROLLBAR)
+      return `
       body::-webkit-scrollbar {
         display: none;
       }
@@ -95,40 +93,6 @@ const App: React.FC<any> = () => {
     // handleResize();
 
     // const {dispatch}=store;
-    //获取文章列表
-    axios
-      .get('/json/posts.json')
-      .then(response => {
-        const { data } = response;
-        // console.log(data);
-        dispatch(savePostList(data));
-      })
-      .catch(err => {
-        console.log('文章列表获取失败', err);
-      });
-
-    // 获取Tags数据
-    axios
-      .get('/json/tags.json')
-      .then(response => {
-        const { data } = response;
-        dispatch(saveTagsList(data));
-      })
-      .catch(err => {
-        console.log('获取Tags列表失败', err);
-      });
-
-    // 获取Categories数据
-    axios
-      .get('/json/categories.json')
-      .then(response => {
-        const { data } = response;
-        dispatch(saveCategoriesList(data));
-      })
-      .catch(err => {
-        console.log('获取Categories列表失败', err);
-      });
-
     // const unsubscribe=store.subscribe(()=>{
     //   const {darkMode}=store.getState();
     //   if(isDarkMode!==darkMode){

@@ -10,6 +10,7 @@
 
 # production
 /build
+/.react-router
 /.font-subset-cache.json
 
 # misc

@@ -17,22 +17,30 @@ import './index.scss';
 import { useAppSelector } from '../../redux/hooks';
 
 export default function Footer() {
-  const [date] = useState<Date>(new Date());
+  // Avoid baking a build-time date into SSG HTML and then hydrating it with a
+  // different client date. The live value is filled immediately after mount.
+  const [date, setDate] = useState<Date | null>(null);
   // const [isDarkMode,setIsDarkMode]=useState<boolean>();
   const darkMode = useAppSelector(state => state.ui.darkMode);
 
   const calculateDays = () => {
-    let startDate = new Date(WEBSITE_START_DATE);
+    if (!date) return '…';
+
+    const startDate = new Date(WEBSITE_START_DATE);
     const oneDayMs = 24 * 60 * 60 * 1000;
     return Math.round((date.getTime() - startDate.getTime()) / oneDayMs);
   };
+
+  useEffect(() => {
+    setDate(new Date());
+  }, []);
 
   return (
     <footer className={darkMode ? 'footer-main-dark' : 'footer-main'}>
       <div className="footer-left-col">
         <div className="footer-left-row">
           <span className="footer-text-des">
-            Copyright&nbsp;©&nbsp;2024&nbsp;-&nbsp;{date.getFullYear()}&nbsp;&nbsp;
+            Copyright&nbsp;©&nbsp;2024&nbsp;-&nbsp;{date?.getFullYear() ?? '…'}&nbsp;&nbsp;
           </span>
           <span className="footer-text-value">{AUTHOR}</span>
         </div>

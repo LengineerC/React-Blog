@@ -25,14 +25,23 @@ echarts.use([
   LabelLayout,
 ]);
 
-export default function About() {
-  const [content, setContent] = useState<PostContent>();
+type Props = {
+  initialContent?: PostContent;
+};
+
+export default function About({ initialContent }: Props) {
+  const [content, setContent] = useState<PostContent | undefined>(initialContent);
   const pieChartRef = useRef<HTMLDivElement>(null);
   // const [isDarkMode,setIsDarkMode]=useState<boolean>(store.getState().darkMode);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   const categoriesList = useAppSelector(state => state.taxonomy.categoriesList);
 
   useEffect(() => {
+    if (initialContent) {
+      setContent(initialContent);
+      return;
+    }
+
     let active = true;
 
     loadPostContent('/generated/about.json')
@@ -46,7 +55,7 @@ export default function About() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [initialContent]);
 
   useEffect(() => {
     if (!pieChartRef.current || Object.keys(categoriesList).length === 0) return;

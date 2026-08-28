@@ -1,12 +1,10 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { useLocation, useRoutes } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import routes from '../../routes';
 import Loading from '../Loading';
 import FloatBtnGroup from '../FloatBtnGroup';
 
 export default function Main() {
-  const elements = useRoutes(routes);
   const location = useLocation();
 
   const [loadingVisible, setLoadingVisible] = useState(false);
@@ -35,7 +33,7 @@ export default function Main() {
   };
 
   return (
-    <main style={{ position: "relative" }}>
+    <main style={{ position: 'relative' }}>
       <AnimatePresence>
         {loadingVisible && (
           <motion.div
@@ -61,7 +59,7 @@ export default function Main() {
         >
           <Suspense fallback={null}>
             <LoadingTracker onFinish={handleFinish} />
-            {elements}
+            <Outlet />
           </Suspense>
         </motion.div>
       </AnimatePresence>

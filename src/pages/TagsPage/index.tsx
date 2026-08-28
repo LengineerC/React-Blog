@@ -4,7 +4,6 @@ import PageTitle from '../../components/PageTitle';
 import { useEffect, useRef } from 'react';
 import Tag from '../../components/Tag';
 import * as echarts from 'echarts/core';
-import 'echarts-wordcloud';
 import { useAppSelector } from '../../redux/hooks';
 
 import './index.scss';
@@ -19,53 +18,56 @@ export default function TagsPage() {
   useEffect(() => {
     if (!chartRef.current || Object.keys(tags).length === 0) return;
 
-    const wordcloud = echarts.init(chartRef.current);
-    const option = {
-      series: [
-        {
-          type: 'wordCloud',
-          gridSize: 2,
-          sizeRange: [20, 60],
-          rotationRange: [0, 0],
-          shape: 'pentagon',
-          textStyle: {
-            color: () => {
-              return (
-                'rgb(' +
-                [
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255),
-                ].join(',') +
-                ')'
-              );
+    let active = true;
+    let wordcloud: ReturnType<typeof echarts.init> | undefined;
+
+    import('echarts-wordcloud').then(() => {
+      if (!active || !chartRef.current) return;
+
+      wordcloud = echarts.init(chartRef.current);
+      const option = {
+        series: [
+          {
+            type: 'wordCloud',
+            gridSize: 2,
+            sizeRange: [20, 60],
+            rotationRange: [0, 0],
+            shape: 'pentagon',
+            textStyle: {
+              color: () => {
+                return (
+                  'rgb(' +
+                  [
+                    Math.round(Math.random() * 255),
+                    Math.round(Math.random() * 255),
+                    Math.round(Math.random() * 255),
+                  ].join(',') +
+                  ')'
+                );
+              },
+              shadowBlur: 10,
+              shadowColor: '#333',
             },
-            shadowBlur: 10,
-            shadowColor: '#333',
+            data: Object.keys(tags).map(tagName => {
+              return {
+                name: tagName,
+                value: tags[tagName].length,
+                link: `/tags/${tagName}`,
+              };
+            }),
           },
-          data: Object.keys(tags).map(tagName => {
-            return {
-              name: tagName,
-              value: tags[tagName].length,
-              link: `/tags/${tagName}`,
-            };
-          }),
-        },
-      ],
-    };
+        ],
+      };
 
-    wordcloud.setOption(option);
-    const handleClick = (params: any) => {
-      if (params.data && params.data.link) {
-        navigate(`${params.data.link}`);
-      }
-    };
-
-    wordcloud.on('click', handleClick);
+      wordcloud.setOption(option);
+      wordcloud.on('click', (params: any) => {
+        if (params.data && params.data.link) navigate(`${params.data.link}`);
+      });
+    });
 
     return () => {
-      wordcloud.off('click', handleClick);
-      wordcloud.dispose();
+      active = false;
+      wordcloud?.dispose();
     };
   }, [navigate, tags]);
 

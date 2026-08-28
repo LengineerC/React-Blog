@@ -87,6 +87,3 @@ export const GITHUB_REPO = {
   owner: 'LengineerC',
   repo: 'React-blog',
 };
-
-// github pages mode
-export const DEPLOY_ON_GITHUB_PAGES: boolean = true;

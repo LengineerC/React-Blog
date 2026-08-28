@@ -2,235 +2,241 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://blog.lengineerc.com/#/</loc>
+    <loc>https://blog.lengineerc.com/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/posts</loc>
+    <loc>https://blog.lengineerc.com/posts/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/archives</loc>
+    <loc>https://blog.lengineerc.com/archives/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags</loc>
+    <loc>https://blog.lengineerc.com/tags/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/categories</loc>
+    <loc>https://blog.lengineerc.com/categories/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/toolbox</loc>
+    <loc>https://blog.lengineerc.com/toolbox/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/toolbox/menu</loc>
+    <loc>https://blog.lengineerc.com/toolbox/menu/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/toolbox/unicode</loc>
+    <loc>https://blog.lengineerc.com/toolbox/unicode/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/media</loc>
+    <loc>https://blog.lengineerc.com/media/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/friends</loc>
+    <loc>https://blog.lengineerc.com/friends/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/about</loc>
+    <loc>https://blog.lengineerc.com/about/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/newnewnewnwenewnewnwewnewnwenwnwewnewnewenwe/tttt</loc>
+    <loc>https://blog.lengineerc.com/post/detail/newnewnewnwenewnewnwewnewnwenwnwewnewnewenwe/tttt/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/abstract_test</loc>
+    <loc>https://blog.lengineerc.com/post/detail/abstract_test/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/%E4%B8%AD%E6%96%87/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95</loc>
+    <loc>https://blog.lengineerc.com/post/detail/%E4%B8%AD%E6%96%87/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/react-context-singleton</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/react-context-singleton/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c1/714test</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c1/714test/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c1/fff</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c1/fff/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/ccc</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/ccc/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/ddd</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/ddd/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/eee</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/eee/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/eeedddd</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/eeedddd/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c1/test_auto_create1</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c1/test_auto_create/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c1/test_auto_create2</loc>
+    <loc>https://blog.lengineerc.com/post/detail/test_auto_create5/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/test_auto_create3</loc>
+    <loc>https://blog.lengineerc.com/post/detail/c_test/test_file_with_spaces/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/test_auto_create4</loc>
+    <loc>https://blog.lengineerc.com/tags/tag12719203u2109hjdiojsaiodjsaoidjsaiodjsakldnsaiocnklasniosadiosahdoashd98sayd098sadh09sayd90asdhsa9dhsa90dhas90das90/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c1/test_auto_create</loc>
+    <loc>https://blog.lengineerc.com/tags/tag2/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/test_auto_create5</loc>
+    <loc>https://blog.lengineerc.com/tags/tag3/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/post/detail/c_test/test_file_with_spaces</loc>
+    <loc>https://blog.lengineerc.com/tags/tag4djsaklsadjskaldjskaldjsakldjsakldjaskldjiowqioeuoiwqeuwoqie7908123790173092132901321iobncjkhzxuihcoassy890e719010392901312312/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag12719203u2109hjdiojsaiodjsaoidjsaiodjsakldnsaiocnklasniosadiosahdoashd98sayd098sadh09sayd90asdhsa9dhsa90dhas90das90</loc>
+    <loc>https://blog.lengineerc.com/tags/tag5/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag2</loc>
+    <loc>https://blog.lengineerc.com/tags/tag6/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag3</loc>
+    <loc>https://blog.lengineerc.com/tags/%E4%B8%AD%E6%96%87/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag4djsaklsadjskaldjskaldjsakldjsakldjaskldjiowqioeuoiwqeuwoqie7908123790173092132901321iobncjkhzxuihcoassy890e719010392901312312</loc>
+    <loc>https://blog.lengineerc.com/tags/%E5%89%8D%E7%AB%AF/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag5</loc>
+    <loc>https://blog.lengineerc.com/tags/React/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag6</loc>
+    <loc>https://blog.lengineerc.com/tags/tag1/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/%E4%B8%AD%E6%96%87</loc>
+    <loc>https://blog.lengineerc.com/tags/test/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/%E5%89%8D%E7%AB%AF</loc>
+    <loc>https://blog.lengineerc.com/categories/newnewnewnwenewnewnwewnewnwenwnwewnewnewenwe/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/React</loc>
+    <loc>https://blog.lengineerc.com/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/tag1</loc>
+    <loc>https://blog.lengineerc.com/categories/%E4%B8%AD%E6%96%87/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://blog.lengineerc.com/#/tags/test</loc>
+    <loc>https://blog.lengineerc.com/categories/c_test/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://blog.lengineerc.com/categories/c1/</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

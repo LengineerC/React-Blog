@@ -20,10 +20,10 @@ const textExtensions = new Set([
   '.tsx',
 ]);
 const scanTargets = [
+  path.join(projectRoot, 'app'),
   path.join(projectRoot, 'src'),
   path.join(projectRoot, 'public', 'posts'),
   path.join(projectRoot, 'public', 'aboutme.md'),
-  path.join(projectRoot, 'public', 'index.html'),
   path.join(projectRoot, 'public', 'manifest.json'),
   path.join(projectRoot, 'public', 'json', 'friends.json'),
 ];

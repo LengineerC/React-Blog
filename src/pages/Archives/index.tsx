@@ -113,7 +113,7 @@ export default function Archives() {
 
   const archiveGroups = useMemo(() => createArchiveGroups(postList), [postList]);
   const availableYears = useMemo(() => archiveGroups.map(group => group.year), [archiveGroups]);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedYear, setSelectedYear] = useState(() => archiveGroups[0]?.year ?? 1970);
 
   useEffect(() => {
     if (availableYears.length > 0 && !availableYears.includes(selectedYear)) {

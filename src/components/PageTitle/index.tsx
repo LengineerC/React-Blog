@@ -5,9 +5,5 @@ type Props = {
 };
 
 export default function PageTitle({ title }: Props) {
-  return (
-    <>
-      <div className="page-title">{title}</div>
-    </>
-  );
+  return <h1 className="page-title">{title}</h1>;
 }

@@ -144,9 +144,7 @@ type Props = {
 
 export default function TOC({ items, showDrawer, callbackOnClose, loading = false }: Props) {
   const [open, setOpen] = useState<boolean>(showDrawer);
-  const [drawerVisible, setDrawerVisible] = useState<boolean>(
-    window.innerWidth <= MOBILE_MAX_WIDTH,
-  );
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
   const darkMode = useAppSelector(state => state.ui.darkMode);
   useEffect(() => {
     setOpen(showDrawer);
@@ -167,6 +165,7 @@ export default function TOC({ items, showDrawer, callbackOnClose, loading = fals
       setDrawerVisible(window.innerWidth <= MOBILE_MAX_WIDTH);
     };
 
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {

@@ -9,7 +9,7 @@ type Props = {
 
 export default function APlayer({ fixed = true, theme }: Props) {
   const metingRef = useRef<any>(null);
-  const destroyTimerRef = useRef<number>();
+  const destroyTimerRef = useRef<number | undefined>(undefined);
   const [assetsReady, setAssetsReady] = useState(false);
 
   useEffect(() => {

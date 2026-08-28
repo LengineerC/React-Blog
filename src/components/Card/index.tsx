@@ -23,9 +23,9 @@ export default function Card({
     <div
       className={`${scale ? 'card-main-scale' : 'card-main'} ${className} ${darkMode ? 'card-main-dark' : ''}`}
       style={{
-        backgroundImage: `url(${bgImage})`,
-        opacity: `${opacity}`,
-        background: `${background}`,
+        backgroundImage: bgImage ? `url(${bgImage})` : undefined,
+        opacity,
+        background,
       }}
     >
       {children}
