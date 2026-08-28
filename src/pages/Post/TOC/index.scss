@@ -193,6 +193,20 @@
   }
 }
 
+.toc-loading-skeleton {
+  box-sizing: border-box;
+  min-height: 220px;
+  padding: 8px 14px 20px;
+
+  &.dark {
+    opacity: 0.72;
+  }
+
+  .ant-skeleton-paragraph > li:nth-child(even) {
+    width: 78% !important;
+  }
+}
+
 .toc-drawer {
   background: #ffffff;
 }

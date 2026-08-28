@@ -166,6 +166,28 @@
   }
 }
 
+.post-content-skeleton {
+  box-sizing: border-box;
+  min-height: 460px;
+  padding: 22px 6px 32px;
+
+  &.dark {
+    opacity: 0.72;
+  }
+}
+
+.post-meta-skeleton {
+  width: 56px !important;
+  min-width: 56px;
+  vertical-align: middle;
+
+  .ant-skeleton-input {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 16px !important;
+  }
+}
+
 @keyframes toc-fade-out {
   from {
     opacity: 1;
@@ -187,6 +209,11 @@
 }
 
 @media screen and (max-width: $mobileMaxWidth) {
+  .post-content-skeleton {
+    min-height: 360px;
+    padding: 16px 2px 24px;
+  }
+
   .post-page-main {
     .post-page-body-content-container-showtoc {
       width: 100%;

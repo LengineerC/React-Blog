@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import MarkdownNavbar from './MarkdownNavBar/index';
 // import MarkdownNavbar from 'markdown-navbar'
-import { ConfigProvider, Drawer } from 'antd';
+import { ConfigProvider, Drawer, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
 import { MOBILE_MAX_WIDTH } from '../../../utils/constants';
 import { useAppSelector } from '../../../redux/hooks';
@@ -139,9 +139,10 @@ type Props = {
   items: PostTocItem[];
   showDrawer: boolean;
   callbackOnClose: () => void;
+  loading?: boolean;
 };
 
-export default function TOC({ items, showDrawer, callbackOnClose }: Props) {
+export default function TOC({ items, showDrawer, callbackOnClose, loading = false }: Props) {
   const [open, setOpen] = useState<boolean>(showDrawer);
   const [drawerVisible, setDrawerVisible] = useState<boolean>(
     window.innerWidth <= MOBILE_MAX_WIDTH,
@@ -178,6 +179,30 @@ export default function TOC({ items, showDrawer, callbackOnClose }: Props) {
     return darkMode ? '#1c1c2c99' : '#ffffffcc';
   };
 
+  const renderContent = (closeOnClick = false) => {
+    if (loading) {
+      return (
+        <div
+          className={`toc-loading-skeleton ${darkMode ? 'dark' : ''}`}
+          aria-busy="true"
+          aria-label="目录加载中"
+        >
+          <Skeleton active paragraph={{ rows: 7 }} title={false} />
+        </div>
+      );
+    }
+
+    return (
+      <MarkdownNavbar
+        {...(closeOnClick ? { onNavItemClick: onClose } : {})}
+        items={items}
+        // updateHashAuto={false}
+        headingTopOffset={60}
+        ordered={true}
+      />
+    );
+  };
+
   // const onHashChange=(newHash:any, oldHash:any)=>{
   //   console.log(newHash,oldHash);
 
@@ -199,14 +224,7 @@ export default function TOC({ items, showDrawer, callbackOnClose }: Props) {
             &nbsp;目录
             <hr />
           </div>
-          <div className={darkMode ? 'toc-content-dark' : 'toc-content'}>
-            <MarkdownNavbar
-              items={items}
-              // updateHashAuto={false}
-              headingTopOffset={60}
-              ordered={true}
-            />
-          </div>
+          <div className={darkMode ? 'toc-content-dark' : 'toc-content'}>{renderContent()}</div>
         </Card>
       ) : (
         <div className="toc-drawer-block">
@@ -234,15 +252,7 @@ export default function TOC({ items, showDrawer, callbackOnClose }: Props) {
                 &nbsp;目录
                 <hr />
               </div>
-              <div className="toc-content">
-                <MarkdownNavbar
-                  onNavItemClick={onClose}
-                  items={items}
-                  // updateHashAuto={false}
-                  headingTopOffset={60}
-                  ordered={true}
-                />
-              </div>
+              <div className="toc-content">{renderContent(true)}</div>
             </Drawer>
           </ConfigProvider>
         </div>

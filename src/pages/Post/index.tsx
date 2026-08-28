@@ -25,9 +25,26 @@ import { PostContent } from '../../utils/types';
 
 import './index.scss';
 
+type LoadedPostContent = {
+  path: string;
+  value: PostContent;
+};
+
+function PostContentSkeleton({ darkMode }: { darkMode: boolean }) {
+  return (
+    <div
+      className={`post-content-skeleton ${darkMode ? 'dark' : ''}`}
+      aria-busy="true"
+      aria-label="文章内容加载中"
+    >
+      <Skeleton active paragraph={{ rows: 12 }} title={{ width: '42%' }} />
+    </div>
+  );
+}
+
 export default function Post() {
   const id = useParams()['*'];
-  const [content, setContent] = useState<PostContent>();
+  const [loadedContent, setLoadedContent] = useState<LoadedPostContent>();
   const [unlockedPostId, setUnlockedPostId] = useState<string>();
   // const [showTOC, setShowTOC] = useState<boolean>(DEFAULT_SHOW_TOC);
   const { showTOC, setInPost, showTOCDrawer, setShowTOCDrawer } = usePostContext();
@@ -53,6 +70,10 @@ export default function Post() {
 
     return undefined;
   }, [id, postList]);
+  const content =
+    loadedContent && loadedContent.path === postConfig?.contentPath
+      ? loadedContent.value
+      : undefined;
   const locked = Boolean(postConfig?.lock && unlockedPostId !== id);
   const characterCount = content?.characterCount ?? 0;
 
@@ -66,22 +87,23 @@ export default function Post() {
 
   useEffect(() => {
     if (!postConfig || locked) {
-      setContent(undefined);
+      setLoadedContent(undefined);
       return;
     }
 
     let active = true;
-    const cachedContent = getCachedPostContent(postConfig.contentPath);
+    const contentPath = postConfig.contentPath;
+    const cachedContent = getCachedPostContent(contentPath);
 
     if (cachedContent !== undefined) {
-      setContent(cachedContent);
+      setLoadedContent({ path: contentPath, value: cachedContent });
       return;
     }
 
-    setContent(undefined);
-    loadPostContent(postConfig.contentPath)
+    setLoadedContent(undefined);
+    loadPostContent(contentPath)
       .then(postContent => {
-        if (active) setContent(postContent);
+        if (active) setLoadedContent({ path: contentPath, value: postContent });
       })
       .catch(err => {
         if (!active) return;
@@ -237,7 +259,17 @@ export default function Post() {
                               &nbsp;文章字数：
                             </span>
 
-                            <span style={{ whiteSpace: 'normal' }}>{characterCount}</span>
+                            <span style={{ whiteSpace: 'normal' }}>
+                              {content ? (
+                                characterCount
+                              ) : (
+                                <Skeleton.Input
+                                  active
+                                  className="post-meta-skeleton"
+                                  size="small"
+                                />
+                              )}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -245,38 +277,46 @@ export default function Post() {
                       <hr className="hr-twill" />
 
                       <div className={'post-page-card-container'}>
-                        <MDRenderer darkMode={darkMode} html={content?.html ?? ''} />
+                        {content ? (
+                          <MDRenderer darkMode={darkMode} html={content.html} />
+                        ) : (
+                          <PostContentSkeleton darkMode={darkMode} />
+                        )}
                       </div>
 
-                      <hr className="hr-twill" />
+                      {content ? (
+                        <>
+                          <hr className="hr-twill" />
 
-                      <div
-                        className={
-                          darkMode ? 'post-page-card-footer-dark' : 'post-page-card-footer'
-                        }
-                      >
-                        <div style={{ marginBottom: '5px' }}>
-                          <span style={{ fontWeight: 'bold' }}>
-                            <LinkOutlined />
-                            文章链接：
-                            <CopyFilled
-                              className={darkMode ? 'copy-button-dark' : 'copy-button'}
-                              onClick={copyLink}
-                            />
-                          </span>
-                          <a href={url}>{url}</a>
-                        </div>
-                        <div style={{ marginBottom: '5px' }}>
-                          <span style={{ fontWeight: 'bold' }}>
-                            <CopyrightOutlined />
-                            版权声明：本博客所有文章除特別声明外，均采用{' '}
-                            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-                              CC BY-NC-SA 4.0
-                            </a>{' '}
-                            许可协议。转载请注明来源 <a href="/">{AUTHOR}</a> !
-                          </span>
-                        </div>
-                      </div>
+                          <div
+                            className={
+                              darkMode ? 'post-page-card-footer-dark' : 'post-page-card-footer'
+                            }
+                          >
+                            <div style={{ marginBottom: '5px' }}>
+                              <span style={{ fontWeight: 'bold' }}>
+                                <LinkOutlined />
+                                文章链接：
+                                <CopyFilled
+                                  className={darkMode ? 'copy-button-dark' : 'copy-button'}
+                                  onClick={copyLink}
+                                />
+                              </span>
+                              <a href={url}>{url}</a>
+                            </div>
+                            <div style={{ marginBottom: '5px' }}>
+                              <span style={{ fontWeight: 'bold' }}>
+                                <CopyrightOutlined />
+                                版权声明：本博客所有文章除特別声明外，均采用{' '}
+                                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                                  CC BY-NC-SA 4.0
+                                </a>{' '}
+                                许可协议。转载请注明来源 <a href="/">{AUTHOR}</a> !
+                              </span>
+                            </div>
+                          </div>
+                        </>
+                      ) : null}
                     </Card>
                   </div>
 
@@ -287,6 +327,7 @@ export default function Post() {
                     <TOC
                       showDrawer={showTOCDrawer}
                       items={content?.toc ?? []}
+                      loading={!content}
                       callbackOnClose={callbackCloseDrawer}
                     />
                   </div>
@@ -303,9 +344,26 @@ export default function Post() {
           </>
         ) : (
           <div className="post-page-body">
-            <Card darkMode={darkMode}>
-              <Skeleton active />
-            </Card>
+            <div
+              className={
+                showTOC
+                  ? 'post-page-body-content-container-showtoc'
+                  : 'post-page-body-content-container'
+              }
+            >
+              <Card darkMode={darkMode}>
+                <PostContentSkeleton darkMode={darkMode} />
+              </Card>
+            </div>
+
+            <div className={`toc-container ${showTOC ? 'fade-in' : 'fade-out'}`}>
+              <TOC
+                callbackOnClose={callbackCloseDrawer}
+                items={[]}
+                loading
+                showDrawer={showTOCDrawer}
+              />
+            </div>
           </div>
         )}
         {/* {!locked && (
