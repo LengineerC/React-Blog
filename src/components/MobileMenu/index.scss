@@ -100,7 +100,7 @@
         .submenu-item-container {
           display: flex;
           flex-direction: row;
-          font-size: 15px;
+          font-size: .9rem;
           height: 60px;
           transition: 0.3s;
           align-items: center;
@@ -124,7 +124,7 @@
           .icon-block {
             width: 20px;
             color: $postColor;
-            font-size: 15px;
+            font-size: 1rem;
             // padding-top: 3px;
           }
         }
@@ -135,7 +135,7 @@
       // border:1px solid black;
       display: flex;
       flex-direction: row;
-      font-size: 15px;
+      font-size: 1rem;
       height: 60px;
       transition: 0.3s;
       align-items: center;
@@ -167,7 +167,7 @@
       .icon-block {
         width: 20px;
         color: $postColor;
-        font-size: 15px;
+        font-size: 1rem;
         // padding-top: 3px;
       }
     }

@@ -61,6 +61,7 @@
 
   .sub-menu-item {
     @extend .hv-center;
+    font-size: .9rem;
     flex-direction: column;
     height: 30px;
     width: 100%;
@@ -74,7 +75,7 @@
     }
 
     a {
-  font-family: $customFontFamily;
+      font-family: $customFontFamily;
       text-decoration: none;
       color: $postColor;
     }
@@ -128,7 +129,7 @@
   // text-shadow: 1px 1px 5px black;
 
   .nav-click-text-container {
-    font-size: 17px;
+    font-size: 1rem;
     margin-left: 5px;
 
     .nav-click-text-icon {

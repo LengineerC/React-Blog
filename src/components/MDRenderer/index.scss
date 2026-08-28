@@ -2,6 +2,7 @@
 @use '../../styles/page_layout.scss' as *;
 
 .markdown-body {
+  font-size: 17px;
   font-family: Arial, sans-serif;
   line-height: 1.6;
   padding: 20px;
@@ -77,7 +78,7 @@
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 31px;
 
     &:before {
       content: '🖌️';
@@ -93,7 +94,7 @@
   }
 
   h3 {
-    font-size: 23px;
+    font-size: 25px;
 
     &:before {
       content: '🖋️';
@@ -101,7 +102,7 @@
   }
 
   h4 {
-    font-size: 19px;
+    font-size: 22px;
 
     &:before {
       content: '✏️';
@@ -109,7 +110,7 @@
   }
 
   h5 {
-    font-size: 16px;
+    font-size: 20px;
 
     &:before {
       content: '📌';
@@ -435,7 +436,7 @@
   }
 
   h1 {
-    font-size: 34px;
+    font-size: 31px;
 
     &:before {
       content: '🖌️';
@@ -451,7 +452,7 @@
   }
 
   h3 {
-    font-size: 23px;
+    font-size: 25px;
 
     &:before {
       content: '🖋️';
@@ -459,7 +460,7 @@
   }
 
   h4 {
-    font-size: 19px;
+    font-size: 22px;
 
     &:before {
       content: '✏️';
@@ -467,7 +468,7 @@
   }
 
   h5 {
-    font-size: 16px;
+    font-size: 20px;
 
     &:before {
       content: '📌';

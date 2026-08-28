@@ -81,6 +81,7 @@
         }
 
         .post-page-card-header-info {
+          font-size: 17px;
           display: flex;
           gap: 7px;
           justify-content: space-between;
@@ -93,6 +94,7 @@
       }
 
       .post-page-card-footer {
+        font-size: 17px;
         margin-top: 20px;
         color: $postColor;
         font-family: $customFontFamily;

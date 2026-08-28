@@ -25,7 +25,7 @@
     height: $sub-item-height;
 
     textarea {
-      font-size: 15px;
+      font-size: 1rem;
       color: $postColor;
       font-family: $customFullFontFamily;
       // width: 100%;
@@ -100,7 +100,7 @@
     .label {
       font-family: $customFontFamily;
       color: $postColor;
-      font-size: 18;
+      font-size: 19px;
       font-weight: bold;
       user-select: none;
       margin-bottom: 5px;
@@ -127,7 +127,7 @@
         @extend .hv-center;
         color: $postColor;
         font-family: $customFontFamily;
-        font-size: 18;
+        font-size: 1.1rem;
         width: 15px;
         font-weight: bold;
         user-select: none;

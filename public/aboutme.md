@@ -37,14 +37,14 @@
 <img src="https://img.shields.io/badge/Shell-4EAA25?style=flat-square&logo=gnubash&logoColor=white" alt="Shell">
 <img src="https://img.shields.io/badge/Haskell-5D4F85?style=flat-square&logo=haskell&logoColor=white" alt="Haskell">
 
----
-
 <br><br>
 
-## 欢迎大佬联系指正！
+##### 欢迎大佬联系指正！
 
 - 🐧QQ: `398908838`
 
 - ✉️E-mail: `lengineerc@outlook.com`
 
 - 🔗github: [LengineerC](https://github.com/LengineerC)
+
+---

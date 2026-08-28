@@ -311,7 +311,7 @@ export default function Post() {
                                 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
                                   CC BY-NC-SA 4.0
                                 </a>{' '}
-                                许可协议。转载请注明来源 <a href="/">{AUTHOR}</a> !
+                                许可协议。转载请注明来源 <a href="/">{AUTHOR}</a>
                               </span>
                             </div>
                           </div>
