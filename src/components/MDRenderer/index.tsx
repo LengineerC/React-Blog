@@ -37,14 +37,14 @@ interface CodeBlockProps {
 
 function MarkdownImage({ attribs }: { attribs: Record<string, string> }) {
   return (
-    <span className="markdown-image-container">
+    <div className="markdown-image-container">
       <Image
         src={attribs.src}
         alt={attribs.alt}
         title={attribs.title}
         style={{ maxWidth: '100%', cursor: 'zoom-in' }}
       />
-    </span>
+    </div>
   );
 }
 
@@ -98,48 +98,49 @@ function CodeBlock({ language, raw, darkMode, children }: CodeBlockProps) {
 }
 
 function MDRenderer({ html, darkMode }: Props) {
+  const parserOptions: Parameters<typeof parser>[1] = {
+    replace: (domNode: any) => {
+      // Ant Design Image renders a div. Markdown normally puts images inside a
+      // paragraph, which would produce invalid <p><div> markup and break SSG
+      // hydration. Render image-containing paragraphs as block containers.
+      if (domNode.name === 'p' && domNode.children?.some(isMarkdownImage)) {
+        return (
+          <div className="markdown-image-paragraph">
+            {domToReact(domNode.children, parserOptions)}
+          </div>
+        );
+      }
+
+      if (isMarkdownImage(domNode)) {
+        return <MarkdownImage attribs={domNode.attribs} />;
+      }
+
+      if (domNode.name === 'pre') {
+        // 手动包了一层<code>来存储raw-code
+        const codeNode = domNode.children[0].children.filter(
+          (n: any) => n.type !== 'text',
+        )[0];
+
+        if (codeNode && codeNode.name === 'code') {
+          const className = codeNode.attribs.class || '';
+          const languageMatch = className.match(/language-(\w+)/);
+          const language = languageMatch ? languageMatch[1] : 'plaintext';
+          const rawCode = decodeURIComponent(codeNode.attribs['data-raw'] || '');
+
+          return (
+            <CodeBlock darkMode={darkMode} language={language} raw={rawCode}>
+              {domToReact(codeNode.children)}
+            </CodeBlock>
+          );
+        }
+      }
+    },
+  };
+
   return (
     <div className={darkMode ? 'markdown-body-dark' : 'markdown-body'}>
       <div>
-        {parser(html, {
-          replace: (domNode: any) => {
-            // marked在img标签外会裹一层p，antd-Image包含div，防止p中出现div的特殊处理
-            if (domNode.name === 'p') {
-              if (
-                domNode.children &&
-                domNode.children.length === 1 &&
-                isMarkdownImage(domNode.children[0])
-              ) {
-                const img = domNode.children[0];
-                return <MarkdownImage attribs={img.attribs} />;
-              }
-            }
-
-            if (isMarkdownImage(domNode)) {
-              return <MarkdownImage attribs={domNode.attribs} />;
-            }
-
-            if (domNode.name === 'pre') {
-              // 手动包了一层<code>来存储raw-code
-              const codeNode = domNode.children[0].children.filter(
-                (n: any) => n.type !== 'text',
-              )[0];
-
-              if (codeNode && codeNode.name === 'code') {
-                const className = codeNode.attribs.class || '';
-                const languageMatch = className.match(/language-(\w+)/);
-                const language = languageMatch ? languageMatch[1] : 'plaintext';
-                const rawCode = decodeURIComponent(codeNode.attribs['data-raw'] || '');
-
-                return (
-                  <CodeBlock darkMode={darkMode} language={language} raw={rawCode}>
-                    {domToReact(codeNode.children)}
-                  </CodeBlock>
-                );
-              }
-            }
-          },
-        })}
+        {parser(html, parserOptions)}
       </div>
     </div>
   );

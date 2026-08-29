@@ -76,7 +76,7 @@ export default function Loading() {
   const darkMode = useAppSelector(s => s.ui.darkMode);
 
   return (
-    <div className={`loading-main ${darkMode && 'dark'}`}>
+    <div className={`loading-main${darkMode ? ' dark' : ''}`}>
       <div className={!darkMode ? 'loader' : 'loader-dark'}>
         <div className="face face1">
           <div className="circle"></div>

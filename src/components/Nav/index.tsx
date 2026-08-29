@@ -1,5 +1,4 @@
 import { ReactElement, RefObject, useEffect, useImperativeHandle, useState } from 'react';
-import { Col, Row } from 'antd';
 // import store from '../../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -304,8 +303,8 @@ export default function Nav({ toggleDarkMode }: Props) {
     ${navTransparent ? 'nav-transparent' : ''}
     `}
     >
-      <Row>
-        <Col span="8" className="nav-content-container" style={show_border}>
+      <div className="nav-row">
+        <div className="nav-side-col nav-content-container" style={show_border}>
           <NavLink to="/">
             <div
               className={darkMode ? 'click-container-dark' : 'click-container'}
@@ -314,23 +313,20 @@ export default function Nav({ toggleDarkMode }: Props) {
               <FontAwesomeIcon icon={faHouse} />
             </div>
           </NavLink>
-        </Col>
+        </div>
 
-        <Col className="nav-center-col" flex={1} span={8}>
-          {createCenterColItems()}
-        </Col>
+        <div className="nav-center-col">{createCenterColItems()}</div>
 
-        <Col
-          span="8"
-          className="nav-content-container"
+        <div
+          className="nav-side-col nav-content-container"
           // push={1}
           style={show_border}
         >
           <div className="nav-tool-click-container" onClick={toggleDarkMode}>
             {!darkMode ? <MoonFilled /> : <SunFilled />}
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </nav>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import Card from '../../components/Card';
 import MDRenderer from '../../components/MDRenderer';
 import { ConfigProvider, Skeleton, message } from 'antd';
@@ -324,7 +324,7 @@ export default function Post({ initialPostConfig, initialContent }: Props) {
                                 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
                                   CC BY-NC-SA 4.0
                                 </a>{' '}
-                                许可协议。转载请注明来源 <a href="/">{AUTHOR}</a>
+                                许可协议。转载请注明来源 <NavLink to="/">{AUTHOR}</NavLink>
                               </span>
                             </div>
                           </div>

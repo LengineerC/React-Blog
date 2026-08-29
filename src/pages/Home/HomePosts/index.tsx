@@ -27,7 +27,7 @@ export default function HomePosts() {
         <motion.div
           style={{ width: '100%', marginBottom: '3vh' }}
           key={item.id}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={false}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.2 }}

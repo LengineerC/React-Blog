@@ -1,32 +1,24 @@
-import { useState } from 'react';
-import { genRandomInt } from '@lengineerc/utils';
-
 import './index.scss';
 import { NavLink } from 'react-router-dom';
 
 type Props = {
   tag: string;
-  reload?: boolean;
 };
 
-export default function Tag({ tag, reload = false }: Props) {
-  const [bgColor] = useState(() => genRandomInt(0, 2));
+function getTagColor(tag: string) {
+  const hash = Array.from(tag).reduce(
+    (value, character) => (value * 31 + (character.codePointAt(0) ?? 0)) >>> 0,
+    0,
+  );
 
-  const colorChooser = (color: number): string => {
-    let style = 'tag-bg-color-';
-    return style + color;
-  };
+  return `tag-bg-color-${hash % 3}`;
+}
 
-  const reloadPage = () => {
-    if (reload) {
-      window.location.reload();
-    }
-  };
-
+export default function Tag({ tag }: Props) {
   return (
     <div className="tag-main">
-      <NavLink className="tag-link" onClick={reloadPage} to={`/tags/${tag}`}>
-        <div className={colorChooser(bgColor)}>{tag}</div>
+      <NavLink className="tag-link" to={`/tags/${tag}`}>
+        <div className={getTagColor(tag)}>{tag}</div>
       </NavLink>
     </div>
   );

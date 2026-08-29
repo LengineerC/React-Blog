@@ -1,0 +1,16 @@
+@use '../../styles/base.scss' as *;
+
+.route-loading-overlay {
+  position: fixed;
+  inset: $navHeight 0 0;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+.js .route-loading-overlay {
+  display: flex;
+}
